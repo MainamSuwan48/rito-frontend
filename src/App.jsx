@@ -1,37 +1,36 @@
-import React, { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import './App.css';
-import viteLogo from './assets/vite.svg';
+import React from 'react';
 
 function App() {
-  const [count, setCount] = useState(0);
-  console.log('api', import.meta.env);
   return (
-    <>
+    <div className='bg-base-100 font-black text-white h-screen flex flex-col justify-center items-center text-3xl '>
+      <div className='flex justify-center items-center'>
+        <span className='text-primary animate-bounce text-5xl'>Rito</span>
+        <span className='text-secondary'>App</span>
+      </div>
       <div>
-        <a href='https://vitejs.dev' target='_blank' rel='noreferrer'>
-          <img src={viteLogo} className='logo' alt='Vite logo' />
-        </a>
-        <a href='https://react.dev' target='_blank' rel='noreferrer'>
-          <img src={reactLogo} className='logo react' alt='React logo' />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className='card'>
-        <button
-          type='button'
-          onClick={() => setCount((prevCount) => prevCount + 1)}
-        >
-          count is {count}
+        <button type='button' className='btn'>
+          Button
         </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+        <button type='button' className='btn btn-neutral'>
+          Neutral
+        </button>
+        <button type='button' className='btn btn-primary'>
+          Primary
+        </button>
+        <button type='button' className='btn btn-secondary'>
+          Secondary
+        </button>
+        <button type='button' className='btn btn-accent'>
+          Accent
+        </button>
+        <button type='button' className='btn btn-ghost'>
+          Ghost
+        </button>
+        <button type='button' className='btn btn-link'>
+          Link
+        </button>
       </div>
-      <p className='read-the-docs'>
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </div>
   );
 }
 
