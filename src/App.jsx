@@ -1,4 +1,5 @@
 import React from 'react';
+import ShadCnTest from './pages/ShadCnTest';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           Link
         </button>
       </div>
+      <ShadCnTest />
     </div>
   );
 }

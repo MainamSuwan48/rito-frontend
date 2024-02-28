@@ -1,9 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 function MainLogo() {
-  return (
-    <div>MainLogo</div>
-  )
+  return <div>MainLogo</div>;
 }
 
-export default MainLogo
+export default MainLogo;
