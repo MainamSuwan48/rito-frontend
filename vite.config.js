@@ -1,15 +1,14 @@
-
 import react from '@vitejs/plugin-react';
-import eslintPlugin from 'vite-plugin-eslint';
-import { defineConfig } from "vite"
+// import eslintPlugin from 'vite-plugin-eslint' ; //re-enable this if you like pain and surffering.
+import { defineConfig } from 'vite';
 import path from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), eslintPlugin({ fix: true })],
+  plugins: [react()],
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src"),
+      '@': path.resolve(__dirname, './src'),
     },
   },
   base: '/',
