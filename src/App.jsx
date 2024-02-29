@@ -2,7 +2,11 @@ import React from 'react';
 import ReferencePage from './pages/ReferencePage';
 
 function App() {
-  return <ReferencePage />;
+  return (
+    <>
+      <ReferencePage />
+    </>
+  );
 }
 
 export default App;

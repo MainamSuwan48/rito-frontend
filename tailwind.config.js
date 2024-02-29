@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   darkMode: ['class'],
   content: [
     './pages/**/*.{js,jsx}',
@@ -16,18 +17,7 @@ module.exports = {
         '2xl': '1400px',
       },
     },
-    colors: {
-      primary: '#ff6e7c',
-      primary_mute: '#853C43',
-      secondary: '#00ADB5',
-      secondary_mute: '#01787F',
-      base_dark: '#222831',
-      base: '#393e46',
-      base_light: '#C7C8CC',
-      danger: '#E6172B',
-      success: '#C7EF00',
-      neutral: '#EEEEEE',
-    },
+
     extend: {
       keyframes: {
         'accordion-down': {
@@ -46,4 +36,43 @@ module.exports = {
     },
   },
   plugins: [require('tailwindcss-animate')],
+  theme: {
+    extend: {
+      colors: {
+        primary_mute: '#853C43',
+        secondary_mute: '#01787F',
+        base_dark: '#222831',
+        base_light: '#C7C8CC',
+        danger: '#E6172B',
+        success: '#C7EF00',
+        neutral: '#EEEEEE',
+      },
+    },
+  },
+  plugins: [require('daisyui')],
+  daisyui: {
+    themes: [
+      {
+        mytheme: {
+          primary: '#ff6e7c',
+
+          secondary: '#00ADB5',
+
+          accent: '#ec4899',
+
+          neutral: '#EEEEEE',
+
+          'base-100': '#393e46',
+
+          info: '#fde047',
+
+          success: '#C7EF00',
+
+          warning: '#ffce1c',
+
+          error: '#E6172B',
+        },
+      },
+    ],
+  },
 };
