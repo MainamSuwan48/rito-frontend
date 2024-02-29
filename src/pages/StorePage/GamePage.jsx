@@ -414,11 +414,14 @@ function GamePage() {
   return (
     <div className='bg-base_dark'>
       <GamePageHero gameData={gameData} />
-      <div className='relative mx-4 flex items-center justify-end gap-9 overflow-hidden rounded-lg p-2 px-4'>    
-        <div className='flex h-20 rounded-xl bg-base-100 p-5 text-center text-3xl font-black text-secondary'>
+      <div className='relative mx-4 flex items-center justify-between gap-9 overflow-hidden rounded-lg p-2 px-4'>
+        <div className='ml-12 flex h-20 rounded-xl bg-base-100 p-5 text-center text-3xl font-black text-secondary'>
           49.99$
         </div>
-        <GamePageButton>BUY NOW</GamePageButton>
+        <div className='flex gap-4'>
+          <GamePageButton>BUY NOW</GamePageButton>
+          <GamePageButton>ADD TO CART</GamePageButton>
+        </div>
       </div>
     </div>
   );
