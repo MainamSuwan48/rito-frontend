@@ -1,6 +1,7 @@
 import React from 'react';
 import ButtonMain from '@/components/ui/ButtonMain';
 import GamePageHero from '@/features/store/components/GamePageHero';
+import GamePageButton from '@/features/store/components/GamePageButton';
 
 const gameData = {
   id: 3498,
@@ -410,7 +411,17 @@ const gameData = {
 };
 
 function GamePage() {
-  return <GamePageHero gameData={gameData} />;
+  return (
+    <div className='bg-base_dark'>
+      <GamePageHero gameData={gameData} />
+      <div className='relative mx-4 flex items-center justify-end gap-9 overflow-hidden rounded-lg p-2 px-4'>    
+        <div className='flex h-20 rounded-xl bg-base-100 p-5 text-center text-3xl font-black text-secondary'>
+          49.99$
+        </div>
+        <GamePageButton>BUY NOW</GamePageButton>
+      </div>
+    </div>
+  );
 }
 
 export default GamePage;

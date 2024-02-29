@@ -6,7 +6,7 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion';
 
-function GamePageDetail({ gameData }) {
+function GamePageHeroDetail({ gameData }) {
   const { name } = gameData;
   const removeHtmlTags = (str) => {
     return str.replace(/<[^>]*>/g, '');
@@ -31,9 +31,9 @@ function GamePageDetail({ gameData }) {
 
   return (
     <>
-      <div className='flex h-96  w-2/3 flex-col gap-2 rounded-xl border-2 border-primary bg-base-100 p-5 text-center'>
+      <div className='flex h-96  w-1/3 flex-col gap-2 rounded-xl border-2 border-primary bg-base-100 p-5 text-center'>
         <div className='overflow-auto'>
-          <p className='mb-2 text-left text-3xl font-extrabold text-primary'>
+          <p className='mb-2 animate-bounce text-left text-3xl font-extrabold text-primary'>
             Description
           </p>
           <p className='text-primary-100 text-left'>{newDescription}</p>
@@ -43,4 +43,4 @@ function GamePageDetail({ gameData }) {
   );
 }
 
-export default GamePageDetail;
+export default GamePageHeroDetail;

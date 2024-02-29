@@ -2,7 +2,7 @@ import React from 'react';
 import Slider from 'react-slick';
 
 function GamePageCarousel({ images }) {
-    console.log(images,"images**************************");
+  console.log(images, 'images**************************');
   const settings = {
     dots: true,
     infinite: true,
@@ -12,7 +12,7 @@ function GamePageCarousel({ images }) {
     arrows: false,
   };
   return (
-    <div className='slider-container mx-8 w-2/3'>
+    <div className='slider-container mx-8 w-full min-w-0'>
       <Slider {...settings}>
         {images.map((image) => {
           return (
@@ -23,7 +23,7 @@ function GamePageCarousel({ images }) {
               />
             </div>
           );
-        })}     
+        })}
       </Slider>
     </div>
   );
