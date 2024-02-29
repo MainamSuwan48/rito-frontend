@@ -18,9 +18,14 @@ module.exports = {
     },
     colors: {
       primary: '#ff6e7c',
+      primary_mute: '#853C43',
       secondary: '#00ADB5',
+      secondary_mute: '#01787F',
       base_dark: '#222831',
       base: '#393e46',
+      base_light: '#C7C8CC',
+      danger: '#E6172B',
+      success: '#C7EF00',
       neutral: '#EEEEEE',
     },
     extend: {
