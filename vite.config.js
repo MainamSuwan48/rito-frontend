@@ -1,5 +1,5 @@
 import react from '@vitejs/plugin-react';
-// import eslintPlugin from 'vite-plugin-eslint' ; //re-enable this if you like pain and surffering.
+// import eslintPlugin from 'vite-plugin-eslint' ; //re-enable this if you like pain and suffering.
 import { defineConfig } from 'vite';
 import path from 'path';
 
