@@ -1,6 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-export default {
-  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+module.exports = {
   darkMode: ['class'],
   content: [
     './pages/**/*.{js,jsx}',
@@ -10,6 +9,16 @@ export default {
   ],
   prefix: '',
   theme: {
+    colors: {
+      primary_mute: '#853C43',
+      secondary_mute: '#01787F',
+      base_dark: '#222831',
+      base_light: '#C7C8CC',
+      danger: '#E6172B',
+      success: '#C7EF00',
+      neutral: '#EEEEEE',
+    },
+
     container: {
       center: true,
       padding: '2rem',
@@ -17,7 +26,6 @@ export default {
         '2xl': '1400px',
       },
     },
-
     extend: {
       keyframes: {
         'accordion-down': {
@@ -36,19 +44,6 @@ export default {
     },
   },
   plugins: [require('tailwindcss-animate')],
-  theme: {
-    extend: {
-      colors: {
-        primary_mute: '#853C43',
-        secondary_mute: '#01787F',
-        base_dark: '#222831',
-        base_light: '#C7C8CC',
-        danger: '#E6172B',
-        success: '#C7EF00',
-        neutral: '#EEEEEE',
-      },
-    },
-  },
   plugins: [require('daisyui')],
   daisyui: {
     themes: [
