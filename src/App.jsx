@@ -1,8 +1,8 @@
 import React from 'react';
-import RefferencePage from './pages/ReferencePage';
+import ReferencePage from './pages/ReferencePage';
 
 function App() {
-  return <RefferencePage />;
+  return <ReferencePage />;
 }
 
 export default App;
