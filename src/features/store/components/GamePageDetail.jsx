@@ -1,10 +1,13 @@
 import React from 'react';
+import GameTag from './GameTag';
 
-function GamePageDetail({ gameData }) { 
-  const {background_image} = gameData;
+function GamePageDetail({ gameData }) {
+  const { background_image, tags } = gameData;
 
-
-  console.log(background_image, 'gameData************************** gameData at GamePageDetail.jsx');
+  console.log(
+    background_image,
+    'gameData************************** gameData at GamePageDetail.jsx'
+  );
   const removeHtmlTags = (str) => {
     return str.replace(/<[^>]*>/g, '');
   };
@@ -34,12 +37,23 @@ function GamePageDetail({ gameData }) {
       }}
     >
       <div className='absolute inset-0 bg-black opacity-80'></div>
-      <div className='relative z-10 rounded-xl bg-base_dark bg-opacity-70 p-8 mx-2'>
+      <div className='relative z-10 mx-2 rounded-xl bg-base_dark bg-opacity-70 p-8'>
         <p className='mb-2 text-left text-3xl font-extrabold text-primary'>
           Description
         </p>
         <p className='text-2xl text-neutral'>{newDescription}</p>
+
+        <p className='mb-2 mt-5 text-left text-3xl font-extrabold text-primary'>
+          Tags
+        </p>
+        <div className='mt-4 flex flex-wrap'>
+          <GameTag>Open World</GameTag>
+          {tags.map((tag) => (
+            <GameTag key={tag}>{tag.name}</GameTag>
+          ))}
+        </div>
       </div>
+      <div></div>
     </div>
   );
 }
