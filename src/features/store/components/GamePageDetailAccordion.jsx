@@ -15,7 +15,9 @@ function GamePageDetailAccordion({gameData}) {
           More Info
         </AccordionTrigger>
         <AccordionContent className='border-primary bg-base_dark'>
-          <GamePageDetail />
+          <GamePageDetail 
+            gameData={gameData}
+          />
         </AccordionContent>
       </AccordionItem>
     </Accordion>
