@@ -2,6 +2,7 @@ import React from 'react';
 import GamePageCarousel from './GamePageCarousel';
 import GamePageDetail from './GamePageHeroDetail';
 
+
 function GamePageHero({ gameData }) {
   const { name } = gameData;
   return (
@@ -14,7 +15,7 @@ function GamePageHero({ gameData }) {
           <GamePageCarousel images={gameData.short_screenshots} />
           <GamePageDetail gameData={gameData} />
         </div>
-      </div>
+      </div>      
     </div>
   );
 }

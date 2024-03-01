@@ -2,6 +2,7 @@ import React from 'react';
 import ButtonMain from '@/components/ui/ButtonMain';
 import GamePageHero from '@/features/store/components/GamePageHero';
 import GamePageButton from '@/features/store/components/GamePageButton';
+import GamePageDetailAccordion from '@/features/store/components/GamePageDetailAccordion';
 
 const gameData = {
   id: 3498,
@@ -412,15 +413,22 @@ const gameData = {
 
 function GamePage() {
   return (
-    <div className='bg-base_dark'>
+    <div className='bg-base flex h-screen w-screen flex-col overflow-auto'>
       <GamePageHero gameData={gameData} />
-      <div className='relative mx-4 flex items-center justify-between gap-9 overflow-hidden rounded-lg p-2 px-4'>
-        <div className='ml-12 flex h-20 rounded-xl bg-base-100 p-5 text-center text-3xl font-black text-secondary'>
-          49.99$
-        </div>
-        <div className='flex gap-4'>
-          <GamePageButton>BUY NOW</GamePageButton>
-          <GamePageButton>ADD TO CART</GamePageButton>
+      <div
+      className='bg-base_dark py-4'
+      >
+        <GamePageDetailAccordion 
+          gameData={gameData}
+        />
+        <div className='relative flex items-center justify-between gap-9 overflow-hidden p-2'>
+          <div className='ml-12 flex h-20 rounded-xl bg-base-100 p-5 text-center text-3xl font-black text-secondary'>
+            49.99$
+          </div>
+          <div className='flex gap-4'>
+            <GamePageButton>BUY NOW</GamePageButton>
+            <GamePageButton>ADD TO CART</GamePageButton>
+          </div>
         </div>
       </div>
     </div>

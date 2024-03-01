@@ -7,10 +7,19 @@ import {
 } from '@/components/ui/accordion';
 
 function GamePageHeroDetail({ gameData }) {
-  const { name } = gameData;
+  const { name, platforms, genres, released } = gameData;
   const removeHtmlTags = (str) => {
     return str.replace(/<[^>]*>/g, '');
   };
+
+  function convertToDate(obj) {
+    let date = new Date(obj);
+    return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  }
+  
+  let date = convertToDate(released);
+
+console.log(date, 'date**************************');
 
   function getEnglishText(text) {
     const match = text.match(/\n(.+?)\n/);
@@ -32,11 +41,31 @@ function GamePageHeroDetail({ gameData }) {
   return (
     <>
       <div className='flex h-96  w-1/3 flex-col gap-2 rounded-xl border-2 border-primary bg-base-100 p-5 text-center'>
-        <div className='overflow-auto'>
+        <div className='flex flex-col gap-2 overflow-auto'>
           <p className='mb-2 animate-bounce text-left text-3xl font-extrabold text-primary'>
             Description
           </p>
-          <p className='text-primary-100 text-left'>{newDescription}</p>
+
+          <div className='flex flex-col gap-4'>
+            <div className='flex flex-col gap-2 text-left'>
+              <span className='font-bold text-secondary'>Released Date </span>
+              <p>{date}</p>
+            </div>
+            <div className='flex flex-col gap-2 text-left'>
+              <span className='font-bold text-secondary'>Platforms </span>
+              <p>
+                {platforms.map((platform) => `${platform.platform.name}, `)}
+              </p>
+            </div>
+            <div className='flex flex-col gap-2 text-left'>
+              <span className='font-bold text-secondary'>Genres </span>
+              <p>
+                {genres.length === 1
+                  ? genres[0].name
+                  : genres.map((genre) => `${genre.name}, `)}
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </>
