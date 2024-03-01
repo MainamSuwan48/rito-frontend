@@ -109,3 +109,8 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+
+*{
+  min-height: 0;
+  min-width: 0;
+  }

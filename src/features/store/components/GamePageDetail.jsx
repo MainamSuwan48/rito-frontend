@@ -4,10 +4,6 @@ import GameTag from './GameTag';
 function GamePageDetail({ gameData }) {
   const { background_image, tags } = gameData;
 
-  console.log(
-    background_image,
-    'gameData************************** gameData at GamePageDetail.jsx'
-  );
   const removeHtmlTags = (str) => {
     return str.replace(/<[^>]*>/g, '');
   };
@@ -49,7 +45,7 @@ function GamePageDetail({ gameData }) {
         <div className='mt-4 flex flex-wrap'>
           <GameTag>Open World</GameTag>
           {tags.map((tag) => (
-            <GameTag key={tag}>{tag.name}</GameTag>
+            <GameTag key={tag.id}>{tag.name}</GameTag>
           ))}
         </div>
       </div>

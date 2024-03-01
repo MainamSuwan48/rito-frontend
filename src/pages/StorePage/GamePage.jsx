@@ -413,14 +413,11 @@ const gameData = {
 
 function GamePage() {
   return (
-    <div className='bg-base flex h-screen w-screen flex-col overflow-auto'>
-      <GamePageHero gameData={gameData} />
-      <div
-      className='bg-base_dark py-4'
-      >
-        <GamePageDetailAccordion 
-          gameData={gameData}
-        />
+    <div className='flex h-screen w-screen flex-col justify-center overflow-auto bg-base_dark'>
+      <div className='bg-base_dark p-4 border-primary'>
+        <GamePageHero gameData={gameData} />
+
+        <GamePageDetailAccordion gameData={gameData} />
         <div className='relative flex items-center justify-between gap-9 overflow-hidden p-2'>
           <div className='ml-12 flex h-20 rounded-xl bg-base-100 p-5 text-center text-3xl font-black text-secondary'>
             49.99$

@@ -12,7 +12,7 @@ function GamePageCarousel({ images }) {
     arrows: false,
   };
   return (
-    <div className='slider-container mx-8 w-full min-w-0'>
+    <div className='slider-container mx-8 w-full'>
       <Slider {...settings}>
         {images.map((image) => {
           return (
