@@ -22,6 +22,7 @@ function ReferencePage() {
         <div className='transition-all hover:scale-110 bg-danger border-2 p-5 text-2xl'>Danger</div>
         <div className='transition-all hover:scale-110 bg-success border-2 p-5 text-2xl'>Success</div>
       </div>
+
     </div>
   )
 }
