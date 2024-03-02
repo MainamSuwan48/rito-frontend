@@ -5,8 +5,8 @@ import RegisterPage from './pages/AuthPage/RegisterPage';
 
 function App() {
   // return <ReferencePage />;
-  // return <LoginPage />
-  return <RegisterPage />
+  return <LoginPage />
+  // return <RegisterPage />
 }
 
 export default App;
