@@ -1,13 +1,7 @@
-import React from 'react';
-import ReferencePage from './pages/ReferencePage';
-import GamePage from './pages/StorePage/GamePage';
+import Router from './routes/routes';
 
 function App() {
-  return (
-    <>
-      <GamePage />
-    </>
-  );
+  return <Router />;
 }
 
 export default App;
