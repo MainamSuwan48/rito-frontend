@@ -9,6 +9,9 @@ import {
 function GamePageHeroDetail({ gameData }) {
   const { name, platforms, genres, released } = gameData;
 
+  {
+    /* =============== < This will convert date to a readable string > =============== */
+  }
   function convertToDate(obj) {
     let date = new Date(obj);
     return date.toLocaleDateString('en-US', {

@@ -1,9 +1,11 @@
 import React from 'react';
-import ButtonMain from '@/components/ui/ButtonMain';
 import GamePageHero from '@/features/store/components/GamePageHero';
 import GamePageButton from '@/features/store/components/GamePageButton';
 import GamePageDetailAccordion from '@/features/store/components/GamePageDetailAccordion';
 
+{
+  /* =============== < Data MockUp > =============== */
+}
 const gameData = {
   id: 3498,
   slug: 'grand-theft-auto-v',

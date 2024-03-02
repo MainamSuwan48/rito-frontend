@@ -6,17 +6,17 @@ export default function RegisterPage() {
   return (
     <div className=' bg-base_light'>
       <br />
-      <div className='mx-auto my-16 max-w-md rounded-lg border-2 border-neutral bg-base p-2 shadow-lg'>
+      <div className='bg-base mx-auto my-16 max-w-md rounded-lg border-2 border-neutral p-2 shadow-lg'>
         <div className=' flex items-center justify-center'>
           <img
             src='https://res.cloudinary.com/dhm6pitfd/image/upload/v1709196392/LOGORito-Text-transformed_abggkn.png'
             className=' h-[5rem] w-[5rem]'
           />
-                  <p className='flex justify-center font-bold text-neutral'>
-          Register Account
-        </p>
+          <p className='flex justify-center font-bold text-neutral'>
+            Register Account
+          </p>
         </div>
-        
+
         {/* =============== < RegisterForm > =============== */}
         <RegisterForm />
 

@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import validate from '../../../utils/validator';
+
 
 const registerSchema = Joi.object({
   username: Joi.string().min(3).max(30).required().trim().messages({
