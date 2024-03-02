@@ -11,15 +11,16 @@ function GamePageHeroDetail({ gameData }) {
 
   function convertToDate(obj) {
     let date = new Date(obj);
-    return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+    return date.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
   }
-  
+
   let date = convertToDate(released);
 
-console.log(date, 'date**************************');
-
-
-
+  console.log(date, 'date**************************');
 
   return (
     <>

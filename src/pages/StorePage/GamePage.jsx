@@ -414,7 +414,7 @@ const gameData = {
 function GamePage() {
   return (
     <div className='flex h-screen w-screen flex-col justify-center overflow-auto bg-base_dark'>
-      <div className='bg-base_dark p-4 border-primary'>
+      <div className='border-primary bg-base_dark p-4'>
         <GamePageHero gameData={gameData} />
 
         <GamePageDetailAccordion gameData={gameData} />

@@ -101,7 +101,7 @@ blockquote:before,
 blockquote:after,
 q:before,
 q:after {
-  content: "";
+  content: '';
   content: none;
 }
 
@@ -110,7 +110,7 @@ table {
   border-spacing: 0;
 }
 
-*{
+* {
   min-height: 0;
   min-width: 0;
-  }
+}

@@ -16,9 +16,7 @@ function GamePageCarousel({ images }) {
       <Slider {...settings}>
         {images.map((image) => {
           return (
-            <div 
-              key={image.id}
-            className='h-96 overflow-hidden rounded-xl'>
+            <div key={image.id} className='h-96 overflow-hidden rounded-xl'>
               <img
                 className='transition-all hover:scale-110'
                 src={image.image}

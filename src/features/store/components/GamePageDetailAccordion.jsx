@@ -7,17 +7,15 @@ import {
 } from '@/components/ui/accordion';
 import GamePageDetail from './GamePageDetail';
 
-function GamePageDetailAccordion({gameData}) {
+function GamePageDetailAccordion({ gameData }) {
   return (
     <Accordion className='bg-primary' type='single' collapsible>
       <AccordionItem className='border-b border-none bg-base_dark' value='item'>
-        <AccordionTrigger className='border-b border-none bg-primary text-base-100 font-black text-3xl pl-12'>
+        <AccordionTrigger className='border-b border-none bg-primary pl-12 text-3xl font-black text-base-100'>
           More Info
         </AccordionTrigger>
         <AccordionContent className='border-primary bg-base_dark'>
-          <GamePageDetail 
-            gameData={gameData}
-          />
+          <GamePageDetail gameData={gameData} />
         </AccordionContent>
       </AccordionItem>
     </Accordion>
