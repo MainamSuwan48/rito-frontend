@@ -1,7 +1,6 @@
 import Joi from 'joi';
 
-
-const registerSchema = Joi.object({
+export const registerSchema = Joi.object({
   username: Joi.string().min(3).max(30).required().trim().messages({
     'string.empty': 'Username is required.',
     'string.min': 'Username must be at least 3 characters long.',
@@ -14,6 +13,21 @@ const registerSchema = Joi.object({
       'string.empty': 'Email is required.',
       'string.email': 'Email must be a valid email address.',
     }),
+  username: Joi.string().min(3).max(30).required().trim().messages({
+    'string.empty': 'Username is required.',
+    'string.min': 'Username must be at least 3 characters long.',
+    'string.max': 'Username cannot exceed 30 characters.',
+  }),
+  firstName: Joi.string().min(3).max(30).required().trim().messages({
+    'string.empty': 'First name is required.',
+    'string.min': 'First name must be at least 3 characters long.',
+    'string.max': 'First name cannot exceed 30 characters.',
+  }),
+  lastName: Joi.string().min(3).max(30).required().trim().messages({
+    'string.empty': 'Last name is required.',
+    'string.min': 'Last name must be at least 3 characters long.',
+    'string.max': 'Last name cannot exceed 30 characters.',
+  }),
   password: Joi.string()
     .pattern(
       /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,}$/
@@ -34,5 +48,3 @@ const registerSchema = Joi.object({
     .strip(),
 });
 
-const validateRegister = (input) => validate(registerSchema)(input);
-export default validateRegister;

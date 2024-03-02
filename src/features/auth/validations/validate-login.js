@@ -1,5 +1,4 @@
 import Joi from 'joi';
-import validate from '../../../utils/validator';
 
 export const loginSchema = Joi.object({
   usernameOrEmail: Joi.string().required().messages({
