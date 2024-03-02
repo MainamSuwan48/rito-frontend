@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { joiResolver } from '@hookform/resolvers/joi';
 import { registerSchema } from '../validations/validate-register';
+import { toast } from 'react-toastify';
 
 import FormInput from './FormInput';
 
@@ -15,6 +16,7 @@ export default function RegisterForm() {
   });
 
   const onSubmit = (data) => {
+    toast.success('Registration Successful');
     console.log(data);
   };
 
