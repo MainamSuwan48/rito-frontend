@@ -2,10 +2,12 @@ import { useForm } from 'react-hook-form';
 import { joiResolver } from '@hookform/resolvers/joi';
 import { loginSchema } from '../validations/validate-login';
 import { useDispatch, useSelector } from 'react-redux';
-import { login } from '../../../redux/slice/auth-slice';
+import { login, getMe } from '../../../redux/slice/auth-slice';
+import { toast } from 'react-toastify';
 
 //local imports
 import FormInput from './FormInput';
+import { useEffect } from 'react';
 
 export default function LoginForm() {
   // redux dispatch
@@ -24,16 +26,20 @@ export default function LoginForm() {
   });
 
   // This function will be called when the form is submitted
-  const onSubmit = (data) => {
-    dispatch(login(data));
+  const onSubmit = async (data) => {
+    await dispatch(login(data));
+    await dispatch(getMe());
   };
 
-  const test = () => {
-    console.log(authUser, '***************************');
-  };
+
+  // useEffect(() => {
+  //   if (authUser) {
+  //     console.log(authUser);
+  //   }
+  // }, [authUser]);
 
   return (
-    <form onClick={test} onSubmit={handleSubmit(onSubmit)} className='m-0'>
+    <form onSubmit={handleSubmit(onSubmit)} className='m-0'>
       <div className='relative grid items-center justify-center gap-2 p-2'>
         <FormInput
           register={register}
@@ -60,7 +66,7 @@ export default function LoginForm() {
               'Log in'
             )}
           </button>
-          <button
+          <button          
             type='button' // Changed type to 'button' as this button doesn't submit the form
             className='flex h-[2rem] w-[20em] items-center justify-center rounded-md border-2 border-neutral bg-base_dark p-5 font-semibold text-neutral transition-all hover:bg-secondary_mute active:scale-95'
           >

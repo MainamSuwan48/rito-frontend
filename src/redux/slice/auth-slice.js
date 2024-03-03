@@ -23,7 +23,9 @@ export const getMe = createAsyncThunk('auth/me', async () => {
   }
   try {
     const response = await authApi.getMe();
-    return response.data;
+    delete response.data.user.password;
+    console.log(response.data.user);
+    return response.data.user;
   } catch (error) {
     return Promise.reject(error);
   }
@@ -35,8 +37,7 @@ export const login = createAsyncThunk(
     try {
       const data = { usernameOrEmail, password };
       const response = await authApi.login(data);
-      storeToken(response.data.token);     
-      toast.success('Login successful');
+      storeToken(response.data.token);   
       return response.data;
     } catch (error) {
       console.log(error.response.data.message);
@@ -76,8 +77,8 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(getMe.fulfilled, (state, action) => {
+        state.authUser = action.payload;
         state.loading = false;
-        state.user = action.payload;
       })
       .addCase(getMe.rejected, (state, action) => {
         state.loading = false;
@@ -108,6 +109,20 @@ const authSlice = createSlice({
         state.user = action.payload;
       })
       .addCase(register.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      });
+    // Logout Cases
+    builder
+      .addCase(logout.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(logout.fulfilled, (state, action) => {
+        state.loading = false;
+        state.user = action.payload;
+      })
+      .addCase(logout.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
       });
