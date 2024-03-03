@@ -6,9 +6,8 @@ import { useNavigate } from 'react-router-dom';
 export default function RegisterPage() {
   const navigate = useNavigate();
   return (
-    <div className='bg-base'>
-      <br />
-      <div className='bg-base_light mx-auto my-16 max-w-xl rounded-lg border-2 border-neutral p-2 shadow-lg'>
+    <div className='bg-base flex justify-center items-center h-screen'>   
+      <div className='flex flex-col items-center bg-base_light my-auto rounded-lg border-2 border-neutral p-2 shadow-lg px-16 glass'>
         <div className=' flex items-center justify-center'>
           <img
             src='https://res.cloudinary.com/dhm6pitfd/image/upload/v1709196392/LOGORito-Text-transformed_abggkn.png'
@@ -26,8 +25,6 @@ export default function RegisterPage() {
         Already have an account?{' '}
       </div>
       </div>
-      <br />
-      <br />
     </div>
   );
 }

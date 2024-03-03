@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 function LoginModal() {
     const navigate = useNavigate();
   return (
-    <div className='flex flex-col items-center relative bg-base_light mx-auto my-16 max-w-md rounded-lg border-2 border-neutral px-2 py-4 shadow-lg'>
+    <div className='flex flex-col items-center relative bg-base_light mx-auto my-16 max-w-md rounded-lg border-2 border-neutral px-2 py-4 shadow-lg glass'>
       <div className=' flex items-center justify-center'>
         <img
           src='https://res.cloudinary.com/dhm6pitfd/image/upload/v1709196392/LOGORito-Text-transformed_abggkn.png'

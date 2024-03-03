@@ -23,7 +23,7 @@ export default function RegisterForm() {
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)} className='m-0 w-full'>
-        <div className='grid items-center justify-center gap-2 p-2 '>
+        <div className='flex flex-col w-[20em] items-center justify-center gap-2 p-2'>
           <FormInput
             register={register}
             name='username'
@@ -65,7 +65,7 @@ export default function RegisterForm() {
           <div className='flex w-full flex-col items-center justify-evenly'>
             <button
               type='submit'
-              className='flex h-[2rem] w-[25em] items-center justify-center rounded-md border-2 border-neutral bg-primary p-5 font-bold text-neutral transition-all hover:bg-secondary_mute'
+              className='flex h-[2rem] w-full items-center justify-center rounded-md border-2 border-neutral bg-primary p-5 font-bold text-neutral transition-all hover:bg-secondary_mute'
             >
               Register
             </button>

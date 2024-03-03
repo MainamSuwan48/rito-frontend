@@ -1,6 +1,8 @@
 function FormInput({ register, name, errors, label, type = 'text'}) {
   return (
-    <div>
+    <div
+    className="w-full"
+    >
       <div className='mb-2 font-semibold text-base_dark'>
         {label}
       </div>
@@ -10,7 +12,7 @@ function FormInput({ register, name, errors, label, type = 'text'}) {
         className='input-bordered w-full rounded-md border-2 p-1.5 text-black'
       />
       {errors[name] && (
-        <div className='mt-2 font-semibold text-danger'>
+        <div className='mt-2 font-semibold text-danger text-sm text-wrap'>
           {errors[name].message}
         </div>
       )}
