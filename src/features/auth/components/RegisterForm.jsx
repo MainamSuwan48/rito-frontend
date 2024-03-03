@@ -28,11 +28,14 @@ export default function RegisterForm() {
   // This function will be called when the form is submitted
   const onSubmit = async (data) => {
     dispatch(registerUser(data));
-    dispatch(getMe());
     toast.success('Registration successful');
   };
 
+
   useEffect(() => {
+    if (!authUser) {
+      dispatch(getMe());
+    }
     if (authUser) {
       console.log(authUser);
     }

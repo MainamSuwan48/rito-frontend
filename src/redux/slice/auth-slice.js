@@ -38,7 +38,7 @@ export const login = createAsyncThunk(
       const data = { usernameOrEmail, password };
       const response = await authApi.login(data);
       storeToken(response.data.token);   
-      return response.data;
+      return response.data.user;
     } catch (error) {
       console.log(error.response.data.message);
       toast.error(`Login failed: ${error.response.data.message}`);
@@ -54,7 +54,7 @@ export const registerUser = createAsyncThunk('auth/register', async (data) => {
     console.log(response.data.token,"response in register from auth-slice");
     deleteToken();
     storeToken(response.data.token);
-    return response.data;
+    return response.data.uer;
   } catch (error) {
     console.log(error.response.data.message);
     return Promise.reject(error);
