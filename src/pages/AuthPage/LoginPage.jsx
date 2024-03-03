@@ -1,7 +1,7 @@
 import React from 'react';
+import LoginForm from '@/features/auth/components/LoginForm';
+import LoginModal from '@/features/auth/components/LoginModal';
 
-function LoginPage() {
-  return <div>LoginPage</div>;
+export default function LoginPage() {
+  return <LoginModal />;
 }
-
-export default LoginPage;

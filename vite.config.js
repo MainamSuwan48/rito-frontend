@@ -1,5 +1,6 @@
+/* eslint-disable no-undef */
 import react from '@vitejs/plugin-react';
-// import eslintPlugin from 'vite-plugin-eslint' ; //re-enable this if you like pain and suffering.
+// import eslintPlugin from 'vite-plugin-eslint'; //re-enable this if you like pain and suffering.
 import { defineConfig } from 'vite';
 import path from 'path';
 

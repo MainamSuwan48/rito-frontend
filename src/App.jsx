@@ -1,12 +1,7 @@
-import React from 'react';
-import ReferencePage from './pages/ReferencePage';
+import Router from './routes/routes';
 
 function App() {
-  return (
-    <>
-      <ReferencePage />
-    </>
-  );
+  return <Router />;
 }
 
 export default App;
