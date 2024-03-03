@@ -1,11 +1,11 @@
 import { useForm } from 'react-hook-form';
 import { joiResolver } from '@hookform/resolvers/joi';
-import { loginSchema } from '../validations/validate-login';
-import { useDispatch, useSelector } from 'react-redux';
-import { login, getMe } from '../../../redux/slice/auth-slice';
 import { toast } from 'react-toastify';
 
 //local imports
+import { loginSchema } from '../validations/validate-login';
+import { useDispatch, useSelector } from 'react-redux';
+import { login, getMe } from '../../../redux/slice/auth-slice';
 import FormInput from './FormInput';
 import { useEffect } from 'react';
 
@@ -29,8 +29,8 @@ export default function LoginForm() {
   const onSubmit = async (data) => {
     await dispatch(login(data));
     await dispatch(getMe());
+    toast.success('Login successful');
   };
-
 
   // useEffect(() => {
   //   if (authUser) {
@@ -66,7 +66,7 @@ export default function LoginForm() {
               'Log in'
             )}
           </button>
-          <button          
+          <button
             type='button' // Changed type to 'button' as this button doesn't submit the form
             className='flex h-[2rem] w-[20em] items-center justify-center rounded-md border-2 border-neutral bg-base_dark p-5 font-semibold text-neutral transition-all hover:bg-secondary_mute active:scale-95'
           >

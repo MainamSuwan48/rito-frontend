@@ -1,11 +1,21 @@
 import { useForm } from 'react-hook-form';
 import { joiResolver } from '@hookform/resolvers/joi';
-import { registerSchema } from '../validations/validate-register';
 import { toast } from 'react-toastify';
 
+//local imports
 import FormInput from './FormInput';
+import { registerSchema } from '../validations/validate-register';
+import { useDispatch, useSelector } from 'react-redux';
+import { registerUser, getMe } from '../../../redux/slice/auth-slice';
+import { useEffect } from 'react';
 
 export default function RegisterForm() {
+  // redux dispatch
+  const dispatch = useDispatch();
+  // redux state
+  const { authUser, loading } = useSelector((state) => state.auth);
+
+  // Initialize useForm with the joiResolver and your validation schema
   const {
     register,
     handleSubmit,
@@ -15,10 +25,18 @@ export default function RegisterForm() {
     mode: 'onSubmit',
   });
 
-  const onSubmit = (data) => {
-    toast.success('Registration Successful');
-    console.log(data);
+  // This function will be called when the form is submitted
+  const onSubmit = async (data) => {
+    dispatch(registerUser(data));
+    dispatch(getMe());
+    toast.success('Registration successful');
   };
+
+  useEffect(() => {
+    if (authUser) {
+      console.log(authUser);
+    }
+  }, [authUser]);
 
   return (
     <div>

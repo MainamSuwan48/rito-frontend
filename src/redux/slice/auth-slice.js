@@ -47,12 +47,16 @@ export const login = createAsyncThunk(
   }
 );
 
-export const register = createAsyncThunk('auth/register', async (data) => {
+export const registerUser = createAsyncThunk('auth/register', async (data) => {
+    console.log(data,"data in register from auth-slice");
   try {
     const response = await authApi.register(data);
+    console.log(response.data.token,"response in register from auth-slice");
+    deleteToken();
     storeToken(response.data.token);
     return response.data;
   } catch (error) {
+    console.log(error.response.data.message);
     return Promise.reject(error);
   }
 });
@@ -100,15 +104,15 @@ const authSlice = createSlice({
       });
     // Register Cases
     builder
-      .addCase(register.pending, (state) => {
+      .addCase(registerUser.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(register.fulfilled, (state, action) => {
+      .addCase(registerUser.fulfilled, (state, action) => {
         state.loading = false;
         state.user = action.payload;
       })
-      .addCase(register.rejected, (state, action) => {
+      .addCase(registerUser.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
       });
