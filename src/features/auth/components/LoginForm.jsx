@@ -1,11 +1,18 @@
 import { useForm } from 'react-hook-form';
 import { joiResolver } from '@hookform/resolvers/joi';
 import { loginSchema } from '../validations/validate-login';
-import { toast } from 'react-toastify';
+import { useDispatch, useSelector } from 'react-redux';
+import { login } from '../../../redux/slice/auth-slice';
 
+//local imports
 import FormInput from './FormInput';
 
 export default function LoginForm() {
+  // redux dispatch
+  const dispatch = useDispatch();
+  // redux state
+  const { authUser, loading } = useSelector((state) => state.auth);
+
   // Initialize useForm with the joiResolver and your validation schema
   const {
     register,
@@ -18,13 +25,16 @@ export default function LoginForm() {
 
   // This function will be called when the form is submitted
   const onSubmit = (data) => {
-    toast.success('Login Successful');
-    console.log(data);
+    dispatch(login(data));
+  };
+
+  const test = () => {
+    console.log(authUser, '***************************');
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className='m-0'>
-      <div className='grid items-center justify-center gap-2 p-2'>
+    <form onClick={test} onSubmit={handleSubmit(onSubmit)} className='m-0'>
+      <div className='relative grid items-center justify-center gap-2 p-2'>
         <FormInput
           register={register}
           name='usernameOrEmail'
@@ -42,15 +52,19 @@ export default function LoginForm() {
         <div className='flex w-full flex-col items-center justify-center gap-2'>
           <button
             type='submit'
-            className='flex h-[2rem] w-[20em] items-center justify-center rounded-md border-2 border-neutral bg-primary p-5 font-bold text-neutral transition-all hover:bg-secondary_mute'
+            className='flex h-[2rem] w-[20em] items-center justify-center rounded-md border-2 border-neutral bg-primary p-5 font-semibold text-neutral transition-all hover:bg-secondary_mute active:scale-95'
           >
-            Log in
+            {loading ? (
+              <span className='loading loading-ring loading-lg'></span>
+            ) : (
+              'Log in'
+            )}
           </button>
           <button
             type='button' // Changed type to 'button' as this button doesn't submit the form
-            className='flex h-[2rem] w-[20em] items-center justify-center rounded-md border-2 border-neutral bg-primary p-5 font-bold text-neutral transition-all hover:bg-secondary_mute'
+            className='flex h-[2rem] w-[20em] items-center justify-center rounded-md border-2 border-neutral bg-base_dark p-5 font-semibold text-neutral transition-all hover:bg-secondary_mute active:scale-95'
           >
-            Log in With Google
+            Login With Google Account
           </button>
         </div>
       </div>

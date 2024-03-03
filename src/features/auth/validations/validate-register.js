@@ -47,4 +47,3 @@ export const registerSchema = Joi.object({
     })
     .strip(),
 });
-
