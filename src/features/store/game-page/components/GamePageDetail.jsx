@@ -2,7 +2,7 @@ import React from 'react';
 import GameTag from './GameTag';
 
 function GamePageDetail({ gameData }) {
-  const { background_image, gameTags, description } = gameData;
+  const { backgroundImageUrl, gameTags, description } = gameData;
 
   const removeHtmlTags = (str) => {
     return str.replace(/<[^>]*>/g, '');
@@ -16,7 +16,7 @@ function GamePageDetail({ gameData }) {
     <div
       className='relative flex flex-col items-center justify-center gap-2 py-4 text-left'
       style={{
-        backgroundImage: `url(${background_image})`,
+        backgroundImage: `url(${backgroundImageUrl})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}

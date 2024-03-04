@@ -3,7 +3,7 @@ import GamePageCarousel from './GamePageCarousel';
 import GamePageDetail from './GamePageHeroDetail';
 
 function GamePageHero({ gameData }) {
-  const { name, price,screenshots } = gameData;
+  const { name, price, screenshots, backgroundImageUrl } = gameData;
   return (
     <div>
       <div className='flex flex-col'>
@@ -16,8 +16,10 @@ function GamePageHero({ gameData }) {
           </div>
         </div>
         <div className='text-primary-100 flex h-full w-full items-start justify-center gap-4 p-8'>
-    
-          <GamePageCarousel images={screenshots} />
+          <GamePageCarousel
+            mainImage={backgroundImageUrl}
+            images={screenshots}
+          />
           <GamePageDetail gameData={gameData} />
         </div>
       </div>
