@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import * as authApi from '../../api/auth';
 import { storeToken, deleteToken, getToken } from '@/utils/local-storage';
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
+
 //initial state
 
 const initialState = {

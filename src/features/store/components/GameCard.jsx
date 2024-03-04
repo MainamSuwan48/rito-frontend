@@ -1,20 +1,19 @@
 import React from 'react';
 import Box from '../../../assets/Img/BOX.png';
 
-export default function GameCard({gameData}) {
+export default function GameCard({ gameData }) {
   return (
-    <div className='card bg-slate-100 w-96'>
+    <div className='flex w-[18rem] flex-col bg-neutral'>
       {/* ========= < Img Game > ========= */}
-      <div className=' pb-2'>
-        <img src='https://m.media-amazon.com/images/M/MV5BZWNhOGVmOTQtYThkNC00Nzc2LTg3M2ItNjVlMTEzNTJmZTNiXkEyXkFqcGdeQXVyMTk2OTAzNTI@._V1_FMjpg_UX1000_.jpg' />
+      <div className='h-[10rem] w-full overflow-hidden bg-black bg-opacity-50 object-center'>
+        <img src='https://media.rawg.io/media/games/511/5118aff5091cb3efec399c808f8c598f.jpg' />
       </div>
 
       {/* ========= < Header NameGame > ========= */}
-      <div className='card-body p-[0.3px] pt-1'>
-        <h2 className='card-title text-black'>Palworld</h2>
-
+      <div className='flex p-1.5'>
+        <h1 className=' p-2 font-bold text-black'>Palworld</h1>
         {/* ========= < Icon Platfrom > ========= */}
-        <div className='flxe-row absolute right-2 m-1 flex'>
+        <div className=' ml-[8rem] grid grid-cols-3 items-center justify-end gap-1'>
           <img
             className='h-[1.3rem] w-[1.3rem]'
             src='https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/windows-icon.png'
@@ -28,21 +27,19 @@ export default function GameCard({gameData}) {
             src='https://upload.wikimedia.org/wikipedia/commons/5/5a/PlayStation_Icon.png'
           />
         </div>
+      </div>
 
-        {/* ========= < PriceGame > ========= */}
-        <div className='card-actions'>
-          <button className='flex w-[30rem] bg-base_dark'>
-            <p className='bg-lime-400 hover:bg-lime-300 text-black rounded-bl-md p-3 font-bold'>
-              -100%
-            </p>
-            <p className='p-3 font-bold'>1,500 Baht</p>
-            <p className=' bg-primary p-3'> ♡♥ </p>
-            <p className=' bg-secondary text-black flex justify-center rounded-br-md p-3 font-bold'>
-              BUY&nbsp;
-              <img className='h-[1rem] w-[1rem]' src={Box} />
-            </p>
-          </button>
-        </div>
+      {/* ========= < PriceGame > ========= */}
+      <div>
+        <button className='flex bg-base_dark'>
+          <p className=' bg-success p-3 font-bold text-black'>-100%</p>
+          <p className=' w-[7rem] p-2.5'>1,500 Baht</p>
+          <p className=' bg-primary p-3'> ♥♡ </p>
+          <p className=' flex justify-center bg-secondary p-3 text-black'>
+            BUY&nbsp;
+            <img className='h-[1rem]' src={Box} />
+          </p>
+        </button>
       </div>
     </div>
   );

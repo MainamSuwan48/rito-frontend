@@ -13,6 +13,7 @@ import DevPage from '@/pages/DevPage';
 import GamePage from '@/pages/StorePage/GamePage';
 import UserProfilePage from '@/pages/UserPage/UserProfilePage';
 import Container from '@/layouts/Container';
+import ProtectedRoute from './components/ProtectedRoute';
 
 const router = createBrowserRouter([
   {
@@ -20,7 +21,14 @@ const router = createBrowserRouter([
     element: <Container />,
     children: [
       { path: '/', element: <HomePage /> },
-      { path: '/user', element: <UserProfilePage /> }, //* for testing ui UserProfile added by POOM
+      {
+        path: '/user',
+        element: (
+          <ProtectedRoute>
+            <UserProfilePage />
+          </ProtectedRoute>
+        ),
+      }, //* for testing ui UserProfile added by POOM
       { path: '/game/:gameId', element: <GamePage /> },
       //FOR DEVELOPMENT
       { path: '/dev', element: <DevPage /> },

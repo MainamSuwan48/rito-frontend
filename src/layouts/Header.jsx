@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 //Local Import
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -9,7 +10,7 @@ import { CartIcon } from '@/icons';
 import Logo from '@/assets/Img/ritoLogo.png';
 import MenuDropdown from './MenuDropdown';
 import LoginModal from '@/features/auth/components/LoginModal';
-import { getMe ,logout } from '@/redux/slice/auth-slice';
+import { getMe, logout } from '@/redux/slice/auth-slice';
 
 function Header() {
   const dispatch = useDispatch();
@@ -50,13 +51,10 @@ function Header() {
 
           <MenuDropdown
             dropdownItems={[
-              'Profile',
-              'Friends',
-              'Game List',
-              'Settings',
-              <div
-                onClick={() => dispatch(logout())}
-              >Log Out</div>
+              <Link to='/user'>
+                <div>Profile</div>
+              </Link>,         
+              <div onClick={() => dispatch(logout())}>Log Out</div>,
             ]}
           >
             <Avatar className='h-8 w-8'>
@@ -69,12 +67,13 @@ function Header() {
         </div>
       ) : (
         <div className='col-span-4 justify-self-end'>
-          <button 
+          <button
             onClick={openModal}
-          className='shadow-neutral-shadow-02 text-accent border border-solid border-accent px-[24px] py-[16px] transition-all hover:bg-primary hover:text-neutral active:bg-primary_mute'>
+            className='shadow-neutral-shadow-02 border border-solid border-accent px-[24px] py-[16px] text-accent transition-all hover:bg-primary hover:text-neutral active:bg-primary_mute'
+          >
             Sign in
           </button>
-          {open && <LoginModal onClose={closeModal}/>}
+          {open && <LoginModal onClose={closeModal} />}
         </div>
       )}
     </div>

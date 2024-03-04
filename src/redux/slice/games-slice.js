@@ -17,11 +17,21 @@ const getGames = createAsyncThunk('games/getGames', async () => {
   }
 });
 
+const getGameById = createAsyncThunk('games/getGameById', async (gameId) => {
+  try {
+    const response = await gamesApi.getGameById(gameId);
+    return response.data;
+  } catch (error) {
+    return Promise.reject(error);
+  }
+});
+
 const gamesSlice = createSlice({
   name: 'games',
   initialState,
   extraReducers: (builder) => {
-    builder
+    //getGames
+    builder    
       .addCase(getGames.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -34,6 +44,8 @@ const gamesSlice = createSlice({
         state.loading = false;
         state.error = action.error.message;
       });
+      //getGameById  
+      
   },
 });
 
