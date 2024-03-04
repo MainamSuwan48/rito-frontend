@@ -11,6 +11,7 @@ import LoginPage from '@/pages/AuthPage/LoginPage';
 import RegisterPage from '@/pages/AuthPage/RegisterPage';
 import DevPage from '@/pages/DevPage';
 import GamePage from '@/pages/StorePage/GamePage';
+import UserProfilePage from '@/pages/UserPage/UserProfilePage';
 
 
 const router = createBrowserRouter([

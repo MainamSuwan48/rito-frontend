@@ -10,7 +10,7 @@ function Header() {
   const { authUser, loading } = useSelector((state) => state.auth);
 
   return (
-    <div className='grid max-w-[1440px] grid-cols-12 px-[128px] py-[12px]'>
+    <div className='grid grid-cols-12 px-[128px] py-[12px]'>
       <div className='col-span-4 flex items-center gap-[12px] justify-self-start'>
         <img className='relative h-12 w-12' alt='Logorito text' src={Logo} />
       </div>
