@@ -1,4 +1,4 @@
-export default function UserProfileContainer() {
+export default function UserProfileContainer({user}) {
   return (
     <>
       <div className='inline-flex h-fit w-full items-end justify-between gap-36'>

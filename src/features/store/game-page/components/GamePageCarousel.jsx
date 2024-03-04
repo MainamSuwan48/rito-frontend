@@ -1,8 +1,13 @@
 import React from 'react';
 import Slider from 'react-slick';
-
-function GamePageCarousel({ images }) {
-  console.log(images, 'images**************************');
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from '@/components/ui/carousel';
+function GamePageCarousel({ mainImage, images }) {
   const settings = {
     dots: true,
     infinite: true,
@@ -12,19 +17,27 @@ function GamePageCarousel({ images }) {
     arrows: false,
   };
   return (
-    <div className='slider-container mx-8 w-full'>
-      <Slider {...settings}>
-        {images.map((image) => {
-          return (
-            <div key={image.id} className='h-96 overflow-hidden rounded-xl'>
+    <div className='w-full'>
+      <Carousel>
+        <CarouselContent className='h-[400px]'>
+          <CarouselItem className='relative h-full w-full'>
+            <img
+              className='absolute h-full w-full object-cover object-center transition-all hover:scale-110'
+              src={mainImage}
+            />
+          </CarouselItem>
+          {images.map((image) => (
+            <CarouselItem className='relative h-full w-full' key={image.id}>
               <img
-                className='transition-all hover:scale-110'
-                src={image.image}
+                className='absolute h-full w-full object-cover object-center transition-all hover:scale-110'
+                src={image.imageUrl}
               />
-            </div>
-          );
-        })}
-      </Slider>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        <CarouselNext className='absolute right-2 border-2 border-none bg-transparent' />
+        <CarouselPrevious className='absolute left-2 border-2 border-none bg-transparent' />
+      </Carousel>
     </div>
   );
 }

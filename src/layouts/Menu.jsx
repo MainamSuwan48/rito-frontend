@@ -1,11 +1,16 @@
 import React from 'react';
 import MenuDropdown from './MenuDropdown';
-import { ChevronDown } from '@/icons';
+import { ChevronDownIcon } from '@/icons';
+import { useNavigate } from 'react-router-dom';
 
 function Menu() {
+  const navigate = useNavigate();
   return (
     <div className='col-span-4 flex items-center justify-center gap-6'>
-      <div className='relative mt-[-1.00px] w-fit whitespace-nowrap text-center  font-medium'>
+      <div
+        onClick={() => navigate('/')}
+        className='transition-all relative mt-[-1.00px] w-fit whitespace-nowrap text-center  font-medium'
+      >
         Home
       </div>
 
@@ -18,7 +23,7 @@ function Menu() {
             Games Store
           </div>
 
-          <ChevronDown className='h-4 w-4' />
+          <ChevronDownIcon className='h-4 w-4' />
         </div>
       </MenuDropdown>
     </div>

@@ -4,8 +4,8 @@ import React from 'react';
 function HomePage() {
   return (
     
-    <div>
-      <Header />
+    <div className='bg-base_dark h-screen'>
+      HOMEPAGE
     </div>
 
   );

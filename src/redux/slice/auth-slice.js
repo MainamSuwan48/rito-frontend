@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import * as authApi from '../../api/auth';
 import { storeToken, deleteToken, getToken } from '@/utils/local-storage';
 import { toast } from 'react-toastify';
+
 //initial state
 
 const initialState = {
@@ -18,7 +19,6 @@ export const setAuthUser = (user) => ({
 export const getMe = createAsyncThunk('auth/me', async () => {
   const token = getToken();
   if (!token) {
-    toast.error('Token not found');
     return Promise.reject('Token not found');
   }
   try {
@@ -56,7 +56,7 @@ export const registerUser = createAsyncThunk('auth/register', async (data) => {
     deleteToken();
     storeToken(response.data.token);
     toast.success('Registration successful');
-    return response.data.uer;
+    return response.data.user; // Fix the typo here
   } catch (error) {
     console.log(error.response.data.message);
     toast.error(`Register failed: ${error.response.data.message}`);
@@ -99,7 +99,7 @@ const authSlice = createSlice({
       })
       .addCase(login.fulfilled, (state, action) => {
         state.loading = false;
-        state.user = action.payload;
+        state.authUser = action.payload;
       })
       .addCase(login.rejected, (state, action) => {
         state.loading = false;
@@ -113,7 +113,7 @@ const authSlice = createSlice({
       })
       .addCase(registerUser.fulfilled, (state, action) => {
         state.loading = false;
-        state.user = action.payload;
+        state.authUser = action.payload;
       })
       .addCase(registerUser.rejected, (state, action) => {
         state.loading = false;
@@ -127,7 +127,7 @@ const authSlice = createSlice({
       })
       .addCase(logout.fulfilled, (state, action) => {
         state.loading = false;
-        state.user = action.payload;
+        state.authUser = null;
       })
       .addCase(logout.rejected, (state, action) => {
         state.loading = false;
