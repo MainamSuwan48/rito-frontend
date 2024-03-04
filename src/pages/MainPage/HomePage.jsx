@@ -1,8 +1,13 @@
+import Header from '@/layouts/Header';
 import React from 'react';
 
 function HomePage() {
   return (
-    <div className='flex h-screen flex-col items-center justify-center'></div>
+    
+    <div>
+      <Header />
+    </div>
+
   );
 }
 
