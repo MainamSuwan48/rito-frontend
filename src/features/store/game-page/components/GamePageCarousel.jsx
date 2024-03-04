@@ -1,5 +1,12 @@
 import React from 'react';
 import Slider from 'react-slick';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from '@/components/ui/carousel';
 
 function GamePageCarousel({ images }) {
   console.log(images, 'images**************************');
@@ -12,19 +19,21 @@ function GamePageCarousel({ images }) {
     arrows: false,
   };
   return (
-    <div className='slider-container mx-8 w-full'>
-      <Slider {...settings}>
-        {images.map((image) => {
-          return (
-            <div key={image.id} className='h-96 overflow-hidden rounded-xl'>
+    <div className='w-full'>
+      <Carousel>
+        <CarouselContent className='h-[400px]'>
+          {images.map((image) => (
+            <CarouselItem key={image.id}>
               <img
-                className='transition-all hover:scale-110'
+                className='object-cover transition-all hover:scale-110'
                 src={image.image}
               />
-            </div>
-          );
-        })}
-      </Slider>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        <CarouselNext className='absolute right-2 border-2 border-none bg-transparent' />
+        <CarouselPrevious className='absolute left-2 border-2 border-none bg-transparent' />
+      </Carousel>
     </div>
   );
 }

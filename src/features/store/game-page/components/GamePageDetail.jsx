@@ -35,11 +35,6 @@ function GamePageDetail({ gameData }) {
       <div className='absolute inset-0 bg-black opacity-80'></div>
       <div className='relative z-10 mx-2 rounded-xl bg-base_dark bg-opacity-70 p-8'>
         <p className='mb-2 text-left text-3xl font-extrabold text-primary'>
-          Description
-        </p>
-        <p className='text-2xl text-neutral'>{newDescription}</p>
-
-        <p className='mb-2 mt-5 text-left text-3xl font-extrabold text-primary'>
           Tags
         </p>
         <div className='mt-4 flex flex-wrap'>
@@ -47,6 +42,11 @@ function GamePageDetail({ gameData }) {
             <GameTag key={tag.id}>{tag.name}</GameTag>
           ))}
         </div>
+
+        <p className='mb-2 mt-5 text-left text-3xl font-extrabold text-primary'>
+          Description
+        </p>
+        <p className='text-2xl text-neutral'>{newDescription}</p>
       </div>
       <div></div>
     </div>
