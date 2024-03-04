@@ -10,12 +10,15 @@ import HomePage from '@/pages/MainPage/HomePage';
 // import GamePage from '@/pages/StorePage/GamePage';
 import LoginPage from '@/pages/AuthPage/LoginPage';
 import RegisterPage from '@/pages/AuthPage/RegisterPage';
+import DevPage from '@/pages/DevPage';
 
 const router = createBrowserRouter([
   { path: '/', element: <HomePage /> },
   { path: '/login', element: <LoginPage /> },
   { path: '/register', element: <RegisterPage /> },
-  // { path: '/game/:gameId', element: <GamePage /> },
+  { path: '/game/:gameId', element: <GamePage /> },
+  //FOR DEVELOPMENT
+  { path: '/dev', element: <DevPage /> },
 ]);
 
 export default function Router() {
