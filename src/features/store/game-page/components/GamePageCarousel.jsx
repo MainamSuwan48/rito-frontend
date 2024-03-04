@@ -7,9 +7,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel';
-
 function GamePageCarousel({ images }) {
-  console.log(images, 'images**************************');
   const settings = {
     dots: true,
     infinite: true,
@@ -26,7 +24,7 @@ function GamePageCarousel({ images }) {
             <CarouselItem key={image.id}>
               <img
                 className='object-cover transition-all hover:scale-110'
-                src={image.image}
+                src={image.imageUrl}
               />
             </CarouselItem>
           ))}

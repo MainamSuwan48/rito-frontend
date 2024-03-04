@@ -3,12 +3,13 @@ import * as gamesApi from '../../api/games';
 
 //initial state
 const initialState = {
-  games: [],
+  games: [], // For Store Page
   loading: false,
+  currentGame: null, // For Game Page
   error: null,
 };
 
-const getGames = createAsyncThunk('games/getGames', async () => {
+export const getGames = createAsyncThunk('games/getGames', async () => {
   try {
     const response = await gamesApi.getGames();
     return response.data;
@@ -17,11 +18,14 @@ const getGames = createAsyncThunk('games/getGames', async () => {
   }
 });
 
-const getGameById = createAsyncThunk('games/getGameById', async (gameId) => {
+export const getGameById = createAsyncThunk('games/getGameById', async (gameId) => {
+  console.log("ran")
   try {
-    const response = await gamesApi.getGameById(gameId);
-    return response.data;
+    const response = await gamesApi.getGame(gameId);
+    console.log(response.data.game,"game data from get game by id in slice");
+    return response.data.game;
   } catch (error) {
+    console.log(error,"error from get game by id in slice");
     return Promise.reject(error);
   }
 });
@@ -31,7 +35,7 @@ const gamesSlice = createSlice({
   initialState,
   extraReducers: (builder) => {
     //getGames
-    builder    
+    builder
       .addCase(getGames.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -44,8 +48,20 @@ const gamesSlice = createSlice({
         state.loading = false;
         state.error = action.error.message;
       });
-      //getGameById  
-      
+    //getGameById
+    builder
+      .addCase(getGameById.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getGameById.fulfilled, (state, action) => {
+        state.currentGame = action.payload;
+        state.loading = false;
+      })
+      .addCase(getGameById.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      });
   },
 });
 

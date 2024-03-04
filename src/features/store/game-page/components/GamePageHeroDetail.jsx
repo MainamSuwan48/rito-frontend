@@ -9,7 +9,7 @@ import GamePageButton from './GamePageButton';
 import { HeartIcon } from '@/icons';
 
 function GamePageHeroDetail({ gameData }) {
-  const { name, platforms, genres, released, metacritic } = gameData;
+  const { gamePlatforms, releasedDate, gameGenres, metacritic } = gameData;
 
   {
     /* =============== < This will convert date to a readable string > =============== */
@@ -23,9 +23,7 @@ function GamePageHeroDetail({ gameData }) {
     });
   }
 
-  let date = convertToDate(released);
-
-  console.log(date, 'date**************************');
+  let date = convertToDate(releasedDate);
 
   return (
     <>
@@ -43,15 +41,15 @@ function GamePageHeroDetail({ gameData }) {
             <div className='flex flex-col gap-2 text-left'>
               <span className='font-bold text-black'>Platforms </span>
               <p className='text-sm text-black'>
-                {platforms.map((platform) => `${platform.platform.name}, `)}
+                {gamePlatforms.map((platform) => `${platform.platform.name}, `)}
               </p>
             </div>
             <div className='flex flex-col gap-2 text-left'>
               <span className='font-bold text-black'>Genres </span>
               <p className='text-sm text-black'>
-                {genres.length === 1
-                  ? genres[0].name
-                  : genres.map((genre) => `${genre.name}, `)}
+                {gameGenres.length === 1
+                  ? gameGenres[0].name
+                  : gameGenres.map((genre) => `${genre.name}, `)}
               </p>
             </div>
             <div className='flex flex-col gap-2 text-left'>
