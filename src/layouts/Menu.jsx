@@ -1,6 +1,6 @@
 import React from 'react';
 import MenuDropdown from './MenuDropdown';
-import { ChevronDown } from '@/icons';
+import { ChevronDownIcon } from '@/icons';
 
 function Menu() {
   return (
@@ -18,7 +18,7 @@ function Menu() {
             Games Store
           </div>
 
-          <ChevronDown className='h-4 w-4' />
+          <ChevronDownIcon className='h-4 w-4' />
         </div>
       </MenuDropdown>
     </div>
