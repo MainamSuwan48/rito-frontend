@@ -1,6 +1,6 @@
 import axios from '../config/axios';
 
-// Api มาไว้นี้
+// Api
 
 export const login = (data) => axios.post('/user/login', data);
 export const register = (data) => axios.post('/user/register', data);

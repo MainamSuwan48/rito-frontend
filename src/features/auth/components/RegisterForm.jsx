@@ -26,10 +26,9 @@ export default function RegisterForm() {
   });
 
   // This function will be called when the form is submitted
-  const onSubmit = async (data) => {    dispatch(registerUser(data));
-
+  const onSubmit = async (data) => {
+    dispatch(registerUser(data));
   };
-
 
   useEffect(() => {
     if (!authUser) {
@@ -88,10 +87,10 @@ export default function RegisterForm() {
               className='flex h-[2rem] w-full items-center justify-center rounded-md border-2 border-neutral bg-primary p-5 font-bold text-neutral transition-all hover:bg-secondary_mute active:scale-95'
             >
               {loading ? (
-              <span className='loading loading-ring loading-lg'></span>
-            ) : (
-              'Register'
-            )}
+                <span className='loading loading-ring loading-lg'></span>
+              ) : (
+                'Register'
+              )}
             </button>
           </div>
           <hr className=' border border-base_light' />

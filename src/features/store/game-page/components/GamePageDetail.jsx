@@ -43,7 +43,6 @@ function GamePageDetail({ gameData }) {
           Tags
         </p>
         <div className='mt-4 flex flex-wrap'>
-          <GameTag>Open World</GameTag>
           {tags.map((tag) => (
             <GameTag key={tag.id}>{tag.name}</GameTag>
           ))}
