@@ -1,5 +1,3 @@
-
-import GamePageButton from '@/features/store/game-page/components/GamePageButton';
 import GamePageDetailAccordion from '@/features/store/game-page/components/GamePageDetailAccordion';
 import GamePageHero from '@/features/store/game-page/components/GamePageHero';
 import React from 'react';

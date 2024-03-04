@@ -1,18 +1,39 @@
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useState, useEffect } from 'react';
+
+//Local Import
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import Menu from './Menu';
 import { CartIcon } from '@/icons';
 import Logo from '@/assets/Img/ritoLogo.png';
 import MenuDropdown from './MenuDropdown';
-import { useSelector } from 'react-redux';
+import LoginModal from '@/features/auth/components/LoginModal';
+import { getMe ,logout } from '@/redux/slice/auth-slice';
 
 function Header() {
+  const dispatch = useDispatch();
+  const [open, setOpen] = useState(false);
   const { authUser, loading } = useSelector((state) => state.auth);
+
+  const openModal = () => {
+    setOpen(true);
+  };
+
+  const closeModal = () => {
+    setOpen(false);
+  };
+
+  useEffect(() => {
+    if (!authUser) {
+      dispatch(getMe());
+    }
+  }, [authUser]);
 
   return (
     <div className='grid grid-cols-12 px-[128px] py-[12px]'>
       <div className='col-span-4 flex items-center gap-[12px] justify-self-start'>
-        <img className='relative h-12 w-12' alt='Logorito text' src={Logo} />
+        <img className='relative h-12 w-12' alt='Logo rito text' src={Logo} />
       </div>
 
       <Menu />
@@ -33,7 +54,9 @@ function Header() {
               'Friends',
               'Game List',
               'Settings',
-              'Log out',
+              <div
+                onClick={() => dispatch(logout())}
+              >Log Out</div>
             ]}
           >
             <Avatar className='h-8 w-8'>
@@ -46,11 +69,12 @@ function Header() {
         </div>
       ) : (
         <div className='col-span-4 justify-self-end'>
-          <button className='shadow-neutral-shadow-02 border border-solid border-accent px-[18px] py-[14px]'>
-            <div className="relative mt-[-1.00px] w-[86px] text-center text-[14px] font-semibold leading-[20px] tracking-[0] text-accent [font-family:'Poppins-SemiBold',Helvetica]">
-              Sign in
-            </div>
+          <button 
+            onClick={openModal}
+          className='shadow-neutral-shadow-02 text-accent border border-solid border-accent px-[24px] py-[16px] transition-all hover:bg-primary hover:text-neutral active:bg-primary_mute'>
+            Sign in
           </button>
+          {open && <LoginModal onClose={closeModal}/>}
         </div>
       )}
     </div>

@@ -18,7 +18,6 @@ export const setAuthUser = (user) => ({
 export const getMe = createAsyncThunk('auth/me', async () => {
   const token = getToken();
   if (!token) {
-    toast.error('Token not found');
     return Promise.reject('Token not found');
   }
   try {
@@ -99,7 +98,7 @@ const authSlice = createSlice({
       })
       .addCase(login.fulfilled, (state, action) => {
         state.loading = false;
-        state.user = action.payload;
+        state.authUser = action.payload;
       })
       .addCase(login.rejected, (state, action) => {
         state.loading = false;
@@ -113,7 +112,7 @@ const authSlice = createSlice({
       })
       .addCase(registerUser.fulfilled, (state, action) => {
         state.loading = false;
-        state.user = action.payload;
+        state.authUser = action.payload;
       })
       .addCase(registerUser.rejected, (state, action) => {
         state.loading = false;
@@ -127,7 +126,7 @@ const authSlice = createSlice({
       })
       .addCase(logout.fulfilled, (state, action) => {
         state.loading = false;
-        state.user = action.payload;
+        state.authUser = null;
       })
       .addCase(logout.rejected, (state, action) => {
         state.loading = false;
