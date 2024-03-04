@@ -28,7 +28,6 @@ export default function LoginForm() {
   // This function will be called when the form is submitted
   const onSubmit = async (data) => {
     await dispatch(login(data));
-    toast.success('Login successful');
   };
 
   useEffect(() => {
