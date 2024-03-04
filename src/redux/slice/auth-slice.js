@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import * as authApi from '../../api/auth';
 import { storeToken, deleteToken, getToken } from '@/utils/local-storage';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 //initial state
 
 const initialState = {
@@ -55,7 +56,7 @@ export const registerUser = createAsyncThunk('auth/register', async (data) => {
     deleteToken();
     storeToken(response.data.token);
     toast.success('Registration successful');
-    return response.data.uer;
+    return response.data.user; // Fix the typo here
   } catch (error) {
     console.log(error.response.data.message);
     toast.error(`Register failed: ${error.response.data.message}`);
