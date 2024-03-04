@@ -3,9 +3,11 @@ import React from 'react';
 
 function HomePage() {
   return (
+    
     <div>
       <Header />
     </div>
+
   );
 }
 

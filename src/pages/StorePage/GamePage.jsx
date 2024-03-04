@@ -1,7 +1,8 @@
+
+import GamePageButton from '@/features/store/game-page/components/GamePageButton';
+import GamePageDetailAccordion from '@/features/store/game-page/components/GamePageDetailAccordion';
+import GamePageHero from '@/features/store/game-page/components/GamePageHero';
 import React from 'react';
-import GamePageHero from '@/features/store/components/GamePageHero';
-import GamePageButton from '@/features/store/components/GamePageButton';
-import GamePageDetailAccordion from '@/features/store/components/GamePageDetailAccordion';
 
 {
   /* =============== < Data MockUp > =============== */

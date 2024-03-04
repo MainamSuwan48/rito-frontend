@@ -7,10 +7,11 @@ import {
 
 //---------------------------------------------- Local Imports
 import HomePage from '@/pages/MainPage/HomePage';
-import GamePage from '@/pages/StorePage/GamePage';
 import LoginPage from '@/pages/AuthPage/LoginPage';
 import RegisterPage from '@/pages/AuthPage/RegisterPage';
-import UserProfilePage from '@/pages/UserPage/UserProfilePage';
+import DevPage from '@/pages/DevPage';
+import GamePage from '@/pages/StorePage/GamePage';
+
 
 const router = createBrowserRouter([
   { path: '/', element: <HomePage /> },
@@ -18,6 +19,8 @@ const router = createBrowserRouter([
   { path: '/login', element: <LoginPage /> },
   { path: '/register', element: <RegisterPage /> },
   { path: '/game/:gameId', element: <GamePage /> },
+  //FOR DEVELOPMENT
+  { path: '/dev', element: <DevPage /> },
 ]);
 
 export default function Router() {
