@@ -12,8 +12,10 @@ import RegisterPage from '@/pages/AuthPage/RegisterPage';
 import DevPage from '@/pages/DevPage';
 import GamePage from '@/pages/StorePage/GamePage';
 
+
 const router = createBrowserRouter([
   { path: '/', element: <HomePage /> },
+  { path: '/user', element: <UserProfilePage /> }, //* for testing ui UserProfile added by POOM
   { path: '/login', element: <LoginPage /> },
   { path: '/register', element: <RegisterPage /> },
   { path: '/game/:gameId', element: <GamePage /> },
