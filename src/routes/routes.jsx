@@ -7,10 +7,10 @@ import {
 
 //---------------------------------------------- Local Imports
 import HomePage from '@/pages/MainPage/HomePage';
-// import GamePage from '@/pages/StorePage/GamePage';
 import LoginPage from '@/pages/AuthPage/LoginPage';
 import RegisterPage from '@/pages/AuthPage/RegisterPage';
 import DevPage from '@/pages/DevPage';
+import GamePage from '@/pages/StorePage/GamePage';
 
 const router = createBrowserRouter([
   { path: '/', element: <HomePage /> },
