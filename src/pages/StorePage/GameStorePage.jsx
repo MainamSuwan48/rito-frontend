@@ -22,7 +22,7 @@ export default function GameStorePage() {
       <SideBar />
       <div className='flex flex-col gap-4'>
         <SearchBar />
-        <div className='grid grid-cols-3 gap-4'>        
+        <div className='flex flex-wrap gap-4'>        
           {games && games.map((game) => (
             <GameCard key={game.id} gameData={game} />
           ))}

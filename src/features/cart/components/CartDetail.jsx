@@ -4,13 +4,18 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 function CartDetail() {
-  const { carts } = useSelector((state) => state.carts);
+  const { carts , loading} = useSelector((state) => state.carts);
 
-  console.log(carts);
+  console.log(carts, "carts in cart detail************************");
 
-  const totalPrice = carts.reduce((acc, el) => acc + el.game.price, 0);
+  const totalPrice = carts?.reduce((acc, el) => acc + el.game.price, 0);
 
-  const totalDiscount = carts.reduce((acc, el) => acc + el.game.discount, 0);
+  const totalDiscount = carts?.reduce((acc, el) => acc + el.game.discount, 0);
+
+  useEffect(() => {
+    console.log('carts', carts);
+  }
+  , [carts]);
 
   return (
     <div>
