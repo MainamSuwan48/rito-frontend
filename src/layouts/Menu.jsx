@@ -9,7 +9,7 @@ function Menu() {
     <div className='col-span-4 flex items-center justify-center gap-6'>
       <div
         onClick={() => navigate('/')}
-        className='transition-all relative mt-[-1.00px] w-fit whitespace-nowrap text-center  font-medium'
+        className='relative mt-[-1.00px] w-fit whitespace-nowrap text-center font-medium  transition-all'
       >
         Home
       </div>
@@ -17,7 +17,12 @@ function Menu() {
       <div className='relative w-fit whitespace-nowrap text-center  font-medium '>
         Community
       </div>
-      <MenuDropdown dropdownItems={['test', '2']}>
+      <MenuDropdown
+        dropdownItems={[
+          <div onClick={() => navigate('/store')}>Store</div>,
+          <div>Search For Games</div>,
+        ]}
+      >
         <div className='relative inline-flex flex-[0_0_auto] items-center gap-[6px]'>
           <div className='relative w-fit whitespace-nowrap text-center  font-medium'>
             Games Store
