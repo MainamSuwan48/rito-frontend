@@ -13,8 +13,8 @@ function MenuDropdown({ dropdownItems, children }) {
     <DropdownMenu>
       <DropdownMenuTrigger>{children}</DropdownMenuTrigger>
       <DropdownMenuContent className='bg-base_light'>
-        {dropdownItems?.map((item) => (
-          <DropdownMenuItem key={item} className='focus:bg-accent'>
+        {dropdownItems?.map((item,index) => (
+          <DropdownMenuItem key={index} className='focus:bg-accent'>
             {item}
           </DropdownMenuItem>
         ))}
