@@ -31,7 +31,7 @@ export default function GameCardStrip({ gameData }) {
             {/* <p className='bg-lime-400 p-3 font-bold text-black'>{id}</p> */}
             <p
               onClick={() => navigate(`/game/${id}`)}
-              className='p-3 font-bold transition-all hover:bg-primary hover:text-black active:bg-primary_mute'
+              className='p-3 font-bold transition-all hover:bg-primary text-base-100 active:bg-primary_mute'
             >
               {price} Baht
             </p>
