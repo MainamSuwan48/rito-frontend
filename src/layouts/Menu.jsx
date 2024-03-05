@@ -9,24 +9,25 @@ function Menu() {
     <div className='col-span-4 flex items-center justify-center gap-6'>
       <div
         onClick={() => navigate('/')}
-        className='relative mt-[-1.00px] w-fit whitespace-nowrap text-center font-medium  transition-all'
+        className='relative mt-[-1.00px] w-fit cursor-pointer select-none whitespace-nowrap text-center font-medium transition-all hover:text-primary active:text-primary_mute'
       >
         Home
       </div>
 
-      <div className='relative w-fit whitespace-nowrap text-center  font-medium '>
+      <div className='relative w-fit cursor-pointer select-none whitespace-nowrap  text-center font-medium transition-all hover:text-primary active:text-primary_mute'>
         Community
       </div>
       <MenuDropdown
+        className='cursor-pointer'
         dropdownItems={[
-          <div className='w-full' onClick={() => navigate('/store')}>
+          <div className='w-full ' onClick={() => navigate('/store')}>
             Store
           </div>,
           <div className='w-full'>Search For Games</div>,
         ]}
       >
         <div className='relative inline-flex flex-[0_0_auto] items-center gap-[6px]'>
-          <div className='relative w-fit whitespace-nowrap text-center  font-medium'>
+          <div className='relative w-fit whitespace-nowrap text-center font-medium select-none transition-all hover:text-primary active:text-primary_mute'>
             Games Store
           </div>
 
