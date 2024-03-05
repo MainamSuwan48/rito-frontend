@@ -15,6 +15,7 @@ import UserProfilePage from '@/pages/UserPage/UserProfilePage';
 import Container from '@/layouts/Container';
 import ProtectedRoute from './components/ProtectedRoute';
 import CartPage from '@/pages/CartPage/CartPage';
+import GameStorePage from '@/pages/StorePage/GameStorePage';
 
 const router = createBrowserRouter([
   {
@@ -39,6 +40,7 @@ const router = createBrowserRouter([
           </ProtectedRoute>
         ),
       },
+      { path: '/store', element: <GameStorePage /> },
       //FOR DEVELOPMENT
       { path: '/dev', element: <DevPage /> },
     ],

@@ -54,7 +54,7 @@ function Header() {
             onClick={() => navigate('/cart')}
           >
             <CartIcon />
-            {carts.length > 0 && (
+            {carts?.length > 0 && (
               <div className='absolute -right-3 -top-2 flex h-5 w-5 items-center justify-center rounded-[100px] bg-accent'>
                 <div className='text-center text-xs'>{carts.length}</div>
               </div>
