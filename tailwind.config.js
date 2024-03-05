@@ -26,6 +26,14 @@ module.exports = {
         success: '#C7EF00',
         neutral: '#EEEEEE',
       },
+      width: {
+        'store_search_bar': 'calc(100vw - 256px)',
+        
+      },
+      height: {
+        'content': 'calc(100vh - 48px)',
+        'game_store': 'calc(100vh - 120px)',
+      },
       keyframes: {
         'accordion-down': {
           from: { height: '0' },

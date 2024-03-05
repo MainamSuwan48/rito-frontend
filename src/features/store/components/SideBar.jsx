@@ -1,16 +1,50 @@
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllGenres } from '@/redux/slice/games-slice';
+import GameGenreTag from './GameGenreTag';
+
 export default function SideBar() {
+  const dispatch = useDispatch();
+  const { genres, loadingGenres } = useSelector((state) => state.games);
+
+  useEffect(() => {
+    if (!genres) {
+      dispatch(getAllGenres());
+    }
+  }, [genres]);
   return (
-    <>
-      <div className='flex flex-col bg-neutral text-neutral'>
-        <div className='justify-start bg-base_dark p-4'>Platform</div>
-        <div className='flex flex-col gap-4 p-4 text-base_dark'>
-          <p>item1</p>
-          <p>item2</p>
-          <p>item3</p>
-          <p>item4</p>
-          <p>item5</p>
-        </div>
-      </div>
-    </>
+    <div className='h-content w-64 bg-base-300'>
+      <Accordion type='single' className='w-full' collapsible>
+        <AccordionItem value='item-1'>
+          <AccordionTrigger className='h-14 w-full bg-primary pl-4 text-neutral'>
+            Genres
+          </AccordionTrigger>
+          <AccordionContent className='m-0 w-full p-0 overflow-auto h-game_store'>
+            <div className='flex flex-col gap-1'>
+            <GameGenreTag type='all'>All</GameGenreTag>
+              {loadingGenres ? (
+                <div>Loading...</div>
+              ) : genres && (
+                genres.map((genre) => (
+                  <GameGenreTag
+                    key={genre.id}
+                    id={genre.id}
+                    bgImage={genre.backgroundImageUrl}
+                  >
+                    {genre.name}
+                  </GameGenreTag>
+                ))
+              )}
+            </div>
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
+    </div>
   );
 }

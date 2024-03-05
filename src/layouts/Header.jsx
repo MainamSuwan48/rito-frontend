@@ -38,8 +38,8 @@ function Header() {
   }, [authUser]);
 
   return (
-    <div className='grid grid-cols-12 px-[128px] py-[12px]'>
-      <div className='col-span-4 flex items-center gap-[12px] justify-self-start'>
+    <div className='grid grid-cols-12 px-6 h-12 backdrop-blur-lg fixed z-50 w-[100vw]'>
+      <div className='col-span-4 flex items-center gap-[12px] justify-self-start ml-4'>
         <img className='relative h-12 w-12' alt='Logo rito text' src={Logo} />
       </div>
 
