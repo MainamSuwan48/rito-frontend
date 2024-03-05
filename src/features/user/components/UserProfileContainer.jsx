@@ -1,24 +1,31 @@
 export default function UserProfileContainer({user}) {
+
+  console.log(user);
+  const {description,username,displayName,id,
+    profileImageUrl,firstName,lastName,email} = user
+  
+
+  
   return (
     <>
       <div className='inline-flex h-fit w-full items-end justify-between gap-36'>
         <div className='flex items-center justify-center gap-6'>
           <img
             className='h-64 w-64'
-            src='https://via.placeholder.com/256x256'
+            src={profileImageUrl || 'https://via.placeholder.com/256x256'}
           />
           <div className='flex items-center justify-start gap-4'>
             <div className='inline-flex flex-col items-start justify-start gap-6'>
               <div className='flex flex-col items-start justify-center gap-4'>
                 <div className='inline-flex items-start justify-center gap-6'>
                   <div className='text-center  text-2xl font-bold text-zinc-100'>
-                    Super Mario
+                    {displayName}
                   </div>
                 </div>
                 <div className='inline-flex items-center justify-start gap-2'>
                   <div className='flex items-center justify-center gap-2.5'>
                     <div className='text-center   font-normal  text-zinc-100'>
-                      I’m mario, I love NYC
+                      {description || "description"}
                     </div>
                   </div>
                 </div>
@@ -26,27 +33,27 @@ export default function UserProfileContainer({user}) {
               <div className='flex flex-col items-start justify-start gap-4'>
                 <div className='inline-flex items-center justify-center gap-2.5'>
                   <div className='text-center   font-medium  text-zinc-100'>
-                    USERID: 888980
+                    USERID: {id}
                   </div>
                 </div>
                 <div className='inline-flex items-center justify-center gap-2.5'>
                   <div className='text-center   font-medium  text-zinc-100'>
-                    mario1973
+                    {username}
                   </div>
                 </div>
                 <div className='inline-flex items-center justify-center gap-2.5'>
                   <div className='text-center   font-medium  text-zinc-100'>
-                    Firstname
+                    {firstName}
                   </div>
                 </div>
                 <div className='inline-flex items-center justify-center gap-2.5'>
                   <div className='text-center   font-medium  text-zinc-100'>
-                    Lastname
+                    {lastName}
                   </div>
                 </div>
                 <div className='inline-flex items-center justify-center gap-2.5'>
                   <div className='text-center   font-medium  text-zinc-100'>
-                    supermario@gg.com
+                    {email}
                   </div>
                 </div>
               </div>

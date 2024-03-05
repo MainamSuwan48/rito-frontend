@@ -1,20 +1,14 @@
-import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { Navigate } from 'react-router-dom';
 
 function ProtectedRoute({ children }) {
-  const { authUser } = useSelector((state) => state.auth);
-  const navigate = useNavigate();
+  const { authUser, loading } = useSelector((state) => state.auth);
 
-  useEffect(() => {
-    if (!authUser) {
-      toast.error('You need to login to access this page');
-      navigate('/');
-    }
-  }, [authUser, navigate]);
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
-  return authUser ? children : null;
+  return authUser ? children : <Navigate to='/' />;
 }
 
 export default ProtectedRoute;

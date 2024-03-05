@@ -9,7 +9,7 @@ export default function UserProfilePage() {
   return (
     <>
       <div className='container h-screen grid grid-flow-row gap-4'>
-        <UserProfileContainer />
+        <UserProfileContainer user={authUser}/>
         <BodyContainer />
       </div>
     </>
