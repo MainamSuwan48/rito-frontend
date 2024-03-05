@@ -8,6 +8,7 @@ import { registerSchema } from '../validations/validate-register';
 import { useDispatch, useSelector } from 'react-redux';
 import { registerUser, getMe } from '../../../redux/slice/auth-slice';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function RegisterForm() {
   // redux dispatch
@@ -26,8 +27,20 @@ export default function RegisterForm() {
   });
 
   // This function will be called when the form is submitted
+
+
+  // ...
+  
+  const navigate = useNavigate();
+  
   const onSubmit = async (data) => {
-    dispatch(registerUser(data));
+    dispatch(registerUser(data))
+      .then(() => {
+        navigate('/user');
+      })
+      .catch((error) => {
+        // Handle the error
+      });
   };
 
   useEffect(() => {

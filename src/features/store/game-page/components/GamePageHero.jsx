@@ -3,7 +3,7 @@ import GamePageCarousel from './GamePageCarousel';
 import GamePageDetail from './GamePageHeroDetail';
 
 function GamePageHero({ gameData }) {
-  const { name } = gameData;
+  const { name, price, screenshots, backgroundImageUrl } = gameData;
   return (
     <div>
       <div className='flex flex-col'>
@@ -11,10 +11,15 @@ function GamePageHero({ gameData }) {
           <div className='text-primary-100 flex h-full animate-pulse items-start text-5xl font-extrabold'>
             {name}
           </div>
-          <div className='text-[42px] font-extrabold text-primary'>฿49.99</div>
+          <div className='text-[42px] font-extrabold text-primary'>
+            {price}฿
+          </div>
         </div>
         <div className='text-primary-100 flex h-full w-full items-start justify-center gap-4 p-8'>
-          <GamePageCarousel images={gameData.short_screenshots} />
+          <GamePageCarousel
+            mainImage={backgroundImageUrl}
+            images={screenshots}
+          />
           <GamePageDetail gameData={gameData} />
         </div>
       </div>

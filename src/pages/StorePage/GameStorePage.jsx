@@ -8,7 +8,7 @@ export default function GameStorePage() {
       <SideBar />
       <div className='flex flex-col gap-4'>
         <SearchBar />
-        <GameCardStrip />
+        {/* <GameCardStrip /> */}
       </div>
     </div>
   );

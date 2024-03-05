@@ -7,9 +7,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel';
-
-function GamePageCarousel({ images }) {
-  console.log(images, 'images**************************');
+function GamePageCarousel({ mainImage, images }) {
   const settings = {
     dots: true,
     infinite: true,
@@ -22,11 +20,17 @@ function GamePageCarousel({ images }) {
     <div className='w-full'>
       <Carousel>
         <CarouselContent className='h-[400px]'>
+          <CarouselItem className='relative h-full w-full'>
+            <img
+              className='absolute h-full w-full object-cover object-center transition-all hover:scale-110'
+              src={mainImage}
+            />
+          </CarouselItem>
           {images.map((image) => (
-            <CarouselItem key={image.id}>
+            <CarouselItem className='relative h-full w-full' key={image.id}>
               <img
-                className='object-cover transition-all hover:scale-110'
-                src={image.image}
+                className='absolute h-full w-full object-cover object-center transition-all hover:scale-110'
+                src={image.imageUrl}
               />
             </CarouselItem>
           ))}

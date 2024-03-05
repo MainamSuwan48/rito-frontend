@@ -1,7 +1,12 @@
 import React from 'react';
-import Box from '../../../assets/Img/BOX.png';
+import GameCardTag from './GameCardTag';
+import { useNavigate } from 'react-router-dom';
 
-export default function GameCardStrip() {
+export default function GameCardStrip({ gameData }) {
+  const navigate = useNavigate();
+
+  const { backgroundImageUrl, name, price, gameTags, id } = gameData;
+  console.log(gameTags, 'tags in card strip');
   return (
     <div className='flex bg-white'>
       <img
@@ -21,18 +26,14 @@ export default function GameCardStrip() {
             </div>
           </div>
         </div>
-
-        {/* ========= < PriceGame > ========= */}
-        <div className='card-actions'>
-          <button className='flex w-[30rem] bg-base_dark'>
-            <p className='rounded-bl-md bg-lime-400 p-3 font-bold text-black hover:bg-lime-300'>
-              -100%
-            </p>
-            <p className='p-3 font-bold'>1,500 Baht</p>
-            <p className=' bg-primary p-3'> ♡♥ </p>
-            <p className=' flex justify-center rounded-br-md bg-secondary p-3 font-bold text-black'>
-              BUY&nbsp;
-              <img className='h-[1rem] w-[1rem]' src={Box} />
+        <div className='flex items-end'>
+          <button className='top-14 flex flex-row gap-1 bg-base_dark'>
+            {/* <p className='bg-lime-400 p-3 font-bold text-black'>{id}</p> */}
+            <p
+              onClick={() => navigate(`/game/${id}`)}
+              className='p-3 font-bold transition-all hover:bg-primary hover:text-black active:bg-primary_mute'
+            >
+              {price} Baht
             </p>
           </button>
         </div>

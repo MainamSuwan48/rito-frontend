@@ -9,7 +9,7 @@ import store from './redux/store/store';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
-    <React.StrictMode>
+    {/* <React.StrictMode> */}
       <App />
       <ToastContainer
         position='top-right'
@@ -23,6 +23,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         pauseOnHover
         theme='dark'
       />
-    </React.StrictMode>
+    {/* </React.StrictMode> */}
   </Provider>
 );

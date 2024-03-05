@@ -30,15 +30,6 @@ export default function LoginForm() {
     await dispatch(login(data));
   };
 
-  useEffect(() => {
-    if (!authUser) {
-      dispatch(getMe());
-    }
-    if (authUser) {
-      console.log(authUser);
-    }
-  }, [authUser]);
-
   return (
     <form onSubmit={handleSubmit(onSubmit)} className='m-0'>
       <div className='relative grid items-center justify-center gap-2 p-2'>
