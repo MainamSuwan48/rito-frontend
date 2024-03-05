@@ -19,8 +19,10 @@ function Menu() {
       </div>
       <MenuDropdown
         dropdownItems={[
-          <div onClick={() => navigate('/store')}>Store</div>,
-          <div>Search For Games</div>,
+          <div className='w-full' onClick={() => navigate('/store')}>
+            Store
+          </div>,
+          <div className='w-full'>Search For Games</div>,
         ]}
       >
         <div className='relative inline-flex flex-[0_0_auto] items-center gap-[6px]'>

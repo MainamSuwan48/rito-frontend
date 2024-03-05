@@ -10,19 +10,19 @@ export default function GameStorePage() {
   const dispatch = useDispatch();
   const { games, loading } = useSelector((state) => state.games.games);
   const test = () => {
-    console.log(games);
+  
   };
   useEffect(() => {
     if (!games) {
       dispatch(getGames());
-    }
+    }  
   }, [games]);
   return loading ? null : (
-    <div onClick={test} className='relative flex w-screen'>
+    <div onClick={test} className='relative flex w-full overflow-auto'>
       <SideBar />
       <div className='w-store_search_bar relative flex flex-col gap-4'>
         <SearchBar />
-        <div className='flex w-full overflow-auto flex-wrap items-start justify-center gap-4'>
+        <div className='h-game_store flex w-full flex-wrap items-start justify-center gap-4 overflow-auto'>
           {games &&
             games.map((game) => <GameCard key={game.id} gameData={game} />)}
         </div>

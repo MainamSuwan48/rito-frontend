@@ -8,7 +8,7 @@ function Container() {
     className=''
     >
       <Header />
-      <div>
+      <div className='max-w-[100vw] pt-12'>
         <Outlet />
       </div>
     </div>
