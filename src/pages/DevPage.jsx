@@ -1,7 +1,12 @@
 import React from 'react';
+import GameStorePage from './StorePage/GameStorePage';
 
 function DevPage() {
-  return <div>DevPage</div>;
+  return (
+    <>
+      <GameStorePage />
+    </>
+  );
 }
 
 export default DevPage;
