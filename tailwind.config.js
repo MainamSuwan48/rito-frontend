@@ -8,8 +8,7 @@ module.exports = {
     './src/**/*.{js,jsx}',
   ],
   prefix: '',
-  theme: {   
-
+  theme: {
     container: {
       center: true,
       padding: '2rem',
@@ -43,7 +42,7 @@ module.exports = {
       },
     },
   },
-  plugins: [require('tailwindcss-animate'),require('daisyui')],
+  plugins: [require('tailwindcss-animate'), require('daisyui')],
   daisyui: {
     themes: [
       {
@@ -56,7 +55,7 @@ module.exports = {
 
           neutral: '#EEEEEE',
 
-          'base-100': '#393e46',
+          'base-100': '#FFFFFF',
 
           info: '#fde047',
 
