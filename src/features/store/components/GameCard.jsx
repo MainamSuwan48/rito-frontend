@@ -7,8 +7,10 @@ export default function GameCard({ gameData }) {
   return (
     <div className='flex w-[18rem] flex-col bg-neutral transition-all hover:scale-105'>
       {/* ========= < Img Game > ========= */}
-      <div className='h-[10rem] w-full overflow-hidden bg-black bg-opacity-50 object-center'>
-        <img src={backgroundImageUrl} />
+      <div className='h-[10rem] relative w-full overflow-hidden bg-black bg-opacity-50 object-center'>
+        <img 
+        className='absolute h-full w-full object-cover object-center'
+        src={backgroundImageUrl} />
       </div>
 
       {/* ========= < Header NameGame > ========= */}
@@ -25,7 +27,7 @@ export default function GameCard({ gameData }) {
             onClick={() => navigate(`/game/${id}`)}
             className='w-full p-2.5 transition-all hover:bg-base_light hover:text-base-100 active:bg-base-100'
           >
-            {price}
+            {price}{" "}THB
           </p>
           <p className='flex bg-primary p-3'> ♡ </p>
           <p
