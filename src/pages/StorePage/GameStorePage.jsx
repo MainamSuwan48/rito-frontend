@@ -8,7 +8,7 @@ import GameCard from '@/features/store/components/GameCard';
 
 export default function GameStorePage() {
   const dispatch = useDispatch();
-  const { games, loading } = useSelector((state) => state.games.games);
+  const { games, loadingCurrentGame } = useSelector((state) => state.games.games);
   const test = () => {
   
   };
@@ -17,7 +17,7 @@ export default function GameStorePage() {
       dispatch(getGames());
     }  
   }, [games]);
-  return loading ? null : (
+  return loadingCurrentGame ? null : (
     <div onClick={test} className='relative flex w-full overflow-auto'>
       <SideBar />
       <div className='w-store_search_bar relative flex flex-col gap-4'>
