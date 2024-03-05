@@ -1,43 +1,38 @@
 import React from 'react';
-import Box from '../../../assets/Img/BOX.png';
+import { useNavigate } from 'react-router-dom';
 
 export default function GameCard({ gameData }) {
+  const navigate = useNavigate();
+  const { backgroundImageUrl, name, price, gameTags, id } = gameData;
   return (
-    <div className='flex w-[18rem] flex-col bg-neutral'>
+    <div className='flex w-[18rem] flex-col bg-neutral transition-all hover:scale-105'>
       {/* ========= < Img Game > ========= */}
       <div className='h-[10rem] w-full overflow-hidden bg-black bg-opacity-50 object-center'>
-        <img src='https://media.rawg.io/media/games/511/5118aff5091cb3efec399c808f8c598f.jpg' />
+        <img src={backgroundImageUrl} />
       </div>
 
       {/* ========= < Header NameGame > ========= */}
       <div className='flex p-1.5'>
-        <h1 className=' p-2 font-bold text-black'>Palworld</h1>
+        <h1 className=' w-fuill p-2 font-bold text-black'>{name}</h1>
         {/* ========= < Icon Platfrom > ========= */}
-        <div className=' ml-[8rem] grid grid-cols-3 items-center justify-end gap-1'>
-          <img
-            className='h-[1.3rem] w-[1.3rem]'
-            src='https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/windows-icon.png'
-          />
-          <img
-            className='h-[1.3rem] w-[1.3rem]'
-            src='https://www.freeiconspng.com/thumbs/xbox-icon/xbox-icon-23.jpg'
-          />
-          <img
-            className='h-[1.3rem] w-[1.3rem]'
-            src='https://upload.wikimedia.org/wikipedia/commons/5/5a/PlayStation_Icon.png'
-          />
-        </div>
       </div>
 
       {/* ========= < PriceGame > ========= */}
       <div>
-        <button className='flex bg-base_dark'>
-          <p className=' bg-success p-3 font-bold text-black'>-100%</p>
-          <p className=' w-[7rem] p-2.5'>1,500 Baht</p>
-          <p className=' bg-primary p-3'> ♥♡ </p>
-          <p className=' flex justify-center bg-secondary p-3 text-black'>
+        <button className='flex w-full justify-between bg-base_dark'>
+          {/* <p className=' bg-success p-3 font-bold text-black'>-100%</p> */}
+          <p
+            onClick={() => navigate(`/game/${id}`)}
+            className='w-full p-2.5 transition-all hover:bg-base_light hover:text-base-100 active:bg-base-100'
+          >
+            {price}
+          </p>
+          <p className='flex bg-primary p-3'> ♡ </p>
+          <p
+            onClick={() => navigate(`/game/${id}`)}
+            className='flex justify-center bg-secondary p-3 text-black transition-all hover:bg-success active:bg-green-800'
+          >
             BUY&nbsp;
-            <img className='h-[1rem]' src={Box} />
           </p>
         </button>
       </div>

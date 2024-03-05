@@ -4,6 +4,8 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getGameById } from '@/redux/slice/games-slice';
 import { useParams } from 'react-router-dom';
+import GameCardStrip from '@/features/store/components/GameCardStrip';
+import GameCard from '@/features/store/components/GameCard';
 
 {
   /* =============== < Data MockUp > =============== */
@@ -30,7 +32,11 @@ function GamePage() {
           <div className='px-8'>
             <GamePageDetailAccordion gameData={currentGame} />
           </div>
-        </div>
+          {/* //DEV */}
+          <GameCardStrip gameData={currentGame}/>
+          <GameCard gameData={currentGame}/>
+       </div>    
+      
       ) : (
         <div>Loading...</div>
       )}
