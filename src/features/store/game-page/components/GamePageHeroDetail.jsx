@@ -7,9 +7,23 @@ import {
 } from '@/components/ui/accordion';
 import GamePageButton from './GamePageButton';
 import { HeartIcon } from '@/icons';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { addItem } from '@/redux/slice/cart-slice';
+import { useNavigate } from 'react-router-dom';
 
 function GamePageHeroDetail({ gameData }) {
+  const dispatch = useDispatch();
+  const { carts } = useSelector((state) => state.carts);
+  const navigate = useNavigate();
   const { gamePlatforms, releasedDate, gameGenres, metacritic } = gameData;
+
+  console.log(carts);
+
+  const isInCart = () => {
+    const index = carts.findIndex((item) => item.gameId === gameData.id);
+    return index === -1 ? false : true;
+  };
 
   {
     /* =============== < This will convert date to a readable string > =============== */
@@ -49,7 +63,7 @@ function GamePageHeroDetail({ gameData }) {
               <p className='text-sm text-black'>
                 {gameGenres.length === 1
                   ? gameGenres[0].name
-                  : gameGenres.map((genre) => `${genre.name}, `)}
+                  : gameGenres.map((genre) => `${genre.genre.name}, `)}
               </p>
             </div>
             <div className='flex flex-col gap-2 text-left'>
@@ -66,13 +80,26 @@ function GamePageHeroDetail({ gameData }) {
           >
             <HeartIcon />
           </GamePageButton>
-          <GamePageButton
-            bg='bg-secondary'
-            width='w-3/4'
-            activeColor='active:bg-secondary_mute'
-          >
-            ADD TO CART
-          </GamePageButton>
+
+          {isInCart() ? (
+            <GamePageButton
+              bg='bg-secondary'
+              width='w-3/4'
+              activeColor='active:bg-secondary_mute'
+              onClick={() => navigate('/cart')}
+            >
+              IN CART
+            </GamePageButton>
+          ) : (
+            <GamePageButton
+              bg='bg-secondary'
+              width='w-3/4'
+              activeColor='active:bg-secondary_mute'
+              onClick={() => dispatch(addItem({ gameId: gameData.id }))}
+            >
+              ADD TO CART
+            </GamePageButton>
+          )}
         </div>
       </div>
     </>
