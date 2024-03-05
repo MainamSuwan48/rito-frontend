@@ -46,6 +46,19 @@ export const getAllGenres = createAsyncThunk('games/getAllGenres', async () => {
   }
 });
 
+export const getGamesByGenreId = createAsyncThunk(
+  'games/getGamesByGenreId',
+  async (genreId) => {
+    try {
+      const response = await gamesApi.getGameByGenre(genreId);
+      return response.data;
+      console.log(response.data, 'response from get games by genre id in slice');
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
+);
+
 const gamesSlice = createSlice({
   name: 'games',
   initialState,
@@ -90,6 +103,20 @@ const gamesSlice = createSlice({
       })
       .addCase(getAllGenres.rejected, (state, action) => {
         state.loadingGenres = false;
+        state.error = action.error.message;
+      });
+    //getGamesByGenreId
+    builder
+      .addCase(getGamesByGenreId.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getGamesByGenreId.fulfilled, (state, action) => {
+        state.games = action.payload;
+        state.loading = false;
+      })
+      .addCase(getGamesByGenreId.rejected, (state, action) => {
+        state.loading = false;
         state.error = action.error.message;
       });
   },

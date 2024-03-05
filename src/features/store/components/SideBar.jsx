@@ -27,12 +27,14 @@ export default function SideBar() {
           </AccordionTrigger>
           <AccordionContent className='m-0 w-full p-0 overflow-auto h-game_store'>
             <div className='flex flex-col gap-1'>
+            <GameGenreTag type='all'>All</GameGenreTag>
               {loadingGenres ? (
                 <div>Loading...</div>
               ) : genres && (
                 genres.map((genre) => (
                   <GameGenreTag
                     key={genre.id}
+                    id={genre.id}
                     bgImage={genre.backgroundImageUrl}
                   >
                     {genre.name}
