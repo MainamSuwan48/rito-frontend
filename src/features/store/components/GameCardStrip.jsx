@@ -13,9 +13,7 @@ export default function GameCardStrip({ gameData }) {
         className='h-[6rem] w-[25rem] object-cover'
         src={backgroundImageUrl}
       />
-      <div 
-      className='flex justify-between w-full'
-      >
+      <div className='flex w-full justify-between'>
         <div className='flex flex-col justify-between p-4'>
           <div>
             <h2 className='font-bold text-black'>{name}</h2>
