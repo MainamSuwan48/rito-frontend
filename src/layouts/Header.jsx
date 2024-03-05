@@ -11,11 +11,15 @@ import Logo from '@/assets/Img/ritoLogo.png';
 import MenuDropdown from './MenuDropdown';
 import LoginModal from '@/features/auth/components/LoginModal';
 import { getMe, logout } from '@/redux/slice/auth-slice';
+import { getMyCart } from '@/redux/slice/cart-slice';
+import { useNavigate } from 'react-router-dom';
 
 function Header() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const { authUser, loading } = useSelector((state) => state.auth);
+  const { carts, loading: cartLoading } = useSelector((state) => state.carts);
 
   const openModal = () => {
     setOpen(true);
@@ -29,6 +33,8 @@ function Header() {
     if (!authUser) {
       dispatch(getMe());
     }
+
+    dispatch(getMyCart());
   }, [authUser]);
 
   return (
@@ -42,18 +48,24 @@ function Header() {
       {authUser ? (
         <div className='col-span-4 flex items-center gap-6 justify-self-end'>
           <div>Cart</div>
-          <div className='relative'>
+          <div
+            className='relative'
+            role='button'
+            onClick={() => navigate('/cart')}
+          >
             <CartIcon />
-            <div className='absolute -right-3 -top-2 flex h-5 w-5 items-center justify-center rounded-[100px] bg-accent'>
-              <div className='text-center text-xs'>1</div>
-            </div>
+            {carts.length > 0 && (
+              <div className='absolute -right-3 -top-2 flex h-5 w-5 items-center justify-center rounded-[100px] bg-accent'>
+                <div className='text-center text-xs'>{carts.length}</div>
+              </div>
+            )}
           </div>
 
           <MenuDropdown
             dropdownItems={[
               <Link to='/user'>
                 <div>Profile</div>
-              </Link>,         
+              </Link>,
               <div onClick={() => dispatch(logout())}>Log Out</div>,
             ]}
           >

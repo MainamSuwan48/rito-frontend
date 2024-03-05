@@ -1,8 +1,12 @@
 import React from 'react';
 import GameCardTag from './GameCardTag';
 import { useNavigate } from 'react-router-dom';
+import { TrashIcon } from '@/icons';
+import { useDispatch } from 'react-redux';
+import { deleteItem } from '@/redux/slice/cart-slice';
 
-export default function GameCardStrip({ gameData }) {
+export default function GameCardStrip({ gameData, type = '', cartId }) {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const { backgroundImageUrl, name, price, gameTags, id } = gameData;
@@ -26,17 +30,34 @@ export default function GameCardStrip({ gameData }) {
             </div>
           </div>
         </div>
-        <div className='flex items-end'>
-          <button className='top-14 flex flex-row gap-1 bg-base_dark'>
-            {/* <p className='bg-lime-400 p-3 font-bold text-black'>{id}</p> */}
-            <p
-              onClick={() => navigate(`/game/${id}`)}
-              className='p-3 font-bold transition-all hover:bg-primary text-base-100 active:bg-primary_mute'
+        {type !== 'cart' && (
+          <div className='flex items-end'>
+            <button className='top-14 flex flex-row gap-1 bg-base_dark'>
+              {/* <p className='bg-lime-400 p-3 font-bold text-black'>{id}</p> */}
+              <p
+                onClick={() => navigate(`/game/${id}`)}
+                className='p-3 font-bold transition-all hover:bg-primary hover:text-black active:bg-primary_mute'
+              >
+                {price} Baht
+              </p>
+            </button>
+          </div>
+        )}
+
+        {type === 'cart' && (
+          <div className='flex gap-2'>
+            <div className='flex h-full items-center font-medium'>
+              <p>{gameData.price.toLocaleString()} baht</p>
+            </div>
+            <div
+              className='flex h-full items-center bg-error px-3'
+              role='button'
+              onClick={() => dispatch(deleteItem(cartId))}
             >
-              {price} Baht
-            </p>
-          </button>
-        </div>
+              <TrashIcon className='stroke-white' />
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
