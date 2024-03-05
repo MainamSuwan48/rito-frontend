@@ -13,9 +13,7 @@ export default function GameCardStrip({ gameData }) {
         className='h-[6rem] w-[25rem] object-cover'
         src={backgroundImageUrl}
       />
-      <div 
-      className='flex justify-between w-full'
-      >
+      <div className='flex w-full justify-between'>
         <div className='flex flex-col justify-between p-4'>
           <div>
             <h2 className='font-bold text-black'>{name}</h2>
@@ -33,7 +31,7 @@ export default function GameCardStrip({ gameData }) {
             {/* <p className='bg-lime-400 p-3 font-bold text-black'>{id}</p> */}
             <p
               onClick={() => navigate(`/game/${id}`)}
-              className='p-3 font-bold transition-all hover:bg-primary hover:text-black active:bg-primary_mute'
+              className='p-3 font-bold transition-all hover:bg-primary text-base-100 active:bg-primary_mute'
             >
               {price} Baht
             </p>

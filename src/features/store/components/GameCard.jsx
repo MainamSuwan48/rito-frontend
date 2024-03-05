@@ -22,17 +22,17 @@ export default function GameCard({ gameData }) {
       {/* ========= < PriceGame > ========= */}
       <div>
         <button className='flex w-full justify-between bg-base_dark'>
-          {/* <p className=' bg-success p-3 font-bold text-black'>-100%</p> */}
+          {/* <p className=' bg-success p-3 font-bold text-white'>-100%</p> */}
           <p
             onClick={() => navigate(`/game/${id}`)}
-            className='w-full p-2.5 transition-all hover:bg-base_light hover:text-base-100 active:bg-base-100'
+            className='w-full p-2.5 transition-all text-base-100 hover:bg-base_light hover:text-base-100 active:bg-base-100'
           >
             {price}{" "}THB
           </p>
           <p className='flex bg-primary p-3'> ♡ </p>
           <p
             onClick={() => navigate(`/game/${id}`)}
-            className='flex justify-center bg-secondary p-3 text-black transition-all hover:bg-success active:bg-green-800'
+            className='flex justify-center bg-secondary p-3 text-white transition-all hover:bg-success active:bg-green-800'
           >
             BUY&nbsp;
           </p>
