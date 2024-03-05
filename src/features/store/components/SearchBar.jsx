@@ -1,6 +1,6 @@
 export default function SearchBar() {
   return (
-    <div className=' flex gap-4'>
+    <div className=' flex gap-4 h-[3rem]'>
       <div className='flex h-auto w-full'>
         <input
           type='text'

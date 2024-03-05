@@ -18,14 +18,13 @@ export default function GameStorePage() {
     }
   }, [games]);
   return loading ? null : (
-    <div onClick={test} className='grid grid-cols-[2fr_8fr] gap-4 px-6'>
+    <div onClick={test} className='relative flex w-screen'>
       <SideBar />
-      <div className='flex flex-col gap-4'>
+      <div className='w-store_search_bar relative flex flex-col gap-4'>
         <SearchBar />
-        <div className='flex flex-wrap gap-4'>        
-          {games && games.map((game) => (
-            <GameCard key={game.id} gameData={game} />
-          ))}
+        <div className='flex w-full overflow-auto flex-wrap items-start justify-center gap-4'>
+          {games &&
+            games.map((game) => <GameCard key={game.id} gameData={game} />)}
         </div>
       </div>
     </div>

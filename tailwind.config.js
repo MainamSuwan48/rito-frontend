@@ -26,6 +26,9 @@ module.exports = {
         success: '#C7EF00',
         neutral: '#EEEEEE',
       },
+      width: {
+        'store_search_bar': 'calc(100vw - 256px)',
+      },
       keyframes: {
         'accordion-down': {
           from: { height: '0' },

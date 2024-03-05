@@ -5,7 +5,7 @@ export default function GameCard({ gameData }) {
   const navigate = useNavigate();
   const { backgroundImageUrl, name, price, gameTags, id } = gameData;
   return (
-    <div className='flex w-[28rem] flex-col bg-neutral transition-all hover:scale-105 h-[425px]'>
+    <div className='flex w-[26rem] flex-col bg-neutral transition-all hover:scale-105 h-[425px]'>
       {/* ========= < Img Game > ========= */}
       <div className='h-full relative w-full overflow-hidden bg-black bg-opacity-50 object-center'>
         <img 

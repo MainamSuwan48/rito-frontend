@@ -4,9 +4,13 @@ import { Outlet } from 'react-router-dom';
 
 function Container() {
   return (
-    <div>
+    <div
+    className=''
+    >
       <Header />
-      <Outlet />
+      <div>
+        <Outlet />
+      </div>
     </div>
   );
 }
