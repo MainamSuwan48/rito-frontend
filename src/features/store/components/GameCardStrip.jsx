@@ -30,6 +30,8 @@ export default function GameCardStrip({ gameData, type = '', cartId }) {
             </div>
           </div>
         </div>
+
+
         {type !== 'cart' && (
           <div className='flex items-end'>
             <button className='top-14 flex flex-row gap-1 bg-base_dark'>
@@ -53,6 +55,7 @@ export default function GameCardStrip({ gameData, type = '', cartId }) {
               className='flex h-full items-center bg-error px-3'
               role='button'
               onClick={() => dispatch(deleteItem(cartId))}
+
             >
               <TrashIcon className='stroke-white' />
             </div>

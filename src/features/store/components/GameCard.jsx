@@ -26,7 +26,9 @@ export default function GameCard({ gameData }) {
           {/* <p className=' bg-success p-3 font-bold text-white'>-100%</p> */}
           <p
             onClick={() => navigate(`/game/${id}`)}
+
             className='w-full p-2.5 text-base-100 transition-all hover:bg-base_light hover:text-base-100 active:bg-base-100'
+
           >
             {price} THB
           </p>

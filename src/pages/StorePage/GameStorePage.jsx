@@ -3,6 +3,7 @@ import SearchBar from '@/features/store/components/SearchBar';
 import SideBar from '@/features/store/components/SideBar';
 import { useSelector, useDispatch } from 'react-redux';
 import { getGames } from '@/redux/slice/games-slice';
+
 import { useEffect, lazy, Suspense } from 'react';
 
 const GameCard = lazy(() => import('@/features/store/components/GameCard'));
