@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import GameStoreSorter from './GameStoreSorter';
 import { useDispatch } from 'react-redux';
 import { searchGames } from '@/redux/slice/games-slice';
+import { useNavigate } from 'react-router-dom';
 
 export default function SearchBar() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -17,6 +18,7 @@ export default function SearchBar() {
   const handleSearch = () => {
     const searchTerm = makeSlug(searchQuery);
     dispatch(searchGames(searchTerm));
+    navigate(`/search/`);
     console.log(searchTerm);
   };
 
@@ -36,8 +38,7 @@ export default function SearchBar() {
         >
           Search
         </button>
-      </div>
-      <GameStoreSorter />
+      </div>    
     </div>
   );
 }

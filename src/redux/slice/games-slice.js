@@ -12,6 +12,7 @@ const initialState = {
   genres: null, // For Store Page
   loadingGenres: false,
   searchedGames: [], // For Search Page
+  searchedGamesAscending: true,
   loadingSearchedGames: false,
   error: null,
 };
@@ -100,9 +101,26 @@ const gamesSlice = createSlice({
         return 0;
       });
     },
+    sortSearchedGames: (state, action) => {
+      const key = action.payload;
+      state.searchedGamesAscending = true;
+      state.searchedGames.sort((a, b) => {
+        if (a[key] < b[key]) {
+          return -1;
+        }
+        if (a[key] > b[key]) {
+          return 1;
+        }
+        return 0;
+      });
+    },
     reverseGames: (state) => {
       state.games.games.reverse();
       state.isAscending = !state.isAscending;
+    },
+    reverseSearchedGames: (state) => {
+      state.searchedGames.reverse();
+      state.searchedGamesAscending = !state.searchedGamesAscending;
     },
   },
   extraReducers: (builder) => {
@@ -180,5 +198,10 @@ const gamesSlice = createSlice({
 });
 
 //reducers
-export const { sortGames, reverseGames } = gamesSlice.actions;
+export const {
+  sortGames,
+  reverseGames,
+  sortSearchedGames,
+  reverseSearchedGames,
+} = gamesSlice.actions;
 export const gameReducer = gamesSlice.reducer;

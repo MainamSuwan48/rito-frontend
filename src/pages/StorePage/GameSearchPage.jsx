@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { searchGames } from '@/redux/slice/games-slice';
 
 import { useEffect, lazy, Suspense } from 'react';
+import GameStoreSorter from '@/features/store/components/GameStoreSorter';
 
 const GameCardStrip = lazy(
   () => import('@/features/store/components/GameCardStrip')
@@ -10,18 +11,16 @@ const GameCardStrip = lazy(
 
 export default function GameSearchPage() {
   const dispatch = useDispatch();
-  const { searchedGames, loadingSearchedGames } = useSelector(
-    (state) => state.games
-  );
-
-
+  const { searchedGames, loadingSearchedGames  } =
+    useSelector((state) => state.games);
 
   return (
-    <div     
-      className='relative flex w-full items-center justify-center overflow-auto'
-    >
+    <div className='relative flex w-full items-center justify-center overflow-auto'>
       <div className='relative flex w-store_search_bar flex-col gap-4'>
-        <SearchBar />
+        <div className='flex'>
+          <SearchBar />
+          <GameStoreSorter type='search' />
+        </div>
         <Suspense
           fallback={
             <div className='flex h-game_store w-full items-center justify-center'>
@@ -31,7 +30,9 @@ export default function GameSearchPage() {
         >
           <div className='flex flex-col'>
             {searchedGames.length === 0 && (
-              <h1 className='flex justify-center items-center animate-pulse bg-base-300 h-16 text-center text-4xl'>Please Search your game</h1>
+              <h1 className='flex h-16 animate-pulse items-center justify-center bg-base-300 text-center text-4xl'>
+                Please Search your game
+              </h1>
             )}
             {searchedGames &&
               searchedGames.map((game) => (
