@@ -25,7 +25,7 @@ export default function GameStorePage() {
         <SearchBar />
         <Suspense
           fallback={
-            <div className='flex h-game_store w-full items-center justify-center bg-primary'>
+            <div className='flex h-game_store w-full items-center justify-center'>
               <span className='loading loading-spinner loading-lg text-9xl'></span>
             </div>
           }
