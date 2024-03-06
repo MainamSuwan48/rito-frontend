@@ -5,17 +5,16 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { sortGames } from '../../../redux/slice/games-slice';
+import { useDispatch ,useSelector } from 'react-redux';
+import { sortGames, reverseGames } from '../../../redux/slice/games-slice';
 
 function GameStoreSorter() {
+  const { isAscending } = useSelector((state) => state.games);
   const dispatch = useDispatch();
-  const [isAscending, setIsAscending] = useState(true);
   const sort = (query) => dispatch(sortGames(query));
 
   const toggleSort = () => {
-    setIsAscending(!isAscending);
+    dispatch(reverseGames());
   };
   return (
     <div className='flex items-center justify-center'>
@@ -24,8 +23,9 @@ function GameStoreSorter() {
           <SelectValue placeholder='Sort By' />
         </SelectTrigger>
         <SelectContent>
+          <SelectItem value='id'>Default</SelectItem>
           <SelectItem value='name'>Name</SelectItem>
-          <SelectItem value='released_date'>Release Date</SelectItem>
+          <SelectItem value='releasedDate'>Release Date</SelectItem>
           <SelectItem value='price'>Price</SelectItem>
         </SelectContent>
       </Select>
