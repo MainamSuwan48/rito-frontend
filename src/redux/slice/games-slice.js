@@ -4,6 +4,7 @@ import * as gamesApi from '../../api/games';
 //initial state
 const initialState = {
   games: [], // For Store Page
+  isAscending: true,
   loading: false,
   currentGame: null, // For Game Page
   loadingCurrentGame: false,
@@ -52,7 +53,10 @@ export const getGamesByGenreId = createAsyncThunk(
     try {
       const response = await gamesApi.getGameByGenre(genreId);
       return response.data;
-      console.log(response.data, 'response from get games by genre id in slice');
+      console.log(
+        response.data,
+        'response from get games by genre id in slice'
+      );
     } catch (error) {
       return Promise.reject(error);
     }
@@ -62,6 +66,26 @@ export const getGamesByGenreId = createAsyncThunk(
 const gamesSlice = createSlice({
   name: 'games',
   initialState,
+  reducers: {
+    sortGames: (state, action) => { 
+      console.log (state.games)    
+      const key = action.payload;
+      state.isAscending = true;
+      state.games.games.sort((a, b) => {
+        if (a[key] < b[key]) {
+          return -1;
+        }
+        if (a[key] > b[key]) {
+          return 1;
+        }
+        return 0;
+      });
+    },
+    reverseGames: (state) => {
+      state.games.games.reverse();
+      state.isAscending = !state.isAscending;
+    },
+  },
   extraReducers: (builder) => {
     //getGames
     builder
@@ -123,4 +147,5 @@ const gamesSlice = createSlice({
 });
 
 //reducers
+export const { sortGames, reverseGames } = gamesSlice.actions;
 export const gameReducer = gamesSlice.reducer;

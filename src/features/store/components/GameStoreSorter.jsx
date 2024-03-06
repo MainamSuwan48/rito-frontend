@@ -5,28 +5,33 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { useState } from 'react';
+import { useDispatch ,useSelector } from 'react-redux';
+import { sortGames, reverseGames } from '../../../redux/slice/games-slice';
 
-function GameStoreSorter() {
-  const [isAscending, setIsAscending] = useState(true);
-  const handleClick = () => {
-    setIsAscending(!isAscending);
+function GameStoreSorter(type = "") {
+  const { isAscending } = useSelector((state) => state.games);
+  const dispatch = useDispatch();
+  const sort = (query) => dispatch(sortGames(query));
+
+  const toggleSort = () => {
+    dispatch(reverseGames());
   };
   return (
     <div className='flex items-center justify-center'>
-      <Select className=''>
-        <SelectTrigger className='h-14 w-[140px] rounded-none'>
+      <Select onValueChange={(value) => sort(value)} className=''>
+        <SelectTrigger className='h-14 w-[160px] rounded-none'>
           <SelectValue placeholder='Sort By' />
         </SelectTrigger>
         <SelectContent>
-          <SelectItem value='light'>Name</SelectItem>
-          <SelectItem value='dark'>Release Date</SelectItem>
-          <SelectItem value='system'>Price</SelectItem>
+          <SelectItem value='id'>Default</SelectItem>
+          <SelectItem value='name'>Name</SelectItem>
+          <SelectItem value='releasedDate'>Release Date</SelectItem>
+          <SelectItem value='price'>Price</SelectItem>
         </SelectContent>
       </Select>
       <div
-        onClick={handleClick}
-        className={`hover:text-white transition-all flex select-none h-full items-center justify-center w-[120px] ${isAscending ? 'bg-primary active:bg-primary_mute' : 'bg-secondary active:bg-secondary_mute'}`}
+        onClick={toggleSort}
+        className={`flex h-full w-[120px] select-none items-center justify-center transition-all hover:text-white ${isAscending ? 'bg-primary active:bg-primary_mute' : 'bg-secondary active:bg-secondary_mute'}`}
       >
         {isAscending ? 'Ascending' : 'Descending'}
       </div>

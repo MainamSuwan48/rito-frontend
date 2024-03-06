@@ -1,14 +1,20 @@
 import GameCard from '@/features/store/components/GameCard';
 import GameCardStrip from '@/features/store/components/GameCardStrip';
 import React from 'react';
+
+
 import GameStorePage from './StorePage/GameStorePage';
 
 import SideBar from '@/features/store/components/SideBar';
+
 import SearchBar from '@/features/store/components/SearchBar';
 
 function DevPage() {
   return (
-    <div className='m-4'>
+
+    <div>
+      <SearchBar />
+   <div className='m-4'>
       <SearchBar />
 
 <div className='flex flex-col gap-4'>
@@ -56,6 +62,7 @@ function DevPage() {
         </div>
       </div>
       </div>
+
 
     </div>
   );
