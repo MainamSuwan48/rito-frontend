@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import * as gamesApi from '../../api/games';
+import { toast } from 'react-toastify';
 
 //initial state
 const initialState = {
@@ -10,6 +11,8 @@ const initialState = {
   loadingCurrentGame: false,
   genres: null, // For Store Page
   loadingGenres: false,
+  searchedGames: [], // For Search Page
+  loadingSearchedGames: false,
   error: null,
 };
 
@@ -53,10 +56,26 @@ export const getGamesByGenreId = createAsyncThunk(
     try {
       const response = await gamesApi.getGameByGenre(genreId);
       return response.data;
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
+);
+
+export const searchGames = createAsyncThunk(
+  'games/searchGames',
+  async (query) => {
+    try {
+      const response = await gamesApi.searchGames(query);
       console.log(
-        response.data,
-        'response from get games by genre id in slice'
+        response.data.games.length,
+        'response from search games in slice'
       );
+      if (response.data.games.length === 0) {
+        toast.error('No games found');
+        return rejectWithValue('No games found');
+      }
+      return response.data.games;
     } catch (error) {
       return Promise.reject(error);
     }
@@ -67,8 +86,8 @@ const gamesSlice = createSlice({
   name: 'games',
   initialState,
   reducers: {
-    sortGames: (state, action) => { 
-      console.log (state.games)    
+    sortGames: (state, action) => {
+      console.log(state.games);
       const key = action.payload;
       state.isAscending = true;
       state.games.games.sort((a, b) => {
@@ -141,6 +160,20 @@ const gamesSlice = createSlice({
       })
       .addCase(getGamesByGenreId.rejected, (state, action) => {
         state.loading = false;
+        state.error = action.error.message;
+      });
+    //searchGames
+    builder
+      .addCase(searchGames.pending, (state) => {
+        state.loadingSearchedGames = true;
+        state.error = null;
+      })
+      .addCase(searchGames.fulfilled, (state, action) => {
+        state.searchedGames = action.payload;
+        state.loadingSearchedGames = false;
+      })
+      .addCase(searchGames.rejected, (state, action) => {
+        state.loadingSearchedGames = false;
         state.error = action.error.message;
       });
   },

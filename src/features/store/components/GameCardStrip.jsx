@@ -10,7 +10,6 @@ export default function GameCardStrip({ gameData, type = '', cartId }) {
   const navigate = useNavigate();
 
   const { backgroundImageUrl, name, price, gameTags, id } = gameData;
-  console.log(gameTags, 'tags in card strip');
   return (
     <div className='flex bg-white'>
       <img
@@ -38,7 +37,7 @@ export default function GameCardStrip({ gameData, type = '', cartId }) {
               {/* <p className='bg-lime-400 p-3 font-bold text-black'>{id}</p> */}
               <p
                 onClick={() => navigate(`/game/${id}`)}
-                className='p-3 font-bold transition-all hover:bg-primary hover:text-black active:bg-primary_mute'
+                className='p-3 font-bold transition-all text-white hover:bg-primary hover:text-black active:bg-primary_mute'
               >
                 {price} Baht
               </p>
