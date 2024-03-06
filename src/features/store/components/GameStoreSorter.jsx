@@ -8,7 +8,7 @@ import {
 import { useDispatch ,useSelector } from 'react-redux';
 import { sortGames, reverseGames } from '../../../redux/slice/games-slice';
 
-function GameStoreSorter() {
+function GameStoreSorter(type = "") {
   const { isAscending } = useSelector((state) => state.games);
   const dispatch = useDispatch();
   const sort = (query) => dispatch(sortGames(query));
