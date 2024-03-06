@@ -45,7 +45,6 @@ export default function CommentPage() {
             <input 
             className='p-3 rounded-md bg-neutral text-black w-[300%]'
             type='string'
-            
             />
           </div>
         </div>
