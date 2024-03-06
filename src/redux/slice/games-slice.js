@@ -66,7 +66,17 @@ const gamesSlice = createSlice({
   initialState,
   reducers: {
     sortGames: (state, action) => {
-      state.games = action.payload;
+      console.log(action.payload, 'payload from sort games');
+      const key = action.payload;
+      state.games.games.sort((a, b) => {
+        if (a[key] < b[key]) {
+          return -1;
+        }
+        if (a[key] > b[key]) {
+          return 1;
+        }
+        return 0;
+      });
     },
   },
   extraReducers: (builder) => {
@@ -130,4 +140,5 @@ const gamesSlice = createSlice({
 });
 
 //reducers
+export const { sortGames } = gamesSlice.actions;
 export const gameReducer = gamesSlice.reducer;
