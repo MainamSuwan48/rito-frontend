@@ -59,9 +59,16 @@ export const getGamesByGenreId = createAsyncThunk(
   }
 );
 
+
+
 const gamesSlice = createSlice({
   name: 'games',
   initialState,
+  reducers: {
+    sortGames: (state, action) => {
+      state.games = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     //getGames
     builder

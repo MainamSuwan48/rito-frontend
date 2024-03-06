@@ -9,24 +9,31 @@ import { useState } from 'react';
 
 function GameStoreSorter() {
   const [isAscending, setIsAscending] = useState(true);
-  const handleClick = () => {
+
+  const handleChange = (e) => {
+    console.log(e.target);
+  };
+
+  const toggleSort = () => {
     setIsAscending(!isAscending);
   };
   return (
     <div className='flex items-center justify-center'>
-      <Select className=''>
-        <SelectTrigger className='h-14 w-[140px] rounded-none'>
+      <Select 
+      onValueChange={(value) => console.log(value)}
+      className=''>
+        <SelectTrigger className='h-14 w-[160px] rounded-none'>
           <SelectValue placeholder='Sort By' />
         </SelectTrigger>
         <SelectContent>
-          <SelectItem value='light'>Name</SelectItem>
-          <SelectItem value='dark'>Release Date</SelectItem>
-          <SelectItem value='system'>Price</SelectItem>
+          <SelectItem value='name'>Name</SelectItem>
+          <SelectItem value='released_date'>Release Date</SelectItem>
+          <SelectItem value='price'>Price</SelectItem>
         </SelectContent>
       </Select>
       <div
-        onClick={handleClick}
-        className={`hover:text-white transition-all flex select-none h-full items-center justify-center w-[120px] ${isAscending ? 'bg-primary active:bg-primary_mute' : 'bg-secondary active:bg-secondary_mute'}`}
+        onClick={toggleSort}
+        className={`flex h-full w-[120px] select-none items-center justify-center transition-all hover:text-white ${isAscending ? 'bg-primary active:bg-primary_mute' : 'bg-secondary active:bg-secondary_mute'}`}
       >
         {isAscending ? 'Ascending' : 'Descending'}
       </div>
