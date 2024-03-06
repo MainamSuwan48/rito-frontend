@@ -11,11 +11,15 @@ import Logo from '@/assets/Img/ritoLogo.png';
 import MenuDropdown from './MenuDropdown';
 import LoginModal from '@/features/auth/components/LoginModal';
 import { getMe, logout } from '@/redux/slice/auth-slice';
+import { getMyCart } from '@/redux/slice/cart-slice';
+import { useNavigate } from 'react-router-dom';
 
 function Header() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const { authUser, loading } = useSelector((state) => state.auth);
+  const { carts, loading: cartLoading } = useSelector((state) => state.carts);
 
   const openModal = () => {
     setOpen(true);
@@ -29,12 +33,19 @@ function Header() {
     if (!authUser) {
       dispatch(getMe());
     }
+    if (authUser) {
+      dispatch(getMyCart());
+    }
   }, [authUser]);
 
   return (
-    <div className='grid grid-cols-12 px-[128px] py-[12px]'>
-      <div className='col-span-4 flex items-center gap-[12px] justify-self-start'>
-        <img className='relative h-12 w-12' alt='Logo rito text' src={Logo} />
+    <div className='fixed z-50 grid h-12 w-[100vw] grid-cols-12 px-6 backdrop-blur-lg'>
+
+      <div
+        onClick={() => navigate('/')}
+        className='col-span-4 ml-4 flex items-center gap-[12px] justify-self-start transition-all hover:scale-125 active:scale-100'
+      >
+        <img className='relative h-12 w-12' alt='Logo rito text ' src={Logo} />
       </div>
 
       <Menu />
@@ -42,19 +53,36 @@ function Header() {
       {authUser ? (
         <div className='col-span-4 flex items-center gap-6 justify-self-end'>
           <div>Cart</div>
-          <div className='relative'>
+          <div
+            className='relative'
+            role='button'
+            onClick={() => navigate('/cart')}
+          >
             <CartIcon />
-            <div className='absolute -right-3 -top-2 flex h-5 w-5 items-center justify-center rounded-[100px] bg-accent'>
-              <div className='text-center text-xs'>1</div>
-            </div>
+            {carts?.length > 0 && (
+              <div className='absolute -right-3 -top-2 flex h-5 w-5 items-center justify-center rounded-[100px] bg-accent'>
+                <div className='text-center text-xs'>{carts.length}</div>
+              </div>
+            )}
           </div>
 
           <MenuDropdown
             dropdownItems={[
-              <Link to='/user'>
-                <div>Profile</div>
-              </Link>,         
-              <div onClick={() => dispatch(logout())}>Log Out</div>,
+              <div
+                className='w-full'
+                onClick={() => navigate('/user')}
+                role='button'
+              >
+                Profile
+              </div>,
+
+              <div
+                className='w-full'
+                onClick={() => dispatch(logout())}
+                role='button'
+              >
+                Log Out
+              </div>,
             ]}
           >
             <Avatar className='h-8 w-8'>
@@ -66,10 +94,10 @@ function Header() {
           </MenuDropdown>
         </div>
       ) : (
-        <div className='col-span-4 justify-self-end'>
+        <div className='col-span-4 h-12 justify-self-end'>
           <button
             onClick={openModal}
-            className='shadow-neutral-shadow-02 border border-solid border-accent px-[24px] py-[16px] text-accent transition-all hover:bg-primary hover:text-neutral active:bg-primary_mute'
+            className='shadow-neutral-shadow-02 h-12 border border-solid border-accent px-[24px] text-accent transition-all hover:bg-primary hover:text-neutral active:bg-primary_mute'
           >
             Sign in
           </button>

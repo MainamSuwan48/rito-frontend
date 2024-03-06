@@ -14,6 +14,10 @@ import GamePage from '@/pages/StorePage/GamePage';
 import UserProfilePage from '@/pages/UserPage/UserProfilePage';
 import Container from '@/layouts/Container';
 import ProtectedRoute from './components/ProtectedRoute';
+import CartPage from '@/pages/CartPage/CartPage';
+import GameStorePage from '@/pages/StorePage/GameStorePage';
+import CheckoutForm from '@/features/payment/components/CheckoutForm';
+import Return from '@/features/payment/components/Return';
 
 const router = createBrowserRouter([
   {
@@ -30,6 +34,23 @@ const router = createBrowserRouter([
         ),
       }, //* for testing ui UserProfile added by POOM
       { path: '/game/:gameId', element: <GamePage /> },
+      {
+        path: '/cart',
+        element: (
+          <ProtectedRoute>
+            <CartPage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: '/checkout',
+        element: <CheckoutForm />,
+      },
+      {
+        path: '/checkout-return',
+        element: <Return />,
+      },
+      { path: '/store', element: <GameStorePage /> },
       //FOR DEVELOPMENT
       { path: '/dev', element: <DevPage /> },
     ],
