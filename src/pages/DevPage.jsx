@@ -10,13 +10,9 @@ import SideBar from '@/features/store/components/SideBar';
 import SearchBar from '@/features/store/components/SearchBar';
 
 function DevPage() {
-  return (
+  return (  
 
-    <div>
-      <SearchBar />
-   <div className='m-4'>
-      <SearchBar />
-
+<div>
 <div className='flex flex-col gap-4'>
       {/* =============== < Game 1 > =============== */}
       <div className='flex h-14 w-full justify-between p-6 text-neutral'>
