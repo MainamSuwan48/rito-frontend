@@ -33,13 +33,14 @@ function Header() {
     if (!authUser) {
       dispatch(getMe());
     }
-
-    dispatch(getMyCart());
+    if (authUser) {
+      dispatch(getMyCart());
+    }
   }, [authUser]);
 
   return (
-    <div className='grid grid-cols-12 px-6 h-12 backdrop-blur-lg fixed z-50 w-[100vw]'>
-      <div className='col-span-4 flex items-center gap-[12px] justify-self-start ml-4'>
+    <div className='fixed z-50 grid h-12 w-[100vw] grid-cols-12 px-6 backdrop-blur-lg'>
+      <div className='col-span-4 ml-4 flex items-center gap-[12px] justify-self-start'>
         <img className='relative h-12 w-12' alt='Logo rito text' src={Logo} />
       </div>
 
@@ -63,10 +64,21 @@ function Header() {
 
           <MenuDropdown
             dropdownItems={[
-              <Link to='/user'>
-                <div>Profile</div>
-              </Link>,
-              <div onClick={() => dispatch(logout())}>Log Out</div>,
+              <div
+                className='w-full'
+                onClick={() => navigate('/user')}
+                role='button'
+              >
+                Profile
+              </div>,
+
+              <div
+                className='w-full'
+                onClick={() => dispatch(logout())}
+                role='button'
+              >
+                Log Out
+              </div>,
             ]}
           >
             <Avatar className='h-8 w-8'>

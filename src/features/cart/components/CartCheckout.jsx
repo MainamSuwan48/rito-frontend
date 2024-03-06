@@ -1,12 +1,14 @@
-import { CreditCardIcon, DiscountTicketIcon } from '@/icons';
+import { CreditCardIcon, DiscountTicketIcon, QRIcon } from '@/icons';
 import { deleteMyCart } from '@/redux/slice/cart-slice';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 function CartCheckout() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { authUser } = useSelector((state) => state.auth);
 
@@ -20,8 +22,10 @@ function CartCheckout() {
     if (!data.paymentMethod) {
       return toast.error('Please select payment method');
     }
-
-    console.log(data);
+    console.log(data.paymentMethod === 'credit');
+    if (data.paymentMethod) {
+      return navigate(`/checkout?method=${data.paymentMethod}`);
+    }
   };
 
   return (
@@ -31,10 +35,20 @@ function CartCheckout() {
       </div>
 
       <form className='form-control' onSubmit={handleSubmit(onSubmit)}>
-        <div className='flex items-center gap-4 border-b border-b-base_light px-8 py-3'>
-          <input {...register('paymentMethod')} type='radio' value='credit' />
+        <div className='flex items-center justify-between gap-4 border-b border-b-base_light px-8 py-3'>
+          <input {...register('paymentMethod')} type='radio' value='card' />
           <p>Credit Card</p>
           <CreditCardIcon />
+        </div>
+
+        <div className='flex items-center justify-between gap-4 border-b border-b-base_light px-8 py-3'>
+          <input
+            {...register('paymentMethod')}
+            type='radio'
+            value='promptpay'
+          />
+          <p>Promptpay</p>
+          <QRIcon />
         </div>
 
         <div className='flex items-center gap-2 p-6'>
