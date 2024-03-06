@@ -6,6 +6,7 @@ const initialState = {
   users: [],
   loading: false,
   currentUser: null,
+  userProfile: null,
   error: null,
 };
 
@@ -30,20 +31,27 @@ export const getUserById = createAsyncThunk(
   }
 );
 
-export const updateUser = createAsyncThunk('users/updateUser', async (id,data) => {
-  try {
-    const response = await userApi.updateUser(id,data);
-    return response.data;
-  } catch (error) {
-    return Promise.reject(error);
-  }
-});
-
 
 const userSlice = createSlice({
     name: 'users',
     initialState,
-    extraReducers: (builder) => {}
+    extraReducers: (builder) => {
+      builder
+      // get User by Id
+      .addCase(getUserById.pending, (state)=>{
+        state.loading = true
+        state.error = null
+      })
+      .addCase(getUserById.fulfilled, (state,action)=>{
+        state.loading = false
+        state.users = action.payload
+      })
+      .addCase(getUserById.rejected,(state,action)=>{
+        state.loading = false
+        state.error = action.error.message
+      })
+
+    }
 });
 
 //reducers
