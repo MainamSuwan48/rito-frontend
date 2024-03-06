@@ -5,7 +5,7 @@ function HomePage() {
   const arr = [
     {
       name: 'Game1',
-      src: 'https://assetsio.reedpopcdn.com/Palworld-Erfolg-und-Kritik.jpg?width=1200&height=1200&fit=bounds&quality=70&format=jpg&auto=webp',
+      src: 'https://cdn2.unrealengine.com/Diesel%2Fproductv2%2Fbatman-arkham-knight%2FEGS_WB_Batman_Arkham_Knight_G1_1920x1080_19_0911-1920x1080-1d69e15f00cb5ab57249f208f1f8f45d52cbbc59.jpg',
     },
     {
       name: 'Game2',
@@ -13,15 +13,15 @@ function HomePage() {
     },
     {
       name: 'Game3',
-      src: 'https://creations.mattel.com/cdn/shop/products/v0edcv3v0hqxitgbdtbe.jpg?v=1708504111',
+      src: 'https://assetsio.reedpopcdn.com/135430220067.jpg?width=1200&height=1200&fit=bounds&quality=70&format=jpg&auto=webp',
     },
     {
       name: 'Game4',
-      src: 'https://cdn.vox-cdn.com/thumbor/iaRO8ZRmYP7vNgG5yPiBME1G1Wg=/0x0:3011x1447/1200x675/filters:focal(1123x329:1603x809)/cdn.vox-cdn.com/uploads/chorus_image/image/66954486/VALORANT_Jett_Red_crop.0.jpg',
+      src: 'https://media.wired.com/photos/639bf35a24c352e627eccc43/master/pass/Ragnaro%CC%88k-culture-ar1qdh.jpg',
     },
     {
       name: 'Game5',
-      src: 'https://assets.beartai.com/uploads/2022/07/663.jpg',
+      src: 'https://img.gg.deals/65/91/5991c0b4e9b286c52d9d2270ffbf932915f1_912cr476.jpg',
     },
   ];
   return (
