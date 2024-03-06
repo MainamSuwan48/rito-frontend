@@ -1,6 +1,8 @@
+import GameStoreSorter from './GameStoreSorter';
+
 export default function SearchBar() {
   return (
-    <div className='z-50 flex h-14 flex-grow gap-4 backdrop-blur-lg'>
+    <div className='z-40 flex h-14 flex-grow *:backdrop-blur-lg'>
       <div className='flex w-full'>
         <input
           type='text'
@@ -11,6 +13,7 @@ export default function SearchBar() {
           Search
         </button>
       </div>
+      <GameStoreSorter />
     </div>
   );
 }
