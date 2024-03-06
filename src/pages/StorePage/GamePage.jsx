@@ -26,15 +26,9 @@ function GamePage() {
 
 
   return (
-
-    <div className='flex h-screen w-screen flex-col justify-center overflow-auto bg-base-300'>
-      {currentGame ? (
-        <div className='border-primary px-32 py-12 text-[]'>
-
     <div className='flex h-content max-w-[100vw] flex-col justify-center overflow-auto bg-base-300'>
       {currentGame ? (
         <div className='border-primary px-32 py-12 text-[] w-screen'>
-
           <GamePageHero gameData={currentGame} />
           <div className='px-8'>
             <GamePageDetailAccordion gameData={currentGame} />
