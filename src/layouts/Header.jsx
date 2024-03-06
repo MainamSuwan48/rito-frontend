@@ -33,12 +33,14 @@ function Header() {
     if (!authUser) {
       dispatch(getMe());
     }
-
-    dispatch(getMyCart());
+    if (authUser) {
+      dispatch(getMyCart());
+    }
   }, [authUser]);
 
   return (
     <div className='fixed z-50 grid h-12 w-[100vw] grid-cols-12 px-6 backdrop-blur-lg'>
+
       <div
         onClick={() => navigate('/')}
         className='col-span-4 ml-4 flex items-center gap-[12px] justify-self-start transition-all hover:scale-125 active:scale-100'
@@ -66,10 +68,21 @@ function Header() {
 
           <MenuDropdown
             dropdownItems={[
-              <Link to='/user'>
-                <div>Profile</div>
-              </Link>,
-              <div onClick={() => dispatch(logout())}>Log Out</div>,
+              <div
+                className='w-full'
+                onClick={() => navigate('/user')}
+                role='button'
+              >
+                Profile
+              </div>,
+
+              <div
+                className='w-full'
+                onClick={() => dispatch(logout())}
+                role='button'
+              >
+                Log Out
+              </div>,
             ]}
           >
             <Avatar className='h-8 w-8'>
