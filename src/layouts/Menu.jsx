@@ -27,7 +27,13 @@ function Menu() {
           >
             Store
           </div>,
-          <div className='w-full'>Search For Games</div>,
+          <div
+            className='w-full'
+            onClick={() => navigate('/search')}
+            role='button'
+          >
+            Search For Games
+          </div>,
         ]}
       >
         <div className='relative inline-flex flex-[0_0_auto] items-center gap-[6px]'>
