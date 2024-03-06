@@ -20,14 +20,18 @@ function Menu() {
       <MenuDropdown
         className='cursor-pointer'
         dropdownItems={[
-          <div className='w-full ' onClick={() => navigate('/store')}>
+          <div
+            className='w-full'
+            onClick={() => navigate('/store')}
+            role='button'
+          >
             Store
           </div>,
           <div className='w-full'>Search For Games</div>,
         ]}
       >
         <div className='relative inline-flex flex-[0_0_auto] items-center gap-[6px]'>
-          <div className='relative w-fit whitespace-nowrap text-center font-medium select-none transition-all hover:text-primary active:text-primary_mute'>
+          <div className='relative w-fit select-none whitespace-nowrap text-center font-medium transition-all hover:text-primary active:text-primary_mute'>
             Games Store
           </div>
 

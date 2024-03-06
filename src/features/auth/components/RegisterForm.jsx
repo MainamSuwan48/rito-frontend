@@ -34,6 +34,7 @@ export default function RegisterForm() {
   const navigate = useNavigate();
   
   const onSubmit = async (data) => {
+    console.log(data)
     dispatch(registerUser(data))
       .then(() => {
         navigate('/user');
