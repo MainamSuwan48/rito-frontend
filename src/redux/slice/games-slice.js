@@ -20,6 +20,7 @@ const initialState = {
 export const getGames = createAsyncThunk('games/getGames', async () => {
   try {
     const response = await gamesApi.getGames();
+    await new Promise((resolve) => setTimeout(resolve, 300));
     return response.data;
   } catch (error) {
     return Promise.reject(error);
@@ -29,13 +30,11 @@ export const getGames = createAsyncThunk('games/getGames', async () => {
 export const getGameById = createAsyncThunk(
   'games/getGameById',
   async (gameId) => {
-    console.log('ran');
     try {
       const response = await gamesApi.getGame(gameId);
-      console.log(response.data.game, 'game data from get game by id in slice');
+      await new Promise((resolve) => setTimeout(resolve, 300));
       return response.data.game;
     } catch (error) {
-      console.log(error, 'error from get game by id in slice');
       return Promise.reject(error);
     }
   }
@@ -44,7 +43,7 @@ export const getGameById = createAsyncThunk(
 export const getAllGenres = createAsyncThunk('games/getAllGenres', async () => {
   try {
     const response = await gamesApi.getAllGenres();
-    console.log(response.data.genres, 'response from get all genres in slice');
+    await new Promise((resolve) => setTimeout(resolve, 300));
     return response.data.genres;
   } catch (error) {
     return Promise.reject(error);
@@ -56,6 +55,7 @@ export const getGamesByGenreId = createAsyncThunk(
   async (genreId) => {
     try {
       const response = await gamesApi.getGameByGenre(genreId);
+      await new Promise((resolve) => setTimeout(resolve, 300));
       return response.data;
     } catch (error) {
       return Promise.reject(error);
@@ -68,10 +68,7 @@ export const searchGames = createAsyncThunk(
   async (query) => {
     try {
       const response = await gamesApi.searchGames(query);
-      console.log(
-        response.data.games.length,
-        'response from search games in slice'
-      );
+      await new Promise((resolve) => setTimeout(resolve, 300));
       if (response.data.games.length === 0) {
         toast.error('No games found');
         return rejectWithValue('No games found');
@@ -127,7 +124,7 @@ const gamesSlice = createSlice({
     },
     clearCurrentGame: (state) => {
       state.currentGame = null;
-    }
+    },
   },
   extraReducers: (builder) => {
     //getGames
@@ -213,5 +210,3 @@ export const {
   clearCurrentGame,
 } = gamesSlice.actions;
 export const gameReducer = gamesSlice.reducer;
-
-
