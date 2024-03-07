@@ -13,6 +13,7 @@ import LoginModal from '@/features/auth/components/LoginModal';
 import { getMe, logout } from '@/redux/slice/auth-slice';
 import { getMyCart } from '@/redux/slice/cart-slice';
 import { useNavigate } from 'react-router-dom';
+import WishList from '@/features/user/components/WishList';
 
 function Header() {
   const dispatch = useDispatch();
@@ -65,6 +66,8 @@ function Header() {
               </div>
             )}
           </div>
+          <WishList />
+
 
           <MenuDropdown
             dropdownItems={[
