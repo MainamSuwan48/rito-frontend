@@ -15,9 +15,8 @@ import { useEffect } from 'react';
 import { addGameToWishlist } from '@/redux/slice/wishlists-slice';
 import { getUserGames } from '@/redux/slice/user-slice';
 
-
 function GamePageHeroDetail({ gameData }) {
-  console.log(gameData.id,"game id in hero detail");
+  console.log(gameData.id, 'game id in hero detail');
   const dispatch = useDispatch();
   const { authUser } = useSelector((state) => state.auth);
   const { userGames } = useSelector((state) => state.users);
@@ -28,18 +27,17 @@ function GamePageHeroDetail({ gameData }) {
   const [inWishList, setInWishList] = useState(false);
   const [owned, setOwned] = useState(false);
 
-  const userId = authUser.id;
-
   useEffect(() => {
     if (authUser) {
-      dispatch(getUserGames(userId));    
-    }    
-  }, [authUser,]);
+      const userId = authUser.id;
+      dispatch(getUserGames(userId));
+    }
+  }, [authUser]);
 
   useEffect(() => {
     if (userGames) {
       const index = userGames.findIndex((item) => item.id == gameData.id);
-      console.log(index,"index in hero detail");
+      console.log(index, 'index in hero detail');
       if (index === -1) {
         setOwned(false);
       } else {
@@ -115,32 +113,34 @@ function GamePageHeroDetail({ gameData }) {
           </div>
         ) : (
           <div className='flex w-full justify-between'>
-            {inWishList ? (
-              <div
-                onClick={() => {
-                  dispatch(addGameToWishlist(gameData.id));
-                  setInWishList(false);
-                }}
-                className='flex w-1/4 items-center justify-center bg-base_dark'
-              >
-                <HeartIcon className='fill-primary stroke-primary' />
-              </div>
-            ) : (
-              <div
-                onClick={() => {
-                  dispatch(addGameToWishlist(gameData.id));
-                  setInWishList(true);
-                }}
-                className='flex w-1/4 items-center justify-center bg-base_dark'
-              >
-                <HeartIcon className='fill-base-300 stroke-base-300' />
-              </div>
-            )}
+            {inWishList
+              ? authUser && (
+                  <div
+                    onClick={() => {
+                      dispatch(addGameToWishlist(gameData.id));
+                      setInWishList(false);
+                    }}
+                    className='flex w-1/4 items-center justify-center bg-base_dark'
+                  >
+                    <HeartIcon className='fill-primary stroke-primary' />
+                  </div>
+                )
+              : authUser && (
+                  <div
+                    onClick={() => {
+                      dispatch(addGameToWishlist(gameData.id));
+                      setInWishList(true);
+                    }}
+                    className='flex w-1/4 items-center justify-center bg-base_dark'
+                  >
+                    <HeartIcon className='fill-base-300 stroke-base-300' />
+                  </div>
+                )}
 
             {isInCart() ? (
               <GamePageButton
                 bg='bg-secondary'
-                width='w-3/4'
+                width='w-full'
                 activeColor='active:bg-secondary_mute'
                 onClick={() => navigate('/cart')}
               >
@@ -149,7 +149,7 @@ function GamePageHeroDetail({ gameData }) {
             ) : (
               <GamePageButton
                 bg='bg-secondary'
-                width='w-3/4'
+                width='w-full'
                 activeColor='active:bg-secondary_mute'
                 onClick={() => dispatch(addItem({ gameId: gameData.id }))}
               >
