@@ -14,29 +14,24 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 
 import { editUserSchema } from "@/features/auth/validations/validate-editUser";
-import { updateAuthUser } from "@/redux/slice/auth-slice";
+import { updateProfileImage } from "@/redux/slice/auth-slice";
 import { useRef } from "react";
 import { useState } from "react";
 
 
 
 export function EditProfilePicture({user}) {
-    const[file,setFile] = useState(null)
     const fileEl = useRef(null)
     const dispatch = useDispatch()
-    const {id,profileImageUrl} = user
-    const {
-        register,
-        handleSubmit,
-        formState:{errors}
-      } = useForm({
-        resolver: joiResolver(editUserSchema),
-        mode: 'onSubmit',
-      })
 
-    const onSubmit = async(data) =>{
-        console.log(data,"data")
-        // dispatch(updateAuthUser({id,data}))
+    const {id,profileImageUrl} = user
+    const[file,setFile] = useState(null)
+
+    const onSubmit = async() =>{
+        console.log(file)
+        const formData = new FormData()
+        formData.append('profileImageUrl',file)
+        dispatch(updateProfileImage({id,formData}))
         .then()
         .catch((err)=>{
           console.log(err);
@@ -44,7 +39,7 @@ export function EditProfilePicture({user}) {
         console.log(user)
     }
 
-    console.log(fileEl)
+    // console.log(fileEl)
   return (
     <Dialog>
       <DialogTrigger 
@@ -56,16 +51,16 @@ export function EditProfilePicture({user}) {
       <DialogContent className="sm:max-w-[525px]">
         <DialogHeader>
           <DialogTitle className="text-2xl text-center">Edit Profile Picture</DialogTitle>
-
         </DialogHeader>
         <form 
-            onSubmit={handleSubmit(onSubmit)} 
+            // onSubmit={handleSubmit(onSubmit)} 
             className='flex items-center justify-start gap-4'
         >
             <div className='inline-flex flex-col items-center justify-start mt-4 gap-6 w-[550px]'>
                 <input 
                     type="file" 
                     className="hidden"
+                    // {...register('profileImageUrl')}
                     ref={fileEl}
                     onChange={e=>{
                         if (e.target.files[0]) {
@@ -98,7 +93,7 @@ export function EditProfilePicture({user}) {
                         <Button 
                             className="bg-pink-500" 
                             type="button"
-                            onClick={()=>fileEl.current.click()}
+                            onClick={onSubmit}
                         >
                         Submit
                         </Button>
