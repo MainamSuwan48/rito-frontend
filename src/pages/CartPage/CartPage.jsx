@@ -3,12 +3,17 @@ import React from 'react';
 import CartCheckout from '@/features/cart/components/CartCheckout';
 import CartDetail from '@/features/cart/components/CartDetail';
 import { useSelector } from 'react-redux';
+import CartEmpty from '@/features/cart/components/CartEmpty';
 
 function CartPage() {
-  const { loading } = useSelector((state) => state.carts);
+  const { carts, loading } = useSelector((state) => state.carts);
 
   if (loading) {
     return <div>Loading...</div>;
+  }
+
+  if (carts.length <= 0) {
+    return <CartEmpty />;
   }
 
   return (

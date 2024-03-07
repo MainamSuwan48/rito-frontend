@@ -24,9 +24,7 @@ export default function GameStorePage() {
     <div onClick={test} className='relative flex w-full overflow-auto'>
       <SideBar />
       <div className='relative flex w-store_search_bar flex-col gap-4'>
-        <div
-        className='flex'
-        >
+        <div className='flex'>
           <SearchBar />
           <GameStoreSorter />
         </div>
