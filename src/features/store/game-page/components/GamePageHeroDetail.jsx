@@ -113,30 +113,6 @@ function GamePageHeroDetail({ gameData }) {
           </div>
         ) : (
           <div className='flex w-full justify-between'>
-            {inWishList
-              ? authUser && (
-                  <div
-                    onClick={() => {
-                      dispatch(addGameToWishlist(gameData.id));
-                      setInWishList(false);
-                    }}
-                    className='flex w-1/4 items-center justify-center bg-base_dark'
-                  >
-                    <HeartIcon className='fill-primary stroke-primary' />
-                  </div>
-                )
-              : authUser && (
-                  <div
-                    onClick={() => {
-                      dispatch(addGameToWishlist(gameData.id));
-                      setInWishList(true);
-                    }}
-                    className='flex w-1/4 items-center justify-center bg-base_dark'
-                  >
-                    <HeartIcon className='fill-base-300 stroke-base-300' />
-                  </div>
-                )}
-
             {isInCart() ? (
               <GamePageButton
                 bg='bg-secondary'
@@ -147,14 +123,39 @@ function GamePageHeroDetail({ gameData }) {
                 IN CART
               </GamePageButton>
             ) : (
-              <GamePageButton
-                bg='bg-secondary'
-                width='w-full'
-                activeColor='active:bg-secondary_mute'
-                onClick={() => dispatch(addItem({ gameId: gameData.id }))}
-              >
-                ADD TO CART
-              </GamePageButton>
+              <>
+                {inWishList
+                  ? authUser && (
+                      <div
+                        onClick={() => {
+                          dispatch(addGameToWishlist(gameData.id));
+                          setInWishList(false);
+                        }}
+                        className='flex w-1/4 items-center justify-center bg-base_dark'
+                      >
+                        <HeartIcon className='fill-primary stroke-primary' />
+                      </div>
+                    )
+                  : authUser && (
+                      <div
+                        onClick={() => {
+                          dispatch(addGameToWishlist(gameData.id));
+                          setInWishList(true);
+                        }}
+                        className='flex w-1/4 items-center justify-center bg-base_dark'
+                      >
+                        <HeartIcon className='fill-base-300 stroke-base-300' />
+                      </div>
+                    )}
+                <GamePageButton
+                  bg='bg-secondary'
+                  width='w-full'
+                  activeColor='active:bg-secondary_mute'
+                  onClick={() => dispatch(addItem({ gameId: gameData.id }))}
+                >
+                  ADD TO CART
+                </GamePageButton>
+              </>
             )}
           </div>
         )}
