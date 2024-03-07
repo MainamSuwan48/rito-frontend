@@ -19,7 +19,7 @@ export default function MyProfilePage() {
 
         <MyProfileContainer user={authUser}/>
          
-        <BodyContainer />
+        <BodyContainer user={authUser} />
       </div>
     </>
   );

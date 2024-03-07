@@ -4,3 +4,4 @@ import axios from "../config/axios";
 
 export const getAllUser = () => axios.get('/user');
 export const getUserById = (id) => axios.get(`/user/${id}`);
+export const getUserGames = (id) => axios.get(`/games/user/${id}/`);
