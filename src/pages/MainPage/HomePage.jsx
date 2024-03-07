@@ -35,7 +35,11 @@ function HomePage() {
     <div className=' flex overflow-hidden bg-base_dark '>
       {arr.map((item, index) => {
         return (
-          <div onClick={() => navigate(`/game/${item.id}`)} className=''>
+          <div
+            key={item.id}
+            onClick={() => navigate(`/game/${item.id}`)}
+            className=''
+          >
             <img
               className='flex h-[40rem] w-[30rem] rotate-6 scale-110 object-cover sepia transition-all hover:scale-125 hover:sepia-0 '
               src={item.src}
