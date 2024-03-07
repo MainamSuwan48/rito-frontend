@@ -41,7 +41,7 @@ function HomePage() {
             className=''
           >
             <img
-              className='flex h-[40rem] w-[30rem] rotate-6 scale-110 object-cover sepia transition-all hover:scale-125 hover:sepia-0 '
+              className='flex h-screen w-[30rem] rotate-6 scale-110 object-cover grayscale transition-all hover:scale-125 hover:grayscale-0 '
               src={item.src}
             />
           </div>
