@@ -3,7 +3,7 @@ import * as wishlistsApi from '../../api/wishlists';
 import { toast } from 'react-toastify';
 
 const initialState = {
-  wishlist: null,
+  wishlist: [],
   loading: false,
   allWishlists: [],
   loadingAllWishlists: false,
@@ -31,10 +31,10 @@ export const addGameToWishlist = createAsyncThunk(
   async (gameId) => {
     try {
       const response = await wishlistsApi.addGameToWishlist({ gameId });
-      toast.success('Game added to wishlist');
+      console.log(response.data, 'response from add game to wishlist in slice');
       return response.data;
     } catch (error) {
-      taost.error('Failed to add game to wishlist');
+      toast.error('Failed to add game to wishlist');
       return Promise.reject(error);
     }
   }
@@ -61,7 +61,19 @@ const wishlistsSlice = createSlice({
       state.loading = true;
     }),
       builder.addCase(addGameToWishlist.fulfilled, (state, action) => {
-        state.wishlist = action.payload;
+        if (action.payload.message) {          
+          toast.success('Game removed from wishlist');
+          // this function will extract wishlist id from the response message
+          console.log(action.payload.message);
+          const id = parseInt(action.payload.message.split(' ')[2]);
+          console.log(id);
+          state.wishlist = state.wishlist.filter((item) => item.id !== id);
+        } else if (action.payload.wishlist) {
+          // The item was added to the wishlist
+          toast.success('Game added to wishlist');
+          console.log(action.payload.wishlist);
+          state.wishlist.push(action.payload.wishlist);
+        }
         state.loading = false;
       }),
       builder.addCase(addGameToWishlist.rejected, (state, action) => {

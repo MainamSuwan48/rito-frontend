@@ -49,11 +49,14 @@ function GamePageHeroDetail({ gameData }) {
 
   let date = convertToDate(releasedDate);
 
-  useEffect(() => {
-    if (wishlist) {
-      setInWishList(isInWishList());
-    }
-  }, [wishlist]);
+  // useEffect(() => {
+  //   if (wishlist.length > 0 && !inWishList) {
+  //     setInWishList(isInWishList());
+  //   }
+  //   if (wishlist.length === 0) {
+  //     setInWishList(false);
+  //   }
+  // }, [wishlist]);
 
   return (
     <>
@@ -90,7 +93,12 @@ function GamePageHeroDetail({ gameData }) {
         </div>
         <div className='flex w-full justify-between'>
           {inWishList ? (
-            <div className='flex w-1/4 items-center justify-center bg-primary transition-all hover:bg-base_dark active:bg-base-300'>
+            <div
+              onClick={() => {
+                dispatch(addGameToWishlist(gameData.id));
+                setInWishList(false);
+              }}
+             className='flex w-1/4 items-center justify-center bg-primary transition-all hover:bg-base_dark active:bg-base-300'>
               <HeartIcon className='fill-base-300 stroke-base-300' />
             </div>
           ) : (

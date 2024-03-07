@@ -12,6 +12,7 @@ import MenuDropdown from './MenuDropdown';
 import LoginModal from '@/features/auth/components/LoginModal';
 import { getMe, logout } from '@/redux/slice/auth-slice';
 import { getMyCart } from '@/redux/slice/cart-slice';
+import { getMyWishlist } from '@/redux/slice/wishlists-slice';
 import { useNavigate } from 'react-router-dom';
 import WishList from '@/features/user/components/WishList';
 
@@ -36,6 +37,7 @@ function Header() {
     }
     if (authUser) {
       dispatch(getMyCart());
+      dispatch(getMyWishlist());
     }
   }, [authUser]);
 
@@ -51,7 +53,7 @@ function Header() {
       <Menu />
 
       {authUser ? (
-        <div className='col-span-4 flex items-baseline gap-6 justify-self-end mt-2'>          
+        <div className='col-span-4 mt-2 flex items-baseline gap-6 justify-self-end'>
           <div
             className='relative'
             role='button'

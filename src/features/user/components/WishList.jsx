@@ -21,11 +21,6 @@ function WishList() {
     console.log(wishlist[0].game.id);
   };
 
-  useEffect(() => {
-    if (!wishlist) {
-      dispatch(getMyWishlist());
-    }
-  }, [wishlist]);
 
   if (loading) {
     return <div className='w-full bg-blue-200'>Loading...</div>;
