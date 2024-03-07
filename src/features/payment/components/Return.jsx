@@ -1,4 +1,4 @@
-import { getSessionStatus } from '@/api/payment';
+import * as paymentApi from '@/api/payment';
 import { deleteMyCart } from '@/redux/slice/cart-slice';
 import React from 'react';
 import { useEffect } from 'react';
@@ -6,10 +6,12 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { Navigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 export default function Return() {
   const dispatch = useDispatch();
   const { authUser } = useSelector((state) => state.auth);
+  const { carts } = useSelector((state) => state.carts);
   const [status, setStatus] = useState(null);
   const [customerEmail, setCustomerEmail] = useState('');
 
@@ -19,7 +21,7 @@ export default function Return() {
     const sessionId = urlParams.get('session_id');
 
     const fetch = async () => {
-      const res = await getSessionStatus(sessionId);
+      const res = await paymentApi.getSessionStatus(sessionId);
       setCustomerEmail(res.data.customer_email);
       setStatus(res.data.status);
     };
@@ -28,8 +30,18 @@ export default function Return() {
   }, []);
 
   useEffect(() => {
-    if (status === 'complete') {
+    if (status === 'complete' && carts.length > 0) {
+      const queryString = window.location.search;
+      const urlParams = new URLSearchParams(queryString);
+      const sessionId = urlParams.get('session_id');
+
+      const updateAfterPayment = async (sessionId) => {
+        await paymentApi.updateAfterSuccess(sessionId);
+      };
+      updateAfterPayment({ sessionId, cartData: carts });
+
       dispatch(deleteMyCart(authUser.id));
+      toast.success('Game(s) added to your collection');
     }
   }, [status]);
 

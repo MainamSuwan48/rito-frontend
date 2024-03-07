@@ -22,7 +22,7 @@ function CartCheckout() {
     if (!data.paymentMethod) {
       return toast.error('Please select payment method');
     }
-    console.log(data.paymentMethod === 'credit');
+
     if (data.paymentMethod) {
       return navigate(`/checkout?method=${data.paymentMethod}`);
     }
