@@ -73,16 +73,19 @@ export const logout = createAsyncThunk('auth/logout', async () => {
   }
 });
 
-export const updateAuthUser = createAsyncThunk('auth/updateAuthUser', async (dataObj) => {
-  const {id,data} = dataObj
-  try {
-    const response = await authApi.updateAuthUser(id,data);
-    console.log(response.data)
-    return response.data.user;
-  } catch (error) {
-    return Promise.reject(error);
+export const updateAuthUser = createAsyncThunk(
+  'auth/updateAuthUser',
+  async (dataObj) => {
+    const { id, data } = dataObj;
+    try {
+      const response = await authApi.updateAuthUser(id, data);
+      console.log(response.data);
+      return response.data.user;
+    } catch (error) {
+      return Promise.reject(error);
+    }
   }
-});
+);
 
 const authSlice = createSlice({
   name: 'auth',
@@ -146,18 +149,18 @@ const authSlice = createSlice({
       });
     // update auth user
     builder
-      .addCase(updateAuthUser.pending,(state)=>{
-        state.loading = true
-        state.error = null
+      .addCase(updateAuthUser.pending, (state) => {
+        state.loading = true;
+        state.error = null;
       })
-      .addCase(updateAuthUser.fulfilled,(state,action)=>{
-        state.loading = false
-        state.authUser = action.payload
+      .addCase(updateAuthUser.fulfilled, (state, action) => {
+        state.loading = false;
+        state.authUser = action.payload;
       })
-      .addCase(updateAuthUser.rejected,(state,action)=>{
-        state.loading = false
-        state.error = action.error.message
-      })
+      .addCase(updateAuthUser.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      });
   },
 });
 

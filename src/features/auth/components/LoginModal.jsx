@@ -23,7 +23,7 @@ function LoginModal({ onClose }) {
             className='h-[5rem] w-[5rem]'
           />
         </div>
-        <LoginForm />
+        <LoginForm onClose={onClose} />
         <div
           onClick={(event) => {
             event.stopPropagation();
