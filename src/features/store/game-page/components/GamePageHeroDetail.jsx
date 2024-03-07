@@ -12,6 +12,7 @@ import { addItem } from '@/redux/slice/cart-slice';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { addGameToWishlist } from '@/redux/slice/wishlists-slice';
 
 function GamePageHeroDetail({ gameData }) {
   const dispatch = useDispatch();
@@ -49,7 +50,7 @@ function GamePageHeroDetail({ gameData }) {
   let date = convertToDate(releasedDate);
 
   useEffect(() => {
-    if (wishlist) {    
+    if (wishlist) {
       setInWishList(isInWishList());
     }
   }, [wishlist]);
@@ -93,7 +94,13 @@ function GamePageHeroDetail({ gameData }) {
               <HeartIcon className='fill-base-300 stroke-base-300' />
             </div>
           ) : (
-            <div className='flex w-1/4 items-center justify-center bg-base_dark transition-all hover:bg-primary active:bg-primary_mute'>
+            <div
+              onClick={() => {
+                dispatch(addGameToWishlist(gameData.id));
+                setInWishList(true);
+              }}
+              className='flex w-1/4 items-center justify-center bg-base_dark transition-all hover:bg-primary active:bg-primary_mute'
+            >
               <HeartIcon className='fill-base-300 stroke-base-300' />
             </div>
           )}

@@ -15,7 +15,10 @@ export const getMyWishlist = createAsyncThunk(
   async () => {
     try {
       const response = await wishlistsApi.getMyWishlist();
-      console.log(response.data.wishlists, 'response from get my wishlist in slice');
+      console.log(
+        response.data.wishlists,
+        'response from get my wishlist in slice'
+      );
       return response.data.wishlists;
     } catch (error) {
       return Promise.reject(error);
@@ -31,6 +34,7 @@ export const addGameToWishlist = createAsyncThunk(
       toast.success('Game added to wishlist');
       return response.data;
     } catch (error) {
+      taost.error('Failed to add game to wishlist');
       return Promise.reject(error);
     }
   }
