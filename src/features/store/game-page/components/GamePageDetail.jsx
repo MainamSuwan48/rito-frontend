@@ -27,8 +27,8 @@ function GamePageDetail({ gameData }) {
           Tags
         </p>
         <div className='mt-4 flex flex-wrap'>
-          {gameTags.map((tag) => (
-            <GameTag key={tag.tag.id}>{tag.tag.name}</GameTag>
+          {gameTags.map((el) => (
+            <GameTag key={el.tag.id} name={el.tag.name}>{el.tag.name}</GameTag>
           ))}
         </div>
 

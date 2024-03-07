@@ -153,3 +153,4 @@ export function QRIcon({ className = null }) {
     </svg>
   );
 }
+
