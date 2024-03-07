@@ -41,7 +41,6 @@ function Header() {
 
   return (
     <div className='fixed z-50 grid h-12 w-[100vw] grid-cols-12 px-6 backdrop-blur-lg'>
-
       <div
         onClick={() => navigate('/')}
         className='col-span-4 ml-4 flex items-center gap-[12px] justify-self-start transition-all hover:scale-125 active:scale-100'
@@ -52,8 +51,7 @@ function Header() {
       <Menu />
 
       {authUser ? (
-        <div className='col-span-4 flex items-center gap-6 justify-self-end'>
-          <div>Cart</div>
+        <div className='col-span-4 flex items-baseline gap-6 justify-self-end mt-2'>          
           <div
             className='relative'
             role='button'
@@ -66,8 +64,9 @@ function Header() {
               </div>
             )}
           </div>
-          <WishList />
-
+          <div>
+            <WishList />
+          </div>
 
           <MenuDropdown
             dropdownItems={[

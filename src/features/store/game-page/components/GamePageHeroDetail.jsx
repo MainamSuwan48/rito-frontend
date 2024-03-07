@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   Accordion,
   AccordionContent,
@@ -11,17 +10,27 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { addItem } from '@/redux/slice/cart-slice';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 function GamePageHeroDetail({ gameData }) {
   const dispatch = useDispatch();
   const { carts } = useSelector((state) => state.carts);
+  const { wishlist } = useSelector((state) => state.wishlists);
   const navigate = useNavigate();
   const { gamePlatforms, releasedDate, gameGenres, metacritic } = gameData;
+
+  const [inWishList, setInWishList] = useState(false);
 
   console.log(carts);
 
   const isInCart = () => {
     const index = carts.findIndex((item) => item.gameId === gameData.id);
+    return index === -1 ? false : true;
+  };
+
+  const isInWishList = () => {
+    const index = wishlist.findIndex((item) => item.game.id === gameData.id);
     return index === -1 ? false : true;
   };
 
@@ -38,6 +47,12 @@ function GamePageHeroDetail({ gameData }) {
   }
 
   let date = convertToDate(releasedDate);
+
+  useEffect(() => {
+    if (wishlist) {    
+      setInWishList(isInWishList());
+    }
+  }, [wishlist]);
 
   return (
     <>
@@ -73,13 +88,15 @@ function GamePageHeroDetail({ gameData }) {
           </div>
         </div>
         <div className='flex w-full justify-between'>
-          <GamePageButton
-            bg='bg-primary'
-            width='w-1/4'
-            activeColor='active:bg-primary_mute'
-          >
-            <HeartIcon />
-          </GamePageButton>
+          {inWishList ? (
+            <div className='flex w-1/4 items-center justify-center bg-primary transition-all hover:bg-base_dark active:bg-base-300'>
+              <HeartIcon className='fill-base-300 stroke-base-300' />
+            </div>
+          ) : (
+            <div className='flex w-1/4 items-center justify-center bg-base_dark transition-all hover:bg-primary active:bg-primary_mute'>
+              <HeartIcon className='fill-base-300 stroke-base-300' />
+            </div>
+          )}
 
           {isInCart() ? (
             <GamePageButton

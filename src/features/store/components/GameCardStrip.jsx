@@ -13,18 +13,25 @@ export default function GameCardStrip({ gameData, type = 'normal', cartId }) {
 
   if (type == 'wishlist') {
     return (
-      <div className='flex flex-col border-b bg-base-300 shadow-lg select-none'>
+      <div className='flex select-none flex-col border-b bg-base-300 shadow-lg'>
         <img
           onClick={() => navigate(`/game/${id}`)}
           className='h-[6rem] w-[25rem] cursor-pointer object-cover transition-all hover:scale-105 active:scale-100'
           src={backgroundImageUrl}
         />
         <div className='flex w-full items-center justify-between'>
-          <div className='flex h-full cursor-pointer items-center p-3 font-bold transition-all hover:text-primary active:text-primary_mute'>
+          <div
+            onClick={() => navigate(`/game/${id}`)}
+            className='flex h-full cursor-pointer items-center p-3 font-bold transition-all hover:text-primary active:text-primary_mute'
+          >
             {name}
           </div>
-          <div className='flex h-full items-center p-3'>
-            <TrashIcon className='h-4 w-4  transition-all hover:text-danger hover:scale-125 active:scale-100' />
+          <div
+            onClick={() => navigate(`/game/${id}`)}
+            className='flex h-full cursor-pointer items-center gap-2 p-3 text-black'
+          >
+            {price} Baht
+            <TrashIcon className='h-4 w-4  transition-all hover:scale-125 hover:text-danger active:scale-100' />
           </div>
         </div>
       </div>
