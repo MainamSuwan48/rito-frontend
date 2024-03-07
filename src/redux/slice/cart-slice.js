@@ -46,7 +46,7 @@ export const deleteMyCart = createAsyncThunk(
   async (payload) => {
     try {
       await cartApi.deleteMyCart(payload);
-      toast.success('All games removed from cart');
+      toast.success('Cart is cleared');
       return payload;
     } catch (error) {
       return Promise.reject(error);

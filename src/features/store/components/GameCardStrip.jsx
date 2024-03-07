@@ -10,11 +10,11 @@ export default function GameCardStrip({ gameData, type = '', cartId }) {
   const navigate = useNavigate();
 
   const { backgroundImageUrl, name, price, gameTags, id } = gameData;
-  console.log(gameTags, 'tags in card strip');
   return (
     <div className='flex bg-white'>
       <img
-        className='h-[6rem] w-[25rem] object-cover'
+        onClick={() => navigate(`/game/${id}`)}
+        className='h-[6rem] w-[25rem] object-cover hover:scale-105 transition-all active:scale-100 cursor-pointer'
         src={backgroundImageUrl}
       />
       <div className='flex w-full justify-between'>
@@ -23,7 +23,7 @@ export default function GameCardStrip({ gameData, type = '', cartId }) {
             <h2 className='font-bold text-black'>{name}</h2>
             <div className='mt-2 flex gap-2'>
               {gameTags.slice(0, 3).map((tag, index) => (
-                <GameCardTag key={tag.tag.id} id={tag.tag.id}>
+                <GameCardTag key={tag.tag.id} name={tag.tag.name}>
                   {tag.tag.name}
                 </GameCardTag>
               ))}
@@ -31,14 +31,13 @@ export default function GameCardStrip({ gameData, type = '', cartId }) {
           </div>
         </div>
 
-
         {type !== 'cart' && (
           <div className='flex items-end'>
             <button className='top-14 flex flex-row gap-1 bg-base_dark'>
               {/* <p className='bg-lime-400 p-3 font-bold text-black'>{id}</p> */}
               <p
                 onClick={() => navigate(`/game/${id}`)}
-                className='p-3 font-bold transition-all hover:bg-primary hover:text-black active:bg-primary_mute'
+                className='p-3 font-bold text-white transition-all hover:bg-primary hover:text-black active:bg-primary_mute'
               >
                 {price} Baht
               </p>
@@ -55,7 +54,6 @@ export default function GameCardStrip({ gameData, type = '', cartId }) {
               className='flex h-full items-center bg-error px-3'
               role='button'
               onClick={() => dispatch(deleteItem(cartId))}
-
             >
               <TrashIcon className='stroke-white' />
             </div>

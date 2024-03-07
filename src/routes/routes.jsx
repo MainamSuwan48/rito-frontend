@@ -19,6 +19,8 @@ import GameStorePage from '@/pages/StorePage/GameStorePage';
 import CheckoutForm from '@/features/payment/components/CheckoutForm';
 import Return from '@/features/payment/components/Return';
 import MyProfilePage from '@/pages/UserPage/MyProfilePage';
+import GameSearchPage from '@/pages/StorePage/GameSearchPage';
+
 
 const router = createBrowserRouter([
   {
@@ -58,6 +60,7 @@ const router = createBrowserRouter([
         element: <Return />,
       },
       { path: '/store', element: <GameStorePage /> },
+      { path: '/search', element: <GameSearchPage /> },
       //FOR DEVELOPMENT
       // { path: '/dev', element: <DevPage /> },
     ],

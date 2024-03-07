@@ -5,3 +5,6 @@ export const createSession = (paymentMethod) =>
 
 export const getSessionStatus = (sessionId) =>
   axios.get(`/payments/session-status?session_id=${sessionId}`);
+
+export const updateAfterSuccess = (sessionId) =>
+  axios.post('/payments/session/success', sessionId);

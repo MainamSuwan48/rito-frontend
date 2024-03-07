@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getGames } from '@/redux/slice/games-slice';
 
 import { useEffect, lazy, Suspense } from 'react';
+import GameStoreSorter from '@/features/store/components/GameStoreSorter';
 
 const GameCard = lazy(() => import('@/features/store/components/GameCard'));
 
@@ -23,7 +24,10 @@ export default function GameStorePage() {
     <div onClick={test} className='relative flex w-full overflow-auto'>
       <SideBar />
       <div className='relative flex w-store_search_bar flex-col gap-4'>
-        <SearchBar />
+        <div className='flex'>
+          <SearchBar />
+          <GameStoreSorter />
+        </div>
         <Suspense
           fallback={
             <div className='flex h-game_store w-full items-center justify-center'>
