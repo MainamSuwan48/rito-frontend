@@ -5,7 +5,12 @@ import { HeartIcon, TrashIcon } from '@/icons';
 import { useDispatch } from 'react-redux';
 import { deleteItem } from '@/redux/slice/cart-slice';
 
-export default function GameCardStrip({ gameData, type = 'normal', cartId }) {
+
+export default function GameCardStrip({
+  gameData,
+  type = 'normal',
+  cartId,
+}) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -16,7 +21,7 @@ export default function GameCardStrip({ gameData, type = 'normal', cartId }) {
       <div className='flex select-none flex-col border-b bg-base-300 shadow-lg'>
         <img
           onClick={() => navigate(`/game/${id}`)}
-          className='h-[6rem] w-[25rem] cursor-pointer object-cover transition-all hover:scale-105 active:scale-100'
+          className='h-[6rem] w-[25rem] cursor-pointer object-cover transition-all'
           src={backgroundImageUrl}
         />
         <div className='flex w-full items-center justify-between'>
@@ -30,9 +35,9 @@ export default function GameCardStrip({ gameData, type = 'normal', cartId }) {
             onClick={() => navigate(`/game/${id}`)}
             className='flex h-full cursor-pointer items-center gap-2 p-3 text-black'
           >
-            {price} Baht
-            <TrashIcon className='h-4 w-4  transition-all hover:scale-125 hover:text-danger active:scale-100' />
-          </div>
+            {price} Baht          
+          </div>          
+       
         </div>
       </div>
     );

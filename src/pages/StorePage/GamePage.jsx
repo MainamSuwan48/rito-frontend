@@ -4,8 +4,8 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getGameById } from '@/redux/slice/games-slice';
 import { useParams } from 'react-router-dom';
-import GameCardStrip from '@/features/store/components/GameCardStrip';
-import GameCard from '@/features/store/components/GameCard';
+import { clearCurrentGame } from '@/redux/slice/games-slice';
+
 
 {
   /* =============== < Data MockUp > =============== */
@@ -20,6 +20,9 @@ function GamePage() {
     if (!currentGame || currentGame.id !== gameId) {
       dispatch(getGameById(gameId));
     }
+    return () => {
+      dispatch(clearCurrentGame());
+    };
   }, [gameId]);
 
   return (

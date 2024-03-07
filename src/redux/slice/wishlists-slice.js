@@ -40,6 +40,20 @@ export const addGameToWishlist = createAsyncThunk(
   }
 );
 
+export const removeGameFromWishlist = createAsyncThunk(
+  'wishlists/removeGameFromWishlist',
+  async (itemId) => {
+    try {
+      const response = await wishlistsApi.removeGameFromWishlist(itemId);
+      toast.success('Game removed from wishlist');
+      return response.data;
+    } catch (error) {
+      toast.error('Failed to remove game from wishlist');
+      return Promise.reject(error);
+    }
+  }
+);
+
 const wishlistsSlice = createSlice({
   name: 'wishlists',
   initialState,
@@ -61,7 +75,7 @@ const wishlistsSlice = createSlice({
       state.loading = true;
     }),
       builder.addCase(addGameToWishlist.fulfilled, (state, action) => {
-        if (action.payload.message) {          
+        if (action.payload.message) {
           toast.success('Game removed from wishlist');
           // this function will extract wishlist id from the response message
           console.log(action.payload.message);
@@ -79,6 +93,21 @@ const wishlistsSlice = createSlice({
       builder.addCase(addGameToWishlist.rejected, (state, action) => {
         state.error = action.error.message;
         state.loading = false;
+      });
+    // Remove Game From Wishlist
+    builder.addCase(removeGameFromWishlist.pending, (state) => {
+      state.loading = true;
+    }),
+      builder.addCase(removeGameFromWishlist.fulfilled, (state, action) => {
+        state.loading = false;
+        const id = parseInt(action.payload.message.split(' ')[2]);
+        console.log(id, 'id of game to remove from wishlist');
+        state.wishlist = state.wishlist.filter((item) => item.id !== id);
+        console.log(state.wishlist, 'wishlist after removing game');
+      }),
+      builder.addCase(removeGameFromWishlist.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
       });
   },
 });

@@ -10,21 +10,11 @@ import {
 import { HeartIcon } from '@/icons';
 import WishListItems from './WishListItems';
 import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
-import { getMyWishlist } from '@/redux/slice/wishlists-slice';
-import { useEffect } from 'react';
 
 function WishList() {
-  const { wishlist, loading } = useSelector((state) => state.wishlists);
-  const dispatch = useDispatch();
-  const test = () => {
-    console.log(wishlist[0].game.id);
-  };
+  const { wishlist} = useSelector((state) => state.wishlists);
 
 
-  if (loading) {
-    return <div className='w-full bg-blue-200'>Loading...</div>;
-  }
   return (
     <div className='relative'>
       <Sheet>
