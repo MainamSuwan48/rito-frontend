@@ -24,7 +24,8 @@ export const getUserById = createAsyncThunk(
   async (userId) => {
     try {
       const response = await userApi.getUserById(userId);
-      return response.data;
+      console.log(response.data)
+      return response.data.user;
     } catch (error) {
       return Promise.reject(error);
     }
@@ -44,7 +45,7 @@ const userSlice = createSlice({
       })
       .addCase(getUserById.fulfilled, (state,action)=>{
         state.loading = false
-        state.users = action.payload
+        state.currentUser = action.payload
       })
       .addCase(getUserById.rejected,(state,action)=>{
         state.loading = false
