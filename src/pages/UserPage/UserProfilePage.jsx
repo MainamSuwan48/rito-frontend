@@ -8,33 +8,33 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-
 export default function UserProfilePage() {
-  const dispatch = useDispatch()
-  const {userId} = useParams()
+  const dispatch = useDispatch();
+  const { userId } = useParams();
   const { authUser } = useSelector((state) => state.auth);
-  const {currentUser,loading} = useSelector((state) => state.users)
-  
+  const { currentUser, loading } = useSelector((state) => state.users);
+
   // && !currentUser
-  useEffect(()=>{
-    if(userId ){
-      dispatch(getUserById(userId))
+  useEffect(() => {
+    if (userId) {
+      dispatch(getUserById(userId));
     }
     console.log(currentUser);
+  }, [userId]);
 
-  },[userId])
-  
   return (
     <>
-      
-      <div className='container h-screen grid grid-flow-row gap-4'>
-        {loading
-            ?
-            <span className='loading loading-ring loading-lg'></span>
-            :
-        currentUser && < UserProfileContainer user={currentUser} />      
-        }
-        <BodyContainer />
+      <div className='container grid h-screen grid-flow-row gap-4'>
+        {loading ? (
+          <span className='loading loading-ring loading-lg'></span>
+        ) : (
+          currentUser && (
+            <>
+              <UserProfileContainer user={currentUser} />
+              <BodyContainer user={currentUser} />
+            </>
+          )
+        )}
       </div>
     </>
   );

@@ -125,6 +125,9 @@ const gamesSlice = createSlice({
     clearSearch: (state) => {
       state.searchedGames = [];
     },
+    clearCurrentGame: (state) => {
+      state.currentGame = null;
+    }
   },
   extraReducers: (builder) => {
     //getGames
@@ -207,5 +210,8 @@ export const {
   sortSearchedGames,
   reverseSearchedGames,
   clearSearch,
+  clearCurrentGame,
 } = gamesSlice.actions;
 export const gameReducer = gamesSlice.reducer;
+
+

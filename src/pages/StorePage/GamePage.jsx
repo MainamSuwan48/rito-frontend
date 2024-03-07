@@ -4,8 +4,8 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getGameById } from '@/redux/slice/games-slice';
 import { useParams } from 'react-router-dom';
-import GameCardStrip from '@/features/store/components/GameCardStrip';
-import GameCard from '@/features/store/components/GameCard';
+import { clearCurrentGame } from '@/redux/slice/games-slice';
+
 
 {
   /* =============== < Data MockUp > =============== */
@@ -20,15 +20,15 @@ function GamePage() {
     if (!currentGame || currentGame.id !== gameId) {
       dispatch(getGameById(gameId));
     }
-  }, []);
-
-
-
+    return () => {
+      dispatch(clearCurrentGame());
+    };
+  }, [gameId]);
 
   return (
     <div className='flex h-content max-w-[100vw] flex-col justify-center overflow-auto bg-base-300'>
       {currentGame ? (
-        <div className='border-primary px-32 py-12 text-[] w-screen'>
+        <div className='w-screen border-primary px-32 py-12 text-[]'>
           <GamePageHero gameData={currentGame} />
           <div className='px-8'>
             <GamePageDetailAccordion gameData={currentGame} />
