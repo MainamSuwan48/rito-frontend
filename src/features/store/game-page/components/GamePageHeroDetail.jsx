@@ -30,10 +30,14 @@ function GamePageHeroDetail({ gameData }) {
     return index === -1 ? false : true;
   };
 
-  const isInWishList = () => {
+  useEffect(() => {
     const index = wishlist.findIndex((item) => item.game.id === gameData.id);
-    return index === -1 ? false : true;
-  };
+    if (index === -1) {
+      setInWishList(false);
+    } else {
+      setInWishList(true);
+    }
+  }, [wishlist]);
 
   {
     /* =============== < This will convert date to a readable string > =============== */
@@ -48,15 +52,6 @@ function GamePageHeroDetail({ gameData }) {
   }
 
   let date = convertToDate(releasedDate);
-
-  // useEffect(() => {
-  //   if (wishlist.length > 0 && !inWishList) {
-  //     setInWishList(isInWishList());
-  //   }
-  //   if (wishlist.length === 0) {
-  //     setInWishList(false);
-  //   }
-  // }, [wishlist]);
 
   return (
     <>
@@ -91,6 +86,9 @@ function GamePageHeroDetail({ gameData }) {
             </div>
           </div>
         </div>
+        <div className='flex h-16 w-full items-center justify-center bg-base_dark font-bold text-white'>
+          YOU ALREADY OWN THIS GAME
+        </div>
         <div className='flex w-full justify-between'>
           {inWishList ? (
             <div
@@ -98,8 +96,9 @@ function GamePageHeroDetail({ gameData }) {
                 dispatch(addGameToWishlist(gameData.id));
                 setInWishList(false);
               }}
-             className='flex w-1/4 items-center justify-center bg-primary transition-all hover:bg-base_dark active:bg-base-300'>
-              <HeartIcon className='fill-base-300 stroke-base-300' />
+              className='flex w-1/4 items-center justify-center bg-base_dark'
+            >
+              <HeartIcon className='fill-primary stroke-primary' />
             </div>
           ) : (
             <div
@@ -107,7 +106,7 @@ function GamePageHeroDetail({ gameData }) {
                 dispatch(addGameToWishlist(gameData.id));
                 setInWishList(true);
               }}
-              className='flex w-1/4 items-center justify-center bg-base_dark transition-all hover:bg-primary active:bg-primary_mute'
+              className='flex w-1/4 items-center justify-center bg-base_dark'
             >
               <HeartIcon className='fill-base-300 stroke-base-300' />
             </div>
