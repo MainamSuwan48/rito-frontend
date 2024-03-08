@@ -22,7 +22,9 @@ const initialState = {
   platforms: [], //platforms
   loadingPlatforms: false,
   gamePlatformsForPublishing: [],
-  genresForPublishing: [], //genres for publishing
+  genresForPublishing: [],
+  filteredPlatforms: [],
+  //genres for publishing
 };
 
 export const getGames = createAsyncThunk('games/getGames', async () => {
@@ -93,6 +95,20 @@ export const searchTags = createAsyncThunk(
   async (query) => {
     try {
       const response = await gamesApi.searchTags(query);
+      await new Promise((resolve) => setTimeout(resolve, 300));
+      console.log(response.data.tags);
+      return response.data.tags;
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
+);
+
+export const getAllPlatforms = createAsyncThunk(
+  'games/getAllPlatForms',
+  async () => {
+    try {
+      const response = await gamesApi.getAllPlatforms();
       await new Promise((resolve) => setTimeout(resolve, 300));
       console.log(response.data.tags);
       return response.data.tags;
@@ -185,6 +201,31 @@ const gamesSlice = createSlice({
         (genre) => genre.id !== action.payload.genreId
       );
     },
+    // -- GamePlatformsForPublishing
+    addPlatformForPublishing: (state, action) => {
+      const platformExists = state.gamePlatformsForPublishing.some(
+        (platform) => platform.id === action.payload.platformId
+      );
+
+      if (!platformExists) {
+        state.gamePlatformsForPublishing.push({
+          id: action.payload.platformId,
+          name: action.payload.platformName,
+        });
+      }
+    },
+    deleteDataPlatform: (state, action) => {
+      state.gamePlatformsForPublishing =
+        state.gamePlatformsForPublishing.filter(
+          (platform) => platform.id !== action.payload.platformId
+        );
+    },
+    searchPlatforms: (state, action) => {
+      const searchTerm = action.payload;
+      state.filteredPlatforms = state.platforms.filter((platform) =>
+        platform.name.toLowerCase().includes(searchTerm)
+      );
+    },
   },
   extraReducers: (builder) => {
     //getGames
@@ -271,6 +312,21 @@ const gamesSlice = createSlice({
         state.loadingTags = false;
         state.error = action.error.message;
       });
+    //getAllPlatForms
+    builder
+      .addCase(getAllPlatforms.pending, (state) => {
+        state.loadingPlatforms = true;
+        state.error = null;
+      })
+      .addCase(getAllPlatforms.fulfilled, (state, action) => {
+        state.platforms = action.payload;
+        state.filteredPlatforms = action.payload;
+        state.loadingPlatforms = false;
+      })
+      .addCase(getAllPlatforms.rejected, (state, action) => {
+        state.loadingPlatforms = false;
+        state.error = action.error.message;
+      });
   },
 });
 
@@ -285,6 +341,9 @@ export const {
   addTagForPublishing,
   deleteDataTag,
   addGenreForPublishing,
-  deleteDataGenre
+  deleteDataGenre,
+  addPlatformForPublishing,
+  deleteDataPlatform,
+  searchPlatforms,
 } = gamesSlice.actions;
 export const gameReducer = gamesSlice.reducer;

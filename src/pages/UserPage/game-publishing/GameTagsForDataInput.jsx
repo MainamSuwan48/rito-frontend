@@ -1,12 +1,18 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { deleteDataTag, deleteDataGenre } from '@/redux/slice/games-slice';
+import {
+  deleteDataTag,
+  deleteDataGenre,
+  deleteDataPlatform,
+} from '@/redux/slice/games-slice';
 
 function GameTagsForDataInput({ name, id, type = 'tag' }) {
   const dispatch = useDispatch();
   const handleDelete = () => {
     if (type === 'tag') {
       dispatch(deleteDataTag({ tagId: id }));
+    } else if (type === 'platform') {
+      dispatch(deleteDataPlatform({ platformId: id }));
     } else {
       dispatch(deleteDataGenre({ genreId: id }));
     }
