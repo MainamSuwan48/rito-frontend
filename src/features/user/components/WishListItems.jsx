@@ -13,7 +13,7 @@ function WishListItems() {
       {wishlist &&
         wishlist.map((el) => {
           return (
-            <div className='relative'>
+            <div key={el.id} className='relative'>
               <GameCardStrip
                 key={el.id}
                 type='wishlist'
