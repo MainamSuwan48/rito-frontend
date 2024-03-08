@@ -20,7 +20,8 @@ import CheckoutForm from '@/features/payment/components/CheckoutForm';
 import Return from '@/features/payment/components/Return';
 import MyProfilePage from '@/pages/UserPage/MyProfilePage';
 import GameSearchPage from '@/pages/StorePage/GameSearchPage';
-
+import ForgotPasswordPage from '@/pages/AuthPage/ForgotPasswordPage';
+import ResetPasswordPage from '@/pages/AuthPage/ResetPasswordPage';
 
 const router = createBrowserRouter([
   {
@@ -38,10 +39,16 @@ const router = createBrowserRouter([
       }, //* for testing ui UserProfile added by POOM
       {
         path: '/user/:userId',
-        element: (
-            <UserProfilePage />
-        ),
-      }, 
+        element: <UserProfilePage />,
+      },
+      {
+        path: '/forgot-password',
+        element: <ForgotPasswordPage />,
+      },
+      {
+        path: '/reset-password/:resetPasswordToken',
+        element: <ResetPasswordPage />,
+      },
       { path: '/game/:gameId', element: <GamePage /> },
       {
         path: '/cart',

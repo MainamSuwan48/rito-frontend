@@ -6,7 +6,7 @@ export default function UserProfileContainer({user}) {
   const {description,username,displayName,id,
     profileImageUrl,firstName,lastName,email} = user
     
-    console.log(user)
+    console.log(user,"user in UserProfileContainer")
   return (
     <>
       <div className='inline-flex h-fit w-full items-start justify-between gap-36'>

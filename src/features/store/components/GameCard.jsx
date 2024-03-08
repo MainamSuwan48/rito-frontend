@@ -5,7 +5,7 @@ export default function GameCard({ gameData }) {
   const navigate = useNavigate();
   const { backgroundImageUrl, name, price, gameTags, id } = gameData;
   return (
-    <div className='flex h-[425px] w-[26rem] flex-col bg-neutral transition-all hover:scale-105'>
+    <div className='flex h-[425px] w-[26rem] flex-col bg-neutral transition-all hover:scale-105 shadow-2xl border'>
       {/* ========= < Img Game > ========= */}
       <div className='relative h-full w-full overflow-hidden bg-black bg-opacity-50 object-center'>
         <img
@@ -31,14 +31,8 @@ export default function GameCard({ gameData }) {
 
           >
             {price} THB
-          </p>
-          <p className='flex bg-primary p-3'> ♡ </p>
-          <p
-            onClick={() => navigate(`/game/${id}`)}
-            className='flex justify-center bg-secondary p-3 text-white transition-all hover:bg-success active:bg-green-800'
-          >
-            BUY&nbsp;
-          </p>
+          </p>         
+         
         </button>
       </div>
     </div>

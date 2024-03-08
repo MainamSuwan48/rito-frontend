@@ -11,7 +11,7 @@ function LoginModal({ onClose }) {
   return (
     <div
       onClick={closeModal}
-      className='h-screen absolute inset-0 z-50 flex items-center justify-center bg-base-100 bg-opacity-65 right-0'
+      className='h-screen absolute inset-0 z-50 flex items-center justify-center bg-base_dark bg-opacity-65 right-0 backdrop-blur-3xl'
     >
       <div
         onClick={(event) => event.stopPropagation()}
@@ -23,7 +23,7 @@ function LoginModal({ onClose }) {
             className='h-[5rem] w-[5rem]'
           />
         </div>
-        <LoginForm />
+        <LoginForm onClose={onClose} />
         <div
           onClick={(event) => {
             event.stopPropagation();

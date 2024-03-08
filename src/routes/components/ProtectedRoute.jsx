@@ -9,6 +9,7 @@ function ProtectedRoute({ children }) {
     return <div>Loading...123</div>;
   }
 
+
   return token ? authUser && children : <Navigate to='/' />;
 }
 
