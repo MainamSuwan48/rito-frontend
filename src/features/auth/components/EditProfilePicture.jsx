@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button"
+import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogContent,
@@ -7,97 +7,99 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog"
+} from '@/components/ui/dialog';
 
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
-import { updateProfileImage } from "@/redux/slice/auth-slice";
-import { useRef } from "react";
-import { useState } from "react";
+import { updateProfileImage } from '@/redux/slice/auth-slice';
+import { useRef } from 'react';
+import { useState } from 'react';
 
+export function EditProfilePicture({ user }) {
+  const fileEl = useRef(null);
+  const dispatch = useDispatch();
+  const { id, profileImageUrl } = user;
+  const [file, setFile] = useState(null);
 
-
-export function EditProfilePicture({user}) {
-    const fileEl = useRef(null)
-    const dispatch = useDispatch()
-    const {id,profileImageUrl} = user
-    const[file,setFile] = useState(null)
-
-    const onSubmit = async() =>{
-        const formData = new FormData()
-        formData.append('profileImageUrl',file)
-        dispatch(updateProfileImage({id,formData}))
-        .then()
-        .catch((err)=>{
-          console.log(err);
-        })
-    }
+  const onSubmit = async () => {
+    const formData = new FormData();
+    formData.append('profileImageUrl', file);
+    dispatch(updateProfileImage({ id, formData }))
+      .then()
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <Dialog>
-      <DialogTrigger 
+      <DialogTrigger
         asChild
-        className='h-fit text-center text-base font-semibold  text-pink-500 gap-2.5 hover:text-blue-500 px-5 py-2 rounded-none'
+        className='h-fit gap-2.5 rounded-none px-5  py-2 text-center text-base font-semibold text-pink-500 hover:text-blue-500'
       >
-        <Button variant="outline">Edit Profile Picture</Button>
+        <Button variant='outline'>Edit Profile Picture</Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[525px]">
+      <DialogContent className='sm:max-w-[525px]'>
         <DialogHeader>
-          <DialogTitle className="text-2xl text-center">Edit Profile Picture</DialogTitle>
+          <DialogTitle className='text-center text-2xl'>
+            Edit Profile Picture
+          </DialogTitle>
         </DialogHeader>
-        <form 
-            className='flex items-center justify-start gap-4'
-        >
-            <div className='inline-flex flex-col items-center justify-start mt-4 gap-6 w-[550px]'>
-                <input 
-                    type="file" 
-                    className="hidden"
-                    ref={fileEl}
-                    onChange={e=>{
-                        if (e.target.files[0]) {
-                            setFile(e.target.files[0])
-                        }
+        <form className='flex items-center justify-start gap-4'>
+          <div className='mt-4 inline-flex w-[550px] flex-col items-center justify-start gap-6'>
+            <input
+              type='file'
+              className='hidden'
+              ref={fileEl}
+              onChange={(e) => {
+                if (e.target.files[0]) {
+                  setFile(e.target.files[0]);
+                }
+              }}
+            />
+            <img
+              className='h-64 w-64'
+              src={
+                file
+                  ? URL.createObjectURL(file)
+                  : profileImageUrl || 'https://via.placeholder.com/256x256'
+              }
+            />
+            <DialogFooter className='flex w-full items-center justify-center '>
+              {file ? (
+                <div className='flex gap-2'>
+                  <Button
+                    className='bg-pink-500'
+                    type='button'
+                    onClick={onSubmit}
+                  >
+                    Submit
+                  </Button>
+                  <Button
+                    className='bg-pink-500'
+                    type='button'
+                    onClick={() => {
+                      setFile(null);
+                      fileEl.current.value = '';
                     }}
-                />
-                <img
-                className='h-64 w-64'
-                src={file? URL.createObjectURL(file) : (profileImageUrl || 'https://via.placeholder.com/256x256')}
-                />
-                <DialogFooter className="flex items-center justify-center w-full ">
-                    {file?
-                    <div className="flex gap-2">
-                        <Button 
-                            className="bg-pink-500" 
-                            type="button"
-                            onClick={onSubmit}
-                        >
-                        Submit
-                        </Button>
-                        <Button 
-                            className="bg-pink-500" 
-                            type="button"
-                            onClick={()=>{
-                                setFile(null)
-                                fileEl.current.value = ''
-                            }}
-                        >
-                        Cancel
-                        </Button>
-                    </div>
-                    :
-                    <Button 
-                        className="bg-pink-500" 
-                        type="button"
-                        onClick={()=>fileEl.current.click()}
-                    >
-                    Choose File
-                    </Button>
-                    }
-                </DialogFooter>
-              </div>
-          </form>
+                  >
+                    Cancel
+                  </Button>
+                </div>
+              ) : (
+                <Button
+                  className='bg-pink-500'
+                  type='button'
+                  onClick={() => fileEl.current.click()}
+                >
+                  Choose File
+                </Button>
+              )}
+            </DialogFooter>
+          </div>
+        </form>
       </DialogContent>
     </Dialog>
-  )
+  );
 }

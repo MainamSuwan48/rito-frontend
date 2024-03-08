@@ -12,8 +12,7 @@ import WishListItems from './WishListItems';
 import { useSelector } from 'react-redux';
 
 function WishList() {
-  const { wishlist} = useSelector((state) => state.wishlists);
-
+  const { wishlist } = useSelector((state) => state.wishlists);
 
   return (
     <div className='relative'>
@@ -31,7 +30,7 @@ function WishList() {
         </SheetContent>
       </Sheet>
       {wishlist && (
-        <div className='absolute -right-3 -top-2 rounded-full bg-accent h-5 w-5 flex justify-center items-center'>
+        <div className='absolute -right-3 -top-2 flex h-5 w-5 items-center justify-center rounded-full bg-accent'>
           {wishlist.length}
         </div>
       )}

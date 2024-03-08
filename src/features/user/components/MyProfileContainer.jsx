@@ -1,22 +1,28 @@
-import { EditForm } from "@/features/auth/components/EditForm";
-import { EditProfilePicture } from "@/features/auth/components/EditProfilePicture";
+import { EditForm } from '@/features/auth/components/EditForm';
+import { EditProfilePicture } from '@/features/auth/components/EditProfilePicture';
 
-
-export default function MyProfileContainer({user}) {
-  const {description,username,displayName,id,
-    profileImageUrl,firstName,lastName,email} = user
+export default function MyProfileContainer({ user }) {
+  const {
+    description,
+    username,
+    displayName,
+    id,
+    profileImageUrl,
+    firstName,
+    lastName,
+    email,
+  } = user;
 
   return (
     <>
       <div className='inline-flex h-fit w-full items-start justify-between gap-36'>
         <div className='flex items-center justify-center gap-6'>
-          <div className="flex flex-col gap-4">
+          <div className='flex flex-col gap-4'>
             <img
               className='h-64 w-64'
               src={profileImageUrl || 'https://via.placeholder.com/256x256'}
             />
-            <EditProfilePicture user={user}/>
-
+            <EditProfilePicture user={user} />
           </div>
           <div className='flex items-center justify-start gap-4'>
             <div className='inline-flex flex-col items-start justify-start gap-6'>
@@ -29,7 +35,7 @@ export default function MyProfileContainer({user}) {
                 <div className='inline-flex items-center justify-start gap-2'>
                   <div className='flex items-center justify-center gap-2.5'>
                     <div className='text-center   font-normal  text-black'>
-                      {description || "description"}
+                      {description || 'description'}
                     </div>
                   </div>
                 </div>
@@ -63,7 +69,6 @@ export default function MyProfileContainer({user}) {
               </div>
             </div>
           </div>
-          
         </div>
         <div className='grid grid-flow-row items-center justify-center gap-2.5'>
           {/* <div className='h-fit flex flex-col items-center justify-center gap-2.5 bg-pink-500 px-20 py-4'>
@@ -81,7 +86,7 @@ export default function MyProfileContainer({user}) {
               Add friend
             </div>
           </div> */}
-            <EditForm user={user}/>
+          <EditForm user={user} />
         </div>
       </div>
     </>

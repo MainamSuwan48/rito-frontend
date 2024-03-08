@@ -35,11 +35,9 @@ function GamePage() {
           </div>
         </div>
       ) : (
-        <div className='flex flex-col gap 4 w-screen border-primary px-32 py-12'>
-          <Skeleton className='h-[500px] w-full rounded-xl m-4' />        
-            <Skeleton className='h-[50px] w-full m-4' />
-           
-         
+        <div className='gap 4 flex w-screen flex-col border-primary px-32 py-12'>
+          <Skeleton className='m-4 h-[500px] w-full rounded-xl' />
+          <Skeleton className='m-4 h-[50px] w-full' />
         </div>
       )}
     </div>

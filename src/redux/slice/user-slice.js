@@ -66,8 +66,8 @@ const userSlice = createSlice({
         state.loading = false;
         state.error = action.error.message;
       });
-      //get User Games
-      builder
+    //get User Games
+    builder
       .addCase(getUserGames.pending, (state) => {
         state.loadingUserGames = true;
         state.error = null;
