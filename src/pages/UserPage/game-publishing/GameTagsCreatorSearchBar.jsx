@@ -22,7 +22,7 @@ function GameTagsCreatorSearchBar({ type = 'tags' }) {
 
   if (type === 'tags') {
     return (
-      <div className='flex w-[500px]'>
+      <div className='flex w-full'>
         <input
           onChange={handleChange}
           type='text'

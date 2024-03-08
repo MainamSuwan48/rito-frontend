@@ -16,6 +16,7 @@ import {
 import { Button } from '@/components/ui/button';
 import PlatformsCreator from '@/pages/UserPage/game-publishing/PlatformsCreator';
 import GenreCreator from '@/pages/UserPage/game-publishing/GenresCreator';
+import GameTagsCreator from '@/pages/UserPage/game-publishing/GameTagsCreator';
 // import { DialogDemo } from './DialogPlatformsCreator';
 
 function CreateGameForm({
@@ -160,12 +161,28 @@ function CreateGameForm({
           asChild
           className='h-fit gap-2.5 rounded-none px-5  py-2 text-center text-base font-semibold text-pink-500 hover:text-blue-500'
         >
-          <Button variant='outline'>Add Gernes</Button>
+          <Button variant='outline'>Add Tags</Button>
         </DialogTrigger>
         <DialogContent className='sm:max-w-[525px]'>
           <DialogHeader>
             {/* <DialogTitle className='text-center text-2xl'> */}
             <GenreCreator />
+            {/* </DialogTitle> */}
+          </DialogHeader>
+        </DialogContent>
+      </Dialog>
+
+      <Dialog>
+        <DialogTrigger
+          asChild
+          className='h-fit gap-2.5 rounded-none px-5  py-2 text-center text-base font-semibold text-pink-500 hover:text-blue-500'
+        >
+          <Button variant='outline'>Add Gernes</Button>
+        </DialogTrigger>
+        <DialogContent className='sm:max-w-[525px]'>
+          <DialogHeader>
+            {/* <DialogTitle className='text-center text-2xl'> */}
+            <GameTagsCreator />
             {/* </DialogTitle> */}
           </DialogHeader>
         </DialogContent>
