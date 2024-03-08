@@ -1,4 +1,5 @@
 import { EditForm } from "@/features/auth/components/EditForm";
+import { EditProfilePicture } from "@/features/auth/components/EditProfilePicture";
 
 
 export default function MyProfileContainer({user}) {
@@ -9,11 +10,14 @@ export default function MyProfileContainer({user}) {
     <>
       <div className='inline-flex h-fit w-full items-start justify-between gap-36'>
         <div className='flex items-center justify-center gap-6'>
-          <img
-            className='h-64 w-64'
-            src={profileImageUrl || 'https://via.placeholder.com/256x256'}
-          />
-          
+          <div className="flex flex-col gap-4">
+            <img
+              className='h-64 w-64'
+              src={profileImageUrl || 'https://via.placeholder.com/256x256'}
+            />
+            <EditProfilePicture user={user}/>
+
+          </div>
           <div className='flex items-center justify-start gap-4'>
             <div className='inline-flex flex-col items-start justify-start gap-6'>
               <div className='flex flex-col items-start justify-center gap-4'>
