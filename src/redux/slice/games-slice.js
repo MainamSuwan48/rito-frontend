@@ -118,6 +118,16 @@ export const getAllPlatforms = createAsyncThunk(
   }
 );
 
+export const createGame = createAsyncThunk('games/create', async (formData) => {
+  try {
+    console.log(formData);
+    const response = await gamesApi.createGame(formData);
+    return response.data.newGame;
+  } catch (error) {
+    return Promise.reject(error);
+  }
+});
+
 const gamesSlice = createSlice({
   name: 'games',
   initialState,
@@ -329,6 +339,19 @@ const gamesSlice = createSlice({
       })
       .addCase(getAllPlatforms.rejected, (state, action) => {
         state.loadingPlatforms = false;
+        state.error = action.error.message;
+      });
+    // create game
+    builder
+      .addCase(createGame.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(createGame.fulfilled, (state, action) => {
+        state.loading = false;
+      })
+      .addCase(createGame.rejected, (state, action) => {
+        state.loading = false;
         state.error = action.error.message;
       });
   },

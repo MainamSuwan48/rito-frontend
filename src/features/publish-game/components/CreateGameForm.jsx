@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { createGameSchema } from '../validations/validate-creategame';
 import PublishGameInput from './PublishGameInput';
 import { toast } from 'react-toastify';
+import { useSelector } from 'react-redux';
 import {
   Dialog,
   DialogContent,
@@ -17,6 +18,9 @@ import { Button } from '@/components/ui/button';
 import PlatformsCreator from '@/pages/UserPage/game-publishing/PlatformsCreator';
 import GenreCreator from '@/pages/UserPage/game-publishing/GenresCreator';
 import GameTagsCreator from '@/pages/UserPage/game-publishing/GameTagsCreator';
+import { useDispatch } from 'react-redux';
+import { createGame } from '@/redux/slice/games-slice';
+import { useNavigate } from 'react-router-dom';
 // import { DialogDemo } from './DialogPlatformsCreator';
 
 function CreateGameForm({
@@ -30,6 +34,15 @@ function CreateGameForm({
   screenshots,
   onClearScreenshots,
 }) {
+  const {
+    gameTagsForPublishing,
+    genresForPublishing,
+    gamePlatformsForPublishing,
+  } = useSelector((state) => state.games);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const handleUploadedBackgroundImage = (e) => {
     if (e.target.files[0]) {
       onAddBackgroundImage(e.target.files[0]);
@@ -76,10 +89,28 @@ function CreateGameForm({
         );
       }
 
+      if (gamePlatformsForPublishing.length > 0) {
+        formData.append(
+          'platforms',
+          JSON.stringify(gamePlatformsForPublishing)
+        );
+      }
+
+      if (gameTagsForPublishing.length > 0) {
+        formData.append('tags', JSON.stringify(gameTagsForPublishing));
+      }
+
+      if (genresForPublishing.length > 0) {
+        formData.append('genres', JSON.stringify(genresForPublishing));
+      }
+
+      dispatch(createGame(formData));
+
       reset();
       updateErrorBackgroundImage('');
       onAddBackgroundImage(null);
       onClearScreenshots();
+      navigate('/');
       toast.success('Successfully created game');
     } catch (error) {
       toast.error(error.response.message);
@@ -150,10 +181,9 @@ function CreateGameForm({
         <DialogContent className='h-[500px] overflow-auto p-4 sm:max-w-[525px]'>
           <DialogHeader>
             <DialogTitle>Add Game platforms</DialogTitle>
-            <DialogDescription>
-              <PlatformsCreator />
-            </DialogDescription>
+            <DialogDescription></DialogDescription>
           </DialogHeader>
+          <PlatformsCreator />
         </DialogContent>
       </Dialog>
 
@@ -166,15 +196,10 @@ function CreateGameForm({
         </DialogTrigger>
         <DialogContent className='h-[500px] overflow-auto p-4 sm:max-w-[525px]'>
           <DialogHeader>
-            <DialogTitle
-            className='pb-4'
-            >Add Game Genres</DialogTitle>
-            <DialogDescription
-            className='overflow-auto'
-            >
-              <GenreCreator />
-            </DialogDescription>
+            <DialogTitle>Add Game Genres</DialogTitle>
+            <DialogDescription></DialogDescription>
           </DialogHeader>
+          <GenreCreator />
         </DialogContent>
       </Dialog>
 
@@ -185,13 +210,12 @@ function CreateGameForm({
         >
           <Button variant='outline'>Add Tags</Button>
         </DialogTrigger>
-        <DialogContent className='mt-2 h-content overflow-auto sm:max-w-[725px]'>
+        <DialogContent className='h-content overflow-auto sm:max-w-[725px]'>
           <DialogHeader>
             <DialogTitle>Add Game Tags</DialogTitle>
-            <DialogDescription>
-              <GameTagsCreator />
-            </DialogDescription>
+            <DialogDescription></DialogDescription>
           </DialogHeader>
+          <GameTagsCreator />
         </DialogContent>
       </Dialog>
 
