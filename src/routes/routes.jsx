@@ -23,6 +23,7 @@ import GameSearchPage from '@/pages/StorePage/GameSearchPage';
 import ForgotPasswordPage from '@/pages/AuthPage/ForgotPasswordPage';
 import CommunityPage from '@/pages/CommunityPage/CommunityPage';
 import ResetPasswordPage from '@/pages/AuthPage/ResetPasswordPage';
+import CreateGamePage from '@/pages/PublishGamePage/CreateGamePage';
 
 const router = createBrowserRouter([
   {
@@ -66,6 +67,10 @@ const router = createBrowserRouter([
       {
         path: '/checkout-return',
         element: <Return />,
+      },
+      {
+        path: '/create/game',
+        element: <CreateGamePage />,
       },
       { path: '/store', element: <GameStorePage /> },
       { path: '/search', element: <GameSearchPage /> },
