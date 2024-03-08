@@ -88,9 +88,7 @@ export const updateAuthUser = createAsyncThunk('auth/updateAuthUser', async (dat
 export const updateProfileImage = createAsyncThunk('auth/updateProfileImage', async (dataObj) => {
   const {id,formData} = dataObj
   try {
-    console.log(dataObj)
     const response = await authApi.updateProfileImage(id,formData);
-    console.log(response.data)
     return response.data.user;
   } catch (error) {
     return Promise.reject(error);

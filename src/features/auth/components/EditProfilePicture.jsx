@@ -23,12 +23,11 @@ import { useState } from "react";
 export function EditProfilePicture({user}) {
     const fileEl = useRef(null)
     const dispatch = useDispatch()
-
+    const {authuser,loading} = useSelector((state)=>state.auth)
     const {id,profileImageUrl} = user
     const[file,setFile] = useState(null)
 
     const onSubmit = async() =>{
-        console.log(file)
         const formData = new FormData()
         formData.append('profileImageUrl',file)
         dispatch(updateProfileImage({id,formData}))
@@ -36,7 +35,6 @@ export function EditProfilePicture({user}) {
         .catch((err)=>{
           console.log(err);
         })
-        console.log(user)
     }
 
     // console.log(fileEl)
