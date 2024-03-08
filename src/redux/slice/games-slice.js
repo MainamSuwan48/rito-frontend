@@ -15,6 +15,16 @@ const initialState = {
   searchedGamesAscending: true,
   loadingSearchedGames: false,
   error: null,
+  /// For Publishing
+  gameTags: [], //tags
+  loadingTags: false,
+  gameTagsForPublishing: [],
+  platforms: [], //platforms
+  loadingPlatforms: false,
+  gamePlatformsForPublishing: [],
+  genresForPublishing: [],
+  filteredPlatforms: [],
+  //genres for publishing
 };
 
 export const getGames = createAsyncThunk('games/getGames', async () => {
@@ -80,6 +90,34 @@ export const searchGames = createAsyncThunk(
   }
 );
 
+export const searchTags = createAsyncThunk(
+  'games/searchTags',
+  async (query) => {
+    try {
+      const response = await gamesApi.searchTags(query);
+      await new Promise((resolve) => setTimeout(resolve, 300));
+      console.log(response.data.tags);
+      return response.data.tags;
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
+);
+
+export const getAllPlatforms = createAsyncThunk(
+  'games/getAllPlatForms',
+  async () => {
+    try {
+      const response = await gamesApi.getAllPlatforms();
+      await new Promise((resolve) => setTimeout(resolve, 300));
+      console.log(response.data.tags);
+      return response.data.tags;
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
+);
+
 const gamesSlice = createSlice({
   name: 'games',
   initialState,
@@ -124,6 +162,69 @@ const gamesSlice = createSlice({
     },
     clearCurrentGame: (state) => {
       state.currentGame = null;
+    },
+    //For Publishing
+    // -- GameTagsForPublishing
+    addTagForPublishing: (state, action) => {
+      const tagExists = state.gameTagsForPublishing.some(
+        (tag) => tag.id === action.payload.tagId
+      );
+
+      if (!tagExists) {
+        state.gameTagsForPublishing.push({
+          id: action.payload.tagId,
+          name: action.payload.tagName,
+        });
+      }
+      console.log(state.gameTagsForPublishing);
+    },
+    deleteDataTag: (state, action) => {
+      state.gameTagsForPublishing = state.gameTagsForPublishing.filter(
+        (tag) => tag.id !== action.payload.tagId
+      );
+    },
+    // -- GameGenresForPublishing
+    addGenreForPublishing: (state, action) => {
+      const genreExists = state.genresForPublishing.some(
+        (genre) => genre.id === action.payload.genreId
+      );
+
+      if (!genreExists) {
+        state.genresForPublishing.push({
+          id: action.payload.genreId,
+          name: action.payload.genreName,
+        });
+      }
+    },
+    deleteDataGenre: (state, action) => {
+      state.genresForPublishing = state.genresForPublishing.filter(
+        (genre) => genre.id !== action.payload.genreId
+      );
+    },
+    // -- GamePlatformsForPublishing
+    addPlatformForPublishing: (state, action) => {
+      const platformExists = state.gamePlatformsForPublishing.some(
+        (platform) => platform.id === action.payload.platformId
+      );
+
+      if (!platformExists) {
+        state.gamePlatformsForPublishing.push({
+          id: action.payload.platformId,
+          name: action.payload.platformName,
+        });
+      }
+    },
+    deleteDataPlatform: (state, action) => {
+      state.gamePlatformsForPublishing =
+        state.gamePlatformsForPublishing.filter(
+          (platform) => platform.id !== action.payload.platformId
+        );
+    },
+    searchPlatforms: (state, action) => {
+      const searchTerm = action.payload;
+      state.filteredPlatforms = state.platforms.filter((platform) =>
+        platform.name.toLowerCase().includes(searchTerm)
+      );
     },
   },
   extraReducers: (builder) => {
@@ -197,6 +298,35 @@ const gamesSlice = createSlice({
         state.loadingSearchedGames = false;
         state.error = action.error.message;
       });
+    //searchTags
+    builder
+      .addCase(searchTags.pending, (state) => {
+        state.loadingTags = true;
+        state.error = null;
+      })
+      .addCase(searchTags.fulfilled, (state, action) => {
+        state.gameTags = action.payload;
+        state.loadingTags = false;
+      })
+      .addCase(searchTags.rejected, (state, action) => {
+        state.loadingTags = false;
+        state.error = action.error.message;
+      });
+    //getAllPlatForms
+    builder
+      .addCase(getAllPlatforms.pending, (state) => {
+        state.loadingPlatforms = true;
+        state.error = null;
+      })
+      .addCase(getAllPlatforms.fulfilled, (state, action) => {
+        state.platforms = action.payload;
+        state.filteredPlatforms = action.payload;
+        state.loadingPlatforms = false;
+      })
+      .addCase(getAllPlatforms.rejected, (state, action) => {
+        state.loadingPlatforms = false;
+        state.error = action.error.message;
+      });
   },
 });
 
@@ -208,5 +338,12 @@ export const {
   reverseSearchedGames,
   clearSearch,
   clearCurrentGame,
+  addTagForPublishing,
+  deleteDataTag,
+  addGenreForPublishing,
+  deleteDataGenre,
+  addPlatformForPublishing,
+  deleteDataPlatform,
+  searchPlatforms,
 } = gamesSlice.actions;
 export const gameReducer = gamesSlice.reducer;
