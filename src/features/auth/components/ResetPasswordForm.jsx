@@ -51,7 +51,7 @@ function ResetPasswordForm() {
             type='password'
             name='password'
             errors={errors}
-            label='Password'
+            label='New Password'
           />
           <FormInput
             register={register}

@@ -1,13 +1,15 @@
 import { joiResolver } from '@hookform/resolvers/joi';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { emailSchema } from '../validations/validate-email';
 import FormInput from './FormInput';
 import { forgotPassword } from '@/api/auth';
 import { toast } from 'react-toastify';
+import { usernameOrEmailSchema } from '../validations/validate-username-or-email';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function ForgotPasswordForm() {
+  const [isSuccess, setIsSuccess] = useState(false);
   const navigate = useNavigate();
 
   const {
@@ -17,7 +19,7 @@ function ForgotPasswordForm() {
     formState: { errors },
     setError,
   } = useForm({
-    resolver: joiResolver(emailSchema),
+    resolver: joiResolver(usernameOrEmailSchema),
     mode: 'onSubmit',
   });
 
@@ -25,16 +27,9 @@ function ForgotPasswordForm() {
     try {
       await forgotPassword(data);
       reset();
+      setIsSuccess(true);
       toast.success('Reset password request sent');
-      navigate('/');
     } catch (error) {
-      if (error?.response.data.ref === 'WRONG_INPUT') {
-        setError('email', {
-          type: 'custom',
-          message: 'User with this email does not exist',
-        });
-        return;
-      }
       toast.error(error.response?.data.message);
     }
   };
@@ -45,10 +40,16 @@ function ForgotPasswordForm() {
         <div className='flex w-[20em] flex-col items-center justify-center gap-2 p-2'>
           <FormInput
             register={register}
-            name='email'
+            name='usernameOrEmail'
             errors={errors}
-            label='Email'
+            label='Username or Email'
           />
+          {isSuccess && (
+            <small className='text-center text-sm font-semibold text-secondary'>
+              If your username or email match an existing account we will send a
+              password reset email within a few minutes.
+            </small>
+          )}
           <div className='flex w-full flex-col items-center justify-evenly'>
             <button
               type='submit'
@@ -58,6 +59,14 @@ function ForgotPasswordForm() {
             </button>
           </div>
           <hr className=' border border-base_light' />
+
+          <div
+            className='underline'
+            role='button'
+            onClick={() => navigate('/')}
+          >
+            &lt; Back to Home
+          </div>
         </div>
       </form>
     </div>
