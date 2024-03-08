@@ -2,7 +2,7 @@ import React from 'react';
 
 function GameTagForPublish({ children, img, id, onClick }) {
   return (
-    <div className='relative flex h-auto w-full items-center justify-center text-sm text-black'>
+    <div className='relative flex h-12 w-full items-center justify-center text-sm text-black'>
       <img
         // alt={children}
         src={img}

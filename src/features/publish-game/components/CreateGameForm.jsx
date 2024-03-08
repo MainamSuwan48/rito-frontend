@@ -147,7 +147,7 @@ function CreateGameForm({
         >
           <Button variant='outline'>Add Platform</Button>
         </DialogTrigger>
-        <DialogContent className='sm:max-w-[525px]'>
+        <DialogContent className='sm:max-w-[525px] h-[500px] overflow-auto p-4'>
           <DialogHeader>
             {/* <DialogTitle className='text-center text-2xl'> */}
             <PlatformsCreator />
@@ -161,9 +161,9 @@ function CreateGameForm({
           asChild
           className='h-fit gap-2.5 rounded-none px-5  py-2 text-center text-base font-semibold text-pink-500 hover:text-blue-500'
         >
-          <Button variant='outline'>Add Tags</Button>
+          <Button variant='outline'>Add Genre</Button>
         </DialogTrigger>
-        <DialogContent className='sm:max-w-[525px]'>
+        <DialogContent className='sm:max-w-[525px] h-[500px] overflow-auto p-4'>
           <DialogHeader>
             {/* <DialogTitle className='text-center text-2xl'> */}
             <GenreCreator />
@@ -177,9 +177,9 @@ function CreateGameForm({
           asChild
           className='h-fit gap-2.5 rounded-none px-5  py-2 text-center text-base font-semibold text-pink-500 hover:text-blue-500'
         >
-          <Button variant='outline'>Add Gernes</Button>
+          <Button variant='outline'>Add Tags</Button>
         </DialogTrigger>
-        <DialogContent className='sm:max-w-[525px]'>
+        <DialogContent className='sm:max-w-[725px] h-content overflow-auto p-4'>
           <DialogHeader>
             {/* <DialogTitle className='text-center text-2xl'> */}
             <GameTagsCreator />

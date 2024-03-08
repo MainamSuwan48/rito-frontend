@@ -8,7 +8,7 @@ import GameTagForPublish from './GameTagForPublish';
 function GameGenresResult() {
   const dispatch = useDispatch();
   const { genres } = useSelector((state) => state.games);
-  
+
   const handleAddGenre = (genreId, genreName) => {
     dispatch(addGenreForPublishing({ genreId, genreName }));
   };
@@ -24,7 +24,7 @@ function GameGenresResult() {
   };
 
   return (
-    <div className='flex min-h-12 flex-col bg-red-500'>
+    <>
       {genres &&
         genres.map((genre) => (
           <GameTagForPublish
@@ -37,7 +37,7 @@ function GameGenresResult() {
             {genre.name}
           </GameTagForPublish>
         ))}
-    </div>
+    </>
   );
 }
 
