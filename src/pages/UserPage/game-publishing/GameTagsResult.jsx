@@ -11,21 +11,17 @@ function GameTagsResult() {
   };
   return (
     <div className='flex flex-col'>
-      {gameTags.map(
-        (tag) => (          
-          (
-            <GameTagForPublish
-              key={tag.id}
-              tag={tag}
-              id={tag.id}
-              onClick={() => handleAddTag(tag.id, tag.name)}
-              img={tag.backgroundImageUrl}
-            >
-              {tag.name}
-            </GameTagForPublish>
-          )
-        )
-      )}
+      {gameTags.map((tag) => (
+        <GameTagForPublish
+          key={tag.id}
+          tag={tag}
+          id={tag.id}
+          onClick={() => handleAddTag(tag.id, tag.name)}
+          img={tag.backgroundImageUrl}
+        >
+          {tag.name}
+        </GameTagForPublish>
+      ))}
     </div>
   );
 }

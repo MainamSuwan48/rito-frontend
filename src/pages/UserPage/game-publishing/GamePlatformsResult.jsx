@@ -18,12 +18,11 @@ function GamePlatformsResult() {
   const handleAddPlatform = (platformId, platformName) => {
     dispatch(addPlatformForPublishing({ platformId, platformName }));
   };
-  
 
   return (
-    <div className='flex min-h-12 flex-col bg-red-500'>
+    <div className='flex min-h-12 flex-col bg-base_dark'>
       {filteredPlatforms &&
-        filteredPlatforms.map((platform) => (
+        filteredPlatforms.slice(0, 10).map((platform) => (
           <GameTagForPublish
             key={platform.id}
             tag={platform}
