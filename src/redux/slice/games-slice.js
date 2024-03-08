@@ -147,6 +147,8 @@ const gamesSlice = createSlice({
     clearCurrentGame: (state) => {
       state.currentGame = null;
     },
+    //For Publishing
+    // -- GameTagsForPublishing
     addTagForPublishing: (state, action) => {
       const tagExists = state.gameTagsForPublishing.some(
         (tag) => tag.id === action.payload.tagId
@@ -163,6 +165,24 @@ const gamesSlice = createSlice({
     deleteDataTag: (state, action) => {
       state.gameTagsForPublishing = state.gameTagsForPublishing.filter(
         (tag) => tag.id !== action.payload.tagId
+      );
+    },
+    // -- GameGenresForPublishing
+    addGenreForPublishing: (state, action) => {
+      const genreExists = state.genresForPublishing.some(
+        (genre) => genre.id === action.payload.genreId
+      );
+
+      if (!genreExists) {
+        state.genresForPublishing.push({
+          id: action.payload.genreId,
+          name: action.payload.genreName,
+        });
+      }
+    },
+    deleteDataGenre: (state, action) => {
+      state.genresForPublishing = state.genresForPublishing.filter(
+        (genre) => genre.id !== action.payload.genreId
       );
     },
   },
@@ -263,6 +283,8 @@ export const {
   clearSearch,
   clearCurrentGame,
   addTagForPublishing,
-  deleteDataTag
+  deleteDataTag,
+  addGenreForPublishing,
+  deleteDataGenre
 } = gamesSlice.actions;
 export const gameReducer = gamesSlice.reducer;

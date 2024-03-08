@@ -16,8 +16,8 @@ function GameTagsCreator() {
   };
 
   return (
-    <div onClick={test} className='flex w-[500px] flex-col bg-base-300'>
-      <div className='flex flex-wrap gap-2 p-2 min-h-12 rounded-t-md'>
+    <div onClick={test} className='flex w-[500px] flex-col bg-base-300 rounded-t-md'>
+      <div className='flex flex-wrap gap-2 p-2 min-h-12 '>
         {gameTagsForPublishing.map((tag, index) => (
           <GameTagsForDataInput key={index} name={tag.name} id={tag.id} />
         ))}
