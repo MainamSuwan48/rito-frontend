@@ -185,15 +185,19 @@ const gamesSlice = createSlice({
     },
     // -- GameGenresForPublishing
     addGenreForPublishing: (state, action) => {
-      const genreExists = state.genresForPublishing.some(
-        (genre) => genre.id === action.payload.genreId
-      );
+      if (state.genresForPublishing.length < 3) {
+        const genreExists = state.genresForPublishing.some(
+          (genre) => genre.id === action.payload.genreId
+        );
 
-      if (!genreExists) {
-        state.genresForPublishing.push({
-          id: action.payload.genreId,
-          name: action.payload.genreName,
-        });
+        if (!genreExists) {
+          state.genresForPublishing.push({
+            id: action.payload.genreId,
+            name: action.payload.genreName,
+          });
+        }
+      } else {
+        toast.error('You can only add up to 3 genres.');
       }
     },
     deleteDataGenre: (state, action) => {

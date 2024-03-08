@@ -147,11 +147,33 @@ function CreateGameForm({
         >
           <Button variant='outline'>Add Platform</Button>
         </DialogTrigger>
-        <DialogContent className='sm:max-w-[525px]'>
+        <DialogContent className='h-[500px] overflow-auto p-4 sm:max-w-[525px]'>
           <DialogHeader>
-            {/* <DialogTitle className='text-center text-2xl'> */}
-            <PlatformsCreator />
-            {/* </DialogTitle> */}
+            <DialogTitle>Add Game platforms</DialogTitle>
+            <DialogDescription>
+              <PlatformsCreator />
+            </DialogDescription>
+          </DialogHeader>
+        </DialogContent>
+      </Dialog>
+
+      <Dialog>
+        <DialogTrigger
+          asChild
+          className='h-fit gap-2.5 rounded-none px-5  py-2 text-center text-base font-semibold text-pink-500 hover:text-blue-500'
+        >
+          <Button variant='outline'>Add Genre</Button>
+        </DialogTrigger>
+        <DialogContent className='h-[500px] overflow-auto p-4 sm:max-w-[525px]'>
+          <DialogHeader>
+            <DialogTitle
+            className='pb-4'
+            >Add Game Genres</DialogTitle>
+            <DialogDescription
+            className='overflow-auto'
+            >
+              <GenreCreator />
+            </DialogDescription>
           </DialogHeader>
         </DialogContent>
       </Dialog>
@@ -163,27 +185,12 @@ function CreateGameForm({
         >
           <Button variant='outline'>Add Tags</Button>
         </DialogTrigger>
-        <DialogContent className='sm:max-w-[525px]'>
+        <DialogContent className='mt-2 h-content overflow-auto sm:max-w-[725px]'>
           <DialogHeader>
-            {/* <DialogTitle className='text-center text-2xl'> */}
-            <GenreCreator />
-            {/* </DialogTitle> */}
-          </DialogHeader>
-        </DialogContent>
-      </Dialog>
-
-      <Dialog>
-        <DialogTrigger
-          asChild
-          className='h-fit gap-2.5 rounded-none px-5  py-2 text-center text-base font-semibold text-pink-500 hover:text-blue-500'
-        >
-          <Button variant='outline'>Add Gernes</Button>
-        </DialogTrigger>
-        <DialogContent className='sm:max-w-[525px]'>
-          <DialogHeader>
-            {/* <DialogTitle className='text-center text-2xl'> */}
-            <GameTagsCreator />
-            {/* </DialogTitle> */}
+            <DialogTitle>Add Game Tags</DialogTitle>
+            <DialogDescription>
+              <GameTagsCreator />
+            </DialogDescription>
           </DialogHeader>
         </DialogContent>
       </Dialog>
