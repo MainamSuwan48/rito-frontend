@@ -12,7 +12,9 @@ import MenuDropdown from './MenuDropdown';
 import LoginModal from '@/features/auth/components/LoginModal';
 import { getMe, logout } from '@/redux/slice/auth-slice';
 import { getMyCart } from '@/redux/slice/cart-slice';
+import { getMyWishlist } from '@/redux/slice/wishlists-slice';
 import { useNavigate } from 'react-router-dom';
+import WishList from '@/features/user/components/WishList';
 
 function Header() {
   const dispatch = useDispatch();
@@ -35,12 +37,12 @@ function Header() {
     }
     if (authUser) {
       dispatch(getMyCart());
+      dispatch(getMyWishlist());
     }
   }, [authUser]);
 
   return (
     <div className='fixed z-50 grid h-12 w-[100vw] grid-cols-12 px-6 backdrop-blur-lg'>
-
       <div
         onClick={() => navigate('/')}
         className='col-span-4 ml-4 flex items-center gap-[12px] justify-self-start transition-all hover:scale-125 active:scale-100'
@@ -51,8 +53,7 @@ function Header() {
       <Menu />
 
       {authUser ? (
-        <div className='col-span-4 flex items-center gap-6 justify-self-end'>
-          <div>Cart</div>
+        <div className='col-span-4 mt-2 flex items-baseline gap-6 justify-self-end'>
           <div
             className='relative'
             role='button'
@@ -64,6 +65,9 @@ function Header() {
                 <div className='text-center text-xs'>{carts.length}</div>
               </div>
             )}
+          </div>
+          <div>
+            <WishList />
           </div>
 
           <MenuDropdown

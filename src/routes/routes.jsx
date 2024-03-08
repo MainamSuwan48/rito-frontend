@@ -9,7 +9,7 @@ import {
 import HomePage from '@/pages/MainPage/HomePage';
 import LoginPage from '@/pages/AuthPage/LoginPage';
 import RegisterPage from '@/pages/AuthPage/RegisterPage';
-import DevPage from '@/pages/DevPage';
+// import DevPage from '@/pages/DevPage';
 import GamePage from '@/pages/StorePage/GamePage';
 import UserProfilePage from '@/pages/UserPage/UserProfilePage';
 import Container from '@/layouts/Container';
@@ -18,7 +18,10 @@ import CartPage from '@/pages/CartPage/CartPage';
 import GameStorePage from '@/pages/StorePage/GameStorePage';
 import CheckoutForm from '@/features/payment/components/CheckoutForm';
 import Return from '@/features/payment/components/Return';
+import MyProfilePage from '@/pages/UserPage/MyProfilePage';
 import GameSearchPage from '@/pages/StorePage/GameSearchPage';
+import ForgotPasswordPage from '@/pages/AuthPage/ForgotPasswordPage';
+import ResetPasswordPage from '@/pages/AuthPage/ResetPasswordPage';
 
 const router = createBrowserRouter([
   {
@@ -30,10 +33,22 @@ const router = createBrowserRouter([
         path: '/user',
         element: (
           <ProtectedRoute>
-            <UserProfilePage />
+            <MyProfilePage />
           </ProtectedRoute>
         ),
       }, //* for testing ui UserProfile added by POOM
+      {
+        path: '/user/:userId',
+        element: <UserProfilePage />,
+      },
+      {
+        path: '/forgot-password',
+        element: <ForgotPasswordPage />,
+      },
+      {
+        path: '/reset-password/:resetPasswordToken',
+        element: <ResetPasswordPage />,
+      },
       { path: '/game/:gameId', element: <GamePage /> },
       {
         path: '/cart',
@@ -54,7 +69,7 @@ const router = createBrowserRouter([
       { path: '/store', element: <GameStorePage /> },
       { path: '/search', element: <GameSearchPage /> },
       //FOR DEVELOPMENT
-      { path: '/dev', element: <DevPage /> },
+      // { path: '/dev', element: <DevPage /> },
     ],
   },
   { path: '/register', element: <RegisterPage /> },

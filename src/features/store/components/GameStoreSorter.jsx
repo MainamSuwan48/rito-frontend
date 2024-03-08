@@ -12,6 +12,8 @@ import {
   sortSearchedGames,
   reverseSearchedGames,
 } from '../../../redux/slice/games-slice';
+import { AscendingIcon } from '@/icons';
+import { DescendingIcon } from '@/icons';
 
 function GameStoreSorter({ type = '' }) {
   const { isAscending, searchedGamesAscending } = useSelector(
@@ -30,7 +32,7 @@ function GameStoreSorter({ type = '' }) {
 
   if (type == 'search') {
     return (
-      <div className='box-border flex items-center justify-cente'>
+      <div className='justify-cente box-border flex items-center'>
         <Select onValueChange={(value) => sortSearched(value)} className=''>
           <SelectTrigger className='h-14 w-[160px] rounded-none'>
             <SelectValue placeholder='Sort By' />
@@ -44,9 +46,14 @@ function GameStoreSorter({ type = '' }) {
         </Select>
         <div
           onClick={toggleSort}
-          className={`flex h-full w-[120px] select-none items-center justify-center transition-all hover:text-white ${searchedGamesAscending ? 'bg-primary active:bg-primary_mute' : 'bg-secondary active:bg-secondary_mute'}`}
+          className={`flex h-full w-[60px] select-none items-center justify-center transition-all hover:text-white ${isAscending ? 'bg-primary active:bg-primary_mute' : 'bg-secondary active:bg-secondary_mute'}
+          cursor-pointer`}
         >
-          {searchedGamesAscending ? 'Ascending' : 'Descending'}
+          {isAscending ? (
+            <AscendingIcon className='h-8 w-8 stroke-neutral' />
+          ) : (
+            <DescendingIcon className='h-8 w-8 stroke-neutral' />
+          )}
         </div>
       </div>
     );
@@ -67,9 +74,14 @@ function GameStoreSorter({ type = '' }) {
       </Select>
       <div
         onClick={toggleSort}
-        className={`flex h-full w-[120px] select-none items-center justify-center transition-all hover:text-white ${isAscending ? 'bg-primary active:bg-primary_mute' : 'bg-secondary active:bg-secondary_mute'}`}
+        className={`flex h-full w-[60px] select-none items-center justify-center transition-all hover:text-white ${isAscending ? 'bg-primary active:bg-primary_mute' : 'bg-secondary active:bg-secondary_mute'}
+        cursor-pointer`}
       >
-        {isAscending ? 'Ascending' : 'Descending'}
+        {isAscending ? (
+          <AscendingIcon className='h-8 w-8 stroke-neutral' />
+        ) : (
+          <DescendingIcon className='h-8 w-8 stroke-neutral' />
+        )}
       </div>
     </div>
   );

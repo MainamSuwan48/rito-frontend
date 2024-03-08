@@ -7,6 +7,8 @@ const initialState = {
   loading: false,
   currentUser: null,
   userProfile: null,
+  userGames: null,
+  loadingUserGames: false,
   error: null,
 };
 
@@ -24,34 +26,61 @@ export const getUserById = createAsyncThunk(
   async (userId) => {
     try {
       const response = await userApi.getUserById(userId);
-      return response.data;
+      console.log(response.data);
+      return response.data.user;
     } catch (error) {
       return Promise.reject(error);
     }
   }
 );
 
+export const getUserGames = createAsyncThunk(
+  'users/getUserGames',
+  async (userId) => {
+    console.log(userId);
+    try {
+      const response = await userApi.getUserGames(userId);
+      console.log(response.data);
+      return response.data.games;
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
+);
 
 const userSlice = createSlice({
-    name: 'users',
-    initialState,
-    extraReducers: (builder) => {
-      builder
+  name: 'users',
+  initialState,
+  extraReducers: (builder) => {
+    builder
       // get User by Id
-      .addCase(getUserById.pending, (state)=>{
-        state.loading = true
-        state.error = null
+      .addCase(getUserById.pending, (state) => {
+        state.loading = true;
+        state.error = null;
       })
-      .addCase(getUserById.fulfilled, (state,action)=>{
-        state.loading = false
-        state.users = action.payload
+      .addCase(getUserById.fulfilled, (state, action) => {
+        state.loading = false;
+        state.currentUser = action.payload;
       })
-      .addCase(getUserById.rejected,(state,action)=>{
-        state.loading = false
-        state.error = action.error.message
+      .addCase(getUserById.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      });
+      //get User Games
+      builder
+      .addCase(getUserGames.pending, (state) => {
+        state.loadingUserGames = true;
+        state.error = null;
       })
-
-    }
+      .addCase(getUserGames.fulfilled, (state, action) => {
+        state.loadingUserGames = false;
+        state.userGames = action.payload;
+      })
+      .addCase(getUserGames.rejected, (state, action) => {
+        state.loadingUserGames = false;
+        state.error = action.error.message;
+      });
+  },
 });
 
 //reducers
