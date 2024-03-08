@@ -28,13 +28,12 @@ export default function RegisterForm() {
 
   // This function will be called when the form is submitted
 
-
   // ...
-  
+
   const navigate = useNavigate();
-  
+
   const onSubmit = async (data) => {
-    console.log(data)
+    console.log(data);
     dispatch(registerUser(data))
       .then(() => {
         navigate('/user');

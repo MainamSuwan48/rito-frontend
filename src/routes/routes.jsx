@@ -21,6 +21,7 @@ import Return from '@/features/payment/components/Return';
 import MyProfilePage from '@/pages/UserPage/MyProfilePage';
 import GameSearchPage from '@/pages/StorePage/GameSearchPage';
 import ForgotPasswordPage from '@/pages/AuthPage/ForgotPasswordPage';
+import CommunityPage from '@/pages/CommunityPage/CommunityPage';
 import ResetPasswordPage from '@/pages/AuthPage/ResetPasswordPage';
 
 const router = createBrowserRouter([
@@ -68,6 +69,7 @@ const router = createBrowserRouter([
       },
       { path: '/store', element: <GameStorePage /> },
       { path: '/search', element: <GameSearchPage /> },
+      { path: '/community', element: <CommunityPage /> },
       //FOR DEVELOPMENT
       // { path: '/dev', element: <DevPage /> },
     ],

@@ -25,12 +25,13 @@ export default function SideBar() {
           <AccordionTrigger className='h-14 w-full bg-primary pl-4 text-neutral'>
             Genres
           </AccordionTrigger>
-          <AccordionContent className='m-0 w-full p-0 overflow-auto h-game_store'>
+          <AccordionContent className='m-0 h-game_store w-full overflow-auto p-0'>
             <div className='flex flex-col gap-1'>
-            <GameGenreTag type='all'>All</GameGenreTag>
+              <GameGenreTag type='all'>All</GameGenreTag>
               {loadingGenres ? (
                 <div>Loading...</div>
-              ) : genres && (
+              ) : (
+                genres &&
                 genres.map((genre) => (
                   <GameGenreTag
                     key={genre.id}

@@ -10,19 +10,19 @@ import store from './redux/store/store';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
     {/* <React.StrictMode> */}
-      <App />
-      <ToastContainer
-        position='top-right'
-        autoClose={1000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme='dark'
-      />
+    <App />
+    <ToastContainer
+      position='top-right'
+      autoClose={1000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      theme='dark'
+    />
     {/* </React.StrictMode> */}
   </Provider>
 );

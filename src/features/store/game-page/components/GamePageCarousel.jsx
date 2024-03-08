@@ -29,7 +29,7 @@ function GamePageCarousel({ mainImage, images }) {
           {images.map((image) => (
             <CarouselItem className='relative h-full w-full' key={image.id}>
               <img
-                className='absolute w-full h-full object-cover object-center transition-all hover:scale-110'
+                className='absolute h-full w-full object-cover object-center transition-all hover:scale-110'
                 src={image.imageUrl}
               />
             </CarouselItem>

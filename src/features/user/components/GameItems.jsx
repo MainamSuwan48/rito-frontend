@@ -18,7 +18,7 @@ export default function GameItems() {
               ))}
             </div>
           </div>
-        </div>    
+        </div>
       </div>
     </div>
   );

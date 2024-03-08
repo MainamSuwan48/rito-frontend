@@ -73,28 +73,33 @@ export const logout = createAsyncThunk('auth/logout', async () => {
   }
 });
 
-export const updateAuthUser = createAsyncThunk('auth/updateAuthUser', async (dataObj) => {
-  const {id,data} = dataObj
-  try {
-    console.log(dataObj)
-    const response = await authApi.updateAuthUser(id,data);
-    console.log(response.data)
-    return response.data.user;
-  } catch (error) {
-    return Promise.reject(error);
-
+export const updateAuthUser = createAsyncThunk(
+  'auth/updateAuthUser',
+  async (dataObj) => {
+    const { id, data } = dataObj;
+    try {
+      console.log(dataObj);
+      const response = await authApi.updateAuthUser(id, data);
+      console.log(response.data);
+      return response.data.user;
+    } catch (error) {
+      return Promise.reject(error);
+    }
   }
 );
 
-export const updateProfileImage = createAsyncThunk('auth/updateProfileImage', async (dataObj) => {
-  const {id,formData} = dataObj
-  try {
-    const response = await authApi.updateProfileImage(id,formData);
-    return response.data.user;
-  } catch (error) {
-    return Promise.reject(error);
+export const updateProfileImage = createAsyncThunk(
+  'auth/updateProfileImage',
+  async (dataObj) => {
+    const { id, formData } = dataObj;
+    try {
+      const response = await authApi.updateProfileImage(id, formData);
+      return response.data.user;
+    } catch (error) {
+      return Promise.reject(error);
+    }
   }
-});
+);
 
 const authSlice = createSlice({
   name: 'auth',
@@ -173,18 +178,18 @@ const authSlice = createSlice({
 
     // update profile image
     builder
-      .addCase(updateProfileImage.pending,(state)=>{
-        state.loading = true
-        state.error = null
+      .addCase(updateProfileImage.pending, (state) => {
+        state.loading = true;
+        state.error = null;
       })
-      .addCase(updateProfileImage.fulfilled,(state,action)=>{
-        state.loading = false
-        state.authUser = action.payload
+      .addCase(updateProfileImage.fulfilled, (state, action) => {
+        state.loading = false;
+        state.authUser = action.payload;
       })
-      .addCase(updateProfileImage.rejected,(state,action)=>{
-        state.loading = false
-        state.error = action.error.message
-      })
+      .addCase(updateProfileImage.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      });
   },
 });
 

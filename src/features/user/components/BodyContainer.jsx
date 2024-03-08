@@ -33,9 +33,10 @@ export default function BodyContainer({ user }) {
             </div>
           </div>
         </div>
-        {userGames && userGames.map((game,index) => (
-          <GameCardStrip type="profile" key={index} gameData={game} />
-        ))}
+        {userGames &&
+          userGames.map((game, index) => (
+            <GameCardStrip type='profile' key={index} gameData={game} />
+          ))}
       </div>
 
       <div className='flex flex-col'>
