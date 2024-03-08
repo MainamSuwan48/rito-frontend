@@ -1,7 +1,9 @@
 import React from 'react';
 import { ChevronDownIcon, FriendIcon, ListIcon } from '@/icons';
+import SearchBar from '@/features/store/components/SearchBar';
+import AddFriendsModal from './AddFriendsModal';
 
-export default function CommunutyPage() {
+export default function CommunitySearchBar() {
   return (
     <div className='flex justify-center'>
       <div className='p-[2rem]'>
@@ -18,15 +20,8 @@ export default function CommunutyPage() {
               Sort by <ChevronDownIcon />
             </p>
           </button>
-          <div className='flex w-[30rem] items-center justify-center border-2 border-black'>
-            <p className=' font-bold '> Search Bar </p>
-            {/* <SearchBar /> */}
-          </div>
-          <button className=' flex w-auto items-center justify-center bg-base_dark'>
-            <p className='m-4 flex items-center gap-2 text-neutral'>
-              Search for Friends <FriendIcon />
-            </p>
-          </button>
+          <SearchBar type="community" />
+          <AddFriendsModal />        
         </div>
       </div>
     </div>

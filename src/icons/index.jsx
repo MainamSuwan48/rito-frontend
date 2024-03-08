@@ -212,7 +212,6 @@ export function CommentIcon({ className = null }) {
       stroke-width='2'
       stroke-linecap='round'
       stroke-linejoin='round'
-      class='lucide lucide-message-square'
       className={className}
     >
       <path d='M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z' />
@@ -232,7 +231,6 @@ export function ThumbsUpIcon({ className = null }) {
       stroke-width='2'
       stroke-linecap='round'
       stroke-linejoin='round'
-      class='lucide lucide-thumbs-up'
       className={className}
     >
       <path d='M7 10v12' />
@@ -242,60 +240,88 @@ export function ThumbsUpIcon({ className = null }) {
 }
 
 export const ThumbsDownIcon = ({ className = null }) => {
-  <svg
-    xmlns='http://www.w3.org/2000/svg'
-    width='24'
-    height='24'
-    viewBox='0 0 24 24'
-    fill='none'
-    stroke='currentColor'
-    stroke-width='2'
-    stroke-linecap='round'
-    stroke-linejoin='round'
-    className={className}
-  >
-    <path d='M17 14V2' />
-    <path d='M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22h0a3.13 3.13 0 0 1-3-3.88Z' />
-  </svg>;
+  return (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      width='24'
+      height='24'
+      viewBox='0 0 24 24'
+      fill='none'
+      stroke='currentColor'
+      stroke-width='2'
+      stroke-linecap='round'
+      stroke-linejoin='round'
+      className={className}
+    >
+      <path d='M17 14V2' />
+      <path d='M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22h0a3.13 3.13 0 0 1-3-3.88Z' />
+    </svg>
+  );
 };
 
 export function FriendIcon({ className = null }) {
-  <svg
-    xmlns='http://www.w3.org/2000/svg'
-    width='24'
-    height='24'
-    viewBox='0 0 24 24'
-    fill='none'
-    stroke='currentColor'
-    stroke-width='2'
-    stroke-linecap='round'
-    stroke-linejoin='round'
-    className={className}
-  >
-    <path d='M18 21a8 8 0 0 0-16 0' />
-    <circle cx='10' cy='8' r='5' />
-    <path d='M22 20c0-3.37-2-6.5-4-8a5 5 0 0 0-.45-8.3' />
-  </svg>;
+  return (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      width='24'
+      height='24'
+      viewBox='0 0 24 24'
+      fill='none'
+      stroke='currentColor'
+      stroke-width='2'
+      stroke-linecap='round'
+      stroke-linejoin='round'
+      className={className}
+    >
+      <path d='M18 21a8 8 0 0 0-16 0' />
+      <circle cx='10' cy='8' r='5' />
+      <path d='M22 20c0-3.37-2-6.5-4-8a5 5 0 0 0-.45-8.3' />
+    </svg>
+  );
 }
 
 export const ListIcon = ({ className = null }) => {
-  <svg
-    xmlns='http://www.w3.org/2000/svg'
-    width='24'
-    height='24'
-    viewBox='0 0 24 24'
-    fill='none'
-    stroke='currentColor'
-    stroke-width='2'
-    stroke-linecap='round'
-    stroke-linejoin='round'
-    className={className}
-  >
-    <line x1='8' x2='21' y1='6' y2='6' />
-    <line x1='8' x2='21' y1='12' y2='12' />
-    <line x1='8' x2='21' y1='18' y2='18' />
-    <line x1='3' x2='3.01' y1='6' y2='6' />
-    <line x1='3' x2='3.01' y1='12' y2='12' />
-    <line x1='3' x2='3.01' y1='18' y2='18' />
-  </svg>;
+  return (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      width='24'
+      height='24'
+      viewBox='0 0 24 24'
+      fill='none'
+      stroke='currentColor'
+      stroke-width='2'
+      stroke-linecap='round'
+      stroke-linejoin='round'
+      className={className}
+    >
+      <line x1='8' x2='21' y1='6' y2='6' />
+      <line x1='8' x2='21' y1='12' y2='12' />
+      <line x1='8' x2='21' y1='18' y2='18' />
+      <line x1='3' x2='3.01' y1='6' y2='6' />
+      <line x1='3' x2='3.01' y1='12' y2='12' />
+      <line x1='3' x2='3.01' y1='18' y2='18' />
+    </svg>
+  );
+};
+
+export const AddFriendIcon = ({ className = null }) => {
+  return (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      width='24'
+      height='24'
+      viewBox='0 0 24 24'
+      fill='none'
+      stroke='currentColor'
+      stroke-width='2'
+      stroke-linecap='round'
+      stroke-linejoin='round'
+      className={className}
+    >
+      <path d='M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2' />
+      <circle cx='9' cy='7' r='4' />
+      <line x1='19' x2='19' y1='8' y2='14' />
+      <line x1='22' x2='16' y1='11' y2='11' />
+    </svg>
+  );
 };
