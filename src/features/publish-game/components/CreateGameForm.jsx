@@ -147,11 +147,12 @@ function CreateGameForm({
         >
           <Button variant='outline'>Add Platform</Button>
         </DialogTrigger>
-        <DialogContent className='sm:max-w-[525px] h-[500px] overflow-auto p-4'>
+        <DialogContent className='h-[500px] overflow-auto p-4 sm:max-w-[525px]'>
           <DialogHeader>
-            {/* <DialogTitle className='text-center text-2xl'> */}
-            <PlatformsCreator />
-            {/* </DialogTitle> */}
+            <DialogTitle>Add Game platforms</DialogTitle>
+            <DialogDescription>
+              <PlatformsCreator />
+            </DialogDescription>
           </DialogHeader>
         </DialogContent>
       </Dialog>
@@ -163,11 +164,16 @@ function CreateGameForm({
         >
           <Button variant='outline'>Add Genre</Button>
         </DialogTrigger>
-        <DialogContent className='sm:max-w-[525px] h-[500px] overflow-auto p-4'>
+        <DialogContent className='h-[500px] overflow-auto p-4 sm:max-w-[525px]'>
           <DialogHeader>
-            {/* <DialogTitle className='text-center text-2xl'> */}
-            <GenreCreator />
-            {/* </DialogTitle> */}
+            <DialogTitle
+            className='pb-4'
+            >Add Game Genres</DialogTitle>
+            <DialogDescription
+            className='overflow-auto'
+            >
+              <GenreCreator />
+            </DialogDescription>
           </DialogHeader>
         </DialogContent>
       </Dialog>
@@ -179,11 +185,12 @@ function CreateGameForm({
         >
           <Button variant='outline'>Add Tags</Button>
         </DialogTrigger>
-        <DialogContent className='sm:max-w-[725px] h-content overflow-auto p-4'>
+        <DialogContent className='mt-2 h-content overflow-auto sm:max-w-[725px]'>
           <DialogHeader>
-            {/* <DialogTitle className='text-center text-2xl'> */}
-            <GameTagsCreator />
-            {/* </DialogTitle> */}
+            <DialogTitle>Add Game Tags</DialogTitle>
+            <DialogDescription>
+              <GameTagsCreator />
+            </DialogDescription>
           </DialogHeader>
         </DialogContent>
       </Dialog>
