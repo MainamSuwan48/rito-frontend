@@ -16,7 +16,7 @@ function PlatformsCreator() {
     dispatch(searchPlatforms(searchTerm));
   };
   return (
-    <div className='flex w-[500px] flex-col rounded-t-md bg-base-300'>
+    <div className='flex w-full flex-col rounded-t-md bg-base-300'>
       <div className='flex min-h-12 flex-wrap gap-2 p-2'>
         {gamePlatformsForPublishing.map((tag, index) => (
           <GameTagsForDataInput
