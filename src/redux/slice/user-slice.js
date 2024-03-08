@@ -15,7 +15,7 @@ const initialState = {
 export const getAllUsers = createAsyncThunk('users/getAllUsers', async () => {
   try {
     const response = await userApi.getAllUser();
-    return response.data;
+    return response.data.users;
   } catch (error) {
     return Promise.reject(error);
   }
@@ -63,6 +63,20 @@ const userSlice = createSlice({
         state.currentUser = action.payload;
       })
       .addCase(getUserById.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      });
+      // get User by Id
+    builder
+      .addCase(getAllUsers.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getAllUsers.fulfilled, (state, action) => {
+        state.loading = false;
+        state.users = action.payload;
+      })
+      .addCase(getAllUsers.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
       });

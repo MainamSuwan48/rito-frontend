@@ -1,5 +1,6 @@
 import { EditForm } from '@/features/auth/components/EditForm';
 import { EditProfilePicture } from '@/features/auth/components/EditProfilePicture';
+import AddFriendsModal from '@/features/community/components/AddFriendsModal';
 
 export default function MyProfileContainer({ user }) {
   const {
@@ -71,21 +72,12 @@ export default function MyProfileContainer({ user }) {
           </div>
         </div>
         <div className='grid grid-flow-row items-center justify-center gap-2.5'>
-          {/* <div className='h-fit flex flex-col items-center justify-center gap-2.5 bg-pink-500 px-20 py-4'>
-            <div className='text-center font-semibold text-white'>
-              Save Profile
-            </div>
-          </div> */}
+          <AddFriendsModal userID={user.id}/>
           <div className='flex h-fit flex-col items-center justify-center gap-2.5 bg-zinc-300 px-20 py-4'>
             <div className='text-center font-semibold text-white'>
               Pending Request
             </div>
           </div>
-          {/* <div className='h-fit flex flex-col items-center justify-center gap-2.5 bg-teal-500 px-20 py-4'>
-            <div className='text-center font-semibold text-white'>
-              Add friend
-            </div>
-          </div> */}
           <EditForm user={user} />
         </div>
       </div>
