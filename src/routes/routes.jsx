@@ -37,7 +37,7 @@ const router = createBrowserRouter([
             <MyProfilePage />
           </ProtectedRoute>
         ),
-      }, //* for testing ui UserProfile added by POOM
+      },
       {
         path: '/user/:userId',
         element: <UserProfilePage />,
