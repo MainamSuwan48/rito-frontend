@@ -15,6 +15,14 @@ const initialState = {
   searchedGamesAscending: true,
   loadingSearchedGames: false,
   error: null,
+  /// For Publishing
+  gameTags: [], //tags
+  loadingTags: false,
+  gameTagsForPublishing: [],
+  platforms: [], //platforms
+  loadingPlatforms: false,
+  gamePlatformsForPublishing: [],
+  genresForPublishing: [], //genres for publishing
 };
 
 export const getGames = createAsyncThunk('games/getGames', async () => {
@@ -80,6 +88,20 @@ export const searchGames = createAsyncThunk(
   }
 );
 
+export const searchTags = createAsyncThunk(
+  'games/searchTags',
+  async (query) => {
+    try {
+      const response = await gamesApi.searchTags(query);
+      await new Promise((resolve) => setTimeout(resolve, 300));
+      console.log(response.data.tags);
+      return response.data.tags;
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
+);
+
 const gamesSlice = createSlice({
   name: 'games',
   initialState,
@@ -124,6 +146,24 @@ const gamesSlice = createSlice({
     },
     clearCurrentGame: (state) => {
       state.currentGame = null;
+    },
+    addTagForPublishing: (state, action) => {
+      const tagExists = state.gameTagsForPublishing.some(
+        (tag) => tag.id === action.payload.tagId
+      );
+
+      if (!tagExists) {
+        state.gameTagsForPublishing.push({
+          id: action.payload.tagId,
+          name: action.payload.tagName,
+        });
+      }
+      console.log(state.gameTagsForPublishing);
+    },
+    deleteDataTag: (state, action) => {
+      state.gameTagsForPublishing = state.gameTagsForPublishing.filter(
+        (tag) => tag.id !== action.payload.tagId
+      );
     },
   },
   extraReducers: (builder) => {
@@ -197,6 +237,20 @@ const gamesSlice = createSlice({
         state.loadingSearchedGames = false;
         state.error = action.error.message;
       });
+    //searchTags
+    builder
+      .addCase(searchTags.pending, (state) => {
+        state.loadingTags = true;
+        state.error = null;
+      })
+      .addCase(searchTags.fulfilled, (state, action) => {
+        state.gameTags = action.payload;
+        state.loadingTags = false;
+      })
+      .addCase(searchTags.rejected, (state, action) => {
+        state.loadingTags = false;
+        state.error = action.error.message;
+      });
   },
 });
 
@@ -208,5 +262,7 @@ export const {
   reverseSearchedGames,
   clearSearch,
   clearCurrentGame,
+  addTagForPublishing,
+  deleteDataTag
 } = gamesSlice.actions;
 export const gameReducer = gamesSlice.reducer;

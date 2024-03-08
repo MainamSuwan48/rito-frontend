@@ -9,7 +9,7 @@ import {
 import HomePage from '@/pages/MainPage/HomePage';
 import LoginPage from '@/pages/AuthPage/LoginPage';
 import RegisterPage from '@/pages/AuthPage/RegisterPage';
-// import DevPage from '@/pages/DevPage';
+import DevPage from '@/pages/DevPage';
 import GamePage from '@/pages/StorePage/GamePage';
 import UserProfilePage from '@/pages/UserPage/UserProfilePage';
 import Container from '@/layouts/Container';
@@ -71,7 +71,7 @@ const router = createBrowserRouter([
       { path: '/search', element: <GameSearchPage /> },
       { path: '/community', element: <CommunityPage /> },
       //FOR DEVELOPMENT
-      // { path: '/dev', element: <DevPage /> },
+      { path: '/dev', element: <DevPage /> },
     ],
   },
   { path: '/register', element: <RegisterPage /> },
