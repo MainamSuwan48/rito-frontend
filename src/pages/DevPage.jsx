@@ -8,9 +8,10 @@ import SideBar from '@/features/store/components/SideBar';
 
 import SearchBar from '@/features/store/components/SearchBar';
 import GameSearchPage from './StorePage/GameSearchPage';
+import CommunityPage from './CommunityPage/CommunityPage';
 
 function DevPage() {
-  return <GameSearchPage />;
+  return <CommunityPage />;
 }
 
 export default DevPage;
