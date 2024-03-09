@@ -8,12 +8,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { login, getMe } from '../../../redux/slice/auth-slice';
 import FormInput from './FormInput';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-export default function LoginForm() {
+export default function LoginForm({ onClose }) {
   // redux dispatch
   const dispatch = useDispatch();
   // redux state
   const { authUser, loading } = useSelector((state) => state.auth);
+
+  const navigate = useNavigate();
 
   // Initialize useForm with the joiResolver and your validation schema
   const {
@@ -46,7 +49,16 @@ export default function LoginForm() {
           label='Password'
           type='password'
         />
-        <div></div>
+        <div
+          onClick={(event) => {
+            event.stopPropagation();
+            onClose();
+            navigate('/forgot-password');
+          }}
+          className='cursor-pointer select-none pb-4 text-center font-bold text-secondary transition-all hover:text-secondary_mute active:scale-95'
+        >
+          Forgot Password ?
+        </div>
         <div className='flex w-full flex-col items-center justify-center gap-2'>
           <button
             type='submit'

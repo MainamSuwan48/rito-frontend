@@ -1,16 +1,16 @@
-import GameCard from '@/features/store/components/GameCard';
-import GameCardStrip from '@/features/store/components/GameCardStrip';
 import React from 'react';
+import GameTagsCreator from './UserPage/game-publishing/GameTagsCreator';
+import PlatformsCreator from './UserPage/game-publishing/PlatformsCreator';
+import GenreCreator from './UserPage/game-publishing/GenresCreator';
+import CreateGamePage from './PublishGamePage/CreateGamePage';
 
-import GameStorePage from './StorePage/GameStorePage';
-
-import SideBar from '@/features/store/components/SideBar';
-
-import SearchBar from '@/features/store/components/SearchBar';
-import GameSearchPage from './StorePage/GameSearchPage';
-
-function DevPage() {
-  return <GameSearchPage />;
+export default function DevPage() {
+  return (
+    <CreateGamePage />
+    // <div className='flex gap-4'>
+    //   <GameTagsCreator />
+    //   <PlatformsCreator />
+    //   <GenreCreator />
+    // </div>
+  );
 }
-
-export default DevPage;

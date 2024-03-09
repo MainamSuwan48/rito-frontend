@@ -4,9 +4,7 @@ import { Outlet } from 'react-router-dom';
 
 function Container() {
   return (
-    <div
-    className=''
-    >
+    <div className=''>
       <Header />
       <div className='max-w-[100vw] pt-12'>
         <Outlet />

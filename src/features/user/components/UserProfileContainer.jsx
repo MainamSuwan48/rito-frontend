@@ -1,26 +1,28 @@
-import { joiResolver } from "@hookform/resolvers/joi";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { EditForm } from '@/features/auth/components/EditForm';
+import { useEffect } from 'react';
 
-import { editUserSchema } from "@/features/auth/validations/validate-editUser";
-import { EditForm } from "@/features/auth/components/EditForm";
+export default function UserProfileContainer({ user }) {
+  const {
+    description,
+    username,
+    displayName,
+    id,
+    profileImageUrl,
+    firstName,
+    lastName,
+    email,
+  } = user;
 
-
-export default function UserProfileContainer({user}) {
-  const {description,username,displayName,id,
-    profileImageUrl,firstName,lastName,email} = user
-
+  console.log(user, 'user in UserProfileContainer');
   return (
     <>
-      <div className='inline-flex h-fit w-full items-end justify-between gap-36'>
+      <div className='inline-flex h-fit w-full items-start justify-between gap-36'>
         <div className='flex items-center justify-center gap-6'>
           <img
             className='h-64 w-64'
             src={profileImageUrl || 'https://via.placeholder.com/256x256'}
           />
-          
+
           <div className='flex items-center justify-start gap-4'>
             <div className='inline-flex flex-col items-start justify-start gap-6'>
               <div className='flex flex-col items-start justify-center gap-4'>
@@ -32,7 +34,7 @@ export default function UserProfileContainer({user}) {
                 <div className='inline-flex items-center justify-start gap-2'>
                   <div className='flex items-center justify-center gap-2.5'>
                     <div className='text-center   font-normal  text-black'>
-                      {description || "description"}
+                      {description || 'description'}
                     </div>
                   </div>
                 </div>
@@ -66,25 +68,19 @@ export default function UserProfileContainer({user}) {
               </div>
             </div>
           </div>
-          
         </div>
         <div className='grid grid-flow-row items-center justify-center gap-2.5'>
-          <div className='h-fit flex flex-col items-center justify-center gap-2.5 bg-pink-500 px-20 py-4'>
-            <div className='text-center font-semibold text-white'>
-              Save Profile
-            </div>
-          </div>
-          <div className='flex h-fit flex-col items-center justify-center gap-2.5 bg-zinc-300 px-20 py-4'>
+          {/* <div className='flex h-fit flex-col items-center justify-center gap-2.5 bg-zinc-300 px-20 py-4'>
             <div className='text-center font-semibold text-white'>
               Pending Request
             </div>
-          </div>
-          <div className='h-fit flex flex-col items-center justify-center gap-2.5 bg-teal-500 px-20 py-4'>
+          </div> */}
+          <div className='flex h-fit flex-col items-center justify-center gap-2.5 bg-teal-500 px-20 py-4'>
             <div className='text-center font-semibold text-white'>
               Add friend
             </div>
           </div>
-            <EditForm user={user}/>
+          {/* <EditForm user={user}/> */}
         </div>
       </div>
     </>

@@ -40,6 +40,7 @@ function HomePage() {
     },
   ];
   return (
+
     <div>
       {/* ============== < IMG HEADER > ============== */}
       <div className=' flex overflow-hidden bg-base_dark '>
@@ -84,6 +85,7 @@ function HomePage() {
             <img
               className='m-10 h-[22rem] w-[22rem] hover:scale-110'
               src='https://cos-1308089331.cos.accelerate.myqcloud.com/user_files/1/bbs/92264040_1647708448.png'
+
             />
             <img
               className='m-10 h-[20rem] w-[20rem] hover:scale-110'

@@ -1,6 +1,6 @@
 import SearchBar from '@/features/store/components/SearchBar';
 import { useSelector, useDispatch } from 'react-redux';
-import { searchGames ,clearSearch } from '@/redux/slice/games-slice';
+import { searchGames, clearSearch } from '@/redux/slice/games-slice';
 
 import { useEffect, lazy, Suspense } from 'react';
 import GameStoreSorter from '@/features/store/components/GameStoreSorter';
@@ -11,15 +11,15 @@ const GameCardStrip = lazy(
 
 export default function GameSearchPage() {
   const dispatch = useDispatch();
-  const { searchedGames, loadingSearchedGames  } =
-    useSelector((state) => state.games);
+  const { searchedGames, loadingSearchedGames } = useSelector(
+    (state) => state.games
+  );
 
-    useEffect(() => {
-      return () => {
-        dispatch(clearSearch());
-      };
-    }, []);
-
+  useEffect(() => {
+    return () => {
+      dispatch(clearSearch());
+    };
+  }, []);
 
   return (
     <div className='relative flex w-full items-center justify-center overflow-auto'>
