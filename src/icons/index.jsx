@@ -272,7 +272,7 @@ export function QRIcon({ className = null }) {
       <path d='M12 21v-1' />
     </svg>
   );
-
+}
 
 export function AscendingIcon({ className = null }) {
   return (
@@ -419,4 +419,3 @@ export const ListIcon = ({ className = null }) => {
     <line x1='3' x2='3.01' y1='18' y2='18' />
   </svg>;
 };
-
