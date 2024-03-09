@@ -14,6 +14,7 @@ function PublishGameInput({
         {...register(name)}
         placeholder={placeholder}
         className='input-bordered w-full rounded-md border-2 px-3 py-1.5 text-black'
+        autoComplete='off'
       />
       {errors[name] && (
         <div className='mt-2 text-wrap text-sm font-semibold text-danger'>
