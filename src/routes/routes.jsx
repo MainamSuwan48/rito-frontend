@@ -24,6 +24,7 @@ import ForgotPasswordPage from '@/pages/AuthPage/ForgotPasswordPage';
 import CommunityPage from '@/pages/CommunityPage/CommunityPage';
 import ResetPasswordPage from '@/pages/AuthPage/ResetPasswordPage';
 import CreateGamePage from '@/pages/PublishGamePage/CreateGamePage';
+import EditGamePage from '@/pages/PublishGamePage/EditGamePage';
 
 const router = createBrowserRouter([
   {
@@ -70,7 +71,15 @@ const router = createBrowserRouter([
       },
       {
         path: '/create/game',
-        element: <CreateGamePage />,
+        element: (
+          <ProtectedRoute>
+            <CreateGamePage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: '/edit/game/:gameId',
+        element: <EditGamePage />,
       },
       { path: '/store', element: <GameStorePage /> },
       { path: '/search', element: <GameSearchPage /> },

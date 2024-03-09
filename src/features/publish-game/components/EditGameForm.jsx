@@ -18,34 +18,34 @@ import PlatformsCreator from '@/pages/UserPage/game-publishing/PlatformsCreator'
 import GenreCreator from '@/pages/UserPage/game-publishing/GenresCreator';
 import GameTagsCreator from '@/pages/UserPage/game-publishing/GameTagsCreator';
 import { useDispatch } from 'react-redux';
-import { createGame } from '@/redux/slice/games-slice';
+import { updateGame } from '@/redux/slice/games-slice';
 import { useNavigate } from 'react-router-dom';
-// import { DialogDemo } from './DialogPlatformsCreator';
+import { useParams } from 'react-router-dom';
 
-function CreateGameForm({
+function EditGameForm({
   onAddBackgroundImage,
   onAddScreenshots,
-  errorBackgroundImage,
-  updateErrorBackgroundImage,
   backgroundImageEl,
   screenshotsEl,
   backgroundImage,
   screenshots,
+  deletedScreenshotIds,
   onClearScreenshots,
 }) {
   const {
     gameTagsForPublishing,
     genresForPublishing,
     gamePlatformsForPublishing,
+    currentGame,
   } = useSelector((state) => state.games);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { gameId } = useParams();
 
   const handleUploadedBackgroundImage = (e) => {
     if (e.target.files[0]) {
       onAddBackgroundImage(e.target.files[0]);
-      updateErrorBackgroundImage('');
       backgroundImageEl.current.value = '';
     }
   };
@@ -57,19 +57,26 @@ function CreateGameForm({
     }
   };
 
+  const defaultValues = {
+    name: currentGame.name,
+    description: currentGame.description || '',
+    releasedDate: currentGame.releasedDate,
+    price: currentGame.price,
+  };
+
   const {
     register,
     handleSubmit,
     reset,
     setError,
     formState: { errors },
-  } = useForm({ resolver: joiResolver(createGameSchema), mode: 'onSubmit' });
+  } = useForm({
+    resolver: joiResolver(createGameSchema),
+    mode: 'onSubmit',
+    defaultValues: defaultValues,
+  });
 
   const onSubmit = (data) => {
-    if (!backgroundImage) {
-      return updateErrorBackgroundImage('Background Image is required');
-    }
-
     const formData = new FormData();
     formData.append('name', data.name);
 
@@ -79,11 +86,15 @@ function CreateGameForm({
 
     formData.append('price', String(data.price));
     formData.append('releasedDate', data.releasedDate);
-    formData.append('backgroundImage', backgroundImage);
+
+    if (backgroundImage) {
+      formData.append('backgroundImage', backgroundImage);
+    }
 
     if (screenshots.length > 0) {
-      screenshots.forEach((screenshot) =>
-        formData.append('screenshots', screenshot)
+      screenshots.forEach(
+        (screenshot) =>
+          !screenshot.id && formData.append('screenshots', screenshot)
       );
     }
 
@@ -99,10 +110,16 @@ function CreateGameForm({
       formData.append('genres', JSON.stringify(genresForPublishing));
     }
 
-    dispatch(createGame(formData));
+    if (deletedScreenshotIds.length > 0) {
+      formData.append(
+        'deletedScreenshotIds',
+        JSON.stringify(deletedScreenshotIds)
+      );
+    }
 
-    reset();
-    updateErrorBackgroundImage('');
+    dispatch(updateGame({ formData, gameId }));
+
+    reset(defaultValues);
     onAddBackgroundImage(null);
     onClearScreenshots();
     navigate('/');
@@ -231,11 +248,6 @@ function CreateGameForm({
           >
             Upload Background Image
           </button>
-          {errorBackgroundImage && (
-            <div className='mt-2 text-wrap text-sm font-semibold text-danger'>
-              {errorBackgroundImage}
-            </div>
-          )}
         </div>
       </div>
 
@@ -259,4 +271,4 @@ function CreateGameForm({
   );
 }
 
-export default CreateGameForm;
+export default EditGameForm;

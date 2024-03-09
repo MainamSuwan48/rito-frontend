@@ -60,7 +60,9 @@ function CreateGameContainer() {
             backgroundImageEl={backgroundImageEl}
           />
           <div className='flex flex-col gap-4'>
-            <h1 className='text-2xl'>Screenshots</h1>
+            {screenshots.length > 0 && (
+              <h1 className='text-2xl'>Screenshots</h1>
+            )}
             <div className='grid w-full grid-cols-3 gap-4'>
               {screenshots.map((screenshot, index) => (
                 <ScreenshotsShow
