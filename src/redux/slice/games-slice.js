@@ -118,15 +118,33 @@ export const getAllPlatforms = createAsyncThunk(
   }
 );
 
-export const createGame = createAsyncThunk('games/create', async (formData) => {
-  try {
-    console.log(formData);
-    const response = await gamesApi.createGame(formData);
-    return response.data.newGame;
-  } catch (error) {
-    return Promise.reject(error);
+export const createGame = createAsyncThunk(
+  'games/create',
+  async (formData, { rejectWithValue }) => {
+    try {
+      const response = await gamesApi.createGame(formData);
+      toast.success('Successfully created game');
+      return response.data.newGame;
+    } catch (error) {
+      toast.error(error.response.message);
+      return rejectWithValue(error.response.statusText);
+    }
   }
-});
+);
+
+export const updateGame = createAsyncThunk(
+  'games/update',
+  async ({ formData, gameId }, { rejectWithValue }) => {
+    try {
+      const response = await gamesApi.updateGame(formData, gameId);
+      toast.success('Successfully updated game');
+      return response.data.game;
+    } catch (error) {
+      toast.error(error.response.message);
+      return rejectWithValue(error.response.statusText);
+    }
+  }
+);
 
 const gamesSlice = createSlice({
   name: 'games',
@@ -188,6 +206,9 @@ const gamesSlice = createSlice({
       }
       console.log(state.gameTagsForPublishing);
     },
+    addInitialTags: (state, action) => {
+      state.gameTagsForPublishing = action.payload;
+    },
     deleteDataTag: (state, action) => {
       state.gameTagsForPublishing = state.gameTagsForPublishing.filter(
         (tag) => tag.id !== action.payload.tagId
@@ -195,7 +216,7 @@ const gamesSlice = createSlice({
     },
     // -- GameGenresForPublishing
     addGenreForPublishing: (state, action) => {
-      if (state.genresForPublishing.length < 3) {
+      if (state.genresForPublishing.length < 5) {
         const genreExists = state.genresForPublishing.some(
           (genre) => genre.id === action.payload.genreId
         );
@@ -207,8 +228,11 @@ const gamesSlice = createSlice({
           });
         }
       } else {
-        toast.error('You can only add up to 3 genres.');
+        toast.error('You can only add up to 5 genres.');
       }
+    },
+    addInitialGenres: (state, action) => {
+      state.genresForPublishing = action.payload;
     },
     deleteDataGenre: (state, action) => {
       state.genresForPublishing = state.genresForPublishing.filter(
@@ -227,6 +251,9 @@ const gamesSlice = createSlice({
           name: action.payload.platformName,
         });
       }
+    },
+    addInitialPlatforms: (state, action) => {
+      state.gamePlatformsForPublishing = action.payload;
     },
     deleteDataPlatform: (state, action) => {
       state.gamePlatformsForPublishing =
@@ -349,8 +376,27 @@ const gamesSlice = createSlice({
       })
       .addCase(createGame.fulfilled, (state, action) => {
         state.loading = false;
+        state.gamePlatformsForPublishing = [];
+        state.gameTagsForPublishing = [];
+        state.genresForPublishing = [];
       })
       .addCase(createGame.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      });
+    // update game
+    builder
+      .addCase(updateGame.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(updateGame.fulfilled, (state, action) => {
+        state.loading = false;
+        state.gamePlatformsForPublishing = [];
+        state.gameTagsForPublishing = [];
+        state.genresForPublishing = [];
+      })
+      .addCase(updateGame.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
       });
@@ -366,10 +412,13 @@ export const {
   clearSearch,
   clearCurrentGame,
   addTagForPublishing,
+  addInitialTags,
   deleteDataTag,
   addGenreForPublishing,
+  addInitialGenres,
   deleteDataGenre,
   addPlatformForPublishing,
+  addInitialPlatforms,
   deleteDataPlatform,
   searchPlatforms,
 } = gamesSlice.actions;

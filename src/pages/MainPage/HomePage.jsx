@@ -40,13 +40,16 @@ function HomePage() {
     },
   ];
   return (
-
     <div>
       {/* ============== < IMG HEADER > ============== */}
       <div className=' flex overflow-hidden bg-base_dark '>
         {arr.map((item, index) => {
           return (
-            <div onClick={() => navigate(`/game/${item.id}`)} className=''>
+            <div
+              onClick={() => navigate(`/game/${item.id}`)}
+              className=''
+              key={item.id}
+            >
               <img
                 className='flex h-[40rem] w-[30rem] rotate-6 scale-110 object-cover sepia transition-all hover:scale-125 hover:sepia-0 '
                 src={item.src}
@@ -85,7 +88,6 @@ function HomePage() {
             <img
               className='m-10 h-[22rem] w-[22rem] hover:scale-110'
               src='https://cos-1308089331.cos.accelerate.myqcloud.com/user_files/1/bbs/92264040_1647708448.png'
-
             />
             <img
               className='m-10 h-[20rem] w-[20rem] hover:scale-110'
