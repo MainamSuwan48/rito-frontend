@@ -27,7 +27,7 @@ function GameTagsCreatorSearchBar({ type = 'tags' }) {
           onChange={handleChange}
           type='text'
           className='h-12 flex-1 border border-base_dark px-12 py-4'
-          placeholder='search your games here...'
+          placeholder='search your tags...'
         />
         <button
           onClick={handleSearchTags}

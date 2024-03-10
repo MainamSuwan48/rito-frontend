@@ -172,9 +172,10 @@ function CreateGameForm({
         <DialogContent className='h-[500px] overflow-auto p-4 sm:max-w-[525px]'>
           <DialogHeader>
             <DialogTitle>Add Game platforms</DialogTitle>
-            <DialogDescription></DialogDescription>
+            <DialogDescription>
+              <PlatformsCreator />
+            </DialogDescription>
           </DialogHeader>
-          <PlatformsCreator />
         </DialogContent>
       </Dialog>
 
@@ -204,9 +205,10 @@ function CreateGameForm({
         <DialogContent className='h-content overflow-auto sm:max-w-[725px]'>
           <DialogHeader>
             <DialogTitle>Add Game Tags</DialogTitle>
-            <DialogDescription></DialogDescription>
+            <DialogDescription>
+              <GameTagsCreator />
+            </DialogDescription>
           </DialogHeader>
-          <GameTagsCreator />
         </DialogContent>
       </Dialog>
 
