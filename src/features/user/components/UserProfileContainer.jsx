@@ -20,7 +20,7 @@ export default function UserProfileContainer({ user }) {
   const {actionMessage,loadingActionMessage,friendStatus,loadingFriendStatus}=
     useSelector((state)=> state.friendship)
 
-  console.log(user, 'user in UserProfileContainer');
+  // console.log(user, 'user in UserProfileContainer');
 
   useEffect(() => {
     dispatch(checkFriendshipStatus(user.id));

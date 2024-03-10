@@ -21,7 +21,7 @@ const initialState = {
 export const checkFriendshipStatus = createAsyncThunk('friendships/checkStatus',async(targetUserId)=>{
     try{
         const response = await friendshipApi.checkFriendshipStatus(targetUserId)
-        console.log(response.data,targetUserId)
+        // console.log(response.data,targetUserId)
         return response.data
     }catch(error){
         return Promise.reject(error)
@@ -31,6 +31,7 @@ export const checkFriendshipStatus = createAsyncThunk('friendships/checkStatus',
 export const getAllFriend = createAsyncThunk('friendships/getfriends',async(userId)=>{
     try{
         const response = await friendshipApi.getAllFriendbyUserId(userId)
+        console.log(response.data)
         return response.data
     }catch(error){
         return Promise.reject(error)

@@ -38,7 +38,6 @@ export default function ProfileAction({user}){
     }
     
     const friendStatusToAuthUser = findFriendStatusToAuthUser(friendStatus,authUser) 
-    console.log(friendStatusToAuthUser)
 
     return <>{mapping[friendStatusToAuthUser]}</>
 }
