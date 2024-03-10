@@ -3,7 +3,9 @@ import { ChevronDownIcon, FriendIcon, ListIcon } from '@/icons';
 import SearchBar from '@/features/store/components/SearchBar';
 import AddFriendsModal from './AddFriendsModal';
 
+
 export default function CommunitySearchBar() {
+
   return (
     <div className='flex justify-center'>
       <div className='p-[2rem]'>
@@ -21,7 +23,7 @@ export default function CommunitySearchBar() {
             </p>
           </button>
           <SearchBar type="community" />
-          <AddFriendsModal />        
+          <AddFriendsModal/>        
         </div>
       </div>
     </div>

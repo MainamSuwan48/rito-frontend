@@ -10,8 +10,11 @@ import {
 import { FriendIcon } from '@/icons';
 import UserCard from './UserCard';
 import UsersList from './UsersList';
+import { useSelector } from 'react-redux';
 
-function AddFriendsModal({userID}) {
+function AddFriendsModal() {
+  const { authUser } = useSelector((state) => state.auth);
+  console.log(authUser)
   return (
     <Sheet>
       <SheetTrigger
@@ -24,7 +27,7 @@ function AddFriendsModal({userID}) {
         <SheetHeader>
           <SheetTitle>Are you absolutely sure?</SheetTitle>
           <SheetDescription >
-            <UsersList myID={userID}/>
+            <UsersList myID={authUser?.id}/>
           </SheetDescription>
         </SheetHeader>
       </SheetContent>

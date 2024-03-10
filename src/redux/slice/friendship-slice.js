@@ -7,13 +7,26 @@ import * as friendshipApi from '../../api/friendship'
 const initialState = {
     friends:null,
     loadingFriends: false,
+    friendStatus:null,
+    loadingFriendStatus:false,
     pendings:null,
     loadingPending: false,
+    friendsAdded:null,
+    loadingfriendsAdded: false,
     actionMessage: null,
     loadingActionMessage: false,
     error: null
 }
 
+export const checkFriendshipStatus = createAsyncThunk('friendships/checkStatus',async(targetUserId)=>{
+    try{
+        const response = await friendshipApi.checkFriendshipStatus(targetUserId)
+        console.log(response.data,targetUserId)
+        return response.data
+    }catch(error){
+        return Promise.reject(error)
+    }
+})
 
 export const getAllFriend = createAsyncThunk('friendships/getfriends',async(userId)=>{
     try{
@@ -27,6 +40,15 @@ export const getAllFriend = createAsyncThunk('friendships/getfriends',async(user
 export const getAllMyPending = createAsyncThunk('friendships/getPendings',async()=>{
     try{
         const response = await friendshipApi.getAllMyPending()
+        return response.data
+    }catch(error){
+        return Promise.reject(error)
+    }
+})
+
+export const getFriendsAdded = createAsyncThunk('friendships/getFriendsAdded',async()=>{
+    try{
+        const response = await friendshipApi.getFriendsAdded()
         return response.data
     }catch(error){
         return Promise.reject(error)
@@ -73,6 +95,20 @@ const friendshipSlice = createSlice({
     name:'friendships',
     initialState,
     extraReducers:(builder) =>{
+        //check status
+        builder
+            .addCase(checkFriendshipStatus.pending,(state) =>{
+                state.loadingFriendStatus = true
+                state.error = null
+            })
+            .addCase(checkFriendshipStatus.fulfilled,(state,action) =>{
+                state.friendStatus = action.payload
+                state.loadingFriendStatus = false
+            })
+            .addCase(checkFriendshipStatus.rejected,(state,action) =>{
+                state.loadingFriendStatus  = false
+                state.error = action.error.message
+            })
         //get all friends
         builder
             .addCase(getAllFriend.pending,(state) =>{
@@ -100,6 +136,20 @@ const friendshipSlice = createSlice({
             .addCase(getAllMyPending.rejected,(state,action)=>{
                 state.error = action.error.message
                 state.loadingPending = false
+            })
+        //get friendsAdded
+        builder 
+            .addCase(getFriendsAdded.pending,(state)=>{
+                state.loadingfriendsAdded = true
+                state.error = null
+            })
+            .addCase(getFriendsAdded.fulfilled,(state,action)=>{
+                state.friendsAdded = action.payload
+                state.loadingfriendsAdded = false
+            })
+            .addCase(getFriendsAdded.rejected,(state,action)=>{
+                state.error = action.error.message
+                state.loadingfriendsAdded = false
             })
         //request friend
         builder 

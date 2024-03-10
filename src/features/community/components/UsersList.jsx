@@ -1,36 +1,45 @@
 import React, { useEffect } from 'react';
 import UserCard from './UserCard';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllFriend } from '@/redux/slice/friendship-slice';
+import { getAllFriend,getAllMyPending,checkFriendshipStatus, getFriendsAdded } from '@/redux/slice/friendship-slice';
 import { getAllUsers } from '@/redux/slice/user-slice';
+
+
 
 
 function UsersList({myID}) {
   const dispatch = useDispatch()
   const {users,loading} = useSelector((state) => state.users)
-  const {friends,loadingFriends} = useSelector((state) => state.friendship)
-  console.log(myID)
+  const {friendsAdded,friendStatus} = useSelector((state) => state.friendship)
+
   useEffect(()=>{
-    dispatch(getAllFriend(myID))
+    // dispatch(getAllFriend(myID))
+    // dispatch(getAllMyPending())
     dispatch(getAllUsers())
+    dispatch(getFriendsAdded())
 
   },[])
-  // console.log(users)
-  // console.log(friends)
   
-  const friendsId = []
-  friends?.forEach(element => {
-    friendsId.push(element.id)
-  });
-  // console.log(friendsId)
+  const friendsAddedId = []
+  friendsAdded?.forEach((el)=>{
+    if(el.senderId === myID){
+      friendsAddedId.push(el.receiverId)
+    }
+    if(el.receiverId === myID){
+      friendsAddedId.push(el.senderId)
+    }
+  })
+  console.log(friendsAddedId)
+
+
 
   return (
     <div 
     className='flex flex-col gap-2 overflow-auto h-content pb-8'
     >
       {users.map((user)=>{
-        if(!friendsId.includes(user.id) && user.id!==myID){
-          return <UserCard user={user}/>
+        if(!friendsAddedId.includes(user.id) && user.id!==myID){
+          return <UserCard key={user.id} user={user} myID={myID}/>
         }
       }
       )}
