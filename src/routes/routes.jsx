@@ -25,6 +25,7 @@ import CommunityPage from '@/pages/CommunityPage/CommunityPage';
 import ResetPasswordPage from '@/pages/AuthPage/ResetPasswordPage';
 import CreateGamePage from '@/pages/PublishGamePage/CreateGamePage';
 import EditGamePage from '@/pages/PublishGamePage/EditGamePage';
+import AdminControlPanelPage from '@/pages/AdminPage/AdminControlPanelPage';
 
 const router = createBrowserRouter([
   {
@@ -74,6 +75,12 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <CreateGamePage />
+          </ProtectedRoute>
+        ),
+        path: '/admin',
+        element: (
+          <ProtectedRoute>
+            <AdminControlPanelPage />
           </ProtectedRoute>
         ),
       },
