@@ -12,35 +12,24 @@ function PendingList({myID}) {
   const {friendsAdded,friendStatus,pendings} = useSelector((state) => state.friendship)
 
   useEffect(()=>{
-    // dispatch(getAllFriend(myID))
-    // dispatch(getAllMyPending())
     dispatch(getAllMyPending())
-    // dispatch(getFriendsAdded())
+
 
   },[])
-  
-//   const friendsAddedId = []
-//   friendsAdded?.forEach((el)=>{
-//     if(el.senderId === myID){
-//       friendsAddedId.push(el.receiverId)
-//     }
-//     if(el.receiverId === myID){
-//       friendsAddedId.push(el.senderId)
-//     }
-//   })
   console.log(pendings)
-
-
 
   return (
     <div 
     className='flex flex-col gap-2 overflow-auto h-content pb-8'
     >
-      {pendings?.map((pending)=>{
+      {
+      
+      pendings?.map((pending)=>{
           return <PendingCard key={pending.sender.id} user={pending.sender} myID={myID}/>
-        // }
-      }
-      )}
+      })
+      
+    }
+    <div className=''>No other pending request</div>
       
     </div>
   );
