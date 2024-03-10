@@ -42,7 +42,7 @@ function Header() {
   }, [authUser]);
 
   return (
-    <div className='fixed z-50 grid h-12 w-[100vw] grid-cols-12 px-6 backdrop-blur-lg'>
+    <div className='fixed z-40 grid h-12 w-[100vw] grid-cols-12 px-6 backdrop-blur-lg'>
       <div
         onClick={() => navigate('/')}
         className='col-span-4 ml-4 flex items-center gap-[12px] justify-self-start transition-all hover:scale-125 active:scale-100'
