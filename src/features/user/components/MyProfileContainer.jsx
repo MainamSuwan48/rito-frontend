@@ -1,6 +1,7 @@
 import { EditForm } from '@/features/auth/components/EditForm';
 import { EditProfilePicture } from '@/features/auth/components/EditProfilePicture';
 import AddFriendsModal from '@/features/community/components/AddFriendsModal';
+import PendingRequestModal from '@/features/community/components/PendingRequestModal';
 
 export default function MyProfileContainer({ user }) {
   const {
@@ -73,11 +74,12 @@ export default function MyProfileContainer({ user }) {
         </div>
         <div className='grid grid-flow-row items-center justify-center gap-2.5'>
           <AddFriendsModal userID={user.id}/>
-          <div className='flex h-fit flex-col items-center justify-center gap-2.5 bg-zinc-300 px-20 py-4'>
+          <PendingRequestModal/>
+          {/* <div className='flex h-fit flex-col items-center justify-center gap-2.5 bg-zinc-300 px-20 py-4'>
             <div className='text-center font-semibold text-white'>
               Pending Request
             </div>
-          </div>
+          </div> */}
           <EditForm user={user} />
         </div>
       </div>
