@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import LOAD from '../../assets/Img/RITO GAME LOADING.gif';
+import { motion } from 'framer-motion';
 import {
   ChevronRightIcon,
   RabbitIcon,
@@ -11,7 +12,8 @@ import {
 import BGCITY from '../../assets/Img/BG-CITY.png';
 import ScrollText from './ScrollText';
 
-function HomePage() {
+
+function HomePage() {  
   const navigate = useNavigate();
   const arr = [
     {
@@ -40,6 +42,7 @@ function HomePage() {
       src: 'https://img.gg.deals/65/91/5991c0b4e9b286c52d9d2270ffbf932915f1_912cr476.jpg',
     },
   ];
+
   return (
     <div>
       {/* ============== < IMG HEADER > ============== */}
@@ -63,13 +66,9 @@ function HomePage() {
       <div className='p-[5rem]' style={{ backgroundImage: `url(${BGCITY})` }}>
         {/* ============== < TITLE BEST GAME > ============== */}
         <div className=' flex-col'>
-          <p className=' flex justify-center text-7xl font-bold text-purple-500 hover:text-primary'>
-            BEST GAME IN YEAR 2024 <RabbitIcon />
+          <p className='text-black-outline flex justify-center bg-gradient-to-r from-primary to-secondary bg-clip-text pb-4 font-rubik text-7xl font-black italic text-transparent duration-100 hover:scale-105'>
+            Discover the best games
           </p>
-          {/* <p className=' flex justify-center text-2xl font-bold'>
-            Play brand new games on day one from RITO Game Store and Bethesda
-            Softworks, plus selected indies and blockbusters.
-          </p> */}
         </div>
         {/* ============== < TITLE BEST GAME BUTTON > ============== */}
         <div className='flex justify-center'>
@@ -115,18 +114,46 @@ function HomePage() {
       </div>
 
       {/* ============== < SHOW GAME 1 > ============== */}
-      
+      <div className='relative flex h-[400px] items-center justify-center bg-red-700 bg-opacity-40'>
+        <video
+          className='-z-50'
+          autoPlay
+          loop
+          muted
+          style={{
+            opacity: '1',
+            position: 'absolute',
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+          }}
+        >
+          <source src='https://res.cloudinary.com/dhm6pitfd/video/upload/v1710174717/videoplayback_iknpfp.mp4' />
+        </video>
+        <motion.img
+          initial={{ x: -300 }} // start from 300px to the left of the initial position
+          animate={{ x: 0 }} // end at the initial position
+          transition={{ type: 'spring', stiffness: 60, damping: 20 }}
+          className='absolute inset-0 bottom-0 z-50 h-[400px] object-cover'
+          src='https://i.imgur.com/Ss9i9gl.png'
+        />
+        <motion.img
+          initial={{ x: 300 }} // start from 300px to the right of the initial position
+          animate={{ x: 0 }} // end at the initial position
+          transition={{ type: 'spring', stiffness: 60, damping: 20 }}
+          className='absolute right-6 top-0 h-[300px] cursor-pointer object-cover duration-300 hover:scale-110'
+          src='https://i.imgur.com/YvAqGQ9.png'
+        />
+      </div>
 
-      {/* ============== < PLATFORM GAME > ============== */}
+      {/* ============== < DOWNLOAD APP GAME > ============== */}
       <div className='p-[5rem]' style={{ backgroundImage: `url(${BGCITY})` }}>
         {/* ============== < TITLE BEST GAME > ============== */}
         <div className=' flex-col'>
-          <ScrollText>
-            <p className=' flex justify-center text-7xl font-bold text-purple-500 hover:text-primary'>
-              BUILT FOR PC GAMERS <RabbitIcon />
-            </p>
-          </ScrollText>
-          <p className=' flex items-center justify-center text-2xl font-bold'>
+          <p className=' flex justify-center text-7xl font-bold text-purple-500 duration-100 hover:scale-105 hover:text-primary'>
+            BUILT FOR PC GAMERS <RabbitIcon />
+          </p>
+          <p className=' flex items-center justify-center text-2xl font-bold text-base_dark'>
             Finding your next favorite game has never been easier<br></br>Browse
             the catalog View recommendations Filter by category
           </p>
@@ -142,35 +169,79 @@ function HomePage() {
       </div>
 
       {/* ============== < SHOW GAME 2 > ============== */}
-      <div className=' flex bg-base_dark '>
-        <div className='p-[8rem]'>
-          <button className='flex-col justify-center text-3xl text-neutral hover:text-purple-500'>
+
+      <div
+        className='relative flex bg-cover'
+        style={{
+          backgroundImage: `url(https://s5.gifyu.com/images/SiREe.gif)`,
+        }}
+      >
+        <img
+          className='absolute bottom-0 right-0 z-40 h-[350px] w-[auto] duration-300 hover:scale-110'
+          src='https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/36c7442c-aed5-4e9a-86ec-0a59dd4c5a37/debieg7-b131d3b1-b491-4a24-bed2-2c6e725c72b9.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzM2Yzc0NDJjLWFlZDUtNGU5YS04NmVjLTBhNTlkZDRjNWEzN1wvZGViaWVnNy1iMTMxZDNiMS1iNDkxLTRhMjQtYmVkMi0yYzZlNzI1YzcyYjkucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.DcwgrK6q0j2oQS6VJaPEYw7324n_dGIln5rTjzMeors'
+        />
+        <ScrollText>
+          <img
+            className='z-40 h-[22rem] w-[150rem] p-8 duration-300 hover:scale-110'
+            src='https://1000logos.net/wp-content/uploads/2022/10/Grand-Theft-Auto-V-logo.png'
+          />
+        </ScrollText>
+        <div className='z-50 bg-base_dark bg-opacity-60 p-[6rem]'>
+          <div className='text-white-outline flex-col justify-center font-rubik text-3xl font-black text-base_dark duration-200 hover:scale-110 hover:text-primary'>
             Grand Theft Auto V
-          </button>
-          {/* <br /> <br /> */}
-          <p className=' text-neutral '>
+          </div>
+          <div>
             <ScrollText>
-              When a young street hustler, a retired bank robber and a
-              terrifying psychopath find themselves entangled with some of the
-              most frightening and deranged elements of the criminal underworld,
-              the U.S. government and the entertainment industry, they must pull
-              off a series of dangerous heists to survive in a ruthless city in
-              which they can trust nobody, least of all each other.
+              <p className=' font-bold text-neutral'>
+                When a young street hustler, a retired bank robber and a
+                terrifying psychopath find themselves entangled with some of the
+                most frightening and deranged elements of the criminal
+                underworld, the U.S. government and the entertainment industry,
+                they must pull off a series of dangerous heists to survive in a
+                ruthless city in which they can trust nobody, least of all each
+                other.
+              </p>
             </ScrollText>
-          </p>
+          </div>
           {/* ============== < GTAV GAME BUTTON > ============== */}
           <div className='flex justify-center'>
-            <button>
-              <p className=' flex items-center gap-1 text-xl font-bold text-primary hover:gap-3 hover:text-neutral'>
+            <button className=''>
+              <p className=' flex items-center gap-1 text-xl font-bold text-primary hover:gap-3 hover:text-secondary_mute'>
                 OPEN TO RITO STORE <ChevronRightIcon />
               </p>
             </button>
           </div>
         </div>
-        <img
-          className='w-full overflow-hidden object-center'
-          src='https://www.bing.com/th/id/OGC.f7fe766005006db5d38d82d3777a695b?pid=1.7&rurl=https%3a%2f%2fmedia1.tenor.com%2fimages%2ff7fe766005006db5d38d82d3777a695b%2ftenor.gif%3fitemid%3d16275156&ehk=a4M8n5sOpKPh1ib972%2bgky5mgz0do9cGZ6K%2fPkhx%2fTU%3d'
-        />
+      </div>
+
+      {/* ============== < PLATFROM GAME > ============== */}
+      <div className='p-[5rem]' style={{ backgroundImage: `url(${BGCITY})` }}>
+        <div>
+          {/* ============== < GTAV GAME BUTTON > ============== */}
+          <div className='flex justify-center'>
+            <button className=''>
+              <ScrollText>
+                <p className='flex items-center gap-1 text-7xl font-bold text-accent duration-300 hover:scale-125 hover:text-primary'>
+                  PLATFORMS
+                </p>
+              </ScrollText>
+            </button>
+          </div>
+        </div>
+        <div className='flex gap-[10rem] p-[4rem]'>
+          <img
+            className='xbox h-auto w-[100%] duration-300 hover:scale-110'
+            src='https://cdn.icon-icons.com/icons2/2699/PNG/512/xbox_logo_icon_169692.png'
+          />
+          <img
+            className='pc h-auto w-[100%] duration-300 hover:scale-110'
+            src='https://cdn-icons-png.flaticon.com/512/4703/4703650.png'
+          />
+          <img
+            className='vr h-auto w-[100%] duration-300 hover:scale-110'
+            src='https://iconape.com/wp-content/png_logo_vector/vr-logo-virtual-reality-logo.png'
+          />
+        </div>
       </div>
     </div>
   );
