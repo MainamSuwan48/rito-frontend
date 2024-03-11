@@ -49,13 +49,13 @@ function PendingCard({user,myID}) {
       className='border border-base_dark h-24 w-24 rounded-md transition-all hover:border-primary '
       >
         <img
-          className=' rounded-md bg-base-300 hover:cursor-pointer'
+          className='h-[94px] w-24 rounded-md bg-base-300 hover:cursor-pointer'
           src={user.profileImageUrl||'https://via.placeholder.com/256x256'}
           onClick={()=>navigate(`/user/${user.id}`)}
         />
       </div>
       <div className='flex flex-col justify-center gap-2'>
-        <div className='text-lg font-semibold  text-base_dark'>{user.displayName}</div>
+        <div className='text-lg font-semibold  text-base_dark'>{user.displayName.slice(0,15)}</div>
         {accepted
         ?
         <div 

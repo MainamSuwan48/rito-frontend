@@ -7,8 +7,8 @@ function GenreCreator() {
   const { genresForPublishing } = useSelector((state) => state.games);
 
   return (
-    <div className='flex w-full flex-col rounded-t-md bg-base-300 overflow-auto'>
-      <div className='flex justify-start items-start min-h-12 flex-wrap gap-2 p-2'>
+    <div className='flex w-full flex-col overflow-auto rounded-t-md bg-base-300'>
+      <div className='flex min-h-12 flex-wrap items-start justify-start gap-2 p-2'>
         {genresForPublishing.map((tag, index) => (
           <GameTagsForDataInput
             key={index}
@@ -18,9 +18,7 @@ function GenreCreator() {
           />
         ))}
       </div>
-      <div
-      className='overflow-auto'
-      >
+      <div className='overflow-auto'>
         <GameGenresResult />
       </div>
     </div>

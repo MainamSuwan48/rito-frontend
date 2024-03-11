@@ -43,7 +43,7 @@ export default function SearchBar({ type = '' }) {
   }
 
   return (
-    <div className='z-40 flex h-14 flex-grow *:backdrop-blur-lg'>
+    <div className='z-30 flex h-14 flex-grow *:backdrop-blur-lg'>
       <div className='flex w-full'>
         <input
           onChange={handleChange}

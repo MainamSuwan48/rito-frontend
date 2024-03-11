@@ -42,7 +42,7 @@ function Header() {
   }, [authUser]);
 
   return (
-    <div className='fixed z-50 grid h-12 w-[100vw] grid-cols-12 px-6 backdrop-blur-lg'>
+    <div className='fixed z-40 grid h-12 w-[100vw] grid-cols-12 px-6 backdrop-blur-lg'>
       <div
         onClick={() => navigate('/')}
         className='col-span-4 ml-4 flex items-center gap-[12px] justify-self-start transition-all hover:scale-125 active:scale-100'
@@ -53,7 +53,7 @@ function Header() {
       <Menu />
 
       {authUser ? (
-        <div className='col-span-4 mt-2 flex items-baseline gap-6 justify-self-end'>
+        <div className='col-span-4 mt-2 flex items-center gap-6 justify-self-end'>
           <div
             className='relative'
             role='button'
@@ -66,7 +66,9 @@ function Header() {
               </div>
             )}
           </div>
-          <div>
+          <div
+          className='relative top-[3px]'
+          >
             <WishList />
           </div>
 
@@ -89,7 +91,7 @@ function Header() {
               </div>,
             ]}
           >
-            <Avatar className='h-8 w-8'>
+            <Avatar className='h-8 w-8 flex justify-center items-center'>
               <AvatarImage src={authUser?.profileImageUrl} />
               <AvatarFallback className='bg-primary'>
                 {authUser?.username[0].toUpperCase()}

@@ -19,7 +19,7 @@ function GamePageCarousel({ mainImage, images }) {
   return (
     <div className='w-full'>
       <Carousel>
-        <CarouselContent className='h-[400px]'>
+        <CarouselContent className='h-[500px]'>
           <CarouselItem className='relative h-full w-full'>
             <img
               className='absolute h-full w-full object-cover object-center transition-all hover:scale-110'

@@ -14,6 +14,8 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { addGameToWishlist } from '@/redux/slice/wishlists-slice';
 import { getUserGames } from '@/redux/slice/user-slice';
+import AdminButton from '@/features/admin/components/AdminButton';
+import { deleteGame, verifyGame } from '@/redux/slice/admin-slice';
 
 function GamePageHeroDetail({ gameData }) {
   console.log(gameData.id, 'game id in hero detail');
@@ -26,6 +28,9 @@ function GamePageHeroDetail({ gameData }) {
   const { gamePlatforms, releasedDate, gameGenres, metacritic } = gameData;
   const [inWishList, setInWishList] = useState(false);
   const [owned, setOwned] = useState(false);
+
+
+  console.log(gameGenres.length, 'game genres in hero detail');
 
   useEffect(() => {
     if (authUser) {
@@ -76,7 +81,7 @@ function GamePageHeroDetail({ gameData }) {
 
   return (
     <>
-      <div className='flex h-[400px] w-2/5 flex-col justify-between gap-2 bg-base_light text-center'>
+      <div className='flex h-[500px] w-2/5 flex-col justify-between gap-2 bg-base_light text-center'>
         <div className='flex flex-col gap-2 overflow-auto'>
           <div className='w-full bg-base-100 p-4'>
             <p className='text-left font-semibold'>Details</p>
@@ -96,8 +101,8 @@ function GamePageHeroDetail({ gameData }) {
             <div className='flex flex-col gap-2 text-left'>
               <span className='font-bold text-black'>Genres </span>
               <p className='text-sm text-black'>
-                {gameGenres.length === 1
-                  ? gameGenres[0].name
+                {gameGenres.length == 1
+                  ? gameGenres[0].genre.name
                   : gameGenres.map((genre) => `${genre.genre.name}, `)}
               </p>
             </div>
@@ -107,12 +112,51 @@ function GamePageHeroDetail({ gameData }) {
             </div>
           </div>
         </div>
-        {owned ? (
+
+        {/* Admin & Game not verified */}
+        {authUser.isAdmin && !gameData.isVerified ? (
+          <div className='flex h-12 justify-between'>
+            <AdminButton
+              mode='confirm'
+              width='w-1/2'
+              onClick={() =>
+                dispatch(verifyGame({ gameId: gameData.id, navigate }))
+              }
+            >
+              Verify
+            </AdminButton>
+            <AdminButton
+              mode='delete'
+              width='w-1/2'
+              onClick={() =>
+                dispatch(deleteGame({ gameId: gameData.id, navigate }))
+              }
+            >
+              Delete
+            </AdminButton>
+          </div>
+        ) : authUser.isAdmin && !gameData.deletedAt ? (
+          // Admin, Game verified, not deleted
+          <div className='flex h-12'>
+            <AdminButton
+              mode='delete'
+              width='w-full'
+              onClick={() =>
+                dispatch(deleteGame({ gameId: gameData.id, navigate }))
+              }
+            >
+              Delete
+            </AdminButton>
+          </div>
+        ) : // Admin, is a deleted game
+        authUser.isAdmin ? null : owned ? (
+          // User, game owned
           <div className='flex h-16 w-full items-center justify-center bg-base_dark font-bold text-white'>
             YOU ALREADY OWN THIS GAME
           </div>
         ) : (
           <div className='flex w-full justify-between'>
+            {/* User, game not owned, game in cart */}
             {isInCart() ? (
               <GamePageButton
                 bg='bg-secondary'
@@ -123,6 +167,7 @@ function GamePageHeroDetail({ gameData }) {
                 IN CART
               </GamePageButton>
             ) : (
+              // User, game not owned, game not in cart, check if in wishlist
               <>
                 {inWishList
                   ? authUser && (
