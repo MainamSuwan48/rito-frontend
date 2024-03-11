@@ -1,7 +1,11 @@
 import { EditForm } from '@/features/auth/components/EditForm';
+import { checkFriendshipStatus } from '@/redux/slice/friendship-slice';
 import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import ProfileAction from './ProfileAction';
 
 export default function UserProfileContainer({ user }) {
+  const dispatch = useDispatch()
   const {
     description,
     username,
@@ -13,7 +17,16 @@ export default function UserProfileContainer({ user }) {
     email,
   } = user;
 
-  console.log(user, 'user in UserProfileContainer');
+  const {actionMessage,loadingActionMessage,friendStatus,loadingFriendStatus}=
+    useSelector((state)=> state.friendship)
+
+  // console.log(user, 'user in UserProfileContainer');
+
+  useEffect(() => {
+    dispatch(checkFriendshipStatus(user.id));
+  }, [actionMessage]);
+  
+  // console.log(friendStatus);
   return (
     <>
       <div className='inline-flex h-fit w-full items-start justify-between gap-36'>
@@ -70,17 +83,12 @@ export default function UserProfileContainer({ user }) {
           </div>
         </div>
         <div className='grid grid-flow-row items-center justify-center gap-2.5'>
-          {/* <div className='flex h-fit flex-col items-center justify-center gap-2.5 bg-zinc-300 px-20 py-4'>
+          {/* <div className='flex h-fit flex-col items-center justify-center gap-2.5 bg-teal-500 px-20 py-4'>
             <div className='text-center font-semibold text-white'>
-              Pending Request
+              {friendStatus? friendStatus.status : 'Add friend'}
             </div>
           </div> */}
-          <div className='flex h-fit flex-col items-center justify-center gap-2.5 bg-teal-500 px-20 py-4'>
-            <div className='text-center font-semibold text-white'>
-              Add friend
-            </div>
-          </div>
-          {/* <EditForm user={user}/> */}
+          <ProfileAction user={user}/>
         </div>
       </div>
     </>
