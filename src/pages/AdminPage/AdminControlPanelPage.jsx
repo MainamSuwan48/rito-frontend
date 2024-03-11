@@ -21,12 +21,12 @@ export default function AdminControlPanelPage() {
   }
 
   return (
-    <div className='grid grid-cols-12 gap-16 px-28 py-16'>
+    <div className='grid grid-cols-12 gap-16'>
       <div className='col-span-3'>
         <Sidebar bgSidebarTab1='bg-primary' />
       </div>
       <div className='col-span-9'>
-        <div className='flex flex-col gap-4'>
+        <div className='flex flex-col gap-4 py-16'>
           {unVerifiedGames.map((game) => (
             <PublishGameRequestingCard key={game.id} game={game} />
           ))}
