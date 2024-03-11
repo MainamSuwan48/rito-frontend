@@ -18,15 +18,15 @@ export default function MyProfileContainer({ user }) {
   return (
     <>
       <div className='inline-flex h-fit w-full items-start justify-between gap-36'>
-        <div className='flex items-center justify-center gap-6'>
-          <div className='flex flex-col gap-4'>
+        <div className='flex items-center justify-center gap-10'>
+          <div className='flex flex-col gap-4 bg-white bg-opacity-45 p-4 mt-2'>
             <img
               className='h-64 w-64'
               src={profileImageUrl || 'https://via.placeholder.com/256x256'}
             />
             <EditProfilePicture user={user} />
           </div>
-          <div className='flex items-center justify-start gap-4'>
+          <div className='flex items-center w-[350px] justify-start gap-4  bg-opacity-50 bg-white p-4'>
             <div className='inline-flex flex-col items-start justify-start gap-6'>
               <div className='flex flex-col items-start justify-center gap-4'>
                 <div className='inline-flex items-start justify-center gap-6'>
@@ -72,7 +72,7 @@ export default function MyProfileContainer({ user }) {
             </div>
           </div>
         </div>
-        <div className='grid grid-flow-row items-center justify-center gap-2.5'>
+        <div className='grid grid-flow-row items-center justify-center gap-2.5 mt-3'>
           <AddFriendsModal userID={user.id}/>
           <PendingRequestModal/>
           {/* <div className='flex h-fit flex-col items-center justify-center gap-2.5 bg-zinc-300 px-20 py-4'>

@@ -19,7 +19,7 @@ function PendingRequestModal() {
   return (
     <Sheet>
       <SheetTrigger
-        className='flex h-14 gap-2 w-[350px] items-center justify-center bg-base_dark text-neutral transition-all
+        className='flex h-14 gap-2 w-[350px] items-center justify-center hover:bg-gray-900 bg-base_dark text-neutral transition-all
       hover:rounded-md active:bg-base-300'
       >
         Pending Request <AddFriendIcon />

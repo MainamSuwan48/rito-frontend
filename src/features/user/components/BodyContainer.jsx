@@ -23,8 +23,8 @@ export default function BodyContainer({ user }) {
 
   return (
     <div className='grid grid-cols-[7fr_3fr] gap-2.5'>
-      <div className='flex flex-col gap-2 overflow-auto'>
-        <div className='inline-flex h-12 w-full items-center justify-start gap-2.5 bg-slate-500 px-6 py-4'>
+      <div className='flex flex-col h-fit gap-2 '>
+        <div className='inline-flex h-16 w-full items-center justify-start gap-2.5 bg-slate-500 px-6 py-4'>
           <div className='flex h-4 shrink grow basis-0 items-center justify-between'>
             <div
               onClick={test}
@@ -34,10 +34,13 @@ export default function BodyContainer({ user }) {
             </div>
           </div>
         </div>
-        {userGames &&
-          userGames.map((game, index) => (
-            <GameCardStrip type='profile' key={index} gameData={game} />
-          ))}
+        <div className='flex flex-col gap-2 mb-2'>
+          {userGames &&
+            userGames.map((game, index) => (
+              <GameCardStrip type='profile' key={index} gameData={game} />
+            ))}
+
+        </div>
       </div>
 
       <FriendList user={user}/>
