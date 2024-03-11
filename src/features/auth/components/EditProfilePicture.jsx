@@ -51,6 +51,7 @@ export function EditProfilePicture({ user }) {
             <input
               type='file'
               className='hidden'
+              accept='image/*'
               ref={fileEl}
               onChange={(e) => {
                 if (e.target.files[0]) {

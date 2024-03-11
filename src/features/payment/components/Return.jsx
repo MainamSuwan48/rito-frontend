@@ -1,10 +1,12 @@
 import * as paymentApi from '@/api/payment';
+import { CircleCheckIcon } from '@/icons';
 import { deleteMyCart } from '@/redux/slice/cart-slice';
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { Navigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
@@ -34,6 +36,7 @@ export default function Return() {
       const queryString = window.location.search;
       const urlParams = new URLSearchParams(queryString);
       const sessionId = urlParams.get('session_id');
+      console.log(sessionId);
 
       const updateAfterPayment = async (sessionId) => {
         await paymentApi.updateAfterSuccess(sessionId);
@@ -51,14 +54,27 @@ export default function Return() {
 
   if (status === 'complete') {
     return (
-      <section id='success' className='p-5 text-center'>
-        <p>
+      <section
+        id='success'
+        className='flex h-screen flex-col items-center justify-center gap-6 text-base_dark'
+      >
+        <CircleCheckIcon className='h-44 w-44 stroke-success' />
+        <h1 className='text-4xl font-bold'>Thank you for your purchase!</h1>
+        <p className='text-xl'>
           We appreciate your business! A confirmation email will be sent to{' '}
-          {customerEmail}. If you have any questions, please email{' '}
-          <a href='mailto:orders@example.com' className='underline'>
-            ritoproject1@gmail.com
-          </a>
-          .
+          {customerEmail}.
+        </p>
+        <Link
+          className='rounded-md bg-primary px-12 py-6 text-xl font-medium text-white transition-all hover:bg-primary_mute active:scale-95'
+          to='/'
+        >
+          &#8592; Back to Home
+        </Link>
+        <p className='mt-12 text-xl'>
+          If you have any problem,{' '}
+          <span className='font-semibold' role='button'>
+            contact us
+          </span>
         </p>
       </section>
     );

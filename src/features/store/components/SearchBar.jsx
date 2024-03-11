@@ -4,7 +4,7 @@ import { searchGames } from '@/redux/slice/games-slice';
 import { useNavigate } from 'react-router-dom';
 import { SearchIcon } from '@/icons';
 
-export default function SearchBar() {
+export default function SearchBar({ type = '' }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [searchQuery, setSearchQuery] = useState('');
@@ -22,6 +22,25 @@ export default function SearchBar() {
     navigate(`/search/`);
     console.log(searchTerm);
   };
+
+  if (type == 'community') {
+    return (
+      <div className='z-40 flex h-14 flex-grow *:backdrop-blur-lg'>
+        <div className='flex w-full'>
+          <input
+            onChange={handleChange}
+            type='text'
+            className='flex-1 border border-base_dark px-12 py-4'
+            placeholder='search for posts ...'
+          />
+
+          <button className='flex-shrink-0 bg-base_dark px-12 py-4  text-neutral transition-all hover:bg-primary  active:bg-primary_mute'>
+            Search
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className='z-30 flex h-14 flex-grow *:backdrop-blur-lg'>
