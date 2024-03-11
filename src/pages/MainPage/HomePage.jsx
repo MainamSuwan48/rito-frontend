@@ -115,35 +115,7 @@ function HomePage() {
       </div>
 
       {/* ============== < SHOW GAME 1 > ============== */}
-      <div className=' flex h-auto w-auto bg-base_dark '>
-        <img
-          className='w-full overflow-hidden object-center'
-          src='https://i.pinimg.com/originals/e5/4a/fa/e54afabd75adb33464e85f2687b43f87.gif'
-        />
-        <div className='p-[8rem]'>
-          <button className='flex-col justify-center text-3xl text-neutral hover:text-purple-500'>
-            Cyberpunk 2077
-          </button>
-          <br /> <br />
-          <p className=' text-neutral'>
-            <ScrollText>
-              Immerse yourself in the Cyberpunk universe, from the original
-              storyline of Cyberpunk 2077 and its gripping spy-thriller
-              expansion Phantom Liberty to the award-winning anime series
-              Cyberpunk: Edgerunners — there are countless stories to discover
-              in the deadly megalopolis of Night City.
-            </ScrollText>
-          </p>
-          {/* ============== < Cyber GAME BUTTON > ============== */}
-          <div className='flex justify-center'>
-            <button>
-              <p className=' flex items-center gap-1 text-xl font-bold text-primary hover:gap-3 hover:text-neutral'>
-                OPEN TO RITO STORE <ChevronRightIcon />
-              </p>
-            </button>
-          </div>
-        </div>
-      </div>
+      
 
       {/* ============== < PLATFORM GAME > ============== */}
       <div className='p-[5rem]' style={{ backgroundImage: `url(${BGCITY})` }}>
