@@ -55,7 +55,7 @@ function UserCard({user,myID}) {
           className='rounded-md w-[100px] border border-base-100 bg-base_dark p-2 text-neutral transition-all hover:bg-primary hover:text-black active:bg-primary_mute'
           onClick={addFriend}
         >
-          {friendStatus?.status || "Add Friend"}
+          Add Friend
         </button>
         }
       </div>
