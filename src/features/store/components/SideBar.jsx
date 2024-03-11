@@ -19,13 +19,18 @@ export default function SideBar() {
     }
   }, [genres]);
   return (
-    <div className='h-content w-64 bg-base-300'>
-      <Accordion type='single' className='w-full' collapsible>
+    <div className='h-content w-64 backdrop-blur-3xl'>
+      <Accordion
+        type='single'
+        className='w-full border-primary'
+        defaultValue='item-1'
+        collapsible
+      >
         <AccordionItem value='item-1'>
-          <AccordionTrigger className='h-14 w-full bg-primary pl-4 text-neutral'>
+          <AccordionTrigger className='h-14 w-full border-primary bg-primary pl-4 text-neutral'>
             Genres
           </AccordionTrigger>
-          <AccordionContent className='m-0 h-game_store w-full overflow-auto p-0'>
+          <AccordionContent className='m-0 h-game_store w-full overflow-auto p-0 '>
             <div className='flex flex-col gap-1'>
               <GameGenreTag type='all'>All</GameGenreTag>
               {loadingGenres ? (
