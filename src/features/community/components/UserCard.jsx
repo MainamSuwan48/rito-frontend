@@ -44,7 +44,7 @@ function UserCard({user,myID}) {
         />
       </div>
       <div className='flex flex-col justify-center gap-2'>
-        <div className='text-lg font-semibold  text-base_dark'>{user.displayName}</div>
+        <div className='text-lg font-semibold  text-base_dark'>{user.displayName.slice(0,15)}</div>
         {added
         ?
         <div 
@@ -52,7 +52,7 @@ function UserCard({user,myID}) {
         >Requested</div>
         :
         <button 
-          className='rounded-md w-[100px] border border-base-100 bg-base_dark p-2 text-neutral transition-all hover:bg-primary hover:text-black active:bg-primary_mute'
+          className='rounded-md w-[120px] border border-base-100 bg-base_dark p-2 text-neutral transition-all hover:bg-primary hover:text-black active:bg-primary_mute'
           onClick={addFriend}
         >
           Add Friend

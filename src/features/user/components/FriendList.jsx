@@ -14,8 +14,8 @@ function FriendList({user}) {
         console.log(friends)
     } 
   return (
-    <div className='flex flex-col'>
-        <div className='inline-flex h-12 w-full items-center justify-start gap-2.5 bg-slate-500 px-6 py-4'>
+    <div className='flex flex-col gap-2'>
+        <div className='inline-flex h-16 w-full items-center justify-start gap-2.5 bg-slate-500 bg-opacity-80 px-6 py-4'>
           <div className='flex h-4 shrink grow basis-0 items-center justify-between'>
             <div className='text-center  text-base font-semibold leading-snug text-white'>
               Friends List ({friends?.length})

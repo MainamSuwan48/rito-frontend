@@ -11,6 +11,21 @@ export default function MyProfilePage() {
 
   return (
     <>
+      <video
+        className='-z-50'
+        autoPlay
+        loop
+        muted
+        style={{
+          opacity: '0.8',
+          position: 'fixed',
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+        }}
+      >
+        <source src='https://res.cloudinary.com/dzu5no8qx/video/upload/v1710179367/xgahrkcsbogq5iauitbh.mp4' />
+      </video>
       <div className='container grid h-screen grid-flow-row gap-4'>
         <MyProfileContainer user={authUser} />
 

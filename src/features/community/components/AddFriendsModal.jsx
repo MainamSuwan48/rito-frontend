@@ -18,7 +18,7 @@ function AddFriendsModal() {
   return (
     <Sheet>
       <SheetTrigger
-        className='flex gap-2 h-14 w-[350px] items-center justify-center bg-base_dark text-neutral transition-all
+        className='flex gap-2 h-14 w-[350px] items-center justify-center bg-base_dark hover:bg-gray-900 text-neutral transition-all
       hover:rounded-md active:bg-base-300'
       >
         Add Friends <FriendIcon />
