@@ -79,7 +79,7 @@ function GamePageHeroDetail({ gameData }) {
 
   return (
     <>
-      <div className='flex h-[400px] w-2/5 flex-col justify-between gap-2 bg-base_light text-center'>
+      <div className='flex h-[500px] w-2/5 flex-col justify-between gap-2 bg-base_light text-center'>
         <div className='flex flex-col gap-2 overflow-auto'>
           <div className='w-full bg-base-100 p-4'>
             <p className='text-left font-semibold'>Details</p>

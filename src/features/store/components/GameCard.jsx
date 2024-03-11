@@ -11,8 +11,8 @@ export default function GameCard({ gameData }) {
   const xSpring = useSpring(x, { stiffness: 400, damping: 90 });
   const ySpring = useSpring(y, { stiffness: 400, damping: 90 });
 
-  const rotateX = useTransform(xSpring, [-0.5, 0.5], ['15deg', '-15deg']);
-  const rotateY = useTransform(ySpring, [-0.5, 0.5], ['15deg', '-15deg']);
+  const rotateX = useTransform(xSpring, [-0.5, 0.5], ['10deg', '-10deg']);
+  const rotateY = useTransform(ySpring, [-0.5, 0.5], ['10deg', '-10deg']);
   const handleMouseMove = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
 
