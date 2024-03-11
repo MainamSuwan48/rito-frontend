@@ -33,12 +33,12 @@ function UserCard({user,myID}) {
   return (
     <>
  
-     <div className='flex-shrink-0 h-32 flex gap-4 border-2 rounded-md bg-base-300 p-2 transition-all hover:border-primary'>
+     <div className='flex-shrink-0 h-32 flex gap-4 border-2 rounded-md bg-base-300 p-2 transition-all hover:border-primary items-center'>
       <div
       className='border border-base_dark h-24 w-24 rounded-md transition-all hover:border-primary '
       >
         <img
-          className=' rounded-md bg-base-300 hover:cursor-pointer'
+          className=' h-[94px] w-24 rounded-md bg-base-300 hover:cursor-pointer'
           src={user.profileImageUrl||'https://via.placeholder.com/256x256'}
           onClick={()=>navigate(`/user/${user.id}`)}
         />
@@ -55,7 +55,7 @@ function UserCard({user,myID}) {
           className='rounded-md w-[100px] border border-base-100 bg-base_dark p-2 text-neutral transition-all hover:bg-primary hover:text-black active:bg-primary_mute'
           onClick={addFriend}
         >
-          {friendStatus?.status || "Add Friend"}
+          Add Friend
         </button>
         }
       </div>

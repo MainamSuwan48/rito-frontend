@@ -1,9 +1,18 @@
 import { useNavigate } from "react-router-dom";
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { useSelector } from "react-redux";
 
 export default function FriendItems({friend}) {
   const navigate = useNavigate()
-  const handleClick = ()=>{navigate(`/user/${friend.id}`)}
+  const { authUser } = useSelector((state) => state.auth);
+
+  const handleClick = ()=>{
+    if(friend.id !== authUser.id){
+      navigate(`/user/${friend.id}`)
+    }else{
+      navigate('/user')
+    }
+  }
   return (
     <>
       <div className='inline-flex h-fit w-full items-center justify-between gap-24 border-b border-black bg-slate-400'>
@@ -23,7 +32,7 @@ export default function FriendItems({friend}) {
           </div>
           <div className='inline-flex flex-col items-start justify-start gap-1.5'>
             <div className='text-center  text-base font-medium leading-snug text-black'>
-              {friend.displayName}
+              {friend.displayName.slice(0,15)}
             </div>
             <div className='text-center  text-xs font-normal leading-snug text-zinc-700'>
               {friend.username}

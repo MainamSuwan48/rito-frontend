@@ -24,7 +24,7 @@ function GameGenresResult() {
   };
 
   return (
-    <div className='flex flex-col p-2 overflow-auto' onClick={test}>
+    <div className='flex flex-col overflow-auto p-2' onClick={test}>
       {genres &&
         genres.map((genre) => (
           <GameTagForPublish

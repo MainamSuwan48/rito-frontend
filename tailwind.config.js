@@ -17,6 +17,10 @@ module.exports = {
       },
     },
     extend: {
+      fontFamily: {
+        sans: ['Roboto Mono', 'monospace'],
+        rubik: ['Rubik', 'sans-serif'],
+      },
       colors: {
         primary_mute: '#853C43',
         secondary_mute: '#01787F',
@@ -27,12 +31,11 @@ module.exports = {
         neutral: '#EEEEEE',
       },
       width: {
-        'store_search_bar': 'calc(100vw - 256px)',
-        
+        store_search_bar: 'calc(100vw - 256px)',
       },
       height: {
-        'content': 'calc(100vh - 48px)',
-        'game_store': 'calc(100vh - 120px)',
+        content: 'calc(100vh - 48px)',
+        game_store: 'calc(100vh - 120px)',
       },
       keyframes: {
         'accordion-down': {
