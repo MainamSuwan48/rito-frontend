@@ -283,9 +283,9 @@ export function AscendingIcon({ className = null }) {
       viewBox='0 0 24 24'
       fill='none'
       stroke='currentColor'
-      stroke-width='2'
-      stroke-linecap='round'
-      stroke-linejoin='round'
+      strokeWidth='2'
+      strokeLinecap='round'
+      strokeLinejoin='round'
       className={className}
     >
       <path d='m3 16 4 4 4-4' />
@@ -306,9 +306,9 @@ export const DescendingIcon = ({ className = null }) => {
       viewBox='0 0 24 24'
       fill='none'
       stroke='currentColor'
-      stroke-width='1.5'
-      stroke-linecap='round'
-      stroke-linejoin='round'
+      strokeWidth='1.5'
+      strokeLinecap='round'
+      strokeLinejoin='round'
       className={className}
     >
       <path d='m3 16 4 4 4-4' />
@@ -329,10 +329,9 @@ export function CommentIcon({ className = null }) {
       viewBox='0 0 24 24'
       fill='none'
       stroke='currentColor'
-      stroke-width='2'
-      stroke-linecap='round'
-      stroke-linejoin='round'
-      class='lucide lucide-message-square'
+      strokeWidth='2'
+      strokeLinecap='round'
+      strokeLinejoin='round'
       className={className}
     >
       <path d='M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z' />
@@ -349,10 +348,9 @@ export function ThumbsUpIcon({ className = null }) {
       viewBox='0 0 24 24'
       fill='none'
       stroke='currentColor'
-      stroke-width='2'
-      stroke-linecap='round'
-      stroke-linejoin='round'
-      class='lucide lucide-thumbs-up'
+      strokeWidth='2'
+      strokeLinecap='round'
+      strokeLinejoin='round'
       className={className}
     >
       <path d='M7 10v12' />
@@ -369,9 +367,9 @@ export const ThumbsDownIcon = ({ className = null }) => {
     viewBox='0 0 24 24'
     fill='none'
     stroke='currentColor'
-    stroke-width='2'
-    stroke-linecap='round'
-    stroke-linejoin='round'
+    strokeWidth='2'
+    strokeLinecap='round'
+    strokeLinejoin='round'
     className={className}
   >
     <path d='M17 14V2' />
@@ -387,9 +385,9 @@ export function FriendIcon({ className = null }) {
     viewBox='0 0 24 24'
     fill='none'
     stroke='currentColor'
-    stroke-width='2'
-    stroke-linecap='round'
-    stroke-linejoin='round'
+    strokeWidth='2'
+    strokeLinecap='round'
+    strokeLinejoin='round'
     className={className}
   >
     <path d='M18 21a8 8 0 0 0-16 0' />
@@ -406,9 +404,9 @@ export const ListIcon = ({ className = null }) => {
     viewBox='0 0 24 24'
     fill='none'
     stroke='currentColor'
-    stroke-width='2'
-    stroke-linecap='round'
-    stroke-linejoin='round'
+    strokeWidth='2'
+    strokeLinecap='round'
+    strokeLinejoin='round'
     className={className}
   >
     <line x1='8' x2='21' y1='6' y2='6' />
@@ -419,3 +417,23 @@ export const ListIcon = ({ className = null }) => {
     <line x1='3' x2='3.01' y1='18' y2='18' />
   </svg>;
 };
+
+export function CircleCheckIcon({ className = null }) {
+  return (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      width='24'
+      height='24'
+      viewBox='0 0 24 24'
+      fill='none'
+      stroke='currentColor'
+      strokeWidth='2'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+      className={className}
+    >
+      <circle cx='12' cy='12' r='10' />
+      <path d='m9 12 2 2 4-4' />
+    </svg>
+  );
+}
