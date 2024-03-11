@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { searchGames } from '@/redux/slice/games-slice';
 import { useNavigate } from 'react-router-dom';
+import { SearchIcon } from '@/icons';
 
 export default function SearchBar({ type = '' }) {
   const navigate = useNavigate();
@@ -50,7 +51,6 @@ export default function SearchBar({ type = '' }) {
           className='flex-1 border border-base_dark px-12 py-4'
           placeholder='search your games here...'
         />
-
         <button
           onClick={handleSearch}
           className='flex-shrink-0 bg-base_dark px-12 py-4  text-neutral transition-all hover:bg-primary  active:bg-primary_mute'

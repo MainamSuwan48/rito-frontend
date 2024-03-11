@@ -23,7 +23,7 @@ export default function BodyContainer({ user }) {
 
   return (
     <div className='grid grid-cols-[7fr_3fr] gap-2.5'>
-      <div className='flex flex-col gap-2'>
+      <div className='flex flex-col gap-2 overflow-auto'>
         <div className='inline-flex h-12 w-full items-center justify-start gap-2.5 bg-slate-500 px-6 py-4'>
           <div className='flex h-4 shrink grow basis-0 items-center justify-between'>
             <div

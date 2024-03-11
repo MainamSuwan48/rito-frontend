@@ -9,7 +9,7 @@ import {
 import HomePage from '@/pages/MainPage/HomePage';
 import LoginPage from '@/pages/AuthPage/LoginPage';
 import RegisterPage from '@/pages/AuthPage/RegisterPage';
-// import DevPage from '@/pages/DevPage';
+import DevPage from '@/pages/DevPage';
 import GamePage from '@/pages/StorePage/GamePage';
 import UserProfilePage from '@/pages/UserPage/UserProfilePage';
 import Container from '@/layouts/Container';
@@ -23,6 +23,9 @@ import GameSearchPage from '@/pages/StorePage/GameSearchPage';
 import ForgotPasswordPage from '@/pages/AuthPage/ForgotPasswordPage';
 import CommunityPage from '@/pages/CommunityPage/CommunityPage';
 import ResetPasswordPage from '@/pages/AuthPage/ResetPasswordPage';
+import CreateGamePage from '@/pages/PublishGamePage/CreateGamePage';
+import EditGamePage from '@/pages/PublishGamePage/EditGamePage';
+import AdminControlPanelPage from '@/pages/AdminPage/AdminControlPanelPage';
 
 const router = createBrowserRouter([
   {
@@ -37,7 +40,7 @@ const router = createBrowserRouter([
             <MyProfilePage />
           </ProtectedRoute>
         ),
-      }, //* for testing ui UserProfile added by POOM
+      },
       {
         path: '/user/:userId',
         element: <UserProfilePage />,
@@ -67,11 +70,29 @@ const router = createBrowserRouter([
         path: '/checkout-return',
         element: <Return />,
       },
+      {
+        path: '/create/game',
+        element: (
+          <ProtectedRoute>
+            <CreateGamePage />
+          </ProtectedRoute>
+        ),
+        path: '/admin',
+        element: (
+          <ProtectedRoute>
+            <AdminControlPanelPage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: '/edit/game/:gameId',
+        element: <EditGamePage />,
+      },
       { path: '/store', element: <GameStorePage /> },
       { path: '/search', element: <GameSearchPage /> },
       { path: '/community', element: <CommunityPage /> },
       //FOR DEVELOPMENT
-      // { path: '/dev', element: <DevPage /> },
+      { path: '/dev', element: <DevPage /> },
     ],
   },
   { path: '/register', element: <RegisterPage /> },
