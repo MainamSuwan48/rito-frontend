@@ -32,7 +32,7 @@ export default function FriendItems({friend}) {
           </div>
           <div className='inline-flex flex-col items-start justify-start gap-1.5'>
             <div className='text-center  text-base font-medium leading-snug text-black'>
-              {friend.displayName}
+              {friend.displayName.slice(0,15)}
             </div>
             <div className='text-center  text-xs font-normal leading-snug text-zinc-700'>
               {friend.username}
