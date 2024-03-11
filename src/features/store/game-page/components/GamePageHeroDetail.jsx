@@ -27,6 +27,9 @@ function GamePageHeroDetail({ gameData }) {
   const [inWishList, setInWishList] = useState(false);
   const [owned, setOwned] = useState(false);
 
+
+  console.log(gameGenres.length, 'game genres in hero detail');
+
   useEffect(() => {
     if (authUser) {
       const userId = authUser.id;
@@ -96,8 +99,8 @@ function GamePageHeroDetail({ gameData }) {
             <div className='flex flex-col gap-2 text-left'>
               <span className='font-bold text-black'>Genres </span>
               <p className='text-sm text-black'>
-                {gameGenres.length === 1
-                  ? gameGenres[0].name
+                {gameGenres.length == 1
+                  ? gameGenres[0].genre.name
                   : gameGenres.map((genre) => `${genre.genre.name}, `)}
               </p>
             </div>

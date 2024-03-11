@@ -43,7 +43,7 @@ export default function GameCard({ gameData }) {
         rotateY,
         rotateX,
       }}
-      className='relative flex h-[425px] w-[425px] items-center justify-center rounded-xl border border-base_dark bg-gradient-to-b from-primary/50 to-white/50 hover:scale-125 hover:bg-gradient-to-b hover:from-secondary hover:to-primary hover:shadow-2xl active:shadow-2xl'
+      className='glass relative flex h-[425px] w-[425px] items-center justify-center rounded-xl border border-base_dark bg-gradient-to-b active:shadow-2xl'
     >
       <div
         style={{
@@ -53,7 +53,7 @@ export default function GameCard({ gameData }) {
         className='absolute flex h-[400px] w-[400px] flex-col overflow-hidden rounded-xl bg-neutral shadow-2xl transition-all'
       >
         {/* ========= < Img Game > ========= */}
-        <div className='relative h-full w-full overflow-hidden bg-black bg-opacity-50 object-center'>
+        <div className='h-full w-full  object-center'>
           <img
             className='absolute h-full w-full object-cover object-center'
             src={backgroundImageUrl}
@@ -61,9 +61,8 @@ export default function GameCard({ gameData }) {
         </div>
 
         {/* ========= < Header NameGame > ========= */}
-        <div className='flex p-1.5'>
-          <h1 className=' w-full p-2 font-bold text-black'>{name}</h1>
-          {/* ========= < Icon Platfrom > ========= */}
+        <div className='absolute flex w-[400px] bg-gradient-to-b from-black to-transparent p-2'>
+          <h1 className=' w-full p-2 text-xl font-bold text-neutral'>{name}</h1>
         </div>
 
         {/* ========= < PriceGame > ========= */}
@@ -72,7 +71,7 @@ export default function GameCard({ gameData }) {
             {/* <p className=' bg-success p-3 font-bold text-white'>-100%</p> */}
             <p
               onClick={() => navigate(`/game/${id}`)}
-              className='w-full p-2.5 text-base-100 transition-all hover:bg-base_light hover:text-base-100 active:bg-base-100'
+              className='absolute bottom-0 right-0 w-full bg-gradient-to-t from-black to-transparent p-2.5 text-xl font-bold text-base-100 transition-all hover:bg-success hover:bg-opacity-45  active:bg-base-100'
             >
               {price} THB
             </p>

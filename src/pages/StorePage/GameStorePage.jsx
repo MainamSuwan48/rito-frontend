@@ -15,8 +15,6 @@ export default function GameStorePage() {
   );
   const [loading, setLoading] = useState(true); // Add loading state
 
-  const test = () => {};
-
   useEffect(() => {
     if (!games) {
       dispatch(getGames())
@@ -28,7 +26,15 @@ export default function GameStorePage() {
   }, [games]);
 
   return loadingCurrentGame ? null : (
-    <div onClick={test} className='relative flex w-full overflow-auto'>
+    <div
+      style={{
+        backgroundImage: 'url(https://images5.alphacoders.com/872/872037.png)',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',        
+      }}
+      className='relative flex w-full overflow-auto'
+    >
       <SideBar />
       <div className='relative flex w-store_search_bar flex-col gap-4'>
         <div className='flex'>
