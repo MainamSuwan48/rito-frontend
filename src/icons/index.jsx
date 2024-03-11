@@ -383,50 +383,50 @@ export const ThumbsDownIcon = ({ className = null }) => {
   );
 };
 
-// export function FriendIcon({ className = null }) {
-//   return (
-//     <svg
-//       xmlns='http://www.w3.org/2000/svg'
-//       width='24'
-//       height='24'
-//       viewBox='0 0 24 24'
-//       fill='none'
-//       stroke='currentColor'
-//       stroke-width='2'
-//       stroke-linecap='round'
-//       stroke-linejoin='round'
-//       className={className}
-//     >
-//       <path d='M18 21a8 8 0 0 0-16 0' />
-//       <circle cx='10' cy='8' r='5' />
-//       <path d='M22 20c0-3.37-2-6.5-4-8a5 5 0 0 0-.45-8.3' />
-//     </svg>
-//   );
-// }
+export function FriendIcon({ className = null }) {
+  return (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      width='24'
+      height='24'
+      viewBox='0 0 24 24'
+      fill='none'
+      stroke='currentColor'
+      stroke-width='2'
+      stroke-linecap='round'
+      stroke-linejoin='round'
+      className={className}
+    >
+      <path d='M18 21a8 8 0 0 0-16 0' />
+      <circle cx='10' cy='8' r='5' />
+      <path d='M22 20c0-3.37-2-6.5-4-8a5 5 0 0 0-.45-8.3' />
+    </svg>
+  );
+}
 
-// export const ListIcon = ({ className = null }) => {
-//   return (
-//     <svg
-//       xmlns='http://www.w3.org/2000/svg'
-//       width='24'
-//       height='24'
-//       viewBox='0 0 24 24'
-//       fill='none'
-//       stroke='currentColor'
-//       stroke-width='2'
-//       stroke-linecap='round'
-//       stroke-linejoin='round'
-//       className={className}
-//     >
-//       <line x1='8' x2='21' y1='6' y2='6' />
-//       <line x1='8' x2='21' y1='12' y2='12' />
-//       <line x1='8' x2='21' y1='18' y2='18' />
-//       <line x1='3' x2='3.01' y1='6' y2='6' />
-//       <line x1='3' x2='3.01' y1='12' y2='12' />
-//       <line x1='3' x2='3.01' y1='18' y2='18' />
-//     </svg>
-//   );
-// };
+export const ListIcon = ({ className = null }) => {
+  return (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      width='24'
+      height='24'
+      viewBox='0 0 24 24'
+      fill='none'
+      stroke='currentColor'
+      stroke-width='2'
+      stroke-linecap='round'
+      stroke-linejoin='round'
+      className={className}
+    >
+      <line x1='8' x2='21' y1='6' y2='6' />
+      <line x1='8' x2='21' y1='12' y2='12' />
+      <line x1='8' x2='21' y1='18' y2='18' />
+      <line x1='3' x2='3.01' y1='6' y2='6' />
+      <line x1='3' x2='3.01' y1='12' y2='12' />
+      <line x1='3' x2='3.01' y1='18' y2='18' />
+    </svg>
+  );
+};
 
 export const AddFriendIcon = ({ className = null }) => {
   return (
@@ -466,47 +466,47 @@ export const AddFriendIcon = ({ className = null }) => {
   </svg>;
 };
 
-export function FriendIcon({ className = null }) {
-  <svg
-    xmlns='http://www.w3.org/2000/svg'
-    width='24'
-    height='24'
-    viewBox='0 0 24 24'
-    fill='none'
-    stroke='currentColor'
-    strokeWidth='2'
-    strokeLinecap='round'
-    strokeLinejoin='round'
-    className={className}
-  >
-    <path d='M18 21a8 8 0 0 0-16 0' />
-    <circle cx='10' cy='8' r='5' />
-    <path d='M22 20c0-3.37-2-6.5-4-8a5 5 0 0 0-.45-8.3' />
-  </svg>;
-}
+// export function FriendIcon({ className = null }) {
+//   <svg
+//     xmlns='http://www.w3.org/2000/svg'
+//     width='24'
+//     height='24'
+//     viewBox='0 0 24 24'
+//     fill='none'
+//     stroke='currentColor'
+//     strokeWidth='2'
+//     strokeLinecap='round'
+//     strokeLinejoin='round'
+//     className={className}
+//   >
+//     <path d='M18 21a8 8 0 0 0-16 0' />
+//     <circle cx='10' cy='8' r='5' />
+//     <path d='M22 20c0-3.37-2-6.5-4-8a5 5 0 0 0-.45-8.3' />
+//   </svg>;
+// }
 
-export const ListIcon = ({ className = null }) => {
-  <svg
-    xmlns='http://www.w3.org/2000/svg'
-    width='24'
-    height='24'
-    viewBox='0 0 24 24'
-    fill='none'
-    stroke='currentColor'
-    strokeWidth='2'
-    strokeLinecap='round'
-    strokeLinejoin='round'
-    className={className}
-  >
-    <line x1='8' x2='21' y1='6' y2='6' />
-    <line x1='8' x2='21' y1='12' y2='12' />
-    <line x1='8' x2='21' y1='18' y2='18' />
-    <line x1='3' x2='3.01' y1='6' y2='6' />
-    <line x1='3' x2='3.01' y1='12' y2='12' />
-    <line x1='3' x2='3.01' y1='18' y2='18' />
-  </svg>;
+// export const ListIcon = ({ className = null }) => {
+//   <svg
+//     xmlns='http://www.w3.org/2000/svg'
+//     width='24'
+//     height='24'
+//     viewBox='0 0 24 24'
+//     fill='none'
+//     stroke='currentColor'
+//     strokeWidth='2'
+//     strokeLinecap='round'
+//     strokeLinejoin='round'
+//     className={className}
+//   >
+//     <line x1='8' x2='21' y1='6' y2='6' />
+//     <line x1='8' x2='21' y1='12' y2='12' />
+//     <line x1='8' x2='21' y1='18' y2='18' />
+//     <line x1='3' x2='3.01' y1='6' y2='6' />
+//     <line x1='3' x2='3.01' y1='12' y2='12' />
+//     <line x1='3' x2='3.01' y1='18' y2='18' />
+//   </svg>;
 
-};
+// };
 
 export function CircleCheckIcon({ className = null }) {
   return (
