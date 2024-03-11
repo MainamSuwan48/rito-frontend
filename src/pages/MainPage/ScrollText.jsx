@@ -41,7 +41,7 @@ const ScrollText = ({ children }) => {
     <div id='container'>
       <motion.div
         id='text'
-        initial={{ opacity: 0, y: 300 }}
+        initial={{ opacity: 0.1, y: 300 }}
         animate={controls}
         className='leading-normal text-neutral'
       >
