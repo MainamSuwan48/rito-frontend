@@ -44,13 +44,13 @@ function PendingCard({user,myID}) {
   return (
     <>
  
-     <div className='flex-shrink-0 h-32 flex gap-2 border-2 rounded-md bg-base-300 p-2 transition-all hover:border-primary'>
+     <div className='flex-shrink-0 h-32 flex gap-4 border-2 rounded-md bg-base-300 p-2 transition-all hover:border-primary'>
       <div
-      className='border border-base_dark rounded-md transition-all hover:border-primary '
+      className='border border-base_dark h-24 w-24 rounded-md transition-all hover:border-primary '
       >
         <img
-          className='h-24 w-24 rounded-md bg-base-300 hover:cursor-pointer'
-          src={user.profileImageUrl||'https://rerollcdn.com/STARRAIL/Characters/Full/1001.png'}
+          className=' rounded-md bg-base-300 hover:cursor-pointer'
+          src={user.profileImageUrl||'https://via.placeholder.com/256x256'}
           onClick={()=>navigate(`/user/${user.id}`)}
         />
       </div>
@@ -64,13 +64,13 @@ function PendingCard({user,myID}) {
         :
         <div className='flex gap-2' >
         <button 
-          className='rounded-md w-[90px] border border-base-100 bg-base_dark p-2 text-neutral transition-all hover:bg-primary hover:text-black active:bg-primary_mute'
+          className='rounded-md w-[90px] border border-base-100 bg-base_dark p-2 text-neutral transition-all hover:bg-success hover:text-black active:bg-primary_mute'
           onClick={onAccept}
         >
           Accept
         </button>
         <button 
-          className='rounded-md w-[90px] border border-base-100 bg-base_dark p-2 text-neutral transition-all hover:bg-primary hover:text-black active:bg-primary_mute'
+          className='rounded-md w-[90px] border border-base-100 bg-base_dark p-2 text-neutral transition-all hover:bg-danger hover:text-black active:bg-primary_mute'
           onClick={onReject}
         >
           Reject

@@ -27,8 +27,7 @@ function FriendList({user}) {
            return <FriendItems key={friend.id} friend={friend}/>
 
         })}
-        {/* <FriendItems />
-        <FriendItems /> */}
+    
       </div>
   )
 }

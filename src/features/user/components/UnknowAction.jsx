@@ -27,7 +27,7 @@ function UnknowAction({user}) {
 
   return (
     <button 
-      className='flex h-fit flex-col items-center justify-center gap-2.5 bg-teal-500 px-20 py-4 text-center font-semibold text-white'
+      className='flex h-fit flex-col items-center justify-center gap-2.5 bg-teal-500 hover:bg-success px-20 py-4 text-center font-semibold text-white'
       onClick={addFriend}
     >
        Add Friend

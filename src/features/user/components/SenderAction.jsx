@@ -40,16 +40,16 @@ function SenderAction({user}) {
   return (
     <div className='flex flex-col gap-2'>
         <button 
-            className='flex h-fit flex-col items-center justify-center gap-2.5 bg-teal-500 px-20 py-4 text-center font-semibold text-white'
-            onClick={onAccept}
+          className='flex h-fit flex-col items-center justify-center gap-2.5 bg-teal-500 hover:bg-success px-20 py-4 text-center font-semibold text-white'
+          onClick={onAccept}
         >
-            Accept
+          Accept
         </button>
         <button 
-            className='flex h-fit flex-col items-center justify-center gap-2.5 bg-teal-500 px-20 py-4 text-center font-semibold text-white'
-            onClick={onReject}
+          className='flex h-fit flex-col items-center justify-center gap-2.5 bg-teal-500 hover:bg-danger px-20 py-4 text-center font-semibold text-white'
+          onClick={onReject}
         >
-            Reject
+          Reject
         </button>
     </div>
   )
