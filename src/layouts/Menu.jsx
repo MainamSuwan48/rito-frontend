@@ -16,7 +16,7 @@ function Menu() {
       </div>   
 
       <MenuDropdown
-        className='cursor-pointer'
+        className='cursor-pointer '
         dropdownItems={[
           <div
             className='w-full'

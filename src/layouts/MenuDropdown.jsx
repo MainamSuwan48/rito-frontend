@@ -10,9 +10,11 @@ import {
 
 function MenuDropdown({ dropdownItems, children }) {
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger>{children}</DropdownMenuTrigger>
-      <DropdownMenuContent className='bg-base_light'>
+    <DropdownMenu className='select-none outline-none'>
+      <DropdownMenuTrigger className='select-none outline-none'>
+        {children}
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className='select-none bg-base_light outline-none'>
         {dropdownItems?.map((item, index) => (
           <DropdownMenuItem key={index} className='focus:bg-accent'>
             {item}

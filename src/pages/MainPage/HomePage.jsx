@@ -177,16 +177,16 @@ function HomePage() {
         }}
       >
         <img
-          className='absolute bottom-0 right-0 z-40 h-[350px] w-[auto] duration-300 hover:scale-110'
+          className='absolute bottom-0 right-0 z-20 h-[350px] w-[auto] duration-300 hover:scale-110'
           src='https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/36c7442c-aed5-4e9a-86ec-0a59dd4c5a37/debieg7-b131d3b1-b491-4a24-bed2-2c6e725c72b9.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzM2Yzc0NDJjLWFlZDUtNGU5YS04NmVjLTBhNTlkZDRjNWEzN1wvZGViaWVnNy1iMTMxZDNiMS1iNDkxLTRhMjQtYmVkMi0yYzZlNzI1YzcyYjkucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.DcwgrK6q0j2oQS6VJaPEYw7324n_dGIln5rTjzMeors'
         />
         <ScrollText>
           <img
-            className='z-40 h-[22rem] w-[150rem] p-8 duration-300 hover:scale-110'
+            className='z-20 h-[22rem] w-[150rem] p-8 duration-300 hover:scale-110'
             src='https://1000logos.net/wp-content/uploads/2022/10/Grand-Theft-Auto-V-logo.png'
           />
         </ScrollText>
-        <div className='z-50 bg-base_dark bg-opacity-60 p-[6rem]'>
+        <div className='z-30 bg-base_dark bg-opacity-60 p-[6rem]'>
           <div className='text-white-outline flex-col justify-center font-rubik text-3xl font-black text-base_dark duration-200 hover:scale-110 hover:text-primary'>
             Grand Theft Auto V
           </div>
