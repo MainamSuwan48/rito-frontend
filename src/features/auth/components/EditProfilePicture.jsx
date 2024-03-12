@@ -13,7 +13,7 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 
 import { updateProfileImage } from '@/redux/slice/auth-slice';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { useState } from 'react';
 
 export function EditProfilePicture({ user }) {
@@ -21,6 +21,7 @@ export function EditProfilePicture({ user }) {
   const dispatch = useDispatch();
   const { id, profileImageUrl } = user;
   const [file, setFile] = useState(null);
+  const {authUserImage,loadingImage} = useSelector((state)=> state.auth)
 
   const onSubmit = async () => {
     const formData = new FormData();
@@ -62,10 +63,16 @@ export function EditProfilePicture({ user }) {
             />
             <img
               className='h-64 w-64'
-              src={
-                file
-                  ? URL.createObjectURL(file)
-                  : profileImageUrl || 'https://via.placeholder.com/256x256'
+              src={file
+                  ? 
+                  URL.createObjectURL(file)
+                  :
+                  (authUserImage 
+                    ? 
+                    authUserImage 
+                    : 
+                    ( profileImageUrl || 'https://via.placeholder.com/256x256')
+                  )
               }
             />
             <DialogFooter className='flex w-full items-center justify-center '>

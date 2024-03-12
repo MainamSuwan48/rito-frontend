@@ -1,6 +1,6 @@
 import React from 'react';
 const classBtn = {
-  edit: 'bg-warning',
+  edit: 'bg-warning text-base_dark active:bg-[#DEB319]',
   delete: 'bg-error text-white active:bg-primary_mute',
   confirm: 'bg-success text-base_dark active:bg-[#a5c215]',
 };

@@ -15,11 +15,11 @@ export default function FriendItems({friend}) {
   }
   return (
     <>
-      <div className='inline-flex h-fit w-full items-center justify-between gap-24 border-b border-black bg-slate-400 bg-opacity-80'>
+      <div className='inline-flex h-[80px] w-full items-center justify-between gap-24 border-b border-black bg-slate-400 bg-opacity-80'>
         <div className='flex items-center justify-center gap-4'>
           <div className='flex flex-shrink-0 items-center justify-center gap-2.5 bg-zinc-100 bg-opacity-80  h-full w-20'>
             <div 
-              className='text-center text-4xl font-semibold text-black cursor-pointer'
+              className='text-center flex items-center h-[80px] text-4xl font-semibold text-black cursor-pointer'
               onClick={handleClick}
             >
               {friend?.profileImageUrl

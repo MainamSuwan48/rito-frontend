@@ -6,7 +6,7 @@ export default function PostContainer() {
   return (
     <>
       {/* <CommunitySearchBar */}
-      <div className=' flex flex-col gap-2.5 '>
+      <div className=' flex flex-col gap-2.5 py-6'>
         {mockData.map((post, index) => (
           <PostItems key={index} post={post} />
         ))}

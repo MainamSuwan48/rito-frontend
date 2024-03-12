@@ -5,9 +5,17 @@ import Header from '@/layouts/Header';
 import { getUserById } from '@/redux/slice/user-slice';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
+import { clearAuthUserImages } from '@/redux/slice/auth-slice';
+import { useEffect } from 'react';
 
 export default function MyProfilePage() {
   const { authUser } = useSelector((state) => state.auth);
+  const dispatch = useDispatch()
+  useEffect(()=>{
+    return ()=>{
+      dispatch(clearAuthUserImages())
+    }
+  },[authUser])
 
   return (
     <>

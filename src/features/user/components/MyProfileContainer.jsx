@@ -2,8 +2,12 @@ import { EditForm } from '@/features/auth/components/EditForm';
 import { EditProfilePicture } from '@/features/auth/components/EditProfilePicture';
 import AddFriendsModal from '@/features/community/components/AddFriendsModal';
 import PendingRequestModal from '@/features/community/components/PendingRequestModal';
+import { clearAuthUserImages } from '@/redux/slice/auth-slice';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 export default function MyProfileContainer({ user }) {
+  const dispatch = useDispatch()
   const {
     description,
     username,
@@ -15,16 +19,26 @@ export default function MyProfileContainer({ user }) {
     email,
   } = user;
 
+  const {authUserImage,loadingImage} = useSelector((state)=> state.auth)
+
+  
   return (
     <>
       <div className='inline-flex h-fit w-full items-start justify-between gap-36'>
         <div className='flex items-center justify-center gap-10'>
           <div className='flex flex-col gap-4 bg-white bg-opacity-45 p-4 mt-2'>
-            <img
+            {loadingImage
+            ?
+            <span className='loading loading-ring  h-64 w-64'></span>
+            :
+            <>
+              <img
               className='h-64 w-64'
-              src={profileImageUrl || 'https://via.placeholder.com/256x256'}
-            />
-            <EditProfilePicture user={user} />
+              src={authUserImage ? authUserImage : (profileImageUrl || 'https://via.placeholder.com/256x256')}
+              />
+              <EditProfilePicture user={user} />
+            </>
+            }
           </div>
           <div className='flex items-center w-[350px] justify-start gap-4  bg-opacity-50 bg-white p-4'>
             <div className='inline-flex flex-col items-start justify-start gap-6'>

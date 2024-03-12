@@ -52,7 +52,37 @@ function Header() {
 
       <Menu />
 
-      {authUser ? (
+      {authUser && authUser.isAdmin ? (
+        <div className='col-span-4 flex h-12 items-center gap-4 justify-self-end'>
+          <div>Admin {authUser.username}</div>
+          <MenuDropdown
+            dropdownItems={[
+              <div
+                className='w-full'
+                onClick={() => navigate('/admin')}
+                role='button'
+              >
+                Admin Page
+              </div>,
+
+              <div
+                className='w-full'
+                onClick={() => dispatch(logout())}
+                role='button'
+              >
+                Log Out
+              </div>,
+            ]}
+          >
+            <Avatar className='flex h-8 w-8 items-center justify-center'>
+              <AvatarImage src={authUser?.profileImageUrl} />
+              <AvatarFallback className='bg-primary'>
+                {authUser?.username[0].toUpperCase()}
+              </AvatarFallback>
+            </Avatar>
+          </MenuDropdown>
+        </div>
+      ) : authUser ? (
         <div className='col-span-4 mt-2 flex items-center gap-6 justify-self-end'>
           <div
             className='relative'
@@ -66,9 +96,7 @@ function Header() {
               </div>
             )}
           </div>
-          <div
-          className='relative top-[3px]'
-          >
+          <div className='relative top-[3px]'>
             <WishList />
           </div>
 
@@ -91,7 +119,7 @@ function Header() {
               </div>,
             ]}
           >
-            <Avatar className='h-8 w-8 flex justify-center items-center'>
+            <Avatar className='flex h-8 w-8 items-center justify-center'>
               <AvatarImage src={authUser?.profileImageUrl} />
               <AvatarFallback className='bg-primary'>
                 {authUser?.username[0].toUpperCase()}
