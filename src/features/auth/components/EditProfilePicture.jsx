@@ -17,11 +17,11 @@ import { useEffect, useRef } from 'react';
 import { useState } from 'react';
 
 export function EditProfilePicture({ user }) {
-  const { authUserImage } = useSelector((state) => state.auth);
   const fileEl = useRef(null);
   const dispatch = useDispatch();
   const { id, profileImageUrl } = user;
   const [file, setFile] = useState(null);
+  const {authUserImage,loadingImage} = useSelector((state)=> state.auth)
 
   const onSubmit = async () => {
     const formData = new FormData();
@@ -32,11 +32,6 @@ export function EditProfilePicture({ user }) {
         console.log(err);
       });
   };
-  useEffect(()=>{
-    
-  },[authUserImage])
-
-  console.log(authUserImage)
 
   return (
     <Dialog>
@@ -67,10 +62,16 @@ export function EditProfilePicture({ user }) {
             />
             <img
               className='h-64 w-64'
-              src={
-                file
-                  ? URL.createObjectURL(file)
-                  : authUserImage || 'https://via.placeholder.com/256x256'
+              src={file
+                  ? 
+                  URL.createObjectURL(file)
+                  :
+                  (authUserImage 
+                    ? 
+                    authUserImage 
+                    : 
+                    ( profileImageUrl || 'https://via.placeholder.com/256x256')
+                  )
               }
             />
             <DialogFooter className='flex w-full items-center justify-center '>
