@@ -29,7 +29,6 @@ function GamePageHeroDetail({ gameData }) {
   const [inWishList, setInWishList] = useState(false);
   const [owned, setOwned] = useState(false);
 
-
   console.log(gameGenres.length, 'game genres in hero detail');
 
   useEffect(() => {
@@ -137,7 +136,14 @@ function GamePageHeroDetail({ gameData }) {
           </div>
         ) : authUser.isAdmin && !gameData.deletedAt ? (
           // Admin, Game verified, not deleted
-          <div className='flex h-12'>
+          <div className='flex h-12 justify-between'>
+            <AdminButton
+              mode='edit'
+              width='w-full'
+              onClick={() => navigate(`/edit/game/${gameData.id}`)}
+            >
+              Edit
+            </AdminButton>
             <AdminButton
               mode='delete'
               width='w-full'
