@@ -51,6 +51,14 @@ export const getUserGames = createAsyncThunk(
 const userSlice = createSlice({
   name: 'users',
   initialState,
+  reducers: {
+    clearUser: (state) => {
+      state.currentUser = null;
+    },
+    clearUserGames: (state) => {
+      state.userGames = null;
+    },
+  },
   extraReducers: (builder) => {
     builder
       // get User by Id
@@ -66,7 +74,7 @@ const userSlice = createSlice({
         state.loading = false;
         state.error = action.error.message;
       });
-      // get User by Id
+    // get User by Id
     builder
       .addCase(getAllUsers.pending, (state) => {
         state.loading = true;
@@ -96,6 +104,8 @@ const userSlice = createSlice({
       });
   },
 });
+
+export const { clearUser, clearUserGames } = userSlice.actions;
 
 //reducers
 export const userReducer = userSlice.reducer;

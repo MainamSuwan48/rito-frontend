@@ -2,9 +2,12 @@ import { EditForm } from '@/features/auth/components/EditForm';
 import { EditProfilePicture } from '@/features/auth/components/EditProfilePicture';
 import AddFriendsModal from '@/features/community/components/AddFriendsModal';
 import PendingRequestModal from '@/features/community/components/PendingRequestModal';
-import { useSelector } from 'react-redux';
+import { clearAuthUserImages } from '@/redux/slice/auth-slice';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 export default function MyProfileContainer({ user }) {
+  const dispatch = useDispatch()
   const {
     description,
     username,
@@ -17,6 +20,7 @@ export default function MyProfileContainer({ user }) {
   } = user;
 
   const {authUserImage,loadingImage} = useSelector((state)=> state.auth)
+
   
   return (
     <>

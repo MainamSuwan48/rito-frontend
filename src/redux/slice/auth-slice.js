@@ -106,6 +106,14 @@ export const updateProfileImage = createAsyncThunk(
 const authSlice = createSlice({
   name: 'auth',
   initialState,
+  reducers: {
+    clearAuthUser: (state) => {
+      state.authUser = null;
+    },
+    clearAuthUserImages: (state) => {
+      state.authUserImage = null;
+    },
+  },
   extraReducers: (builder) => {
     builder
       // Fetch Me Cases
@@ -196,4 +204,7 @@ const authSlice = createSlice({
 });
 
 // Reducer
+
+export const { clearAuthUser, clearAuthUserImages } = authSlice.actions;
+
 export const authReducer = authSlice.reducer;
