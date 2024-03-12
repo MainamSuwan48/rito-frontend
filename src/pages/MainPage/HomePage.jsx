@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import LOAD from '../../assets/Img/RITO GAME LOADING.gif';
+import ritoLogo from '../../assets/Img/ritoLogo.png';
+
 import { motion } from 'framer-motion';
 import {
   ChevronRightIcon,
@@ -12,8 +13,7 @@ import {
 import BGCITY from '../../assets/Img/BG-CITY.png';
 import ScrollText from './ScrollText';
 
-
-function HomePage() {  
+function HomePage() {
   const navigate = useNavigate();
   const arr = [
     {
@@ -66,14 +66,17 @@ function HomePage() {
       <div className='p-[5rem]' style={{ backgroundImage: `url(${BGCITY})` }}>
         {/* ============== < TITLE BEST GAME > ============== */}
         <div className=' flex-col'>
-          <p className='text-black-outline flex justify-center bg-gradient-to-r from-primary to-secondary bg-clip-text pb-4 font-rubik text-7xl font-black italic text-transparent duration-100 hover:scale-105'>
+          <p className='font-babas flex justify-center bg-gradient-to-r from-primary to-secondary bg-clip-text pb-4 text-7xl font-black  text-transparent duration-100 hover:scale-105'>
             Discover the best games
           </p>
         </div>
         {/* ============== < TITLE BEST GAME BUTTON > ============== */}
         <div className='flex justify-center'>
           <button>
-            <p className=' flex items-center gap-1 text-xl font-bold text-secondary_mute hover:gap-3 hover:text-primary'>
+            <p
+              onClick={() => navigate('/store')}
+              className='flex items-center gap-1 text-xl font-bold text-black transition-all hover:gap-3 hover:text-primary'
+            >
               EXPLORE THE CATALOGUE <ChevronRightIcon />
             </p>
           </button>
@@ -137,34 +140,52 @@ function HomePage() {
           className='absolute inset-0 bottom-0 z-50 h-[400px] object-cover'
           src='https://i.imgur.com/Ss9i9gl.png'
         />
-        <motion.img
+        <img
+          onClick={() => navigate('/game/41494')}
           initial={{ x: 300 }} // start from 300px to the right of the initial position
           animate={{ x: 0 }} // end at the initial position
           transition={{ type: 'spring', stiffness: 60, damping: 20 }}
-          className='absolute right-6 top-0 h-[300px] cursor-pointer object-cover duration-300 hover:scale-110'
+          className='absolute right-6 top-0 h-[300px] cursor-pointer object-cover duration-300 hover:scale-105'
           src='https://i.imgur.com/YvAqGQ9.png'
         />
       </div>
 
-      {/* ============== < DOWNLOAD APP GAME > ============== */}
-      <div className='p-[5rem]' style={{ backgroundImage: `url(${BGCITY})` }}>
+      {/* ============== < PC GAMER> ============== */}
+      <div className='relative flex h-96 flex-col items-center justify-center'>
+        <video
+          className='-z-50'
+          autoPlay
+          loop
+          muted
+          style={{
+            opacity: '1',
+            position: 'absolute',
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+          }}
+        >
+          <source src='https://res.cloudinary.com/dhm6pitfd/video/upload/v1710264032/videoplayback_4_k7ctja.mp4' />
+        </video>
         {/* ============== < TITLE BEST GAME > ============== */}
-        <div className=' flex-col'>
-          <p className=' flex justify-center text-7xl font-bold text-purple-500 duration-100 hover:scale-105 hover:text-primary'>
-            BUILT FOR PC GAMERS <RabbitIcon />
+        <div className='flex-col bg-black bg-opacity-60 p-4'>
+          <p className='font-babas flex justify-center p-4 text-7xl font-bold text-neutral duration-100 hover:scale-105 hover:text-primary'>
+            BUILT FOR PC GAMERS
           </p>
-          <p className=' flex items-center justify-center text-2xl font-bold text-base_dark'>
+          <p className='flex items-center justify-center p-4 text-2xl font-bold text-base_light'>
             Finding your next favorite game has never been easier<br></br>Browse
             the catalog View recommendations Filter by category
           </p>
-        </div>
-        {/* ============== < TITLE BEST GAME BUTTON > ============== */}
-        <div className='flex justify-center'>
-          <button>
-            <p className=' flex items-center gap-1 text-xl font-bold text-secondary_mute hover:gap-3 hover:text-primary'>
-              DOWNLOAD RITO APP <ChevronRightIcon />
-            </p>
-          </button>
+          <div className='flex justify-center'>
+            <button>
+              <p
+                onClick={() => navigate('/search')}
+                className='flex items-center gap-1 text-xl font-bold text-white transition-all hover:gap-3 hover:text-primary'
+              >
+                SEARCH FOR YOUR FAVORITE GAMES <ChevronRightIcon />
+              </p>
+            </button>
+          </div>
         </div>
       </div>
 
@@ -182,12 +203,16 @@ function HomePage() {
         />
         <ScrollText>
           <img
+            onClick={() => navigate('/game/3498')}
             className='z-20 h-[22rem] w-[150rem] p-8 duration-300 hover:scale-110'
             src='https://1000logos.net/wp-content/uploads/2022/10/Grand-Theft-Auto-V-logo.png'
           />
         </ScrollText>
         <div className='z-30 bg-base_dark bg-opacity-60 p-[6rem]'>
-          <div className='text-white-outline flex-col justify-center font-rubik text-3xl font-black text-base_dark duration-200 hover:scale-110 hover:text-primary'>
+          <div
+            onClick={() => navigate('/game/3498')}
+            className='text-white-outline flex-col justify-center font-rubik text-3xl font-black text-base_dark duration-200 hover:scale-110 hover:text-primary'
+          >
             Grand Theft Auto V
           </div>
           <div>
@@ -206,8 +231,11 @@ function HomePage() {
           {/* ============== < GTAV GAME BUTTON > ============== */}
           <div className='flex justify-center'>
             <button className=''>
-              <p className=' flex items-center gap-1 text-xl font-bold text-primary hover:gap-3 hover:text-secondary_mute'>
-                OPEN TO RITO STORE <ChevronRightIcon />
+              <p
+                onClick={() => navigate('/store')}
+                className='flex items-center gap-1 text-xl font-bold text-neutral transition-all hover:gap-3 hover:text-primary'
+              >
+                EXPLORE MORE GAMES <ChevronRightIcon />
               </p>
             </button>
           </div>
@@ -215,33 +243,30 @@ function HomePage() {
       </div>
 
       {/* ============== < PLATFROM GAME > ============== */}
-      <div className='p-[5rem]' style={{ backgroundImage: `url(${BGCITY})` }}>
-        <div>
-          {/* ============== < GTAV GAME BUTTON > ============== */}
-          <div className='flex justify-center'>
-            <button className=''>
-              <ScrollText>
-                <p className='flex items-center gap-1 text-7xl font-bold text-accent duration-300 hover:scale-125 hover:text-primary'>
-                  PLATFORMS
-                </p>
-              </ScrollText>
-            </button>
-          </div>
-        </div>
-        <div className='flex gap-[10rem] p-[4rem]'>
-          <img
-            className='xbox h-auto w-[100%] duration-300 hover:scale-110'
-            src='https://cdn.icon-icons.com/icons2/2699/PNG/512/xbox_logo_icon_169692.png'
-          />
-          <img
-            className='pc h-auto w-[100%] duration-300 hover:scale-110'
-            src='https://cdn-icons-png.flaticon.com/512/4703/4703650.png'
-          />
-          <img
-            className='vr h-auto w-[100%] duration-300 hover:scale-110'
-            src='https://iconape.com/wp-content/png_logo_vector/vr-logo-virtual-reality-logo.png'
-          />
-        </div>
+      <div className='relative flex h-[400px] items-center justify-center bg-black bg-opacity-70 p-5'>
+        <img src={ritoLogo} />
+        <p
+          onClick={() => navigate('/store')}
+          className='font-babas p-4 text-9xl font-bold text-neutral duration-100 hover:scale-105 hover:text-primary'
+        >
+          AND MORE
+        </p>
+
+        <video
+          className='-z-50'
+          autoPlay
+          loop
+          muted
+          style={{
+            opacity: '1',
+            position: 'absolute',
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+          }}
+        >
+          <source src='https://res.cloudinary.com/dhm6pitfd/video/upload/v1710177884/videoplayback_3_ilwav9.mp4' />
+        </video>
       </div>
     </div>
   );

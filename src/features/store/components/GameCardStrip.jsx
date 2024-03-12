@@ -2,7 +2,7 @@ import React from 'react';
 import GameCardTag from './GameCardTag';
 import { useNavigate } from 'react-router-dom';
 import { HeartIcon, TrashIcon } from '@/icons';
-import { useDispatch } from 'react-redux';
+import { useDispatch ,useSelector } from 'react-redux';
 import { deleteItem } from '@/redux/slice/cart-slice';
 import {
   Popover,
@@ -10,7 +10,12 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover';
 
-export default function GameCardStrip({ gameData, type = 'normal', cartId }) {
+export default function GameCardStrip({
+  gameData,
+  type = 'normal',
+  cartId,
+  userId,
+}) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -111,7 +116,7 @@ export default function GameCardStrip({ gameData, type = 'normal', cartId }) {
           <div className='flex h-full flex-col justify-between p-2'>
             <Popover>
               <PopoverTrigger className='cursor-pointer select-none border-2 p-2 font-extrabold text-base_dark transition-all hover:border-primary hover:text-primary active:scale-100'>
-                View Game Key
+                View Game Keys
               </PopoverTrigger>
               <PopoverContent className='w-full bg-opacity-80 bg-gradient-to-b from-black/50'>
                 <div className='flex flex-col gap-2'>

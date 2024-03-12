@@ -1,19 +1,19 @@
-import GameCardStrip from '@/features/store/components/GameCardStrip';
 import SearchBar from '@/features/store/components/SearchBar';
 import SideBar from '@/features/store/components/SideBar';
 import { useSelector, useDispatch } from 'react-redux';
 import { getGames } from '@/redux/slice/games-slice';
-import { useEffect, useState } from 'react'; // Remove lazy and Suspense imports
+import { useEffect, useState, lazy, Suspense } from 'react'; // Import lazy and Suspense
 import GameStoreSorter from '@/features/store/components/GameStoreSorter';
 import { Skeleton } from '@/components/ui/skeleton';
-import GameCard from '@/features/store/components/GameCard'; // Import GameCard directly
+
+const LazyGameCard = lazy(() => import('@/features/store/components/GameCard')); // Lazy load GameCard
 
 export default function GameStorePage() {
   const dispatch = useDispatch();
   const { games, loadingCurrentGame } = useSelector(
     (state) => state.games.games
   );
-  const [loading, setLoading] = useState(true); // Add loading state
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (!games) {
@@ -48,7 +48,7 @@ export default function GameStorePage() {
           <SearchBar />
           <GameStoreSorter />
         </div>
-        {loading ? ( // Render loading state
+        {loading ? (
           <div className='grid h-game_store grid-cols-1 items-start gap-6 self-center justify-self-center overflow-auto pb-6 lg:grid-cols-2 2xl:grid-cols-3'>
             <Skeleton className='h-[425px] w-[416px]' />
             <Skeleton className='h-[425px] w-[416px]' />
@@ -65,7 +65,11 @@ export default function GameStorePage() {
         ) : (
           <div className='grid h-game_store grid-cols-1 items-start gap-6 self-center justify-self-center overflow-auto pb-6 lg:grid-cols-2 2xl:grid-cols-3'>
             {games &&
-              games.map((game) => <GameCard key={game.id} gameData={game} />)}
+              games.map((game) => (
+                <Suspense fallback={<Skeleton className='h-[425px] w-[416px]' />}>
+                  <LazyGameCard key={game.id} gameData={game} />
+                </Suspense>
+              ))}
           </div>
         )}
       </div>
