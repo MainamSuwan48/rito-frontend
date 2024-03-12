@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 
 const initialState = {
   authUser: null,
+  authUserImage: null,
   loading: false,
   error: null,
 };
@@ -170,6 +171,7 @@ const authSlice = createSlice({
       .addCase(updateAuthUser.fulfilled, (state, action) => {
         state.loading = false;
         state.authUser = action.payload;
+        state.authUserImage = action.payload.profileImageUrl
       })
       .addCase(updateAuthUser.rejected, (state, action) => {
         state.loading = false;
@@ -184,7 +186,7 @@ const authSlice = createSlice({
       })
       .addCase(updateProfileImage.fulfilled, (state, action) => {
         state.loading = false;
-        state.authUser = action.payload;
+        state.authUserImage = action.payload.profileImageUrl
       })
       .addCase(updateProfileImage.rejected, (state, action) => {
         state.loading = false;

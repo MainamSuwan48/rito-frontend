@@ -14,7 +14,7 @@ export default function MyProfileContainer({ user }) {
     lastName,
     email,
   } = user;
-
+  
   return (
     <>
       <div className='inline-flex h-fit w-full items-start justify-between gap-36'>
