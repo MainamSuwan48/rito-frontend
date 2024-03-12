@@ -1,0 +1,64 @@
+[
+  {
+    "id": 1,
+    "title": "Test Post",
+    "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec nunc nec odio",
+    "postType": "DISCUSSION",
+    "user": {
+      "id": 1,
+      "displayName": "testuser"
+    },
+    "game": {
+      "id": 1,
+      "name": "Test Game",
+      "backgroundImageUrl": "https://via.placeholder.com/675x288"
+    },
+    "createdAt": "2022-01-01T00:00:00Z",
+    "updatedAt": "2022-01-01T00:00:00Z",
+    "deletedAt": null,
+    "comments": [
+      {
+        "id": 1,
+        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec nunc nec odio",
+        "user": {
+          "id": 1,
+          "displayName": "testuser"
+        },
+        "createdAt": "2022-01-01T00:00:00Z",
+        "updatedAt": "2022-01-01T00:00:00Z",
+        "deletedAt": null
+      }
+    ]
+  },
+  {
+    "id": 1,
+    "title": "Test Post",
+    "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec nunc nec odio",
+    "postType": "DISCUSSION",
+    "user": {
+      "id": 1,
+      "displayName": "testuser"
+    },
+    "game": {
+      "id": 1,
+      "name": "Test Game",
+      "backgroundImageUrl": "https://via.placeholder.com/675x288"
+    },
+    "createdAt": "2022-01-01T00:00:00Z",
+    "updatedAt": "2022-01-01T00:00:00Z",
+    "deletedAt": null,
+    "comments": [
+      {
+        "id": 1,
+        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec nunc nec odio",
+        "user": {
+          "id": 1,
+          "displayName": "testuser"
+        },
+        "createdAt": "2022-01-01T00:00:00Z",
+        "updatedAt": "2022-01-01T00:00:00Z",
+        "deletedAt": null
+      }
+    ]
+  }
+]
