@@ -4,12 +4,32 @@ import { useNavigate } from 'react-router-dom';
 import { HeartIcon, TrashIcon } from '@/icons';
 import { useDispatch } from 'react-redux';
 import { deleteItem } from '@/redux/slice/cart-slice';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover';
 
 export default function GameCardStrip({ gameData, type = 'normal', cartId }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { backgroundImageUrl, name, price, gameTags, id ,gameKey} = gameData;
+  function convertToDate(dateObj) {
+    let date = new Date(dateObj);
+    return date.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      second: 'numeric',
+    });
+  }
+
+  const { backgroundImageUrl, name, price, gameTags, id, gameCollections } =
+    gameData;
+
+  console.log(gameData, gameCollections, 'gameData in GameCardStrip');
 
   if (type == 'wishlist') {
     return (
@@ -88,15 +108,33 @@ export default function GameCardStrip({ gameData, type = 'normal', cartId }) {
         )}
 
         {type === 'profile' && (
-          <div className=''>
-            <div className='flex flex-col justify-end p-2'>
-              <div className='font-bold'>
-                Bought: {new Date(gameData.createdAt).toLocaleDateString()}
-              </div>
-              <div className='font-bold'>
-                Bought: {gameKey}
-              </div>
-            </div>
+          <div className='flex h-full flex-col justify-between p-2'>
+            <Popover>
+              <PopoverTrigger className='cursor-pointer select-none border-2 p-2 font-extrabold text-base_dark transition-all hover:border-primary hover:text-primary active:scale-100'>
+                View Game Key
+              </PopoverTrigger>
+              <PopoverContent className='w-full bg-opacity-80 bg-gradient-to-b from-black/50'>
+                <div className='flex flex-col gap-2'>
+                  {/* reversing the order so it show the lastest order first */}
+                  {[...gameCollections].reverse().map((collection) => (
+                    <div
+                      key={collection.id}
+                      className='flex flex-col gap-1 border-b-2 border-b-primary p-1'
+                    >
+                      <div className='font-bold'>
+                        {convertToDate(collection.createdAt)}
+                      </div>
+                      <div className='flex items-center justify-center font-bold'>
+                        GameKey:
+                        <div className='bg-base_dark p-1 font-bold text-white'>
+                          {collection.gameKey}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </PopoverContent>
+            </Popover>
           </div>
         )}
         {type === 'wishlist' && (
