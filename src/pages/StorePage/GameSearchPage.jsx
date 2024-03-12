@@ -23,6 +23,21 @@ export default function GameSearchPage() {
 
   return (
     <div className='relative flex w-full items-center justify-center overflow-auto'>
+      <video
+        className='-z-50 inset-0'
+        autoPlay
+        loop
+        muted
+        style={{
+          opacity: '0.6',
+          position: 'fixed',
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+        }}
+      >
+        <source src='https://res.cloudinary.com/dhm6pitfd/video/upload/v1710171222/Moving_Gradient_Background_rnv9iv.mp4' />
+      </video>
       <div className='relative flex w-store_search_bar flex-col gap-4'>
         <div className='flex'>
           <SearchBar />
@@ -37,7 +52,7 @@ export default function GameSearchPage() {
         >
           <div className='flex flex-col'>
             {searchedGames.length === 0 && (
-              <h1 className='flex h-16 animate-pulse items-center justify-center bg-base-300 text-center text-4xl'>
+              <h1 className='flex h-16 animate-pulse items-center justify-center text-center text-4xl'>
                 Please Search your game
               </h1>
             )}

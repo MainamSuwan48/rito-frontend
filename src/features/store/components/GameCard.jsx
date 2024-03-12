@@ -43,7 +43,7 @@ export default function GameCard({ gameData }) {
         rotateY,
         rotateX,
       }}
-      className='glass relative flex h-[425px] w-[425px] items-center justify-center rounded-xl border border-base_dark bg-gradient-to-b active:shadow-2xl'
+      className='glass relative flex h-[425px] w-[425px] items-center justify-center rounded-xl border border-base_dark bg-gradient-to-b hover:scale-110 active:shadow-2xl'
     >
       <div
         style={{
