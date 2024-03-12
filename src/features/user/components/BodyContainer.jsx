@@ -16,14 +16,12 @@ export default function BodyContainer({ user }) {
   };
 
   useEffect(() => {
-    if (!userGames) {
-      dispatch(getUserGames(userId));
-    }
-  }, [userGames]);
+    dispatch(getUserGames(userId));
+  }, [user]);
 
   return (
     <div className='grid grid-cols-[7fr_3fr] gap-2.5 '>
-      <div className='flex flex-col h-fit gap-2 '>
+      <div className='flex h-fit flex-col gap-2 '>
         <div className='inline-flex h-16 w-full items-center justify-start gap-2.5 bg-slate-500 bg-opacity-80 px-6 py-4'>
           <div className='flex h-4 shrink grow basis-0 items-center justify-between'>
             <div
@@ -34,16 +32,21 @@ export default function BodyContainer({ user }) {
             </div>
           </div>
         </div>
-        <div className='flex flex-col gap-2 mb-2 '>
-          {userGames &&
+        <div className='mb-2 flex flex-col gap-2 '>
+          {userGames && userGames.length === 0 ? (
+            <div className='flex h-16 w-full items-center justify-center gap-2.5 bg-base_light bg-opacity-80 px-6 py-4'>
+              this user doesn't have any game in the collection
+            </div>
+          ) : (
+            userGames &&
             userGames.map((game, index) => (
               <GameCardStrip type='profile' key={index} gameData={game} />
-            ))}
-
+            ))
+          )}
         </div>
       </div>
 
-      <FriendList user={user}/>
+      <FriendList user={user} />
     </div>
   );
 }

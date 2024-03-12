@@ -25,6 +25,7 @@ export function EditProfilePicture({ user }) {
   const onSubmit = async () => {
     const formData = new FormData();
     formData.append('profileImageUrl', file);
+    console.log({ file, formData }, 'id, formData')
     dispatch(updateProfileImage({ id, formData }))
       .then()
       .catch((err) => {

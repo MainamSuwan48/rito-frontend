@@ -77,12 +77,14 @@ const router = createBrowserRouter([
             <CreateGamePage />
           </ProtectedRoute>
         ),
+      },
+      {
         path: '/admin',
         element: (
           <ProtectedRoute>
             <AdminControlPanelPage />
           </ProtectedRoute>
-        ),
+        )
       },
       {
         path: '/edit/game/:gameId',

@@ -9,7 +9,7 @@ export default function GameCardStrip({ gameData, type = 'normal', cartId }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { backgroundImageUrl, name, price, gameTags, id } = gameData;
+  const { backgroundImageUrl, name, price, gameTags, id ,gameKey} = gameData;
 
   if (type == 'wishlist') {
     return (
@@ -92,6 +92,9 @@ export default function GameCardStrip({ gameData, type = 'normal', cartId }) {
             <div className='flex flex-col justify-end p-2'>
               <div className='font-bold'>
                 Bought: {new Date(gameData.createdAt).toLocaleDateString()}
+              </div>
+              <div className='font-bold'>
+                Bought: {gameKey}
               </div>
             </div>
           </div>

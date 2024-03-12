@@ -96,6 +96,7 @@ export const updateProfileImage = createAsyncThunk(
       const response = await authApi.updateProfileImage(id, formData);
       return response.data.user;
     } catch (error) {
+      console.log(error);
       return Promise.reject(error);
     }
   }
