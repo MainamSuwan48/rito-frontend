@@ -8,6 +8,8 @@ import { toast } from 'react-toastify';
 const initialState = {
   authUser: null,
   loading: false,
+  authUserImage: null,
+  loadingImage:false,
   error: null,
 };
 
@@ -105,6 +107,14 @@ export const updateProfileImage = createAsyncThunk(
 const authSlice = createSlice({
   name: 'auth',
   initialState,
+  reducers: {
+    clearAuthUser: (state) => {
+      state.authUser = null;
+    },
+    clearAuthUserImages: (state) => {
+      state.authUserImage = null;
+    },
+  },
   extraReducers: (builder) => {
     builder
       // Fetch Me Cases
@@ -180,19 +190,22 @@ const authSlice = createSlice({
     // update profile image
     builder
       .addCase(updateProfileImage.pending, (state) => {
-        state.loading = true;
+        state.loadingImage = true;
         state.error = null;
       })
       .addCase(updateProfileImage.fulfilled, (state, action) => {
-        state.loading = false;
-        state.authUser = action.payload;
+        state.loadingImage = false;
+        state.authUserImage = action.payload.profileImageUrl
       })
       .addCase(updateProfileImage.rejected, (state, action) => {
-        state.loading = false;
+        state.loadingImage = false;
         state.error = action.error.message;
       });
   },
 });
 
 // Reducer
+
+export const { clearAuthUser, clearAuthUserImages } = authSlice.actions;
+
 export const authReducer = authSlice.reducer;

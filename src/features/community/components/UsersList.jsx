@@ -5,19 +5,14 @@ import { getAllFriend,getAllMyPending,checkFriendshipStatus, getFriendsAdded } f
 import { getAllUsers } from '@/redux/slice/user-slice';
 
 
-
-
 function UsersList({myID}) {
   const dispatch = useDispatch()
   const {users,loading} = useSelector((state) => state.users)
   const {friendsAdded,friendStatus} = useSelector((state) => state.friendship)
 
   useEffect(()=>{
-    // dispatch(getAllFriend(myID))
-    // dispatch(getAllMyPending())
     dispatch(getAllUsers())
     dispatch(getFriendsAdded())
-
   },[])
   
   const friendsAddedId = []
