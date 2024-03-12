@@ -114,6 +114,7 @@ const authSlice = createSlice({
     clearAuthUserImages: (state) => {
       state.authUserImage = null;
     },
+
   },
   extraReducers: (builder) => {
     builder

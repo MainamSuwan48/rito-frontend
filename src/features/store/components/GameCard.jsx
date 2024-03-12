@@ -48,7 +48,7 @@ export default function GameCard({ gameData }) {
       <div
         style={{
           transformStyle: 'preserve-3d',
-          transform: 'translateZ(25px)',
+          transform: 'translateZ(75px)',
         }}
         className='absolute flex h-[400px] w-[400px] flex-col overflow-hidden rounded-xl bg-neutral shadow-2xl transition-all'
       >

@@ -48,6 +48,9 @@ function GamePageHeroDetail({ gameData }) {
         setOwned(true);
       }
     }
+    return () => {
+      setOwned(false);
+    };
   }, [userGames]);
 
   const isInCart = () => {
@@ -109,6 +112,12 @@ function GamePageHeroDetail({ gameData }) {
               <span className='font-bold text-black'>Metacritic </span>
               <p className='text-sm text-black'>{metacritic}</p>
             </div>
+            {authUser.isAdmin ? null : owned ? (
+              // User, game owned
+              <div className='text-xs flex h-12 px-1 w-full items-center justify-center bg-base_dark font-bold text-white'>
+                YOU ALREADY BOUGHT THIS GAME BUY AGAIN?
+              </div>
+            ) : null}
           </div>
         </div>
 
@@ -154,13 +163,8 @@ function GamePageHeroDetail({ gameData }) {
               Delete
             </AdminButton>
           </div>
-        ) : // Admin, is a deleted game
-        authUser.isAdmin ? null : owned ? (
-          // User, game owned
-          <div className='flex h-16 w-full items-center justify-center bg-base_dark font-bold text-white'>
-            YOU ALREADY OWN THIS GAME
-          </div>
         ) : (
+          // Admin, is a deleted game
           <div className='flex w-full justify-between'>
             {/* User, game not owned, game in cart */}
             {isInCart() ? (

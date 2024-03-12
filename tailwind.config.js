@@ -20,6 +20,7 @@ module.exports = {
       fontFamily: {
         sans: ['Roboto Mono', 'monospace'],
         rubik: ['Rubik', 'sans-serif'],
+        babas: ['Bebas Neue', 'sans-serif'],
       },
       colors: {
         primary_mute: '#853C43',

@@ -119,6 +119,6 @@ table {
   text-stroke: 1px white;
 }
 .text-black-outline {
-  -webkit-text-stroke: 1px black; /* width and color of the outline */
+  -webkit-text-stroke: 5px black; /* width and color of the outline */
   text-stroke: 1px black;
 }
