@@ -35,7 +35,7 @@ module.exports = {
         store_search_bar: 'calc(100vw - 256px)',
       },
       height: {
-        content: 'calc(100vh - 48px)',
+        content: 'calc(100vh - 96px)',
         game_store: 'calc(100vh - 120px)',
       },
       keyframes: {

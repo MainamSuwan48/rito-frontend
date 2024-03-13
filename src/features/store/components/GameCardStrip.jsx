@@ -63,7 +63,7 @@ export default function GameCardStrip({
   }
 
   return (
-    <div className=' flex  bg-base-300 bg-opacity-80 shadow-lg'>
+    <div className='h-[6rem] flex  bg-base-300 bg-opacity-80 shadow-lg'>
       <img
         onClick={() => navigate(`/game/${id}`)}
         className='h-[6rem] w-[25rem] cursor-pointer object-cover transition-all hover:scale-105 active:scale-100'

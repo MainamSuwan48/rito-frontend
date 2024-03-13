@@ -102,7 +102,10 @@ export default function PostItems({ post }) {
             {/* responsive */}
             {user.profileImageUrl ? (
               <img
-                src={`${user.profileImageUrl}`}
+                src={
+                  `${user.profileImageUrl}` ||
+                  'https://media.istockphoto.com/id/666545204/vector/default-placeholder-profile-icon.jpg?s=612x612&w=0&k=20&c=UGYk-MX0pFWUZOr5hloXDREB6vfCqsyS7SgbQ1-heY8='
+                }
                 alt='user.profileImageUrl'
                 className='size-[80px] max-sm:size-12'
               />

@@ -22,7 +22,7 @@ export default function GameSearchPage() {
   }, []);
 
   return (
-    <div className='relative flex w-full items-center justify-center overflow-auto'>
+    <div className='relative flex w-full items-baseline justify-center overflow-auto h-content'>
       <video
         className='inset-0 -z-50'
         autoPlay
@@ -38,7 +38,7 @@ export default function GameSearchPage() {
       >
         <source src='https://res.cloudinary.com/dhm6pitfd/video/upload/v1710171222/Moving_Gradient_Background_rnv9iv.mp4' />
       </video>
-      <div className='relative flex w-store_search_bar flex-col gap-4'>
+      <div className='relative flex w-store_search_bar flex-col min-h-content gap-4 overflow-auto'>
         <div className='flex'>
           <SearchBar />
           <GameStoreSorter type='search' />

@@ -221,7 +221,7 @@ function HomePage() {
         <img src={ritoLogo} />
         <p
           onClick={() => navigate('/store')}
-          className='p-4 font-babas text-9xl font-bold text-neutral duration-100 hover:scale-105 hover:text-primary'
+          className='cursor-pointer p-4 font-babas text-9xl font-bold text-neutral duration-100 hover:scale-105 hover:text-primary'
         >
           AND MORE
         </p>
