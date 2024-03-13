@@ -1,4 +1,8 @@
 import { CommentIcon, ThumbsDownIcon, ThumbsUpIcon } from '@/icons';
+import { AccordionContent } from '@radix-ui/react-accordion';
+import { AccordionTrigger } from '@radix-ui/react-accordion';
+import { Accordion, AccordionItem } from '@radix-ui/react-accordion';
+import { useState } from 'react';
 import ReactTimeAgo from 'react-time-ago';
 
 export default function PostItems({ post }) {
@@ -14,39 +18,65 @@ export default function PostItems({ post }) {
     deletedAt,
     comments,
     likes,
+    imgUrl,
   } = post;
+
+  const [isOpenComment, setIsOpenComment] = useState(false);
+  const [isLike, setIsLike] = useState(likes);
+
+  const handleOnClickOpenComment = () => {
+    setIsOpenComment(!isOpenComment);
+  };
+
+  const handleOnClickLike = () => {
+    setIsLike(isLike + 1);
+  };
+
+  const setStylePostTypeTag = (postType) => {
+    if (postType === 'SCREENSHOT') {
+      return 'bg-green-600';
+    } else if (postType === 'DISCUSSION') {
+      return 'bg-blue-400';
+    } else if (postType === 'FANART') {
+      return 'bg-yellow-300';
+    } else {
+      return 'bg-gray-400';
+    }
+  };
+
+  const setStyleContainer = (imgUrl, content) => {
+    if (imgUrl && !content) {
+      return 'flex flex-row gap-4 items-center';
+    } else {
+      return 'flex flex-row justify-end flex-1 max-sm:flex-col max-sm:gap-4 gap-4';
+    }
+  };
   return (
     <div className='flex flex-col shadow-md'>
-      <div className='glass flex flex-row text-base_dark max-sm:flex-col'>
+      <div className={`glass flex flex-row text-base_dark max-sm:flex-col`}>
         {/* Left Side */}
-        {game.backgroundImageUrl ? (
+        {imgUrl ? (
           <img
-            src={game.backgroundImageUrl}
-            alt=''
+            src={imgUrl}
+            alt='user uploaded image'
             className='max-h-[40vh] flex-1 bg-slate-400 object-cover object-top'
           />
-        ) : (
-          <img
-            src='https://via.placeholder.com/800x342'
-            alt=''
-            className='min-h-[30vh] flex-1 bg-slate-400'
-          />
-        )}
+        ) : null}
 
         {/* Right Side */}
         {/* resonsive */}
-        <div className='relative flex w-[40%] flex-col justify-between p-4 max-sm:w-[100%]'>
-          <div className='flex flex-col gap-4'>
-            <p className='text-[24px] font-semibold'>
-              {title ? title : 'Title'}
-            </p>
+        <div
+          className={`relative flex w-[40%]  ${setStyleContainer(game.backgroundImageUrl, content)} p-4 max-sm:w-[100%] max-sm:gap-4`}
+        >
+          <div className='flex flex-col justify-center gap-4'>
+            <p className='text-[24px] font-semibold'>{title ? title : null}</p>
             <p className='line-clamp-6 leading-5 '>
-              {content ? content : 'content-text'}
+              {content ? content : null}
             </p>
           </div>
 
           {/* User Container */}
-          <div className='flex items-center justify-evenly gap-2.5 max-sm:justify-center'>
+          <div className='flex flex-shrink-0 items-center justify-evenly gap-2.5 max-sm:justify-center'>
             {/* responsive */}
             {user.profileImageUrl ? (
               <img
@@ -68,21 +98,34 @@ export default function PostItems({ post }) {
         </div>
       </div>
       <div className='flex items-center justify-between divide-x p-2'>
-        <div className='flex flex-1 justify-between pr-6'>
-          <p className=''>{game.name}</p>
+        <div className='item-center flex flex-1  justify-between pr-6'>
+          <div className='flex flex-shrink-0 items-center gap-2.5'>
+            <p>{game.name}</p>
+            <p
+              className={`p-1 text-[12px] text-white ${setStylePostTypeTag(postType)}`}
+            >
+              {postType}
+            </p>
+          </div>
           <div className='flex gap-2.5'>
-            <div className='flex items-center gap-1'>
-              <ThumbsUpIcon className={'size-5'} />
+            <button
+              className='flex items-center gap-1'
+              onClick={handleOnClickLike}
+            >
+              <ThumbsUpIcon className='hove:fill-blue-500 size-5' />
               <span className='text-[12px] text-base_dark text-opacity-45'>
-                {likes}
+                {isLike}
               </span>
-            </div>
-            <div className='flex items-center gap-1'>
-              <CommentIcon className={'size-5'} />
+            </button>
+            <button
+              className='flex items-center gap-1'
+              onClick={handleOnClickOpenComment}
+            >
+              <CommentIcon className='size-5 ' />
               <span className='text-[12px] text-base_dark text-opacity-45'>
                 {comments.length}
               </span>
-            </div>
+            </button>
             {/* <ThumbsDownIcon className={'size-5'} /> */}
           </div>
         </div>
@@ -97,6 +140,38 @@ export default function PostItems({ post }) {
           )}
         </p>
       </div>
+      {isOpenComment ? (
+        <div>
+          {comments.map((comment) => {
+            return (
+              <div key={comment.id} className='flex items-center gap-4 p-4'>
+                <div className='flex flex-shrink-0 items-center gap-2'>
+                  <img
+                    src={comment.user.profileImageUrl}
+                    alt='user profile'
+                    className='size-12'
+                  />
+                  <div className=' font-bold'>{comment.user.displayName}</div>
+                </div>
+                <div>{comment.content}</div>
+              </div>
+            );
+          })}
+          <div className='flex p-4'>
+            <input
+              type='text'
+              className='input-bordered w-full border p-1.5 text-black'
+              placeholder='write your comments here...'
+            />
+            <button
+              type='submit'
+              className='text-md flex h-[2rem] items-center justify-center bg-primary p-5 font-semibold text-neutral transition-all hover:bg-secondary_mute active:scale-95'
+            >
+              comment
+            </button>
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }
