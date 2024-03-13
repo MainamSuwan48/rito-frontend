@@ -6,13 +6,16 @@ function AdminChatUserCard({ chat }) {
   //   const { userId, username } = user;
   return (
     <div
-      className='mt-2 flex h-24 w-full flex-shrink-0 select-none transition-all hover:scale-105 active:scale-100'
+      className='mt-2 flex h-24 w-full flex-shrink-0 select-none rounded-md transition-all hover:scale-105 active:scale-100 overflow-hidden border'
       onClick={() => navigate(`/admin/chat/${chat.chatSenderId}`)}
     >
       <div className='h-24 w-24 flex-shrink-0 bg-white'>
         <img
-          className='h-full w-full object-cover'
-          src={chat.chatSender.profileImageUrl}
+          className='h-full w-full bg-primary object-cover'
+          src={
+            chat.chatSender.profileImageUrl ||
+            'https://media.istockphoto.com/id/666545204/vector/default-placeholder-profile-icon.jpg?s=612x612&w=0&k=20&c=UGYk-MX0pFWUZOr5hloXDREB6vfCqsyS7SgbQ1-heY8='
+          }
         />
       </div>
       <div className='flex h-24 w-full flex-col gap-2 bg-blue-50 p-2'>

@@ -62,10 +62,14 @@ function AdminChatBox() {
     <div className='flex h-content w-full flex-col items-center justify-center bg-base-100 px-4'>
       <div className='h-content w-full overflow-auto' ref={messageEl}>
         {messages.map((message, index) =>
-          authUser.id === message.chatSenderId ? (
-            <UserChatBubble key={index}>{message.message}</UserChatBubble>
+          authUser.id !== message.chatSenderId ? (
+            <UserChatBubble type='admin' key={index} id={message.chatSenderId}>
+              {message.message}
+            </UserChatBubble>
           ) : (
-            <AdminChatBubble key={index}>{message.message}</AdminChatBubble>
+            <AdminChatBubble type='admin' key={index}>
+              {message.message}
+            </AdminChatBubble>
           )
         )}
       </div>

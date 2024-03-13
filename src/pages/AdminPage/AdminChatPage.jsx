@@ -18,7 +18,7 @@ function AdminChatPage() {
 
   return (
     <div className='flex h-content'>
-      <div className='flex h-content w-[20%] flex-col items-start justify-start bg-base-300'>
+      <div className='flex h-content w-[20%] flex-col items-start justify-start bg-base-300 p-2'>
         {allChats.map((chat) => (
           <AdminChatUserCard key={chat.id} chat={chat} />
         ))}
