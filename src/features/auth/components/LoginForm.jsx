@@ -1,4 +1,5 @@
 import { useForm } from 'react-hook-form';
+import { useState } from 'react';
 import { joiResolver } from '@hookform/resolvers/joi';
 import { toast } from 'react-toastify';
 
@@ -9,12 +10,14 @@ import { login, getMe } from '../../../redux/slice/auth-slice';
 import FormInput from './FormInput';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { EyeClose, EyeOpen } from '@/icons';
 
 export default function LoginForm({ onClose }) {
   // redux dispatch
   const dispatch = useDispatch();
   // redux state
   const { authUser, loading } = useSelector((state) => state.auth);
+  const [isShowPassword, setIsShowPassword] = useState(false);
 
   const navigate = useNavigate();
 
@@ -27,6 +30,10 @@ export default function LoginForm({ onClose }) {
     resolver: joiResolver(loginSchema),
     mode: 'onSubmit',
   });
+
+  const handleClickShowPassword = () => {
+    setIsShowPassword(!isShowPassword);
+  };
 
   // This function will be called when the form is submitted
   const onSubmit = async (data) => {
@@ -42,13 +49,25 @@ export default function LoginForm({ onClose }) {
           errors={errors}
           label='Username or Email'
         />
-        <FormInput
-          register={register}
-          name='password'
-          errors={errors}
-          label='Password'
-          type='password'
-        />
+        <div className='relative w-full'>
+          <FormInput
+            register={register}
+            name='password'
+            errors={errors}
+            label='Password'
+            type={isShowPassword ? 'text' : 'password'}
+          />
+          <div
+            className='absolute right-2 top-8'
+            onClick={handleClickShowPassword}
+          >
+            {isShowPassword ? (
+              <EyeOpen className='size-5' />
+            ) : (
+              <EyeClose className='size-5' />
+            )}
+          </div>
+        </div>
         <div
           onClick={(event) => {
             event.stopPropagation();
