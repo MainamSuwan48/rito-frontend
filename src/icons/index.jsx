@@ -484,3 +484,43 @@ export function ShieldIcon({ className = null }) {
     </svg>
   );
 }
+
+export function EyeOpen({ className = null }) {
+  return (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      width='24'
+      height='24'
+      viewBox='0 0 24 24'
+      fill='none'
+      stroke='currentColor'
+      stroke-width='2'
+      stroke-linecap='round'
+      stroke-linejoin='round'
+      className={className}
+    >
+      <path d='M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z' />
+      <circle cx='12' cy='12' r='3' />
+    </svg>
+  );
+}
+
+export function EyeClose({ className = null }) {
+  return (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      width='24'
+      height='24'
+      viewBox='0 0 24 24'
+      fill='none'
+      stroke='currentColor'
+      stroke-width='2'
+      stroke-linecap='round'
+      stroke-linejoin='round'
+      className={className}
+    >
+      <path d='M15 12a3 3 0 0 1-3 3m-6-6a3 3 0 0 1 3-3m0 0a3 3 0 0 1 3 3m0 0a3 3 0 0 1-3 3m0 0a3 3 0 0 1-3-3' />
+      <circle cx='12' cy='12' r='3' />
+    </svg>
+  );
+}
