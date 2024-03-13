@@ -27,6 +27,8 @@ import CreateGamePage from '@/pages/PublishGamePage/CreateGamePage';
 import EditGamePage from '@/pages/PublishGamePage/EditGamePage';
 import AdminControlPanelPage from '@/pages/AdminPage/AdminControlPanelPage';
 import DevChat from '@/pages/DevChat';
+import AdminChatPage from '@/pages/AdminPage/AdminChatPage';
+import AdminChatBox from '@/pages/AdminPage/AdminChatBox';
 
 const router = createBrowserRouter([
   {
@@ -86,6 +88,11 @@ const router = createBrowserRouter([
             <AdminControlPanelPage />
           </ProtectedRoute>
         ),
+      },
+      {
+        path: '/admin/chat',
+        element: <AdminChatPage />,
+        children: [{ path: ':userId', element: <AdminChatBox /> }],
       },
       {
         path: '/edit/game/:gameId',
