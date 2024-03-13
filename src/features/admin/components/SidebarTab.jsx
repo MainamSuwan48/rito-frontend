@@ -10,7 +10,7 @@ function SidebarTab({
   hoverColor = 'hover:bg-secondary',
   children,
 }) {
-  const extendedClasses = `${bg} ${hoverColor}`;
+  const extendedClasses = `${bg} ${hoverColor} transition-all duration-300 ease-in-out`;
 
   return (
     <div>
