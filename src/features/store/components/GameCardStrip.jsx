@@ -129,20 +129,18 @@ export default function GameCardStrip({
               <PopoverContent className='w-full bg-opacity-80 bg-gradient-to-b from-black/50'>
                 <div className='flex flex-col gap-2'>
                   {/* reversing the order so it show the lastest order first */}
-                  {gameCollections &&
-                    [...gameCollections].reverse().map((collection) => (
-                      <div
-                        key={collection.id}
-                        className='flex flex-col gap-1 border-b-2 border-b-primary p-1'
-                      >
-                        <div className='font-bold'>
-                          {convertToDate(collection.createdAt)}
-                        </div>
-                        <div className='flex items-center justify-center font-bold'>
-                          GameKey:
-                          <div className='bg-base_dark p-1 font-bold text-white'>
-                            {collection.gameKey}
-                          </div>
+                  {gameCollections && [...gameCollections].reverse().map((collection) => (
+                    <div
+                      key={collection.id}
+                      className='flex flex-col gap-1 border-b-2 border-b-primary p-1'
+                    >
+                      <div className='font-bold'>
+                        {convertToDate(collection.createdAt)}
+                      </div>
+                      <div className='flex items-center justify-center font-bold'>
+                        GameKey:
+                        <div className='bg-base_dark p-1 font-bold text-white'>
+                          {collection.gameKey}
                         </div>
                       </div>
                     ))}
