@@ -89,12 +89,12 @@ export default function LoginForm({ onClose }) {
               'Log in'
             )}
           </button>
-          <button
+          {/* <button
             type='button' // Changed type to 'button' as this button doesn't submit the form
             className='flex h-[2rem] w-[20em] items-center justify-center bg-base_dark p-5 font-semibold text-neutral transition-all hover:bg-secondary_mute active:scale-95'
           >
             Login With Google Account
-          </button>
+          </button> */}
         </div>
       </div>
     </form>

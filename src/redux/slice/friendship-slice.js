@@ -183,6 +183,7 @@ const friendshipSlice = createSlice({
       })
       .addCase(requestFriend.fulfilled, (state, action) => {
         state.actionMessage = action.payload;
+        state.friends = null;
         state.loadingActionMessage = false;
       })
       .addCase(requestFriend.rejected, (state, action) => {
@@ -197,6 +198,7 @@ const friendshipSlice = createSlice({
       })
       .addCase(acceptFriend.fulfilled, (state, action) => {
         state.actionMessage = action.payload;
+        state.friends = null;
         state.loadingActionMessage = false;
       })
       .addCase(acceptFriend.rejected, (state, action) => {

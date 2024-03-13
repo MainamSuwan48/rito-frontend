@@ -8,8 +8,11 @@ function FriendList({ user }) {
   const dispatch = useDispatch();
   const { friends, loadingFriends } = useSelector((state) => state.friendship);
   useEffect(() => {
-    dispatch(getAllFriend(user.id));
-  }, []);
+    if (!friends) {
+      dispatch(getAllFriend(user.id));
+    }
+  }, [friends]);
+
   if (!loadingFriends) {
     console.log(friends);
   }
