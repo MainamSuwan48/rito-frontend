@@ -22,9 +22,14 @@ export default function PostItems({ post }) {
   } = post;
 
   const [isOpenComment, setIsOpenComment] = useState(false);
+  const [isLike, setIsLike] = useState(likes);
 
   const handleOnClickOpenComment = () => {
     setIsOpenComment(!isOpenComment);
+  };
+
+  const handleOnClickLike = () => {
+    setIsLike(isLike + 1);
   };
 
   const setStylePostTypeTag = (postType) => {
@@ -103,17 +108,20 @@ export default function PostItems({ post }) {
             </p>
           </div>
           <div className='flex gap-2.5'>
-            <div className='flex items-center gap-1'>
-              <ThumbsUpIcon className={'size-5'} />
+            <button
+              className='flex items-center gap-1'
+              onClick={handleOnClickLike}
+            >
+              <ThumbsUpIcon className='hove:fill-blue-500 size-5' />
               <span className='text-[12px] text-base_dark text-opacity-45'>
-                {likes}
+                {isLike}
               </span>
-            </div>
+            </button>
             <button
               className='flex items-center gap-1'
               onClick={handleOnClickOpenComment}
             >
-              <CommentIcon className={'size-5'} />
+              <CommentIcon className='size-5 ' />
               <span className='text-[12px] text-base_dark text-opacity-45'>
                 {comments.length}
               </span>
@@ -132,8 +140,9 @@ export default function PostItems({ post }) {
           )}
         </p>
       </div>
-      {isOpenComment
-        ? comments.map((comment) => {
+      {isOpenComment ? (
+        <div>
+          {comments.map((comment) => {
             return (
               <div key={comment.id} className='flex items-center gap-4 p-4'>
                 <div className='flex flex-shrink-0 items-center gap-2'>
@@ -147,8 +156,22 @@ export default function PostItems({ post }) {
                 <div>{comment.content}</div>
               </div>
             );
-          })
-        : null}
+          })}
+          <div className='flex p-4'>
+            <input
+              type='text'
+              className='input-bordered w-full border p-1.5 text-black'
+              placeholder='write your comments here...'
+            />
+            <button
+              type='submit'
+              className='text-md flex h-[2rem] items-center justify-center bg-primary p-5 font-semibold text-neutral transition-all hover:bg-secondary_mute active:scale-95'
+            >
+              comments
+            </button>
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }
