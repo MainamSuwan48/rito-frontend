@@ -131,7 +131,7 @@ function Header() {
         <div className='col-span-4 h-12 justify-self-end'>
           <button
             onClick={openModal}
-            className='shadow-neutral-shadow-02 h-12 border border-solid border-accent px-[24px] text-accent transition-all hover:bg-primary hover:text-neutral active:bg-primary_mute'
+            className='shadow-neutral-shadow-02 my-1 h-10 border border-solid border-accent px-[24px] text-accent transition-all hover:bg-primary hover:text-neutral active:bg-primary_mute'
           >
             Sign in
           </button>

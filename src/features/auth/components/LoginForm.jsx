@@ -1,4 +1,5 @@
 import { useForm } from 'react-hook-form';
+import { useState } from 'react';
 import { joiResolver } from '@hookform/resolvers/joi';
 import { toast } from 'react-toastify';
 
@@ -9,12 +10,14 @@ import { login, getMe } from '../../../redux/slice/auth-slice';
 import FormInput from './FormInput';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { EyeClose, EyeOpen } from '@/icons';
 
 export default function LoginForm({ onClose }) {
   // redux dispatch
   const dispatch = useDispatch();
   // redux state
   const { authUser, loading } = useSelector((state) => state.auth);
+  const [isShowPassword, setIsShowPassword] = useState(false);
 
   const navigate = useNavigate();
 
@@ -27,6 +30,10 @@ export default function LoginForm({ onClose }) {
     resolver: joiResolver(loginSchema),
     mode: 'onSubmit',
   });
+
+  const handleClickShowPassword = () => {
+    setIsShowPassword(!isShowPassword);
+  };
 
   // This function will be called when the form is submitted
   const onSubmit = async (data) => {
@@ -42,27 +49,39 @@ export default function LoginForm({ onClose }) {
           errors={errors}
           label='Username or Email'
         />
-        <FormInput
-          register={register}
-          name='password'
-          errors={errors}
-          label='Password'
-          type='password'
-        />
+        <div className='relative w-full'>
+          <FormInput
+            register={register}
+            name='password'
+            errors={errors}
+            label='Password'
+            type={isShowPassword ? 'text' : 'password'}
+          />
+          <div
+            className='absolute right-2 top-8'
+            onClick={handleClickShowPassword}
+          >
+            {isShowPassword ? (
+              <EyeOpen className=' size-5 text-neutral-400' />
+            ) : (
+              <EyeClose className='size-5 text-neutral-400' />
+            )}
+          </div>
+        </div>
         <div
           onClick={(event) => {
             event.stopPropagation();
             onClose();
             navigate('/forgot-password');
           }}
-          className='cursor-pointer select-none pb-4 text-center font-bold text-secondary transition-all hover:text-secondary_mute active:scale-95'
+          className='cursor-pointer select-none pb-4 text-center text-sm font-bold text-secondary transition-all hover:text-secondary_mute active:scale-95'
         >
           Forgot Password ?
         </div>
         <div className='flex w-full flex-col items-center justify-center gap-2'>
           <button
             type='submit'
-            className='flex h-[2rem] w-[20em] items-center justify-center rounded-md border-2 border-neutral bg-primary p-5 font-semibold text-neutral transition-all hover:bg-secondary_mute active:scale-95'
+            className='flex h-[2rem] w-[20em] items-center justify-center bg-primary p-5 font-semibold text-neutral transition-all hover:bg-secondary_mute active:scale-95'
           >
             {loading ? (
               <span className='loading loading-ring loading-lg'></span>
@@ -72,7 +91,7 @@ export default function LoginForm({ onClose }) {
           </button>
           <button
             type='button' // Changed type to 'button' as this button doesn't submit the form
-            className='flex h-[2rem] w-[20em] items-center justify-center rounded-md border-2 border-neutral bg-base_dark p-5 font-semibold text-neutral transition-all hover:bg-secondary_mute active:scale-95'
+            className='flex h-[2rem] w-[20em] items-center justify-center bg-base_dark p-5 font-semibold text-neutral transition-all hover:bg-secondary_mute active:scale-95'
           >
             Login With Google Account
           </button>
