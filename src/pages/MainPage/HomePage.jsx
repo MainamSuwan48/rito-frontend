@@ -111,7 +111,7 @@ function HomePage() {
           initial={{ x: -300 }} // start from 300px to the left of the initial position
           animate={{ x: 0 }} // end at the initial position
           transition={{ type: 'spring', stiffness: 60, damping: 20 }}
-          className='absolute inset-0 bottom-0 z-50 h-[400px] object-cover'
+          className='absolute inset-0 bottom-0 z-30 h-[400px] object-cover'
           src='https://i.imgur.com/Ss9i9gl.png'
         />
         <img
