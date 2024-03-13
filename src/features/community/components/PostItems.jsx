@@ -35,7 +35,7 @@ export default function PostItems({ post }) {
 
         {/* Right Side */}
         {/* resonsive */}
-        <div className='relative flex w-[40%] flex-col justify-between p-4 max-sm:w-[100%]'>
+        <div className='relative flex w-[40%] flex-col justify-between p-4 max-sm:w-[100%] max-sm:gap-4'>
           <div className='flex flex-col gap-4'>
             <p className='text-[24px] font-semibold'>
               {title ? title : 'Title'}
