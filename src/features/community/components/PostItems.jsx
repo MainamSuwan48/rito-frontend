@@ -14,39 +14,49 @@ export default function PostItems({ post }) {
     deletedAt,
     comments,
     likes,
+    imgUrl,
   } = post;
 
-  const setSyleContainer = (backgroundImageUrl) => {
-    if (backgroundImageUrl != '') {
-      return 'flex flex-col justify-between';
+  const setStylePostTypeTag = (postType) => {
+    if (postType === 'SCREENSHOT') {
+      return 'bg-green-600';
+    } else if (postType === 'DISCUSSION') {
+      return 'bg-blue-400';
+    } else if (postType === 'FANART') {
+      return 'bg-yellow-300';
     } else {
-      return 'flex flex-row flex-1 justify-between max-sm:flex-col max-sm:gap-4';
+      return 'bg-gray-400';
+    }
+  };
+
+  const setStyleContainer = (imgUrl, content) => {
+    if (imgUrl && !content) {
+      return 'flex flex-row gap-4 items-center';
+    } else {
+      return 'flex flex-row justify-end flex-1 max-sm:flex-col max-sm:gap-4 gap-4';
     }
   };
   return (
     <div className='flex flex-col shadow-md'>
-      <div className='glass flex flex-row text-base_dark max-sm:flex-col'>
+      <div className={`glass flex flex-row text-base_dark max-sm:flex-col`}>
         {/* Left Side */}
-        {game.backgroundImageUrl ? (
+        {imgUrl ? (
           <img
-            src={game.backgroundImageUrl}
-            alt=''
+            src={imgUrl}
+            alt='user uploaded image'
             className='max-h-[40vh] flex-1 bg-slate-400 object-cover object-top'
           />
         ) : null}
 
         {/* Right Side */}
         {/* resonsive */}
-        {/* bug here */}
         <div
-          className={`relative flex w-[40%] ${setSyleContainer(game.backgroundImageUrl)} p-4 max-sm:w-[100%] max-sm:gap-4`}
+          className={`relative flex w-[40%]  ${setStyleContainer(game.backgroundImageUrl, content)} p-4 max-sm:w-[100%] max-sm:gap-4`}
         >
-          <div className='flex flex-col gap-4'>
-            <p className='text-[24px] font-semibold'>
-              {title ? title : 'Title'}
-            </p>
+          <div className='flex flex-col justify-center gap-4'>
+            <p className='text-[24px] font-semibold'>{title ? title : null}</p>
             <p className='line-clamp-6 leading-5 '>
-              {content ? content : 'content-text'}
+              {content ? content : null}
             </p>
           </div>
 
@@ -73,8 +83,15 @@ export default function PostItems({ post }) {
         </div>
       </div>
       <div className='flex items-center justify-between divide-x p-2'>
-        <div className='flex flex-1 justify-between pr-6'>
-          <p className=''>{game.name}</p>
+        <div className='item-center flex flex-1  justify-between pr-6'>
+          <div className='flex flex-shrink-0 items-center gap-2.5'>
+            <p>{game.name}</p>
+            <p
+              className={`p-1 text-[12px] text-white ${setStylePostTypeTag(postType)}`}
+            >
+              {postType}
+            </p>
+          </div>
           <div className='flex gap-2.5'>
             <div className='flex items-center gap-1'>
               <ThumbsUpIcon className={'size-5'} />
