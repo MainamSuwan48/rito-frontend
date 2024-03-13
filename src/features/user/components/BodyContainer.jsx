@@ -5,19 +5,25 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getUserGames } from '@/redux/slice/user-slice';
 import GameCardStrip from '@/features/store/components/GameCardStrip';
 import FriendList from './FriendList';
+import { useParams } from 'react-router-dom';
 
 export default function BodyContainer({ user }) {
   const dispatch = useDispatch();
+  const { authUser } = useSelector((state) => state.auth);
   const { userGames, loadingUserGames } = useSelector((state) => state.users);
-  const userId = user.id;
+  const userId = useParams().userId;
 
   const test = () => {
     console.log(userGames[0]);
   };
 
   useEffect(() => {
-    dispatch(getUserGames(userId));
-  }, [user]);
+    if (userId) {
+      dispatch(getUserGames(userId));
+    } else if (authUser) {
+      dispatch(getUserGames(authUser.id));
+    }
+  }, [user, authUser]);
 
   return (
     <div className='grid grid-cols-[7fr_3fr] gap-2.5 '>
@@ -40,7 +46,11 @@ export default function BodyContainer({ user }) {
           ) : (
             userGames &&
             userGames.map((game, index) => (
-              <GameCardStrip type='profile' key={index} gameData={game} />
+              <GameCardStrip
+                type={userId ? 'friend' : 'profile'}
+                key={index}
+                gameData={game}
+              />
             ))
           )}
         </div>

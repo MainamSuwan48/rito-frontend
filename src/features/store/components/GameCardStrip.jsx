@@ -2,7 +2,7 @@ import React from 'react';
 import GameCardTag from './GameCardTag';
 import { useNavigate } from 'react-router-dom';
 import { HeartIcon, TrashIcon } from '@/icons';
-import { useDispatch ,useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { deleteItem } from '@/redux/slice/cart-slice';
 import {
   Popover,
@@ -112,6 +112,14 @@ export default function GameCardStrip({
           </div>
         )}
 
+        {type === 'friend' && (
+          <div className='flex h-full flex-col justify-between p-2'>
+            <div className='font-bold'>
+              {gameCollections && convertToDate(gameCollections[0].createdAt)}
+            </div>
+          </div>
+        )}
+
         {type === 'profile' && (
           <div className='flex h-full flex-col justify-between p-2'>
             <Popover>
@@ -135,8 +143,7 @@ export default function GameCardStrip({
                           {collection.gameKey}
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
                 </div>
               </PopoverContent>
             </Popover>
