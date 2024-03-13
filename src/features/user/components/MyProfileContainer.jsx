@@ -5,8 +5,10 @@ import PendingRequestModal from '@/features/community/components/PendingRequestM
 import { clearAuthUserImages } from '@/redux/slice/auth-slice';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 export default function MyProfileContainer({ user }) {
+  const navigate = useNavigate()
   const dispatch = useDispatch()
   const {
     description,
@@ -89,12 +91,14 @@ export default function MyProfileContainer({ user }) {
         <div className='grid grid-flow-row items-center justify-center gap-2.5 mt-3'>
           <AddFriendsModal userID={user.id}/>
           <PendingRequestModal/>
-          {/* <div className='flex h-fit flex-col items-center justify-center gap-2.5 bg-zinc-300 px-20 py-4'>
-            <div className='text-center font-semibold text-white'>
-              Pending Request
-            </div>
-          </div> */}
           <EditForm user={user} />
+          <button 
+            className='h-fit gap-2.5 rounded-none bg-zinc-500 transition-all hover:bg-neutral hover:text-base_dark border-neutral px-20 py-4 text-center text-base font-semibold text-white'
+            onClick={()=>navigate('/create/game')}
+          >
+            Create Game
+          </button>
+
         </div>
       </div>
     </>

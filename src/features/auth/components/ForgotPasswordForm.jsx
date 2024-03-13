@@ -53,7 +53,7 @@ function ForgotPasswordForm() {
           <div className='flex w-full flex-col items-center justify-evenly'>
             <button
               type='submit'
-              className='flex h-[2rem] w-full items-center justify-center rounded-md border-2 border-neutral bg-primary p-5 font-bold text-neutral transition-all hover:bg-secondary_mute active:scale-95'
+              className='flex h-[2rem] w-full items-center justify-center bg-primary p-5 font-bold text-neutral transition-all hover:bg-secondary_mute active:scale-95'
             >
               Request password reset
             </button>

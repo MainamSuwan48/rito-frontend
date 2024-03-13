@@ -11,7 +11,7 @@ function GamePageHero({ gameData }) {
           {name}
         </div>
         <div className='bg-base_dark bg-opacity-80 p-2 font-rubik text-[42px] font-bold text-primary'>
-          {new Intl.NumberFormat().format(price)}
+          {new Intl.NumberFormat().format(price)} {'\u0E3F'}
           {/* {price} ฿ */}
         </div>
       </div>
