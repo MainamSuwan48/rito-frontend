@@ -1,13 +1,14 @@
 import { useForm } from 'react-hook-form';
 import { joiResolver } from '@hookform/resolvers/joi';
 import { toast } from 'react-toastify';
+import { EyeClose, EyeOpen } from '@/icons';
 
 //local imports
 import FormInput from './FormInput';
 import { registerSchema } from '../validations/validate-register';
 import { useDispatch, useSelector } from 'react-redux';
 import { registerUser, getMe } from '../../../redux/slice/auth-slice';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function RegisterForm() {
@@ -15,6 +16,7 @@ export default function RegisterForm() {
   const dispatch = useDispatch();
   // redux state
   const { authUser, loading } = useSelector((state) => state.auth);
+  const [isShowPassword, setIsShowPassword] = useState(false);
 
   // Initialize useForm with the joiResolver and your validation schema
   const {
@@ -31,6 +33,10 @@ export default function RegisterForm() {
   // ...
 
   const navigate = useNavigate();
+
+  const handleOnClickShowPassword = () => {
+    setIsShowPassword(!isShowPassword);
+  };
 
   const onSubmit = async (data) => {
     console.log(data);
@@ -82,20 +88,44 @@ export default function RegisterForm() {
               label='Last Name'
             />
           </div>
-          <FormInput
-            register={register}
-            type='password'
-            name='password'
-            errors={errors}
-            label='Password'
-          />
-          <FormInput
-            register={register}
-            type='password'
-            name='confirmPassword'
-            errors={errors}
-            label='Confirm Password'
-          />
+          <div className=' relative w-full'>
+            <FormInput
+              register={register}
+              type={isShowPassword ? 'text' : 'password'}
+              name='password'
+              errors={errors}
+              label='password'
+            />
+            <div
+              className='absolute right-2 top-8'
+              onClick={handleOnClickShowPassword}
+            >
+              {isShowPassword ? (
+                <EyeOpen className=' size-5 text-neutral-400' />
+              ) : (
+                <EyeClose className='size-5 text-neutral-400' />
+              )}
+            </div>
+          </div>
+          <div className=' relative w-full'>
+            <FormInput
+              register={register}
+              type={isShowPassword ? 'text' : 'password'}
+              name='confirmPassword'
+              errors={errors}
+              label='Confirm Password'
+            />
+            <div
+              className='absolute right-2 top-8'
+              onClick={handleOnClickShowPassword}
+            >
+              {isShowPassword ? (
+                <EyeOpen className=' size-5 text-neutral-400' />
+              ) : (
+                <EyeClose className='size-5 text-neutral-400' />
+              )}
+            </div>
+          </div>
           <div className='flex w-full flex-col items-center justify-evenly'>
             <button
               type='submit'
