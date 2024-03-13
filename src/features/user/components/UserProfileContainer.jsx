@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import ProfileAction from './ProfileAction';
 
 export default function UserProfileContainer({ user }) {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const {
     description,
     username,
@@ -17,27 +17,31 @@ export default function UserProfileContainer({ user }) {
     email,
   } = user;
 
-  const {actionMessage,loadingActionMessage,friendStatus,loadingFriendStatus}=
-    useSelector((state)=> state.friendship)
+  const {
+    actionMessage,
+    loadingActionMessage,
+    friendStatus,
+    loadingFriendStatus,
+  } = useSelector((state) => state.friendship);
 
   // console.log(user, 'user in UserProfileContainer');
 
   useEffect(() => {
     dispatch(checkFriendshipStatus(user.id));
   }, [actionMessage]);
-  
+
   // console.log(friendStatus);
   return (
     <>
       <div className='inline-flex h-fit w-full items-start justify-between gap-36'>
         <div className='flex items-center justify-center gap-10'>
-        <div className='flex flex-col gap-4 bg-white bg-opacity-45 p-4 mt-5'>
-          <img
-            className='h-64 w-64'
-            src={profileImageUrl || 'https://via.placeholder.com/256x256'}
-          />
-        </div>
-          <div className='flex items-center w-[350px] justify-start gap-4 bg-opacity-50 bg-white p-4'>
+          <div className='mt-5 flex flex-col gap-4 bg-white bg-opacity-45 p-4'>
+            <img
+              className='h-64 w-64'
+              src={profileImageUrl || 'https://via.placeholder.com/256x256'}
+            />
+          </div>
+          <div className='flex w-[350px] items-center justify-start gap-4 bg-white bg-opacity-50 p-4'>
             <div className='inline-flex flex-col items-start justify-start gap-6'>
               <div className='flex flex-col items-start justify-center gap-4'>
                 <div className='inline-flex items-start justify-center gap-6'>
@@ -83,13 +87,13 @@ export default function UserProfileContainer({ user }) {
             </div>
           </div>
         </div>
-        <div className='grid grid-flow-row items-center justify-center gap-2.5 mt-3'>
+        <div className='mt-3 grid grid-flow-row items-center justify-center gap-2.5'>
           {/* <div className='flex h-fit flex-col items-center justify-center gap-2.5 bg-teal-500 px-20 py-4'>
             <div className='text-center font-semibold text-white'>
               {friendStatus? friendStatus.status : 'Add friend'}
             </div>
           </div> */}
-          <ProfileAction user={user}/>
+          <ProfileAction user={user} />
         </div>
       </div>
     </>

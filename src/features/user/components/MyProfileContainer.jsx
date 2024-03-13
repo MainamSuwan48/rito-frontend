@@ -8,8 +8,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 export default function MyProfileContainer({ user }) {
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const {
     description,
     username,
@@ -21,28 +21,30 @@ export default function MyProfileContainer({ user }) {
     email,
   } = user;
 
-  const {authUserImage,loadingImage} = useSelector((state)=> state.auth)
+  const { authUserImage, loadingImage } = useSelector((state) => state.auth);
 
-  
   return (
     <>
       <div className='inline-flex h-fit w-full items-start justify-between gap-36'>
         <div className='flex items-center justify-center gap-10'>
-          <div className='flex flex-col gap-4 bg-white bg-opacity-45 p-4 mt-2'>
-            {loadingImage
-            ?
-            <span className='loading loading-ring  h-64 w-64'></span>
-            :
-            <>
-              <img
-              className='h-64 w-64'
-              src={authUserImage ? authUserImage : (profileImageUrl || 'https://via.placeholder.com/256x256')}
-              />
-              <EditProfilePicture user={user} />
-            </>
-            }
+          <div className='mt-2 flex flex-col gap-4 bg-white bg-opacity-45 p-4'>
+            {loadingImage ? (
+              <span className='loading loading-ring  h-64 w-64'></span>
+            ) : (
+              <>
+                <img
+                  className='h-64 w-64'
+                  src={
+                    authUserImage
+                      ? authUserImage
+                      : profileImageUrl || 'https://via.placeholder.com/256x256'
+                  }
+                />
+                <EditProfilePicture user={user} />
+              </>
+            )}
           </div>
-          <div className='flex items-center w-[350px] justify-start gap-4  bg-opacity-50 bg-white p-4'>
+          <div className='flex w-[350px] items-center justify-start gap-4  bg-white bg-opacity-50 p-4'>
             <div className='inline-flex flex-col items-start justify-start gap-6'>
               <div className='flex flex-col items-start justify-center gap-4'>
                 <div className='inline-flex items-start justify-center gap-6'>
@@ -88,17 +90,16 @@ export default function MyProfileContainer({ user }) {
             </div>
           </div>
         </div>
-        <div className='grid grid-flow-row items-center justify-center gap-2.5 mt-3'>
-          <AddFriendsModal userID={user.id}/>
-          <PendingRequestModal/>
+        <div className='mt-3 grid grid-flow-row items-center justify-center gap-2.5'>
+          <AddFriendsModal userID={user.id} />
+          <PendingRequestModal />
           <EditForm user={user} />
-          <button 
-            className='h-fit gap-2.5 rounded-none bg-zinc-500 transition-all hover:bg-neutral hover:text-base_dark border-neutral px-20 py-4 text-center text-base font-semibold text-white'
-            onClick={()=>navigate('/create/game')}
+          <button
+            className='h-fit gap-2.5 rounded-none border-neutral bg-zinc-500 px-20 py-4 text-center text-base font-semibold text-white transition-all hover:bg-neutral hover:text-base_dark'
+            onClick={() => navigate('/create/game')}
           >
             Create Game
           </button>
-
         </div>
       </div>
     </>

@@ -9,7 +9,7 @@ const initialState = {
   authUser: null,
   loading: false,
   authUserImage: null,
-  loadingImage:false,
+  loadingImage: false,
   error: null,
 };
 
@@ -114,7 +114,6 @@ const authSlice = createSlice({
     clearAuthUserImages: (state) => {
       state.authUserImage = null;
     },
-
   },
   extraReducers: (builder) => {
     builder
@@ -196,7 +195,7 @@ const authSlice = createSlice({
       })
       .addCase(updateProfileImage.fulfilled, (state, action) => {
         state.loadingImage = false;
-        state.authUserImage = action.payload.profileImageUrl
+        state.authUserImage = action.payload.profileImageUrl;
       })
       .addCase(updateProfileImage.rejected, (state, action) => {
         state.loadingImage = false;

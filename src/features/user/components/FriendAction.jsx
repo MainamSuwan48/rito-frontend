@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 function FriendAction() {
   return (
@@ -7,8 +7,10 @@ function FriendAction() {
     //         Friend
     //     </div>
     // </div>
-    <div className=' text-success bg-base_dark border-neutral p-4'>Status : Friend</div>
-  )
+    <div className=' border-neutral bg-base_dark p-4 text-success'>
+      Status : Friend
+    </div>
+  );
 }
 
-export default FriendAction
+export default FriendAction;

@@ -1,38 +1,40 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { useSelector } from "react-redux";
+import { useSelector } from 'react-redux';
 
-export default function FriendItems({friend}) {
-  const navigate = useNavigate()
+export default function FriendItems({ friend }) {
+  const navigate = useNavigate();
   const { authUser } = useSelector((state) => state.auth);
 
-  const handleClick = ()=>{
-    if(friend.id !== authUser.id){
-      navigate(`/user/${friend.id}`)
-    }else{
-      navigate('/user')
+  const handleClick = () => {
+    if (friend.id !== authUser.id) {
+      navigate(`/user/${friend.id}`);
+    } else {
+      navigate('/user');
     }
-  }
+  };
   return (
     <>
-      <div className='inline-flex flex-shrink-0 w-full h-[80px] items-center justify-between gap-24 border-b border-black bg-slate-400 bg-opacity-80'>
+      <div className='inline-flex h-[80px] w-full flex-shrink-0 items-center justify-between gap-24 border-b border-black bg-slate-400 bg-opacity-80'>
         <div className='flex items-center justify-center gap-4'>
-          <div className='flex flex-shrink-0 items-center justify-center gap-2.5 bg-zinc-100 bg-opacity-80    w-20'>
-            <div 
-              className='text-center flex items-center h-[80px] text-4xl font-semibold text-black cursor-pointer'
+          <div className='flex w-20 flex-shrink-0 items-center justify-center gap-2.5 bg-zinc-100    bg-opacity-80'>
+            <div
+              className='flex h-[80px] cursor-pointer items-center text-center text-4xl font-semibold text-black'
               onClick={handleClick}
             >
-              {friend?.profileImageUrl
-              ?
-                <img className="h-[80px] w-[80px] " src={friend?.profileImageUrl} />
-              :
+              {friend?.profileImageUrl ? (
+                <img
+                  className='h-[80px] w-[80px] '
+                  src={friend?.profileImageUrl}
+                />
+              ) : (
                 friend?.displayName[0].toUpperCase()
-              }
+              )}
             </div>
           </div>
           <div className='inline-flex flex-col items-start justify-start gap-1.5 '>
             <div className='text-center  text-base font-medium leading-snug text-black'>
-              {friend.displayName.slice(0,15)}
+              {friend.displayName.slice(0, 15)}
             </div>
             <div className='text-center  text-xs font-normal leading-snug text-zinc-700'>
               {friend.username}
@@ -47,5 +49,3 @@ export default function FriendItems({friend}) {
     </>
   );
 }
-
-

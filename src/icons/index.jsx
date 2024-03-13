@@ -485,7 +485,6 @@ export function ShieldIcon({ className = null }) {
   );
 }
 
-
 export function ChatIcon({ className = null }) {
   return (
     <svg
@@ -504,6 +503,9 @@ export function ChatIcon({ className = null }) {
       <path d='M8 12h.01' />
       <path d='M12 12h.01' />
       <path d='M16 12h.01' />
+    </svg>
+  );
+}
 
 export function EyeOpen({ className = null }) {
   return (
@@ -514,18 +516,16 @@ export function EyeOpen({ className = null }) {
       viewBox='0 0 24 24'
       fill='none'
       stroke='currentColor'
-      stroke-width='2'
-      stroke-linecap='round'
-      stroke-linejoin='round'
+      strokeWidth='2'
+      strokeLinecap='round'
+      strokeLinejoin='round'
       className={className}
     >
       <path d='M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z' />
       <circle cx='12' cy='12' r='3' />
-
     </svg>
   );
 }
-
 
 export function HeadSetIcon({ className = null }) {
   return (
@@ -543,6 +543,9 @@ export function HeadSetIcon({ className = null }) {
     >
       <path d='M3 11h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5Zm0 0a9 9 0 1 1 18 0m0 0v5a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3Z' />
       <path d='M21 16v2a4 4 0 0 1-4 4h-5' />
+    </svg>
+  );
+}
 
 export function EyeClose({ className = null }) {
   return (
@@ -553,16 +556,15 @@ export function EyeClose({ className = null }) {
       viewBox='0 0 24 24'
       fill='none'
       stroke='currentColor'
-      stroke-width='2'
-      stroke-linecap='round'
-      stroke-linejoin='round'
+      strokeWidth='2'
+      strokeLinecap='round'
+      strokeLinejoin='round'
       className={className}
     >
       <path d='M9.88 9.88a3 3 0 1 0 4.24 4.24' />
       <path d='M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68' />
       <path d='M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61' />
       <line x1='2' x2='22' y1='2' y2='22' />
- develop
     </svg>
   );
 }

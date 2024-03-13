@@ -22,7 +22,7 @@ export default function UserProfilePage() {
     }
   }, [userId]);
   console.log(currentUser);
-  
+
   return (
     <>
       <video

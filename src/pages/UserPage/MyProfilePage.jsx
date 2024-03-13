@@ -10,12 +10,12 @@ import { useEffect } from 'react';
 
 export default function MyProfilePage() {
   const { authUser } = useSelector((state) => state.auth);
-  const dispatch = useDispatch()
-  useEffect(()=>{
-    return ()=>{
-      dispatch(clearAuthUserImages())
-    }
-  },[authUser])
+  const dispatch = useDispatch();
+  useEffect(() => {
+    return () => {
+      dispatch(clearAuthUserImages());
+    };
+  }, [authUser]);
 
   return (
     <>

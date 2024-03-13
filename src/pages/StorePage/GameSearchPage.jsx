@@ -24,7 +24,7 @@ export default function GameSearchPage() {
   return (
     <div className='relative flex w-full items-center justify-center overflow-auto'>
       <video
-        className='-z-50 inset-0'
+        className='inset-0 -z-50'
         autoPlay
         loop
         muted

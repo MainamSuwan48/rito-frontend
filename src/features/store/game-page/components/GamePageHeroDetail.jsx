@@ -114,7 +114,7 @@ function GamePageHeroDetail({ gameData }) {
             </div>
             {authUser.isAdmin ? null : owned ? (
               // User, game owned
-              <div className='text-xs flex h-12 px-1 w-full items-center justify-center bg-base_dark font-bold text-white'>
+              <div className='flex h-12 w-full items-center justify-center bg-base_dark px-1 text-xs font-bold text-white'>
                 YOU ALREADY BOUGHT THIS GAME BUY AGAIN?
               </div>
             ) : null}

@@ -21,12 +21,12 @@ export function EditProfilePicture({ user }) {
   const dispatch = useDispatch();
   const { id, profileImageUrl } = user;
   const [file, setFile] = useState(null);
-  const {authUserImage,loadingImage} = useSelector((state)=> state.auth)
+  const { authUserImage, loadingImage } = useSelector((state) => state.auth);
 
   const onSubmit = async () => {
     const formData = new FormData();
     formData.append('profileImageUrl', file);
-    console.log({ file, formData }, 'id, formData')
+    console.log({ file, formData }, 'id, formData');
     dispatch(updateProfileImage({ id, formData }))
       .then()
       .catch((err) => {
@@ -63,16 +63,12 @@ export function EditProfilePicture({ user }) {
             />
             <img
               className='h-64 w-64'
-              src={file
-                  ? 
-                  URL.createObjectURL(file)
-                  :
-                  (authUserImage 
-                    ? 
-                    authUserImage 
-                    : 
-                    ( profileImageUrl || 'https://via.placeholder.com/256x256')
-                  )
+              src={
+                file
+                  ? URL.createObjectURL(file)
+                  : authUserImage
+                    ? authUserImage
+                    : profileImageUrl || 'https://via.placeholder.com/256x256'
               }
             />
             <DialogFooter className='flex w-full items-center justify-center '>

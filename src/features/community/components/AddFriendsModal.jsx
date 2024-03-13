@@ -14,20 +14,20 @@ import { useSelector } from 'react-redux';
 
 function AddFriendsModal() {
   const { authUser } = useSelector((state) => state.auth);
-  console.log(authUser)
+  console.log(authUser);
   return (
     <Sheet>
       <SheetTrigger
-        className='flex gap-2 h-14 w-[350px] items-center justify-center bg-base_dark hover:bg-gray-900 text-neutral transition-all
-      hover:rounded-md active:bg-base-300'
+        className='flex h-14 w-[350px] items-center justify-center gap-2 bg-base_dark text-neutral transition-all hover:rounded-md
+      hover:bg-gray-900 active:bg-base-300'
       >
         Add Friends <FriendIcon />
       </SheetTrigger>
       <SheetContent>
         <SheetHeader>
           <SheetTitle>Are you absolutely sure?</SheetTitle>
-          <SheetDescription >
-            <UsersList myID={authUser?.id}/>
+          <SheetDescription>
+            <UsersList myID={authUser?.id} />
           </SheetDescription>
         </SheetHeader>
       </SheetContent>

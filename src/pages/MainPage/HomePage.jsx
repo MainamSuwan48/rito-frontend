@@ -40,7 +40,7 @@ function HomePage() {
       <div className='p-[5rem]' style={{ backgroundImage: `url(${BGCITY})` }}>
         {/* ============== < TITLE BEST GAME > ============== */}
         <div className=' flex-col'>
-          <p className='font-babas flex justify-center bg-gradient-to-r from-primary to-secondary bg-clip-text pb-4 text-7xl font-black  text-transparent duration-100 hover:scale-105'>
+          <p className='flex justify-center bg-gradient-to-r from-primary to-secondary bg-clip-text pb-4 font-babas text-7xl font-black  text-transparent duration-100 hover:scale-105'>
             Discover the best games
           </p>
         </div>
@@ -143,7 +143,7 @@ function HomePage() {
         </video>
         {/* ============== < TITLE BEST GAME > ============== */}
         <div className='flex-col bg-black bg-opacity-60 p-4'>
-          <p className='font-babas flex justify-center p-4 text-7xl font-bold text-neutral duration-100 hover:scale-105 hover:text-primary'>
+          <p className='flex justify-center p-4 font-babas text-7xl font-bold text-neutral duration-100 hover:scale-105 hover:text-primary'>
             BUILT FOR PC GAMERS
           </p>
           <p className='flex items-center justify-center p-4 text-2xl font-bold text-base_light'>
@@ -221,7 +221,7 @@ function HomePage() {
         <img src={ritoLogo} />
         <p
           onClick={() => navigate('/store')}
-          className='font-babas p-4 text-9xl font-bold text-neutral duration-100 hover:scale-105 hover:text-primary'
+          className='p-4 font-babas text-9xl font-bold text-neutral duration-100 hover:scale-105 hover:text-primary'
         >
           AND MORE
         </p>

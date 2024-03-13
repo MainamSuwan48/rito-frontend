@@ -66,7 +66,9 @@ export default function GameStorePage() {
           <div className='grid h-game_store grid-cols-1 items-start gap-6 self-center justify-self-center overflow-auto pb-6 lg:grid-cols-2 2xl:grid-cols-3'>
             {games &&
               games.map((game) => (
-                <Suspense fallback={<Skeleton className='h-[425px] w-[416px]' />}>
+                <Suspense
+                  fallback={<Skeleton className='h-[425px] w-[416px]' />}
+                >
                   <LazyGameCard key={game.id} gameData={game} />
                 </Suspense>
               ))}
