@@ -5,7 +5,7 @@ function FormInput({ register, name, errors, label, type = 'text' }) {
       <input
         type={type}
         {...register(name)}
-        className='input-bordered w-full rounded-md border-2 p-1.5 text-black'
+        className='input-bordered w-full border-2 p-1.5 text-black'
       />
       {errors[name] && (
         <div className='mt-1 text-wrap text-[12px] font-semibold text-danger'>

@@ -55,7 +55,7 @@ export default function RegisterForm() {
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)} className='m-0 w-full'>
-        <div className='flex w-[20em] flex-col items-center justify-center gap-2 p-2'>
+        <div className='flex w-[35vw] flex-col items-center justify-center gap-2 p-2'>
           <FormInput
             register={register}
             name='username'
@@ -68,18 +68,20 @@ export default function RegisterForm() {
             errors={errors}
             label='Email'
           />
-          <FormInput
-            register={register}
-            name='firstName'
-            errors={errors}
-            label='First Name'
-          />
-          <FormInput
-            register={register}
-            name='lastName'
-            errors={errors}
-            label='Last Name'
-          />
+          <div className='flex w-full gap-2'>
+            <FormInput
+              register={register}
+              name='firstName'
+              errors={errors}
+              label='First Name'
+            />
+            <FormInput
+              register={register}
+              name='lastName'
+              errors={errors}
+              label='Last Name'
+            />
+          </div>
           <FormInput
             register={register}
             type='password'
@@ -97,7 +99,7 @@ export default function RegisterForm() {
           <div className='flex w-full flex-col items-center justify-evenly'>
             <button
               type='submit'
-              className='flex h-[2rem] w-full items-center justify-center rounded-md border-2 border-neutral bg-primary p-5 font-bold text-neutral transition-all hover:bg-secondary_mute active:scale-95'
+              className='flex h-[2rem] w-full items-center justify-center bg-primary p-5 font-bold text-neutral transition-all hover:bg-secondary_mute active:scale-95'
             >
               {loading ? (
                 <span className='loading loading-ring loading-lg'></span>

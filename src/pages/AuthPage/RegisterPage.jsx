@@ -26,7 +26,7 @@ export default function RegisterPage() {
         {/* =============== < Text > =============== */}
         <div
           onClick={() => navigate(-1)}
-          className='cursor-pointer select-none pb-4 text-center font-bold text-secondary transition-all hover:text-secondary_mute active:scale-95'
+          className='cursor-pointer select-none pb-4 text-center text-sm font-bold text-secondary transition-all hover:text-secondary_mute active:scale-95'
         >
           Already have an account?{' '}
         </div>
