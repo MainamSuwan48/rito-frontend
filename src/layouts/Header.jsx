@@ -144,7 +144,7 @@ function Header() {
           </div>
         )}
       </div>
-      {authUser && (
+      {authUser && !authUser.isAdmin && (
         <div className='fixed bottom-4 right-4 z-50'>
           <UserChatModal />
         </div>
