@@ -22,7 +22,17 @@ export default function PostItems({ post }) {
   } = post;
 
   const [isOpenComment, setIsOpenComment] = useState(false);
+  const [input, setInput] = useState('');
   const [isLike, setIsLike] = useState(likes);
+
+  const handleOnChangeInput = (e) => {
+    setInput(e.target.value);
+  };
+
+  const handleOnSubmitComment = (e) => {
+    e.preventDefault();
+    console.log(input);
+  };
 
   const handleOnClickOpenComment = () => {
     setIsOpenComment(!isOpenComment);
@@ -157,19 +167,22 @@ export default function PostItems({ post }) {
               </div>
             );
           })}
-          <div className='flex p-4'>
+          <form className='flex p-4'>
             <input
+              onChange={handleOnChangeInput}
+              value={input.comment}
               type='text'
               className='input-bordered w-full border p-1.5 text-black'
               placeholder='write your comments here...'
             />
             <button
-              type='submit'
+              onClick={handleOnSubmitComment}
+              type='button'
               className='text-md flex h-[2rem] items-center justify-center bg-primary p-5 font-semibold text-neutral transition-all hover:bg-secondary_mute active:scale-95'
             >
               comment
             </button>
-          </div>
+          </form>
         </div>
       ) : null}
     </div>
