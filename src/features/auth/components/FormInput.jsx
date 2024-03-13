@@ -8,7 +8,7 @@ function FormInput({ register, name, errors, label, type = 'text' }) {
         className='input-bordered w-full rounded-md border-2 p-1.5 text-black'
       />
       {errors[name] && (
-        <div className='mt-2 text-wrap text-sm font-semibold text-danger'>
+        <div className='mt-1 text-wrap text-[12px] font-semibold text-danger'>
           {errors[name].message}
         </div>
       )}
