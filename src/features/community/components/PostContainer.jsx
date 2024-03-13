@@ -5,6 +5,7 @@ import mockData from './mockData.json';
 
 export default function PostContainer() {
   const [input, setInput] = useState('');
+
   const handleOnChangeInput = (e) => {
     setInput(e.target.value);
   };
