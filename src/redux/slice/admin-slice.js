@@ -55,6 +55,7 @@ export const deleteGame = createAsyncThunk(
 export const getAllChat = createAsyncThunk('admin/chat/all', async () => {
   try {
     const response = await adminApi.getAllChat();
+    console.log(response);
     return response.data.chats;
   } catch (error) {
     return Promise.reject(error);
