@@ -39,7 +39,10 @@ function UserCard({ user, myID }) {
         <div className='h-24 w-24 rounded-md border border-base_dark transition-all hover:border-primary '>
           <img
             className=' h-[94px] w-24 rounded-md bg-base-300 hover:cursor-pointer'
-            src={user.profileImageUrl || 'https://via.placeholder.com/256x256'}
+            src={
+              user.profileImageUrl ||
+              'https://media.istockphoto.com/id/666545204/vector/default-placeholder-profile-icon.jpg?s=612x612&w=0&k=20&c=UGYk-MX0pFWUZOr5hloXDREB6vfCqsyS7SgbQ1-heY8='
+            }
             onClick={() => navigate(`/user/${user.id}`)}
           />
         </div>

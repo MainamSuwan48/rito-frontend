@@ -2,11 +2,10 @@ import SearchBar from '@/features/store/components/SearchBar';
 import SideBar from '@/features/store/components/SideBar';
 import { useSelector, useDispatch } from 'react-redux';
 import { getGames } from '@/redux/slice/games-slice';
-import { useEffect, useState, lazy, Suspense } from 'react'; // Import lazy and Suspense
+import { useEffect, useState } from 'react'; // Remove lazy and Suspense
+import GameCard from '@/features/store/components/GameCard'; // Import GameCard directly
 import GameStoreSorter from '@/features/store/components/GameStoreSorter';
 import { Skeleton } from '@/components/ui/skeleton';
-
-const LazyGameCard = lazy(() => import('@/features/store/components/GameCard')); // Lazy load GameCard
 
 export default function GameStorePage() {
   const dispatch = useDispatch();
@@ -65,12 +64,8 @@ export default function GameStorePage() {
         ) : (
           <div className='grid h-game_store grid-cols-1 items-start gap-6 self-center justify-self-center overflow-auto pb-6 lg:grid-cols-2 2xl:grid-cols-3'>
             {games &&
-              games.map((game) => (
-                <Suspense
-                  fallback={<Skeleton className='h-[425px] w-[416px]' />}
-                >
-                  <LazyGameCard key={game.id} gameData={game} />
-                </Suspense>
+              games.map((game, index) => (
+                <GameCard key={index} gameData={game} /> // Remove Suspense and LazyGameCard
               ))}
           </div>
         )}
