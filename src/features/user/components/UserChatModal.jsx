@@ -16,12 +16,11 @@ function UserChatModal() {
       <SheetTrigger className='rounded-full border-2 bg-primary p-2 transition-all hover:scale-110 active:scale-100 active:bg-primary_mute'>
         <ChatIcon className='h-6 w-6 text-white' title='Chat with Admin' />
       </SheetTrigger>
-      <SheetContent className='w-[800px]'>
-        <SheetHeader>
+      <SheetContent className=''>
+        <SheetHeader className='h-content'>
           <SheetTitle>Chat with Admin</SheetTitle>
-          <SheetDescription>
-            <UserChatBox />
-          </SheetDescription>
+          {/* <SheetDescription></SheetDescription> */}
+          <UserChatBox />
         </SheetHeader>
       </SheetContent>
     </Sheet>
