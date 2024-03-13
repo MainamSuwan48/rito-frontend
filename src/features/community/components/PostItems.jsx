@@ -15,6 +15,14 @@ export default function PostItems({ post }) {
     comments,
     likes,
   } = post;
+
+  const setSyleContainer = (backgroundImageUrl) => {
+    if (backgroundImageUrl != '') {
+      return 'flex flex-col justify-between';
+    } else {
+      return 'flex flex-row flex-1 justify-between';
+    }
+  };
   return (
     <div className='flex flex-col shadow-md'>
       <div className='glass flex flex-row text-base_dark max-sm:flex-col'>
@@ -25,17 +33,14 @@ export default function PostItems({ post }) {
             alt=''
             className='max-h-[40vh] flex-1 bg-slate-400 object-cover object-top'
           />
-        ) : (
-          <img
-            src='https://via.placeholder.com/800x342'
-            alt=''
-            className='min-h-[30vh] flex-1 bg-slate-400'
-          />
-        )}
+        ) : null}
 
         {/* Right Side */}
         {/* resonsive */}
-        <div className='relative flex w-[40%] flex-col justify-between p-4 max-sm:w-[100%] max-sm:gap-4'>
+        {/* bug here */}
+        <div
+          className={`relative flex w-[40%] ${setSyleContainer(game.backgroundImageUrl)} p-4 max-sm:w-[100%] max-sm:gap-4`}
+        >
           <div className='flex flex-col gap-4'>
             <p className='text-[24px] font-semibold'>
               {title ? title : 'Title'}
