@@ -121,7 +121,7 @@ export default function GameCardStrip({
               <PopoverContent className='w-full bg-opacity-80 bg-gradient-to-b from-black/50'>
                 <div className='flex flex-col gap-2'>
                   {/* reversing the order so it show the lastest order first */}
-                  {[...gameCollections].reverse().map((collection) => (
+                  {gameCollections && [...gameCollections].reverse().map((collection) => (
                     <div
                       key={collection.id}
                       className='flex flex-col gap-1 border-b-2 border-b-primary p-1'

@@ -7,7 +7,7 @@ function FriendAction() {
     //         Friend
     //     </div>
     // </div>
-    <div>Status : Friend</div>
+    <div className=' text-success bg-base_dark border-neutral p-4'>Status : Friend</div>
   )
 }
 

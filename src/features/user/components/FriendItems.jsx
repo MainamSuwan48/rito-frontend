@@ -15,9 +15,9 @@ export default function FriendItems({friend}) {
   }
   return (
     <>
-      <div className='inline-flex h-[80px] w-full items-center justify-between gap-24 border-b border-black bg-slate-400 bg-opacity-80'>
+      <div className='inline-flex flex-shrink-0 w-full h-[80px] items-center justify-between gap-24 border-b border-black bg-slate-400 bg-opacity-80'>
         <div className='flex items-center justify-center gap-4'>
-          <div className='flex flex-shrink-0 items-center justify-center gap-2.5 bg-zinc-100 bg-opacity-80  h-full w-20'>
+          <div className='flex flex-shrink-0 items-center justify-center gap-2.5 bg-zinc-100 bg-opacity-80    w-20'>
             <div 
               className='text-center flex items-center h-[80px] text-4xl font-semibold text-black cursor-pointer'
               onClick={handleClick}
@@ -30,7 +30,7 @@ export default function FriendItems({friend}) {
               }
             </div>
           </div>
-          <div className='inline-flex flex-col items-start justify-start gap-1.5'>
+          <div className='inline-flex flex-col items-start justify-start gap-1.5 '>
             <div className='text-center  text-base font-medium leading-snug text-black'>
               {friend.displayName.slice(0,15)}
             </div>
