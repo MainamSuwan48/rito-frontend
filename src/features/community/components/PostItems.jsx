@@ -1,4 +1,8 @@
 import { CommentIcon, ThumbsDownIcon, ThumbsUpIcon } from '@/icons';
+import { AccordionContent } from '@radix-ui/react-accordion';
+import { AccordionTrigger } from '@radix-ui/react-accordion';
+import { Accordion, AccordionItem } from '@radix-ui/react-accordion';
+import { useState } from 'react';
 import ReactTimeAgo from 'react-time-ago';
 
 export default function PostItems({ post }) {
@@ -16,6 +20,12 @@ export default function PostItems({ post }) {
     likes,
     imgUrl,
   } = post;
+
+  const [isOpenComment, setIsOpenComment] = useState(false);
+
+  const handleOnClickOpenComment = () => {
+    setIsOpenComment(!isOpenComment);
+  };
 
   const setStylePostTypeTag = (postType) => {
     if (postType === 'SCREENSHOT') {
@@ -99,12 +109,15 @@ export default function PostItems({ post }) {
                 {likes}
               </span>
             </div>
-            <div className='flex items-center gap-1'>
+            <button
+              className='flex items-center gap-1'
+              onClick={handleOnClickOpenComment}
+            >
               <CommentIcon className={'size-5'} />
               <span className='text-[12px] text-base_dark text-opacity-45'>
                 {comments.length}
               </span>
-            </div>
+            </button>
             {/* <ThumbsDownIcon className={'size-5'} /> */}
           </div>
         </div>
@@ -119,6 +132,23 @@ export default function PostItems({ post }) {
           )}
         </p>
       </div>
+      {isOpenComment
+        ? comments.map((comment) => {
+            return (
+              <div key={comment.id} className='flex items-center gap-4 p-4'>
+                <div className='flex flex-shrink-0 items-center gap-2'>
+                  <img
+                    src={comment.user.profileImageUrl}
+                    alt='user profile'
+                    className='size-12'
+                  />
+                  <div className=' font-bold'>{comment.user.displayName}</div>
+                </div>
+                <div>{comment.content}</div>
+              </div>
+            );
+          })
+        : null}
     </div>
   );
 }
