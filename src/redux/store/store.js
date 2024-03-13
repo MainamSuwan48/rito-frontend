@@ -6,6 +6,7 @@ import { cartReducer } from '../slice/cart-slice';
 import { wishlistsReducer } from '../slice/wishlists-slice';
 import { friendshipReducer } from '../slice/friendship-slice';
 import { adminReducer } from '../slice/admin-slice';
+import { chatReducer } from '../slice/chat-slice';
 
 const store = configureStore({
   reducer: {
@@ -17,6 +18,7 @@ const store = configureStore({
     wishlists: wishlistsReducer,
     friendship: friendshipReducer,
     admin: adminReducer,
+    chat: chatReducer,
   },
 });
 

@@ -5,3 +5,4 @@ export const verifyGame = (gameId) =>
   axios.patch(`/admin/games/${gameId}/verify`);
 export const deleteGame = (gameId) =>
   axios.patch(`/admin/games/${gameId}/delete`);
+export const getAllChat = () => axios.get('/admin/chat/get');
