@@ -3,6 +3,7 @@ import { AccordionContent } from '@radix-ui/react-accordion';
 import { AccordionTrigger } from '@radix-ui/react-accordion';
 import { Accordion, AccordionItem } from '@radix-ui/react-accordion';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import ReactTimeAgo from 'react-time-ago';
 
 export default function PostItems({ post }) {
@@ -21,6 +22,9 @@ export default function PostItems({ post }) {
     imgUrl,
   } = post;
 
+  const { authUser } = useSelector((state) => state.auth);
+  console.log(authUser);
+
   const [isOpenComment, setIsOpenComment] = useState(false);
   const [input, setInput] = useState('');
   const [isLike, setIsLike] = useState(likes);
@@ -32,6 +36,14 @@ export default function PostItems({ post }) {
   const handleOnSubmitComment = (e) => {
     e.preventDefault();
     console.log(input);
+    setInput('');
+    // Assuming you have a function to update the mockData.json
+    comments.push({
+      id: comments.length + 1, // Generate new id for the comment
+      content: input,
+      user: authUser,
+      createdAt: new Date().toISOString(),
+    });
   };
 
   const handleOnClickOpenComment = () => {
