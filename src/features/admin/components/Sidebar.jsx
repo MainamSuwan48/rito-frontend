@@ -1,4 +1,4 @@
-import { ShieldIcon } from '@/icons';
+import { ChatIcon, ShieldIcon } from '@/icons';
 import SidebarTab from './SidebarTab';
 import background from '@/assets/Img/SidebarImage.jpg';
 import logo from '@/assets/Img/ritoLogo.png';
@@ -24,6 +24,9 @@ function Sidebar({
       </div>
       <SidebarTab title='Non-verified games' to={`/admin`}>
         <ShieldIcon className='h-5 w-5' />
+      </SidebarTab>
+      <SidebarTab title='Message Center' to={`/admin/chat`}>
+        <ChatIcon className='h-5 w-5' />
       </SidebarTab>
     </div>
   );
