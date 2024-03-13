@@ -8,22 +8,10 @@ export default function PostContainer() {
   const handleOnChangeInput = (e) => {
     setInput(e.target.value);
   };
-  const handleOnSubmit = () => {
-    // Assuming mockData is an array
-    mockData.push({
-      // Add the structure of your post here. For example:
-      id: mockData.length + 1, // or any unique id generator
-      content: input,
-      // Add any other properties you need
-    });
-
-    // Clear the input field
-    setInput('');
-  };
   return (
     <>
       {/* <CommunitySearchBar */}
-      <form className='flex w-full' onSubmit={handleOnSubmit}>
+      {/* <form className='flex w-full'>
         <input
           type='text'
           name='content'
@@ -38,7 +26,7 @@ export default function PostContainer() {
         >
           post
         </button>
-      </form>
+      </form> */}
       <div className=' flex h-auto w-full flex-col gap-6 py-3'>
         {mockData.map((post, index) => (
           <PostItems key={index} post={post} />
