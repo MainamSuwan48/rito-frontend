@@ -25,7 +25,7 @@ export default function GameStorePage() {
   }, [games]);
 
   return loadingCurrentGame ? null : (
-    <div className='relative flex w-full overflow-auto'>
+    <div className='relative flex w-full h-content overflow-auto'>
       <video
         className='-z-50'
         autoPlay
@@ -42,7 +42,7 @@ export default function GameStorePage() {
         <source src='https://res.cloudinary.com/dhm6pitfd/video/upload/v1710177433/videoplayback_1_nmtvjr.mp4' />
       </video>
       <SideBar />
-      <div className='relative flex w-store_search_bar flex-col gap-4'>
+      <div className='relative flex w-store_search_bar flex-col gap-4 overflow-auto'>
         <div className='flex'>
           <SearchBar />
           <GameStoreSorter />
