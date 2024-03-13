@@ -20,7 +20,7 @@ export default function PostItems({ post }) {
     if (backgroundImageUrl != '') {
       return 'flex flex-col justify-between';
     } else {
-      return 'flex flex-row flex-1 justify-between';
+      return 'flex flex-row flex-1 justify-between max-sm:flex-col max-sm:gap-4';
     }
   };
   return (
@@ -51,7 +51,7 @@ export default function PostItems({ post }) {
           </div>
 
           {/* User Container */}
-          <div className='flex items-center justify-evenly gap-2.5 max-sm:justify-center'>
+          <div className='flex flex-shrink-0 items-center justify-evenly gap-2.5 max-sm:justify-center'>
             {/* responsive */}
             {user.profileImageUrl ? (
               <img
