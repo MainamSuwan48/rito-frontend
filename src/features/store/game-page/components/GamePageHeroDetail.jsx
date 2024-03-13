@@ -112,7 +112,7 @@ function GamePageHeroDetail({ gameData }) {
               <span className='font-bold text-black'>Metacritic </span>
               <p className='text-sm text-black'>{metacritic}</p>
             </div>
-            {authUser.isAdmin ? null : owned ? (
+            {authUser && authUser.isAdmin ? null : owned ? (
               // User, game owned
               <div className='flex h-12 w-full items-center justify-center bg-base_dark px-1 text-xs font-bold text-white'>
                 YOU ALREADY BOUGHT THIS GAME BUY AGAIN?
@@ -122,7 +122,7 @@ function GamePageHeroDetail({ gameData }) {
         </div>
 
         {/* Admin & Game not verified */}
-        {authUser.isAdmin && !gameData.isVerified ? (
+        {authUser && authUser.isAdmin && !gameData.isVerified ? (
           <div className='flex h-12 justify-between'>
             <AdminButton
               mode='confirm'
@@ -143,7 +143,7 @@ function GamePageHeroDetail({ gameData }) {
               Delete
             </AdminButton>
           </div>
-        ) : authUser.isAdmin && !gameData.deletedAt ? (
+        ) : authUser && authUser.isAdmin && !gameData.deletedAt ? (
           // Admin, Game verified, not deleted
           <div className='flex h-12 justify-between'>
             <AdminButton
