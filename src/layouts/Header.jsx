@@ -20,7 +20,9 @@ function Header() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
-  const { authUser, loading } = useSelector((state) => state.auth);
+  const { authUser, loading, authUserImage } = useSelector(
+    (state) => state.auth
+  );
   const { carts, loading: cartLoading } = useSelector((state) => state.carts);
 
   const openModal = () => {
@@ -40,6 +42,10 @@ function Header() {
       dispatch(getMyWishlist());
     }
   }, [authUser]);
+
+  useEffect(() => {
+    dispatch(getMe());
+  }, [authUserImage]);
 
   return (
     <>

@@ -53,7 +53,7 @@ export default function GameSearchPage() {
           <div className='flex flex-col'>
             {searchedGames.length === 0 && (
               <h1 className='flex h-16 animate-pulse items-center justify-center text-center text-4xl'>
-                Please Search your game
+                Search for your games here
               </h1>
             )}
             {searchedGames &&

@@ -25,7 +25,7 @@ export default function CheckoutForm() {
   }, []);
 
   return (
-    <div id='checkout' className='min-h-[500px]'>
+    <div id='checkout' className='h-content'>
       {clientSecret && (
         <EmbeddedCheckoutProvider
           stripe={stripePromise}

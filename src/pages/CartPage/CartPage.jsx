@@ -17,7 +17,7 @@ function CartPage() {
   }
 
   return (
-    <div className='grid grid-cols-12 gap-3 px-[128px]'>
+    <div className='grid h-content grid-cols-12  gap-3 px-[128px]'>
       <div className='col-span-8 '>
         <CartDetail />
       </div>
