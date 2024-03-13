@@ -26,6 +26,7 @@ import ResetPasswordPage from '@/pages/AuthPage/ResetPasswordPage';
 import CreateGamePage from '@/pages/PublishGamePage/CreateGamePage';
 import EditGamePage from '@/pages/PublishGamePage/EditGamePage';
 import AdminControlPanelPage from '@/pages/AdminPage/AdminControlPanelPage';
+import DevChat from '@/pages/DevChat';
 
 const router = createBrowserRouter([
   {
@@ -84,7 +85,7 @@ const router = createBrowserRouter([
           <ProtectedRoute>
             <AdminControlPanelPage />
           </ProtectedRoute>
-        )
+        ),
       },
       {
         path: '/edit/game/:gameId',
@@ -93,6 +94,7 @@ const router = createBrowserRouter([
       { path: '/store', element: <GameStorePage /> },
       { path: '/search', element: <GameSearchPage /> },
       { path: '/community', element: <CommunityPage /> },
+      { path: '/chat', element: <DevChat /> },
       //FOR DEVELOPMENT
       { path: '/dev', element: <DevPage /> },
     ],

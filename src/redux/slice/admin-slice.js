@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 //initial state
 const initialState = {
   unVerifiedGames: [],
+  allChats: [],
   loading: false,
   error: null,
 };
@@ -50,6 +51,15 @@ export const deleteGame = createAsyncThunk(
     }
   }
 );
+
+export const getAllChat = createAsyncThunk('admin/chat/all', async () => {
+  try {
+    const response = await adminApi.getAllChat();
+    return response.data.chats;
+  } catch (error) {
+    return Promise.reject(error);
+  }
+});
 
 // slice
 const adminSlice = createSlice({
@@ -102,6 +112,20 @@ const adminSlice = createSlice({
         state.unVerifiedGames.filter((game) => game.id !== action.payload);
       })
       .addCase(deleteGame.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      });
+
+    builder
+      .addCase(getAllChat.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getAllChat.fulfilled, (state, action) => {
+        state.loading = false;
+        state.allChats = action.payload;
+      })
+      .addCase(getAllChat.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });
