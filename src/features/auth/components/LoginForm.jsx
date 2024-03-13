@@ -62,9 +62,9 @@ export default function LoginForm({ onClose }) {
             onClick={handleClickShowPassword}
           >
             {isShowPassword ? (
-              <EyeOpen className='size-5' />
+              <EyeOpen className=' size-5 text-neutral-400' />
             ) : (
-              <EyeClose className='size-5' />
+              <EyeClose className='size-5 text-neutral-400' />
             )}
           </div>
         </div>
