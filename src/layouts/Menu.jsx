@@ -14,6 +14,13 @@ function Menu() {
         Home
       </div>
 
+      <div
+        onClick={() => navigate('/community')}
+        className='relative mt-[-1.00px] w-fit cursor-pointer select-none whitespace-nowrap text-center font-medium transition-all hover:text-primary active:text-primary_mute'
+      >
+        Community
+      </div>
+
       <MenuDropdown
         className='cursor-pointer '
         dropdownItems={[

@@ -167,7 +167,7 @@ export default function PostItems({ post }) {
               type='submit'
               className='text-md flex h-[2rem] items-center justify-center bg-primary p-5 font-semibold text-neutral transition-all hover:bg-secondary_mute active:scale-95'
             >
-              comments
+              comment
             </button>
           </div>
         </div>
