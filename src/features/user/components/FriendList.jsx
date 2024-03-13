@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import FriendItems from './FriendItems';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllFriend } from '@/redux/slice/friendship-slice';
+import { clearFriends } from '@/redux/slice/friendship-slice';
 
 function FriendList({ user }) {
   // console.log(user)
@@ -12,6 +13,12 @@ function FriendList({ user }) {
       dispatch(getAllFriend(user.id));
     }
   }, [friends]);
+
+  useEffect(() => {
+    return () => {
+      dispatch(clearFriends());
+    };
+  },[] );
 
   if (!loadingFriends) {
     console.log(friends);

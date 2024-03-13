@@ -117,12 +117,11 @@ function EditGameForm({
       );
     }
 
-    dispatch(updateGame({ formData, gameId }));
+    dispatch(updateGame({ formData, gameId,navigate }));
 
     reset(defaultValues);
     onAddBackgroundImage(null);
     onClearScreenshots();
-    navigate('/');
   };
 
   return (

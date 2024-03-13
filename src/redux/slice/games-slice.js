@@ -120,10 +120,11 @@ export const getAllPlatforms = createAsyncThunk(
 
 export const createGame = createAsyncThunk(
   'games/create',
-  async (formData, { rejectWithValue }) => {
+  async ({formData,navigate}, { rejectWithValue }) => {
     try {
       const response = await gamesApi.createGame(formData);
       toast.success('Successfully created game');
+      navigate('/')
       return response.data.newGame;
     } catch (error) {
       toast.error(error.response.message);
@@ -134,10 +135,11 @@ export const createGame = createAsyncThunk(
 
 export const updateGame = createAsyncThunk(
   'games/update',
-  async ({ formData, gameId }, { rejectWithValue }) => {
+  async ({ formData, gameId,navigate }, { rejectWithValue }) => {
     try {
       const response = await gamesApi.updateGame(formData, gameId);
       toast.success('Successfully updated game');
+      navigate('/')
       return response.data.game;
     } catch (error) {
       toast.error(error.response.message);

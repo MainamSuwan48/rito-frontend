@@ -118,6 +118,11 @@ export const cancelRequest = createAsyncThunk(
 const friendshipSlice = createSlice({
   name: 'friendships',
   initialState,
+  reducers: {
+    clearFriends: (state) => {
+      state.friends = null;
+    },
+  },
   extraReducers: (builder) => {
     //check status
     builder
@@ -236,5 +241,6 @@ const friendshipSlice = createSlice({
   },
 });
 
+export const { clearFriends } = friendshipSlice.actions;
 // Reducer
 export const friendshipReducer = friendshipSlice.reducer;

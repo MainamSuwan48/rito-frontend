@@ -99,13 +99,12 @@ function CreateGameForm({
       formData.append('genres', JSON.stringify(genresForPublishing));
     }
 
-    dispatch(createGame(formData));
+    dispatch(createGame({formData,navigate}));
 
     reset();
     updateErrorBackgroundImage('');
     onAddBackgroundImage(null);
     onClearScreenshots();
-    navigate('/');
   };
 
   return (
