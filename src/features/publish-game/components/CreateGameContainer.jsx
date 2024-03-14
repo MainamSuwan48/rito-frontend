@@ -4,11 +4,15 @@ import { useState } from 'react';
 import BackgroundImageShow from './BackgroundImageShow';
 import ScreenshotsShow from './ScreenshotsShow';
 import { useRef } from 'react';
+import LoadingBalls from '@/components/ui/LoadingBalls';
+import { useSelector } from 'react-redux';
 
 function CreateGameContainer() {
   const [backgroundImage, setBackgroundImage] = useState(null);
   const [errorBackgroundImage, setErrorBackgroundImage] = useState('');
   const [screenshots, setScreenshots] = useState([]);
+
+  const { loading } = useSelector((state) => state.games);
 
   const backgroundImageEl = useRef(null);
   const screenshotsEl = useRef(null);
@@ -36,6 +40,14 @@ function CreateGameContainer() {
   const onClearScreenshots = () => {
     setScreenshots([]);
   };
+
+  if (loading) {
+    return (
+      <div className='col-span-12 flex h-content items-center justify-center text-center'>
+        <LoadingBalls />
+      </div>
+    );
+  }
 
   return (
     <>

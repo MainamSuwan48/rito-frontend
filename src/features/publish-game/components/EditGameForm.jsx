@@ -76,6 +76,12 @@ function EditGameForm({
     defaultValues: defaultValues,
   });
 
+  const onClear = () => {
+    reset(defaultValues);
+    onAddBackgroundImage(null);
+    onClearScreenshots();
+  };
+
   const onSubmit = (data) => {
     const formData = new FormData();
     formData.append('name', data.name);
@@ -117,11 +123,7 @@ function EditGameForm({
       );
     }
 
-    dispatch(updateGame({ formData, gameId,navigate }));
-
-    reset(defaultValues);
-    onAddBackgroundImage(null);
-    onClearScreenshots();
+    dispatch(updateGame({ formData, gameId, navigate, onClear }));
   };
 
   return (

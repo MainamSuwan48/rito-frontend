@@ -15,6 +15,7 @@ import {
 } from '@/redux/slice/games-slice';
 import { useParams } from 'react-router-dom';
 import EditGameForm from './EditGameForm';
+import LoadingBalls from '@/components/ui/LoadingBalls';
 
 function EditGameContainer() {
   const [backgroundImage, setBackgroundImage] = useState(null);
@@ -23,7 +24,7 @@ function EditGameContainer() {
 
   const { gameId } = useParams();
   const dispatch = useDispatch();
-  const { currentGame } = useSelector((state) => state.games);
+  const { currentGame, loading } = useSelector((state) => state.games);
 
   useEffect(() => {
     if (!currentGame || currentGame.id !== gameId) {
@@ -83,6 +84,14 @@ function EditGameContainer() {
     setScreenshots([]);
   };
 
+  if (loading) {
+    return (
+      <div className='col-span-12 flex h-content items-center justify-center text-center'>
+        <LoadingBalls />
+      </div>
+    );
+  }
+
   return (
     <>
       {currentGame ? (
@@ -128,7 +137,9 @@ function EditGameContainer() {
           </div>
         </>
       ) : (
-        <div>Loading...</div>
+        <div className='col-span-12 flex h-content items-center justify-center text-center'>
+          <LoadingBalls />
+        </div>
       )}
     </>
   );
