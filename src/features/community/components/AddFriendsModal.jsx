@@ -25,7 +25,7 @@ function AddFriendsModal() {
       </SheetTrigger>
       <SheetContent>
         <SheetHeader>
-          <SheetTitle>Are you absolutely sure?</SheetTitle>
+          <SheetTitle>Add More Friends</SheetTitle>
           <SheetDescription>
             <UsersList myID={authUser?.id} />
           </SheetDescription>
