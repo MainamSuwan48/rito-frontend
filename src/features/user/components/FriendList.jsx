@@ -18,7 +18,7 @@ function FriendList({ user }) {
     return () => {
       dispatch(clearFriends());
     };
-  },[] );
+  }, []);
 
   if (!loadingFriends) {
     console.log(friends);
@@ -33,9 +33,13 @@ function FriendList({ user }) {
           <div className='relative h-4 w-4' />
         </div>
       </div>
-      {friends?.map((friend) => {
-        return <FriendItems key={friend.id} friend={friend} />;
-      })}
+      <div
+      className='flex flex-col gap-1 overflow-auto'
+      >
+        {friends?.map((friend) => {
+          return <FriendItems key={friend.id} friend={friend} />;
+        })}
+      </div>
     </div>
   );
 }
