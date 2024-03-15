@@ -84,16 +84,9 @@ function EditGameContainer() {
     setScreenshots([]);
   };
 
-  if (loading) {
-    return (
-      <div className='col-span-12 flex h-content items-center justify-center text-center'>
-        <LoadingBalls />
-      </div>
-    );
-  }
-
   return (
     <>
+      {loading && <LoadingBalls />}
       {currentGame ? (
         <>
           <div className='col-span-6'>

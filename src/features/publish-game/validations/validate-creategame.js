@@ -6,7 +6,7 @@ export const createGameSchema = Joi.object({
     'any.required': 'Game name is required',
   }),
   releasedDate: Joi.date().less('now').required().messages({
-    'date.base': 'Invalid released date format',
+    'date.base': 'Invalid released date',
     'any.required': 'Game name is required',
     'date.less': 'Game must be already released',
   }),
@@ -17,7 +17,11 @@ export const createGameSchema = Joi.object({
   }),
   discount: Joi.string().trim(),
   backgroundImage: Joi.string(),
-  metacritic: Joi.string().trim(),
+  metacritic: Joi.number().min(0).max(100).allow('').messages({
+    'number.base': 'Invalid metacritic score',
+    'number.max': 'Metacritic score must be in range of 0 - 100',
+    'number.min': 'Metacritic score must be in range of 0 - 100',
+  }),
   genres: Joi.any(),
   tags: Joi.any(),
   platforms: Joi.any(),

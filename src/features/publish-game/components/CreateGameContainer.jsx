@@ -41,16 +41,9 @@ function CreateGameContainer() {
     setScreenshots([]);
   };
 
-  if (loading) {
-    return (
-      <div className='col-span-12 flex h-content items-center justify-center text-center'>
-        <LoadingBalls />
-      </div>
-    );
-  }
-
   return (
     <>
+      {loading && <LoadingBalls />}
       <div className='col-span-6'>
         <CreateGameForm
           onAddBackgroundImage={onAddBackgroundImage}

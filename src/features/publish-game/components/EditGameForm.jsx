@@ -90,6 +90,10 @@ function EditGameForm({
       formData.append('description', data.description);
     }
 
+    if (data.metacritic) {
+      formData.append('metacritic', data.metacritic);
+    }
+
     formData.append('price', String(data.price));
     formData.append('releasedDate', data.releasedDate);
 
@@ -175,6 +179,16 @@ function EditGameForm({
         <PublishGameInput
           register={register}
           name='price'
+          errors={errors}
+          placeholder='1000'
+        />
+      </div>
+
+      <div className='flex w-full justify-between  text-base'>
+        <div className='w-4/12 '>Metacritic Score :</div>
+        <PublishGameInput
+          register={register}
+          name='metacritic'
           errors={errors}
           placeholder='1000'
         />
