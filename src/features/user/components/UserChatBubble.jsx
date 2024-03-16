@@ -2,7 +2,8 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllUsers } from '@/redux/slice/user-slice';
-function UserChatBubble({ children, type = '', id }) {
+import ReactTimeAgo from 'react-time-ago';
+function UserChatBubble({ children, type = '', id, sent }) {
   const dispatch = useDispatch();
   const { authUser } = useSelector((state) => state.auth);
   const { users } = useSelector((state) => state.users);
@@ -33,7 +34,10 @@ function UserChatBubble({ children, type = '', id }) {
         </div>
         <div className='ml-2'>
           <p className='text-left font-bold text-secondary'>{userName}</p>
-          <p className='text-right text-black'>{children}</p>
+          <p className='text-left text-black'>{children}</p>
+          <p className='mr-2 text-left text-xs text-base_dark'>
+            <ReactTimeAgo date={new Date(sent)} locale='en-US' />
+          </p>
         </div>
       </div>
     );
@@ -46,6 +50,9 @@ function UserChatBubble({ children, type = '', id }) {
           {authUser.displayName}
         </p>
         <p className='text-right text-black'>{children}</p>
+        <p className='mr-2 text-right text-xs text-base_dark'>
+          <ReactTimeAgo date={new Date(sent)} locale='en-US' />
+        </p>
       </div>
       <div className='flex h-10 w-10 flex-shrink-0 items-center justify-center overflow-hidden rounded-full bg-secondary'>
         {authUser.profileImageUrl && (

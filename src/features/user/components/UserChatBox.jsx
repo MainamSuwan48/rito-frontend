@@ -38,7 +38,7 @@ function UserChatBox() {
   }, []);
 
   useEffect(() => {
-    messageEl.current?.lastElementChild?.scrollIntoView({ behavior: 'smooth' });
+    messageEl.current?.lastElementChild?.scrollIntoView({ behavior: 'auto' });
   }, [messages]);
 
   const handleSubmit = (e) => {
@@ -63,9 +63,13 @@ function UserChatBox() {
         <div ref={messageEl}>
           {messages.map((message, index) =>
             authUser.id === message.chatSenderId ? (
-              <UserChatBubble key={index}>{message.message}</UserChatBubble>
+              <UserChatBubble sent={message.createdAt} key={index}>
+                {message.message}
+              </UserChatBubble>
             ) : (
-              <AdminChatBubble key={index}>{message.message}</AdminChatBubble>
+              <AdminChatBubble key={index} sent={message.createdAt}>
+                {message.message}
+              </AdminChatBubble>
             )
           )}
         </div>

@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
 
 const defaultClasses =
-  'flex gap-4 py-6 px-8 items-center font-medium bg-opacity-30 text-white';
+  'flex gap-4 py-6 px-8 items-center font-medium bg-opacity-50 text-white';
 
 function SidebarTab({
   to,
-  bg = 'bg-transparent',
+  bg = 'bg-base_dark',
   title,
   hoverColor = 'hover:bg-secondary',
   children,
