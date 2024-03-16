@@ -2,6 +2,7 @@ import { useState } from 'react';
 import CommunitySearchBar from './CommunitySearchBar';
 import PostItems from './PostItems';
 import mockData from './mockData.json';
+import SearchBar from './SearchBar';
 
 export default function PostContainer() {
   const [input, setInput] = useState('');
@@ -28,6 +29,7 @@ export default function PostContainer() {
           post
         </button>
       </form> */}
+      <SearchBar type='community' />
       <div className=' flex h-auto w-full flex-col gap-6 py-3'>
         {mockData.map((post, index) => (
           <PostItems key={index} post={post} />
