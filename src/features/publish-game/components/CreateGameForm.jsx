@@ -65,6 +65,13 @@ function CreateGameForm({
     formState: { errors },
   } = useForm({ resolver: joiResolver(createGameSchema), mode: 'onSubmit' });
 
+  const onClear = () => {
+    reset();
+    updateErrorBackgroundImage('');
+    onAddBackgroundImage(null);
+    onClearScreenshots();
+  };
+
   const onSubmit = (data) => {
     if (!backgroundImage) {
       return updateErrorBackgroundImage('Background Image is required');
@@ -99,12 +106,7 @@ function CreateGameForm({
       formData.append('genres', JSON.stringify(genresForPublishing));
     }
 
-    dispatch(createGame({formData,navigate}));
-
-    reset();
-    updateErrorBackgroundImage('');
-    onAddBackgroundImage(null);
-    onClearScreenshots();
+    dispatch(createGame({ formData, navigate, onClear }));
   };
 
   return (

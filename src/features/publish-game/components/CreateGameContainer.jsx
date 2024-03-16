@@ -4,11 +4,15 @@ import { useState } from 'react';
 import BackgroundImageShow from './BackgroundImageShow';
 import ScreenshotsShow from './ScreenshotsShow';
 import { useRef } from 'react';
+import LoadingBalls from '@/components/ui/LoadingBalls';
+import { useSelector } from 'react-redux';
 
 function CreateGameContainer() {
   const [backgroundImage, setBackgroundImage] = useState(null);
   const [errorBackgroundImage, setErrorBackgroundImage] = useState('');
   const [screenshots, setScreenshots] = useState([]);
+
+  const { loading } = useSelector((state) => state.games);
 
   const backgroundImageEl = useRef(null);
   const screenshotsEl = useRef(null);
@@ -39,6 +43,7 @@ function CreateGameContainer() {
 
   return (
     <>
+      {loading && <LoadingBalls />}
       <div className='col-span-6'>
         <CreateGameForm
           onAddBackgroundImage={onAddBackgroundImage}
