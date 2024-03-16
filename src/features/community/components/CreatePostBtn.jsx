@@ -8,7 +8,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
-import { Select } from '@radix-ui/react-select';
 
 export default function CreatePostBtn() {
   const inputClass =

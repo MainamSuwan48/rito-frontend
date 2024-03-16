@@ -5,9 +5,22 @@ import SearchBar from './SearchBar';
 import CreatePostFormModal from './CreatePostFormModal';
 import CreatePostBtn from './CreatePostBtn';
 import CommunitySearchBar from './CommunitySearchBar';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { getAllPosts } from '@/redux/slice/community-slice';
 
 export default function PostContainer() {
+  const dispatch = useDispatch();
+  const { post, posts } = useSelector((state) => state.community);
+  console.log(posts);
+
   const [input, setInput] = useState('');
+
+  useEffect(() => {
+    if (!posts.length) {
+      dispatch(getAllPosts());
+    }
+  }, [posts]);
 
   const handleOnChangeInput = (e) => {
     setInput(e.target.value);
@@ -27,7 +40,7 @@ export default function PostContainer() {
           <CreatePostBtn />
         </div>
         <div className='flex flex-col gap-6'>
-          {mockData.map((post, index) => (
+          {posts.map((post, index) => (
             <PostItems key={index} post={post} />
           ))}
         </div>

@@ -7,6 +7,7 @@ import { wishlistsReducer } from '../slice/wishlists-slice';
 import { friendshipReducer } from '../slice/friendship-slice';
 import { adminReducer } from '../slice/admin-slice';
 import { chatReducer } from '../slice/chat-slice';
+import { communityReducer } from '../slice/community-slice';
 
 const store = configureStore({
   reducer: {
@@ -19,6 +20,7 @@ const store = configureStore({
     friendship: friendshipReducer,
     admin: adminReducer,
     chat: chatReducer,
+    community: communityReducer,
   },
 });
 

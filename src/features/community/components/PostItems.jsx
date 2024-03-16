@@ -23,7 +23,7 @@ export default function PostItems({ post }) {
   } = post;
 
   const { authUser } = useSelector((state) => state.auth);
-  console.log(authUser);
+  // console.log(authUser);
 
   const [isOpenComment, setIsOpenComment] = useState(false);
   const [input, setInput] = useState('');
