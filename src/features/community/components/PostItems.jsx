@@ -3,8 +3,9 @@ import { AccordionContent } from '@radix-ui/react-accordion';
 import { AccordionTrigger } from '@radix-ui/react-accordion';
 import { Accordion, AccordionItem } from '@radix-ui/react-accordion';
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import ReactTimeAgo from 'react-time-ago';
+import { toggleLikePost } from '@/redux/slice/community-slice';
 
 export default function PostItems({ post }) {
   const {
@@ -18,16 +19,14 @@ export default function PostItems({ post }) {
     updatedAt,
     deletedAt,
     comments,
-    likes,
+    PostLike,
     imgUrl,
   } = post;
 
-  const { authUser } = useSelector((state) => state.auth);
-  // console.log(authUser);
+  const dispatch = useDispatch();
 
   const [isOpenComment, setIsOpenComment] = useState(false);
   const [input, setInput] = useState('');
-  const [isLike, setIsLike] = useState(likes);
 
   const handleOnChangeInput = (e) => {
     setInput(e.target.value);
@@ -51,7 +50,7 @@ export default function PostItems({ post }) {
   };
 
   const handleOnClickLike = () => {
-    setIsLike(isLike + 1);
+    dispatch(toggleLikePost(id));
   };
 
   const setStylePostTypeTag = (postType) => {
@@ -143,7 +142,7 @@ export default function PostItems({ post }) {
             >
               <ThumbsUpIcon className='hove:fill-blue-500 size-5' />
               <span className='text-[12px] text-base_dark text-opacity-45'>
-                {isLike}
+                {PostLike.length > 0 ? PostLike.length : null}
               </span>
             </button>
             <button
@@ -152,7 +151,7 @@ export default function PostItems({ post }) {
             >
               <CommentIcon className='size-5 ' />
               <span className='text-[12px] text-base_dark text-opacity-45'>
-                {comments.length}
+                {comments.length > 0 ? comments.length : null}
               </span>
             </button>
             {/* <ThumbsDownIcon className={'size-5'} /> */}
@@ -176,11 +175,16 @@ export default function PostItems({ post }) {
               <div key={comment.id} className='flex items-center gap-4 p-4'>
                 <div className='flex flex-shrink-0 items-center gap-2'>
                   <img
-                    src={comment.user.profileImageUrl}
+                    src={
+                      comment.user?.profileImageUrl ||
+                      'https://placehold.co/48x48'
+                    }
                     alt='user profile'
                     className='size-12'
                   />
-                  <div className=' font-bold'>{comment.user.displayName}</div>
+                  <div className=' font-bold'>
+                    {comment.user?.displayName || 'No DisplayName'}
+                  </div>
                 </div>
                 <div>{comment.content}</div>
               </div>

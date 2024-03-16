@@ -17,6 +17,30 @@ export const getAllPosts = createAsyncThunk('posts/getAllPosts', async () => {
   }
 });
 
+export const findLikePost = createAsyncThunk(
+  'posts/findLikePost',
+  async (postId) => {
+    try {
+      const response = await postApi.findLikePost(postId);
+      return response.data.like;
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
+);
+
+export const toggleLikePost = createAsyncThunk(
+  'posts/toggleLikePost',
+  async (postId) => {
+    try {
+      const response = await postApi.toggleLikePost(postId);
+      return response.data.post;
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
+);
+
 const communitySlice = createSlice({
   name: 'community',
   initialState,
@@ -38,6 +62,17 @@ const communitySlice = createSlice({
       .addCase(getAllPosts.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
+      });
+    builder
+      .addCase(toggleLikePost.rejected, (state, action) => {
+        state.error = action.error.message;
+      })
+      .addCase(toggleLikePost.fulfilled, (state, action) => {
+        state.post = action.payload;
+      })
+      .addCase(toggleLikePost.pending, (state) => {
+        state.loading = true;
+        state.error = null;
       });
   },
 });
