@@ -39,7 +39,7 @@ export default function SearchBar({ type = '' }) {
 
   if (type == 'community') {
     return (
-      <div className='z-40 flex h-12 flex-grow *:backdrop-blur-lg'>
+      <div className='z-10 flex h-12 flex-grow *:backdrop-blur-lg'>
         <div className='flex w-full'>
           <input
             onChange={handleChange}
