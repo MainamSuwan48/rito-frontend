@@ -117,7 +117,9 @@ export default function PostItems({ post }) {
               />
             )}
             <div className='flex flex-col items-center gap-2.5'>
-              <p className='line-clamp-1 font-semibold'>{user.displayName}</p>
+              <p className='line-clamp-1 py-1 font-semibold'>
+                {user.displayName}
+              </p>
             </div>
           </div>
         </div>

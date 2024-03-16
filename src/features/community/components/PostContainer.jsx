@@ -29,8 +29,9 @@ export default function PostContainer() {
           post
         </button>
       </form> */}
-      <SearchBar type='community' />
+
       <div className=' flex h-auto w-full flex-col gap-6 py-3'>
+        <SearchBar type='community' />
         {mockData.map((post, index) => (
           <PostItems key={index} post={post} />
         ))}
