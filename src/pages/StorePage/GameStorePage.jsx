@@ -25,51 +25,53 @@ export default function GameStorePage() {
   }, [games]);
 
   return loadingCurrentGame ? null : (
-    <div className='relative flex w-full h-content overflow-auto'>
-      <video
-        className='-z-50'
-        autoPlay
-        loop
-        muted
-        style={{
-          opacity: '0.8',
-          position: 'fixed',
-          width: '100%',
-          height: '100%',
-          objectFit: 'cover',
-        }}
-      >
-        <source src='https://res.cloudinary.com/dhm6pitfd/video/upload/v1710177433/videoplayback_1_nmtvjr.mp4' />
-      </video>
-      <SideBar />
-      <div className='relative flex w-store_search_bar flex-col gap-4 overflow-auto'>
-        <div className='flex'>
-          <SearchBar />
-          <GameStoreSorter />
+    <>
+      <div className='relative flex h-content w-full overflow-auto'>
+        <video
+          className='-z-50'
+          autoPlay
+          loop
+          muted
+          style={{
+            opacity: '0.8',
+            position: 'fixed',
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+          }}
+        >
+          <source src='https://res.cloudinary.com/dhm6pitfd/video/upload/v1710177433/videoplayback_1_nmtvjr.mp4' />
+        </video>
+        <SideBar />
+        <div className='relative flex w-store_search_bar flex-col gap-4 overflow-auto'>
+          <div className='flex'>
+            <SearchBar />
+            <GameStoreSorter />
+          </div>
+          {loading ? (
+            <div className='grid h-game_store grid-cols-1 items-start gap-6 self-center justify-self-center overflow-auto pb-6 lg:grid-cols-2 2xl:grid-cols-3'>
+              <Skeleton className='h-[425px] w-[416px]' />
+              <Skeleton className='h-[425px] w-[416px]' />
+              <Skeleton className='h-[425px] w-[416px]' />
+              <Skeleton className='h-[425px] w-[416px]' />
+              <Skeleton className='h-[425px] w-[416px]' />
+              <Skeleton className='h-[425px] w-[416px]' />
+              <Skeleton className='h-[425px] w-[416px]' />
+              <Skeleton className='h-[425px] w-[416px]' />
+              <Skeleton className='h-[425px] w-[416px]' />
+              <Skeleton className='h-[425px] w-[416px]' />
+              <Skeleton className='h-[425px] w-[416px]' />
+            </div>
+          ) : (
+            <div className='grid h-game_store grid-cols-1 items-start gap-6 self-center justify-self-center overflow-auto pb-6 lg:grid-cols-2 2xl:grid-cols-3'>
+              {games &&
+                games.map((game, index) => (
+                  <GameCard key={index} gameData={game} /> // Remove Suspense and LazyGameCard
+                ))}
+            </div>
+          )}
         </div>
-        {loading ? (
-          <div className='grid h-game_store grid-cols-1 items-start gap-6 self-center justify-self-center overflow-auto pb-6 lg:grid-cols-2 2xl:grid-cols-3'>
-            <Skeleton className='h-[425px] w-[416px]' />
-            <Skeleton className='h-[425px] w-[416px]' />
-            <Skeleton className='h-[425px] w-[416px]' />
-            <Skeleton className='h-[425px] w-[416px]' />
-            <Skeleton className='h-[425px] w-[416px]' />
-            <Skeleton className='h-[425px] w-[416px]' />
-            <Skeleton className='h-[425px] w-[416px]' />
-            <Skeleton className='h-[425px] w-[416px]' />
-            <Skeleton className='h-[425px] w-[416px]' />
-            <Skeleton className='h-[425px] w-[416px]' />
-            <Skeleton className='h-[425px] w-[416px]' />
-          </div>
-        ) : (
-          <div className='grid h-game_store grid-cols-1 items-start gap-6 self-center justify-self-center overflow-auto pb-6 lg:grid-cols-2 2xl:grid-cols-3'>
-            {games &&
-              games.map((game, index) => (
-                <GameCard key={index} gameData={game} /> // Remove Suspense and LazyGameCard
-              ))}
-          </div>
-        )}
       </div>
-    </div>
+    </>
   );
 }
