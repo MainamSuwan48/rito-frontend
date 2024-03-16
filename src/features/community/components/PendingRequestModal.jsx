@@ -26,7 +26,7 @@ function PendingRequestModal() {
       </SheetTrigger>
       <SheetContent>
         <SheetHeader>
-          <SheetTitle>Are you absolutely sure?</SheetTitle>
+          <SheetTitle>Pending Requests</SheetTitle>
           <SheetDescription>
             <PendingList myID={authUser?.id} />
           </SheetDescription>

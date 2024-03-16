@@ -63,13 +63,13 @@ export default function GameCardStrip({
   }
 
   return (
-    <div className='h-[6rem] flex  bg-base-300 bg-opacity-80 shadow-lg'>
+    <div className='flex flex-shrink-0 h-[6rem]  bg-base-300 bg-opacity-80 shadow-lg'>
       <img
         onClick={() => navigate(`/game/${id}`)}
         className='h-[6rem] w-[25rem] cursor-pointer object-cover transition-all hover:scale-105 active:scale-100'
         src={backgroundImageUrl}
       />
-      <div className='flex w-full justify-between'>
+      <div className='flex h-[6rem] w-full justify-between'>
         <div className='flex flex-col justify-between p-4'>
           <div>
             <h2 className='font-bold text-black'>{name}</h2>
