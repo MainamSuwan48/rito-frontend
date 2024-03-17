@@ -39,7 +39,7 @@ function AdminChatBox() {
   }, []);
 
   useEffect(() => {
-    messageEl.current?.lastElementChild?.scrollIntoView({ behavior: 'smooth' });
+    messageEl.current?.lastElementChild?.scrollIntoView({ behavior: 'auto' });
   }, [messages]);
 
   const handleSubmit = (e) => {
@@ -63,11 +63,16 @@ function AdminChatBox() {
       <div className='h-content w-full overflow-auto' ref={messageEl}>
         {messages.map((message, index) =>
           authUser.id !== message.chatSenderId ? (
-            <UserChatBubble type='admin' key={index} id={message.chatSenderId}>
+            <UserChatBubble
+              type='admin'
+              key={index}
+              sent={message.createdAt}
+              id={message.chatSenderId}
+            >
               {message.message}
             </UserChatBubble>
           ) : (
-            <AdminChatBubble type='admin' key={index}>
+            <AdminChatBubble sent={message.createdAt} type='admin' key={index}>
               {message.message}
             </AdminChatBubble>
           )

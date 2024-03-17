@@ -76,12 +76,22 @@ function EditGameForm({
     defaultValues: defaultValues,
   });
 
+  const onClear = () => {
+    reset(defaultValues);
+    onAddBackgroundImage(null);
+    onClearScreenshots();
+  };
+
   const onSubmit = (data) => {
     const formData = new FormData();
     formData.append('name', data.name);
 
     if (data.description) {
       formData.append('description', data.description);
+    }
+
+    if (data.metacritic) {
+      formData.append('metacritic', data.metacritic);
     }
 
     formData.append('price', String(data.price));
@@ -117,11 +127,7 @@ function EditGameForm({
       );
     }
 
-    dispatch(updateGame({ formData, gameId,navigate }));
-
-    reset(defaultValues);
-    onAddBackgroundImage(null);
-    onClearScreenshots();
+    dispatch(updateGame({ formData, gameId, navigate, onClear }));
   };
 
   return (
@@ -173,6 +179,16 @@ function EditGameForm({
         <PublishGameInput
           register={register}
           name='price'
+          errors={errors}
+          placeholder='1000'
+        />
+      </div>
+
+      <div className='flex w-full justify-between  text-base'>
+        <div className='w-4/12 '>Metacritic Score :</div>
+        <PublishGameInput
+          register={register}
+          name='metacritic'
           errors={errors}
           placeholder='1000'
         />

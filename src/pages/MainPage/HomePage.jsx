@@ -2,9 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 
-
-
-import ScrollText from './ScrollText';
+ 
 import HomePageHero from './components/HomePageHero';
 import DiscoverGamesCard from './components/DiscoverGamesCard';
 import CyberPunkCard from './components/CyberPunkCard';

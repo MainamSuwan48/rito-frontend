@@ -32,7 +32,7 @@ function GameStoreSorter({ type = '' }) {
 
   if (type == 'search') {
     return (
-      <div className='justify-cente box-border flex items-center'>
+      <div className='flex h-14 items-center justify-center'>
         <Select onValueChange={(value) => sortSearched(value)} className=''>
           <SelectTrigger className='h-14 w-[160px] rounded-none'>
             <SelectValue placeholder='Sort By' />
@@ -60,7 +60,7 @@ function GameStoreSorter({ type = '' }) {
   }
 
   return (
-    <div className='flex items-center justify-center'>
+    <div className='flex items-center justify-center h-14 '>
       <Select onValueChange={(value) => sort(value)} className=''>
         <SelectTrigger className='h-14 w-[160px] rounded-none bg-neutral'>
           <SelectValue placeholder='Sort By' />

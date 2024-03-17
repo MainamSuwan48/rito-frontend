@@ -31,6 +31,7 @@ export default function GameStorePage() {
     }
   }, [page]);
 
+
   return (
     <div className='relative flex h-content w-full overflow-auto'>
       <video
@@ -87,9 +88,32 @@ export default function GameStorePage() {
                 </div>
               )}
             </div>
+
           </div>
-        )}
+          {loading ? (
+            <div className='grid h-game_store grid-cols-1 items-start gap-6 self-center justify-self-center overflow-auto pb-6 lg:grid-cols-2 2xl:grid-cols-3'>
+              <Skeleton className='h-[425px] w-[416px]' />
+              <Skeleton className='h-[425px] w-[416px]' />
+              <Skeleton className='h-[425px] w-[416px]' />
+              <Skeleton className='h-[425px] w-[416px]' />
+              <Skeleton className='h-[425px] w-[416px]' />
+              <Skeleton className='h-[425px] w-[416px]' />
+              <Skeleton className='h-[425px] w-[416px]' />
+              <Skeleton className='h-[425px] w-[416px]' />
+              <Skeleton className='h-[425px] w-[416px]' />
+              <Skeleton className='h-[425px] w-[416px]' />
+              <Skeleton className='h-[425px] w-[416px]' />
+            </div>
+          ) : (
+            <div className='grid h-game_store grid-cols-1 items-start gap-6 self-center justify-self-center overflow-auto pb-6 lg:grid-cols-2 2xl:grid-cols-3'>
+              {games &&
+                games.map((game, index) => (
+                  <GameCard key={index} gameData={game} /> // Remove Suspense and LazyGameCard
+                ))}
+            </div>
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 }
