@@ -26,7 +26,7 @@ export default function GameStorePage() {
   useEffect(() => {
     if (currentGenre) {
       dispatch(getMoreGamesByGenreId({ genreId: currentGenre, page }));
-    } else {
+    } else if (allGames.length !== 0 && !currentGenre){
       dispatch(getMoreGames(page));
     }
   }, [page]);
