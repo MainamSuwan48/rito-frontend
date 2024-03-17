@@ -7,11 +7,13 @@ const initialState = {
   allGames: [], // For Store Page
   isAscending: true,
   loading: false,
+  moreGamesLoading: false,
   randomGames: [], // For Home Page
   loadingRandomGames: false,
   currentGame: null, // For Game Page
   loadingCurrentGame: false,
   genres: null, // For Store Page
+  currentGenre: null,
   loadingGenres: false,
   searchedGames: [], // For Search Page
   searchedGamesAscending: true,
@@ -39,6 +41,19 @@ export const getGames = createAsyncThunk('games/getGames', async (page) => {
   }
 });
 
+export const getMoreGames = createAsyncThunk(
+  'games/getMoreGames',
+  async (page) => {
+    try {
+      const response = await gamesApi.getGames(page);
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      return response.data;
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
+);
+
 export const getGameById = createAsyncThunk(
   'games/getGameById',
   async (gameId) => {
@@ -58,7 +73,10 @@ export const getRandomGames = createAsyncThunk(
     try {
       const response = await gamesApi.getRandomGames();
       await new Promise((resolve) => setTimeout(resolve, 500));
-      console.log(response.data.games, "response.data.games from getRandomGames in slice ");
+      console.log(
+        response.data.games,
+        'response.data.games from getRandomGames in slice '
+      );
       return response.data.games;
     } catch (error) {
       return Promise.reject(error);
@@ -81,6 +99,19 @@ export const getGamesByGenreId = createAsyncThunk(
   async (genreId) => {
     try {
       const response = await gamesApi.getGameByGenre(genreId);
+      await new Promise((resolve) => setTimeout(resolve, 300));
+      return response.data;
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
+);
+
+export const getMoreGamesByGenreId = createAsyncThunk(
+  'games/getMoreGamesByGenreId',
+  async ({ genreId, page }) => {
+    try {
+      const response = await gamesApi.getGameByGenre(genreId, page);
       await new Promise((resolve) => setTimeout(resolve, 300));
       return response.data;
     } catch (error) {
@@ -295,13 +326,32 @@ const gamesSlice = createSlice({
       })
       .addCase(getGames.fulfilled, (state, action) => {
         state.allGames = action.payload.games;
-        console.log(action.payload, "action.payload from getGames in slice");
+        console.log(action.payload, 'action.payload from getGames in slice');
         state.loading = false;
       })
       .addCase(getGames.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
       });
+    //getMoreGames
+    builder
+      .addCase(getMoreGames.pending, (state) => {
+        state.moreGamesLoading = true;
+        state.error = null;
+      })
+      .addCase(getMoreGames.fulfilled, (state, action) => {
+        if (action.payload.games.length === 0) {
+          toast.error('No more games found');
+          return;
+        }
+        state.allGames = state.allGames.concat(action.payload.games);
+        state.moreGamesLoading = false;
+      })
+      .addCase(getMoreGames.rejected, (state, action) => {
+        state.moreGamesLoading = false;
+        state.error = action.error.message;
+      });
+
     //getRandomGames
     builder
       .addCase(getRandomGames.pending, (state) => {

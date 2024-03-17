@@ -1,15 +1,15 @@
 import SearchBar from '@/features/store/components/SearchBar';
 import SideBar from '@/features/store/components/SideBar';
 import { useSelector, useDispatch } from 'react-redux';
-import { getGames } from '@/redux/slice/games-slice';
+import { getGames, getMoreGames } from '@/redux/slice/games-slice';
 import { useEffect, useState } from 'react'; // Remove lazy and Suspense
 import GameCard from '@/features/store/components/GameCard'; // Import GameCard directly
 import GameStoreSorter from '@/features/store/components/GameStoreSorter';
 import { Skeleton } from '@/components/ui/skeleton';
-
+import { ChevronDownIcon } from '@radix-ui/react-icons';
 export default function GameStorePage() {
   const dispatch = useDispatch();
-  const { allGames, loading } = useSelector(
+  const { allGames, loading, moreGamesLoading } = useSelector(
     (state) => state.games
   );
 
@@ -17,11 +17,16 @@ export default function GameStorePage() {
 
   useEffect(() => {
     if (allGames.length === 0) {
-      dispatch(getGames(page))        
-    } 
+      dispatch(getGames(page));
+    }
   }, [allGames]);
 
-  return  (
+  useEffect(() => {
+    console.log('page', page);
+    dispatch(getMoreGames(page));
+  }, [page]);
+
+  return (
     <div className='relative flex h-content w-full overflow-auto'>
       <video
         className='-z-50'
@@ -64,9 +69,18 @@ export default function GameStorePage() {
               allGames.map((game, index) => (
                 <GameCard key={index} gameData={game} /> // Remove Suspense and LazyGameCard
               ))}
-            <div className='border-base col-span-3 flex w-full animate-pulse items-center justify-center gap-2 rounded-lg border p-2 text-center font-babas text-3xl backdrop-blur-lg'>
-              LOADING
-              <span className='loading loading-spinner loading-lg'></span>
+            <div
+              onClick={() => setPage(page + 1)}
+              className='col-span-3 flex items-center justify-center gap-2 rounded-lg p-2 text-center font-babas text-3xl transition-all hover:scale-150 hover:text-primary active:scale-125'
+            >
+              {moreGamesLoading ? (
+                <span className='loading loading-ring loading-lg'></span>
+              ) : (
+                <>
+                  <p>LOAD MORE GAMES</p>
+                  <ChevronDownIcon className='h-6 w-6 animate-bounce text-primary' />
+                </>
+              )}
             </div>
           </div>
         )}
