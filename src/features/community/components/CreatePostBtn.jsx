@@ -50,7 +50,10 @@ export default function CreatePostBtn() {
         <DialogHeader>
           <DialogTitle>Create Post</DialogTitle>
         </DialogHeader>
-        <form className='grid gap-4 py-4' onSubmit={handleSubmit(onSubmit)}>
+        <form
+          className='flex flex-col justify-center gap-4 py-4'
+          onSubmit={handleSubmit(onSubmit)}
+        >
           <input
             type='file'
             name='images'
@@ -58,19 +61,24 @@ export default function CreatePostBtn() {
             errors={errors}
             ref={uploadImageEl}
           />
-          <div className='grid grid-cols-4 items-center gap-4'>
-            <p className='text-right'>Title:</p>
-            <CreatePostInput />
+          <div className='grid grid-cols-[1.5fr_4fr] gap-4'>
+            <p className='pt-1 text-right'>Title:</p>
+            <CreatePostInput name='title' errors={errors} />
           </div>
-          <div className='items-top grid grid-cols-4 gap-4'>
+          <div className='items-top grid grid-cols-[1.5fr_4fr] gap-4'>
             <p className='pt-1 text-right'>Content:</p>
-            <CreatePostInput isTextarea={true} />
+            <CreatePostInput name='content' errors={errors} isTextarea={true} />
           </div>
-          <div className='grid grid-cols-4 items-center gap-4'>
-            <p htmlFor='name' className='text-right'>
-              Categories:
-            </p>
-            <select name='category' className={inputClass}>
+          <div className='grid grid-cols-[1.5fr_4fr] gap-4'>
+            <p className='pt-1 text-right'>Game:</p>
+            <CreatePostInput name='game' errors={errors} />
+          </div>
+          <div className='grid grid-cols-[1.5fr_4fr] gap-4'>
+            <p className='pt-1 text-right'>Categories:</p>
+            <select
+              name='category'
+              className='h-10 border px-2 focus:border-base_dark focus:outline-none'
+            >
               <option value='DISCUSSION' selected>
                 DISCUSSION
               </option>
@@ -78,25 +86,14 @@ export default function CreatePostBtn() {
               <option value='SCREENSHOT'>SCREENSHOT</option>
             </select>
           </div>
-          <div className='grid grid-cols-4 items-center gap-4'>
-            <p className='text-right'></p>
-            <button
-              type='button'
-              onClick={() => uploadImageEl.current.click()}
-              className='h-8 w-48 bg-base_dark text-sm text-white duration-300 hover:bg-gray-600'
-            >
-              upload image
-            </button>
-          </div>
-        </form>
-        <DialogFooter>
+
           <button
             type='submit'
-            className='h-10 w-[150px] bg-primary text-sm text-white duration-300 hover:bg-secondary'
+            className='h-10 w-[150px] self-end bg-primary text-sm text-white duration-300 hover:bg-secondary'
           >
             Post
           </button>
-        </DialogFooter>
+        </form>
       </DialogContent>
     </Dialog>
   );
