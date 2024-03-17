@@ -9,12 +9,14 @@ import {
 import { useEffect, lazy, Suspense } from 'react';
 import GameStoreSorter from '@/features/store/components/GameStoreSorter';
 import { ChevronDownIcon } from '@/icons';
+import { useState } from 'react';
 
 const GameCardStrip = lazy(
   () => import('@/features/store/components/GameCardStrip')
 );
 
 export default function GameSearchPage() {
+  const [gameSearchQuery, setGameSearchQuery] = useState('');
   const dispatch = useDispatch();
   const {
     searchedGames,
@@ -33,7 +35,7 @@ export default function GameSearchPage() {
     if (searchedGames.length === 0) {
       return;
     }
-    dispatch(getMoreSearchGames({ query: 'e', page: searchPage }));
+    dispatch(getMoreSearchGames({ query: gameSearchQuery, page: searchPage }));
   }, [searchPage]);
 
   return (
@@ -55,7 +57,10 @@ export default function GameSearchPage() {
       </video>
       <div className='min-h-content relative flex w-store_search_bar flex-col gap-4 overflow-auto'>
         <div className='flex'>
-          <SearchBar />
+          <SearchBar 
+            gameSearchQuery={gameSearchQuery}
+            setGameSearchQuery={setGameSearchQuery}
+          />
           <GameStoreSorter type='search' />
         </div>
         <Suspense

@@ -4,7 +4,11 @@ import { searchGames } from '@/redux/slice/games-slice';
 import { useNavigate } from 'react-router-dom';
 import { SearchIcon } from '@/icons';
 
-export default function SearchBar({ type = '' }) {
+export default function SearchBar({
+  type = '',
+  gameSearchQuery,
+  setGameSearchQuery,
+}) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [searchQuery, setSearchQuery] = useState('');
@@ -16,9 +20,13 @@ export default function SearchBar({ type = '' }) {
     setSearchQuery(e.target.value);
   };
 
+  const handleGameSearchChange = (e) => {
+    setGameSearchQuery(e.target.value);
+  };
+
   const handleSearch = () => {
     const searchTerm = makeSlug(searchQuery);
-    dispatch(searchGames(searchTerm));
+    dispatch(searchGames(gameSearchQuery));
     navigate(`/search/`);
     console.log(searchTerm);
   };
@@ -46,7 +54,7 @@ export default function SearchBar({ type = '' }) {
     <div className='z-30 flex h-14 flex-grow *:backdrop-blur-lg'>
       <div className='flex w-full'>
         <input
-          onChange={handleChange}
+          onChange={handleGameSearchChange}
           type='text'
           className='flex-1 border border-base_dark px-12 py-4'
           placeholder='search your games here...'
