@@ -86,6 +86,16 @@ export default function CreatePostBtn() {
               <option value='SCREENSHOT'>SCREENSHOT</option>
             </select>
           </div>
+          <div className='grid grid-cols-[1.5fr_4fr] gap-4'>
+            <p></p>
+            <button
+              type='button'
+              onClick={() => uploadImageEl.current.click()}
+              className='h-8 w-48 bg-base_dark text-sm text-white duration-300 hover:bg-gray-600'
+            >
+              upload image
+            </button>
+          </div>
 
           <button
             type='submit'
