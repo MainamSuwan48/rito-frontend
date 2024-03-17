@@ -9,23 +9,20 @@ import { Skeleton } from '@/components/ui/skeleton';
 
 export default function GameStorePage() {
   const dispatch = useDispatch();
-  const { games, loadingCurrentGame } = useSelector(
-    (state) => state.games.games
+  const { allGames, loading } = useSelector(
+    (state) => state.games
   );
-  const [loading, setLoading] = useState(true);
+
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
-    if (!games) {
-      dispatch(getGames())
-        .then(() => setLoading(false))
-        .catch(() => setLoading(false));
-    } else {
-      setLoading(false);
-    }
-  }, [games]);
+    if (allGames.length === 0) {
+      dispatch(getGames(page))        
+    } 
+  }, [allGames]);
 
-  return loadingCurrentGame ? null : (
-    <div className='relative flex w-full h-content overflow-auto'>
+  return  (
+    <div className='relative flex h-content w-full overflow-auto'>
       <video
         className='-z-50'
         autoPlay
@@ -63,10 +60,14 @@ export default function GameStorePage() {
           </div>
         ) : (
           <div className='grid h-game_store grid-cols-1 items-start gap-6 self-center justify-self-center overflow-auto pb-6 lg:grid-cols-2 2xl:grid-cols-3'>
-            {games &&
-              games.map((game, index) => (
+            {allGames &&
+              allGames.map((game, index) => (
                 <GameCard key={index} gameData={game} /> // Remove Suspense and LazyGameCard
               ))}
+            <div className='border-base col-span-3 flex w-full animate-pulse items-center justify-center gap-2 rounded-lg border p-2 text-center font-babas text-3xl backdrop-blur-lg'>
+              LOADING
+              <span className='loading loading-spinner loading-lg'></span>
+            </div>
           </div>
         )}
       </div>

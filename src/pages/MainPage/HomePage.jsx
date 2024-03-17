@@ -11,6 +11,7 @@ import CyberPunkCard from './components/CyberPunkCard';
 import PcGamerCard from './components/PcGamerCard';
 import GTAVCard from './components/GTAVCard';
 import EndingHero from './components/EndingHero';
+import GameShowcaseCarousel from './components/GameShowcaseCarousel';
 
 function HomePage() {
   const navigate = useNavigate();
@@ -19,6 +20,7 @@ function HomePage() {
     <div>
       <HomePageHero />
       <DiscoverGamesCard />
+      <GameShowcaseCarousel />
       <CyberPunkCard />
       <PcGamerCard />
       <GTAVCard />

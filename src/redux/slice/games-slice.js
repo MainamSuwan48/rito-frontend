@@ -4,9 +4,11 @@ import { toast } from 'react-toastify';
 
 //initial state
 const initialState = {
-  games: [], // For Store Page
+  allGames: [], // For Store Page
   isAscending: true,
   loading: false,
+  randomGames: [], // For Home Page
+  loadingRandomGames: false,
   currentGame: null, // For Game Page
   loadingCurrentGame: false,
   genres: null, // For Store Page
@@ -27,9 +29,9 @@ const initialState = {
   //genres for publishing
 };
 
-export const getGames = createAsyncThunk('games/getGames', async () => {
+export const getGames = createAsyncThunk('games/getGames', async (page) => {
   try {
-    const response = await gamesApi.getGames();
+    const response = await gamesApi.getGames(page);
     await new Promise((resolve) => setTimeout(resolve, 300));
     return response.data;
   } catch (error) {
@@ -42,8 +44,22 @@ export const getGameById = createAsyncThunk(
   async (gameId) => {
     try {
       const response = await gamesApi.getGame(gameId);
-      await new Promise((resolve) => setTimeout(resolve, 300));
+      await new Promise((resolve) => setTimeout(resolve, 1000));
       return response.data.game;
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
+);
+
+export const getRandomGames = createAsyncThunk(
+  'games/getRandomGames',
+  async () => {
+    try {
+      const response = await gamesApi.getRandomGames();
+      await new Promise((resolve) => setTimeout(resolve, 500));
+      console.log(response.data.games, "response.data.games from getRandomGames in slice ");
+      return response.data.games;
     } catch (error) {
       return Promise.reject(error);
     }
@@ -120,11 +136,11 @@ export const getAllPlatforms = createAsyncThunk(
 
 export const createGame = createAsyncThunk(
   'games/create',
-  async ({formData,navigate}, { rejectWithValue }) => {
+  async ({ formData, navigate }, { rejectWithValue }) => {
     try {
       const response = await gamesApi.createGame(formData);
       toast.success('Successfully created game');
-      navigate('/')
+      navigate('/');
       return response.data.newGame;
     } catch (error) {
       toast.error(error.response.message);
@@ -135,11 +151,11 @@ export const createGame = createAsyncThunk(
 
 export const updateGame = createAsyncThunk(
   'games/update',
-  async ({ formData, gameId,navigate }, { rejectWithValue }) => {
+  async ({ formData, gameId, navigate }, { rejectWithValue }) => {
     try {
       const response = await gamesApi.updateGame(formData, gameId);
       toast.success('Successfully updated game');
-      navigate('/')
+      navigate('/');
       return response.data.game;
     } catch (error) {
       toast.error(error.response.message);
@@ -180,7 +196,7 @@ const gamesSlice = createSlice({
       });
     },
     reverseGames: (state) => {
-      state.games.games.reverse();
+      state.allGames.reverse();
       state.isAscending = !state.isAscending;
     },
     reverseSearchedGames: (state) => {
@@ -278,11 +294,26 @@ const gamesSlice = createSlice({
         state.error = null;
       })
       .addCase(getGames.fulfilled, (state, action) => {
-        state.games = action.payload;
+        state.allGames = action.payload.games;
+        console.log(action.payload, "action.payload from getGames in slice");
         state.loading = false;
       })
       .addCase(getGames.rejected, (state, action) => {
         state.loading = false;
+        state.error = action.error.message;
+      });
+    //getRandomGames
+    builder
+      .addCase(getRandomGames.pending, (state) => {
+        state.loadingRandomGames = true;
+        state.error = null;
+      })
+      .addCase(getRandomGames.fulfilled, (state, action) => {
+        state.randomGames = action.payload;
+        state.loadingRandomGames = false;
+      })
+      .addCase(getRandomGames.rejected, (state, action) => {
+        state.loadingRandomGames = false;
         state.error = action.error.message;
       });
     //getGameById

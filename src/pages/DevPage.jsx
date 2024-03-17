@@ -1,5 +1,5 @@
-import GameShowcaseCarousel from './MainPage/components/GameShowcaseCarouse';
-import GameShowcaseCard from './MainPage/components/GameShowcaseCarouse';
+import GameShowcaseCarousel from './MainPage/components/GameShowcaseCarousel';
+import GameShowcaseCard from './MainPage/components/GameShowcaseCarousel';
 
 export default function DevPage() {
   return (
