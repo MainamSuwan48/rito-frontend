@@ -1,50 +1,20 @@
-import { Button } from '@/components/ui/button';
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '@/components/ui/dialog';
-import { joiResolver } from '@hookform/resolvers/joi';
-import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import { DialogFooter, DialogHeader } from '@/components/ui/dialog';
+import { DialogTitle } from '@radix-ui/react-dialog';
+import { DialogContent } from '@radix-ui/react-dialog';
 
-export default function CreatePostBtn() {
+export default function CreatePostForm() {
   const inputClass =
     'py-2 px-4 col-span-3 border text-sm focus:border-base_dark focus:outline-none';
-
-  const dispatch = useDispatch();
-
-  // const {} = useForm({
-  //   resolver: joiResolver(createPostSchema),
-  //   mode: 'onSubmit',
-  // });
-
-  const onSubmit = (data) => {
-    console.log(data);
-  };
-
-  const createGameData = new FormData();
-  createGameData.append('title', 'data.title');
-  createGameData.append('content', 'data.content');
-  createGameData.append('category', 'data.category');
-  createGameData.append('images', 'data.images');
-
   return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <Button className='h-12 w-[250px] rounded-none bg-primary duration-300 hover:bg-secondary'>
-          Create Post
-        </Button>
-      </DialogTrigger>
+    <>
       <DialogContent className='sm:max-w-[70vw]'>
         <DialogHeader>
           <DialogTitle>Create Post</DialogTitle>
+          {/* <DialogDescription>
+            Make changes to your profile here. Click save when you're done.
+          </DialogDescription> */}
         </DialogHeader>
-        <form className='grid gap-4 py-4'>
+        <div className='grid gap-4 py-4'>
           <div className='grid grid-cols-4 items-center gap-4'>
             <p htmlFor='name' className='text-right'>
               Title:
@@ -74,14 +44,11 @@ export default function CreatePostBtn() {
           </div>
           <div className='grid grid-cols-4 items-center gap-4'>
             <p className='text-right'></p>
-            <button
-              type='file'
-              className='h-8 w-48 bg-base_dark text-sm text-white'
-            >
-              up load
+            <button className='h-8 w-48 bg-base_dark text-sm text-white'>
+              upload images
             </button>
           </div>
-        </form>
+        </div>
         <DialogFooter>
           <button
             type='submit'
@@ -91,6 +58,6 @@ export default function CreatePostBtn() {
           </button>
         </DialogFooter>
       </DialogContent>
-    </Dialog>
+    </>
   );
 }

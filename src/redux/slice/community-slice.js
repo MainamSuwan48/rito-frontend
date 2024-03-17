@@ -41,6 +41,15 @@ export const toggleLikePost = createAsyncThunk(
   }
 );
 
+export const createPost = createAsyncThunk('posts/createPost', async (data) => {
+  try {
+    const response = await postApi.createPost(data);
+    return response.data.post;
+  } catch (error) {
+    return Promise.reject(error);
+  }
+});
+
 const communitySlice = createSlice({
   name: 'community',
   initialState,
