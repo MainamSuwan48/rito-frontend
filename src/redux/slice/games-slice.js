@@ -169,10 +169,10 @@ const gamesSlice = createSlice({
   initialState,
   reducers: {
     sortGames: (state, action) => {
-      console.log(state.games);
+      console.log(state.allGames);
       const key = action.payload;
       state.isAscending = true;
-      state.games.games.sort((a, b) => {
+      state.allGames.games.sort((a, b) => {
         if (a[key] < b[key]) {
           return -1;
         }
@@ -351,7 +351,7 @@ const gamesSlice = createSlice({
         state.error = null;
       })
       .addCase(getGamesByGenreId.fulfilled, (state, action) => {
-        state.games = action.payload;
+        state.allGames = action.payload.games;
         state.loading = false;
       })
       .addCase(getGamesByGenreId.rejected, (state, action) => {
