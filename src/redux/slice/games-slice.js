@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 //initial state
 const initialState = {
   allGames: [], // For Store Page
+  page: 1,
   isAscending: true,
   loading: false,
   moreGamesLoading: false,
@@ -199,6 +200,7 @@ const gamesSlice = createSlice({
   name: 'games',
   initialState,
   reducers: {
+    //For Store Page
     sortGames: (state, action) => {
       console.log(state.allGames);
       const key = action.payload;
@@ -213,6 +215,13 @@ const gamesSlice = createSlice({
         return 0;
       });
     },
+    incrementPage: (state) => {
+      state.page += 1;
+    },
+    resetPage: (state) => {
+      state.page = 1;
+    },
+    //For Search Page
     sortSearchedGames: (state, action) => {
       const key = action.payload;
       state.searchedGamesAscending = true;
@@ -225,6 +234,13 @@ const gamesSlice = createSlice({
         }
         return 0;
       });
+    },
+    setCurrentGenre: (state, action) => {
+      console.log(
+        action.payload,
+        'action.payload from setCurrentGenre in slice'
+      );
+      state.currentGenre = action.payload;
     },
     reverseGames: (state) => {
       state.allGames.reverse();
@@ -408,6 +424,25 @@ const gamesSlice = createSlice({
         state.loading = false;
         state.error = action.error.message;
       });
+    //getMoreGamesByGenreId
+    builder
+      .addCase(getMoreGamesByGenreId.pending, (state) => {
+        state.moreGamesLoading = true;
+        state.error = null;
+      })
+      .addCase(getMoreGamesByGenreId.fulfilled, (state, action) => {
+        if (action.payload.games.length === 0) {
+          toast.error('No more games found');
+          state.moreGamesLoading = false;
+          return;
+        }
+        state.allGames = state.allGames.concat(action.payload.games);
+        state.moreGamesLoading = false;
+      })
+      .addCase(getMoreGamesByGenreId.rejected, (state, action) => {
+        state.moreGamesLoading = false;
+        state.error = action.error.message;
+      });
     //searchGames
     builder
       .addCase(searchGames.pending, (state) => {
@@ -488,6 +523,9 @@ const gamesSlice = createSlice({
 
 //reducers
 export const {
+  incrementPage,
+  resetPage,
+  setCurrentGenre,
   sortGames,
   reverseGames,
   sortSearchedGames,
