@@ -17,6 +17,8 @@ const initialState = {
   currentGenre: null,
   loadingGenres: false,
   searchedGames: [], // For Search Page
+  searchPage: 1,
+  moreSearchedGamesLoading: false,
   searchedGamesAscending: true,
   loadingSearchedGames: false,
   error: null,
@@ -138,6 +140,19 @@ export const searchGames = createAsyncThunk(
   }
 );
 
+export const getMoreSearchGames = createAsyncThunk(
+  'games/getMoreSearchGames',
+  async ({query, page}) => {
+    try {
+      const response = await gamesApi.searchGames(query, page);
+      await new Promise((resolve) => setTimeout(resolve, 300));
+      return response.data;
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
+);
+
 export const searchTags = createAsyncThunk(
   'games/searchTags',
   async (query) => {
@@ -234,6 +249,12 @@ const gamesSlice = createSlice({
         }
         return 0;
       });
+    },
+    incrementSearchPage: (state) => {
+      state.searchPage += 1;
+    },
+    resetSearchPage: (state) => {
+      state.searchPage = 1;
     },
     setCurrentGenre: (state, action) => {
       console.log(
@@ -457,6 +478,25 @@ const gamesSlice = createSlice({
         state.loadingSearchedGames = false;
         state.error = action.error.message;
       });
+    //getMoreSearchGames
+    builder
+      .addCase(getMoreSearchGames.pending, (state) => {
+        state.moreSearchedGamesLoading = true;
+        state.error = null;
+      })
+      .addCase(getMoreSearchGames.fulfilled, (state, action) => {
+        if (action.payload.games.length === 0) {
+          toast.error('No more games found');
+          state.moreSearchedGamesLoading = false;
+          return;
+        }
+        state.searchedGames = state.searchedGames.concat(action.payload.games);
+        state.moreSearchedGamesLoading = false;
+      })
+      .addCase(getMoreSearchGames.rejected, (state, action) => {
+        state.moreSearchedGamesLoading = false;
+        state.error = action.error.message;
+      });
     //searchTags
     builder
       .addCase(searchTags.pending, (state) => {
@@ -531,6 +571,8 @@ export const {
   sortSearchedGames,
   reverseSearchedGames,
   clearSearch,
+  incrementSearchPage,
+  resetSearchPage,
   clearCurrentGame,
   addTagForPublishing,
   addInitialTags,
