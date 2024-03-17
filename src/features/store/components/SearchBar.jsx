@@ -1,14 +1,13 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { searchGames } from '@/redux/slice/games-slice';
+import { useDispatch ,useSelector} from 'react-redux';
+import { searchGames ,setGameSearchQuery } from '@/redux/slice/games-slice';
 import { useNavigate } from 'react-router-dom';
 import { SearchIcon } from '@/icons';
 
 export default function SearchBar({
   type = '',
-  gameSearchQuery,
-  setGameSearchQuery,
 }) {
+  const { gameSearchQuery } = useSelector((state) => state.games);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [searchQuery, setSearchQuery] = useState('');
@@ -21,7 +20,7 @@ export default function SearchBar({
   };
 
   const handleGameSearchChange = (e) => {
-    setGameSearchQuery(e.target.value);
+    dispatch(setGameSearchQuery(e.target.value));
   };
 
   const handleSearch = () => {

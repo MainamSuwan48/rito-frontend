@@ -4,6 +4,7 @@ import {
   clearSearch,
   getMoreSearchGames,
   incrementSearchPage,
+  setGameSearchQuery,
 } from '@/redux/slice/games-slice';
 import { useEffect, lazy, Suspense } from 'react';
 import GameStoreSorter from '@/features/store/components/GameStoreSorter';
@@ -15,13 +16,13 @@ const GameCardStrip = lazy(
 );
 
 export default function GameSearchPage() {
-  const [gameSearchQuery, setGameSearchQuery] = useState('');
   const dispatch = useDispatch();
   const {
     searchedGames,
     loadingSearchedGames,
     searchPage,
     moreSearchedGamesLoading,
+    gameSearchQuery
   } = useSelector((state) => state.games);
 
   useEffect(() => {

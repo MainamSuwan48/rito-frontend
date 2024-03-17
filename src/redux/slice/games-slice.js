@@ -17,6 +17,7 @@ const initialState = {
   currentGenre: null,
   loadingGenres: false,
   searchedGames: [], // For Search Page
+  gameSearchQuery: '',
   searchPage: 1,
   moreSearchedGamesLoading: false,
   searchedGamesAscending: true,
@@ -237,6 +238,10 @@ const gamesSlice = createSlice({
       state.page = 1;
     },
     //For Search Page
+    setGameSearchQuery: (state, action) => {
+      console.log(action.payload, 'action.payload from setGameSearchQuery in slice');
+      state.gameSearchQuery = action.payload;
+    },
     sortSearchedGames: (state, action) => {
       const key = action.payload;
       state.searchedGamesAscending = true;
@@ -568,6 +573,7 @@ export const {
   setCurrentGenre,
   sortGames,
   reverseGames,
+  setGameSearchQuery,
   sortSearchedGames,
   reverseSearchedGames,
   clearSearch,
