@@ -5,7 +5,6 @@ import {
   getMoreSearchGames,
   incrementSearchPage,
 } from '@/redux/slice/games-slice';
-
 import { useEffect, lazy, Suspense } from 'react';
 import GameStoreSorter from '@/features/store/components/GameStoreSorter';
 import { ChevronDownIcon } from '@/icons';
@@ -28,6 +27,7 @@ export default function GameSearchPage() {
   useEffect(() => {
     return () => {
       dispatch(clearSearch());
+      
     };
   }, []);
 
@@ -57,7 +57,7 @@ export default function GameSearchPage() {
       </video>
       <div className='min-h-content relative flex w-store_search_bar flex-col gap-4 overflow-auto'>
         <div className='flex'>
-          <SearchBar 
+          <SearchBar
             gameSearchQuery={gameSearchQuery}
             setGameSearchQuery={setGameSearchQuery}
           />
