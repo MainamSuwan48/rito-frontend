@@ -9,8 +9,11 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import { joiResolver } from '@hookform/resolvers/joi';
+import { useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
+import { createPostSchema } from '../validations/validate-createpost';
+import CreatePostInput from './CreatePostInput';
 
 export default function CreatePostBtn() {
   const inputClass =
@@ -18,20 +21,23 @@ export default function CreatePostBtn() {
 
   const dispatch = useDispatch();
 
-  // const {} = useForm({
-  //   resolver: joiResolver(createPostSchema),
-  //   mode: 'onSubmit',
-  // });
+  const {
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: joiResolver(createPostSchema),
+    mode: 'onSubmit',
+  });
 
   const onSubmit = (data) => {
-    console.log(data);
+    const createGameData = new FormData();
+    createGameData.append('title', 'data.title');
+    createGameData.append('content', 'data.content');
+    createGameData.append('category', 'data.category');
+    createGameData.append('images', 'data.images');
   };
 
-  const createGameData = new FormData();
-  createGameData.append('title', 'data.title');
-  createGameData.append('content', 'data.content');
-  createGameData.append('category', 'data.category');
-  createGameData.append('images', 'data.images');
+  const uploadImageEl = useRef(null);
 
   return (
     <Dialog>
@@ -44,27 +50,27 @@ export default function CreatePostBtn() {
         <DialogHeader>
           <DialogTitle>Create Post</DialogTitle>
         </DialogHeader>
-        <form className='grid gap-4 py-4'>
+        <form className='grid gap-4 py-4' onSubmit={handleSubmit(onSubmit)}>
+          <input
+            type='file'
+            name='images'
+            className='hidden'
+            errors={errors}
+            ref={uploadImageEl}
+          />
           <div className='grid grid-cols-4 items-center gap-4'>
-            <p htmlFor='name' className='text-right'>
-              Title:
-            </p>
-            <input className={inputClass} />
+            <p className='text-right'>Title:</p>
+            <CreatePostInput />
           </div>
           <div className='items-top grid grid-cols-4 gap-4'>
-            <p htmlFor='username' className='pt-1 text-right'>
-              Content:
-            </p>
-            <textarea
-              className={`${inputClass} focus:border-blue-500 focus:outline-none`}
-              rows={3} // Adjust the number of rows as needed
-            />
+            <p className='pt-1 text-right'>Content:</p>
+            <CreatePostInput isTextarea={true} />
           </div>
           <div className='grid grid-cols-4 items-center gap-4'>
             <p htmlFor='name' className='text-right'>
               Categories:
             </p>
-            <select className={inputClass}>
+            <select name='category' className={inputClass}>
               <option value='DISCUSSION' selected>
                 DISCUSSION
               </option>
@@ -75,10 +81,11 @@ export default function CreatePostBtn() {
           <div className='grid grid-cols-4 items-center gap-4'>
             <p className='text-right'></p>
             <button
-              type='file'
-              className='h-8 w-48 bg-base_dark text-sm text-white'
+              type='button'
+              onClick={() => uploadImageEl.current.click()}
+              className='h-8 w-48 bg-base_dark text-sm text-white duration-300 hover:bg-gray-600'
             >
-              up load
+              upload image
             </button>
           </div>
         </form>
