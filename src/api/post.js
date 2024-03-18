@@ -10,3 +10,6 @@ export const findLikePost = (postId) => axios.get(`/like/post/${postId}`);
 
 // Like and unlike post
 export const toggleLikePost = (postId) => axios.post(`/like/post/${postId}`);
+
+export const createComment = (postId, data) =>
+  axios.post(`/comment/${postId}`, data);

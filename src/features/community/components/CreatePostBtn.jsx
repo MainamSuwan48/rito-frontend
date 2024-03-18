@@ -40,7 +40,7 @@ export default function CreatePostBtn() {
     // createGameData.append('category', data.category);
     // createGameData.append('image', data.image);
     console.log('submit');
-    await dispatch(createPost({ formData }));
+    dispatch(createPost({ formData }));
     setIsOpen(false);
   };
 

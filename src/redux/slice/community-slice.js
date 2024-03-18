@@ -9,7 +9,22 @@ const initialState = {
   post: null,
   error: null,
   newPostSubmitted: false,
+
+  contents: [],
+  content: null,
 };
+
+export const createComment = createAsyncThunk(
+  'posts/createComment',
+  async ({ id, data }) => {
+    try {
+      const response = await postApi.createComment(id, data);
+      return response.data.content;
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
+);
 
 export const getAllPosts = createAsyncThunk('posts/getAllPosts', async () => {
   try {
@@ -59,7 +74,7 @@ export const toggleLikePost = createAsyncThunk(
 
 export const createPost = createAsyncThunk(
   'posts/createPost',
-  async ({ formData }, { rejectWithValue }) => {
+  async ({ formData }) => {
     try {
       const response = await postApi.createPost(formData);
       return response.data.post;
@@ -141,13 +156,24 @@ const communitySlice = createSlice({
         state.error = action.error.message;
       });
     builder
-      .addCase(getPostById.fulfilled, (state, action) => {
-        state.post = action.payload;
-      })
       .addCase(getPostById.rejected, (state, action) => {
         state.error = action.error.message;
       })
+      .addCase(getPostById.fulfilled, (state, action) => {
+        state.post = action.payload;
+      })
       .addCase(getPostById.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      });
+    builder
+      .addCase(createComment.rejected, (state, action) => {
+        state.error = action.error.message;
+      })
+      .addCase(createComment.fulfilled, (state, action) => {
+        state.content = action.payload;
+      })
+      .addCase(createComment.pending, (state) => {
         state.loading = true;
         state.error = null;
       });
