@@ -200,7 +200,7 @@ export const createGame = createAsyncThunk(
   }
 );
 
-export const updateGame = createAsyncThunk(
+export const updateGame = createAsyncThunk('games/update',
   async ({ formData, gameId, navigate, onClear }, { rejectWithValue }) => {
     try {
       const response = await gamesApi.updateGame(formData, gameId);
