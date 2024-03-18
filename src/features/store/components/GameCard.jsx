@@ -30,8 +30,7 @@ export default function GameCard({ gameData }) {
   };
   const handleMouseLeave = () => {
     x.set(0);
-    y.set(0);
-    console.log('leave');
+    y.set(0);    
   };
 
   return (

@@ -34,8 +34,6 @@ export default function GameCardStrip({
   const { backgroundImageUrl, name, price, gameTags, id, gameCollections } =
     gameData;
 
-  console.log(gameData, gameCollections, 'gameData in GameCardStrip');
-
   if (type == 'wishlist') {
     return (
       <div className='flex select-none flex-col border-b bg-base-300 shadow-lg'>
@@ -63,7 +61,7 @@ export default function GameCardStrip({
   }
 
   return (
-    <div className='flex flex-shrink-0 h-[6rem]  bg-base-300 bg-opacity-80 shadow-lg'>
+    <div className='flex h-[6rem] flex-shrink-0  bg-base-300 bg-opacity-80 shadow-lg'>
       <img
         onClick={() => navigate(`/game/${id}`)}
         className='h-[6rem] w-[25rem] cursor-pointer object-cover transition-all hover:scale-105 active:scale-100'

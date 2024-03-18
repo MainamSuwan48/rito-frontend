@@ -1,13 +1,9 @@
-import React from 'react';
-import GameTagsCreator from './UserPage/game-publishing/GameTagsCreator';
-import PlatformsCreator from './UserPage/game-publishing/PlatformsCreator';
-import GenreCreator from './UserPage/game-publishing/GenresCreator';
-import CreateGamePage from './PublishGamePage/CreateGamePage';
-import UserChatModal from '@/features/user/components/UserChatModal';
+import GameShowcaseCarousel from './MainPage/components/GameShowcaseCarousel';
+import GameShowcaseCard from './MainPage/components/GameShowcaseCarousel';
 
 export default function DevPage() {
   return (
-    <div>test</div>
+    <GameShowcaseCarousel />
     // <div className='flex gap-4'>
     //   <GameTagsCreator />
     //   <PlatformsCreator />

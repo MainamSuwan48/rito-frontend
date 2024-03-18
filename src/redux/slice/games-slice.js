@@ -4,14 +4,22 @@ import { toast } from 'react-toastify';
 
 //initial state
 const initialState = {
-  games: [], // For Store Page
+  allGames: [], // For Store Page
+  page: 1,
   isAscending: true,
   loading: false,
+  moreGamesLoading: false,
+  randomGames: [], // For Home Page
+  loadingRandomGames: false,
   currentGame: null, // For Game Page
   loadingCurrentGame: false,
   genres: null, // For Store Page
+  currentGenre: null,
   loadingGenres: false,
   searchedGames: [], // For Search Page
+  gameSearchQuery: '',
+  searchPage: 1,
+  moreSearchedGamesLoading: false,
   searchedGamesAscending: true,
   loadingSearchedGames: false,
   error: null,
@@ -27,9 +35,9 @@ const initialState = {
   //genres for publishing
 };
 
-export const getGames = createAsyncThunk('games/getGames', async () => {
+export const getGames = createAsyncThunk('games/getGames', async (page) => {
   try {
-    const response = await gamesApi.getGames();
+    const response = await gamesApi.getGames(page);
     await new Promise((resolve) => setTimeout(resolve, 300));
     return response.data;
   } catch (error) {
@@ -37,13 +45,43 @@ export const getGames = createAsyncThunk('games/getGames', async () => {
   }
 });
 
+export const getMoreGames = createAsyncThunk(
+  'games/getMoreGames',
+  async (page) => {
+    try {
+      const response = await gamesApi.getGames(page);
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      return response.data;
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
+);
+
 export const getGameById = createAsyncThunk(
   'games/getGameById',
   async (gameId) => {
     try {
       const response = await gamesApi.getGame(gameId);
-      await new Promise((resolve) => setTimeout(resolve, 300));
+      await new Promise((resolve) => setTimeout(resolve, 1000));
       return response.data.game;
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
+);
+
+export const getRandomGames = createAsyncThunk(
+  'games/getRandomGames',
+  async () => {
+    try {
+      const response = await gamesApi.getRandomGames();
+      await new Promise((resolve) => setTimeout(resolve, 500));
+      console.log(
+        response.data.games,
+        'response.data.games from getRandomGames in slice '
+      );
+      return response.data.games;
     } catch (error) {
       return Promise.reject(error);
     }
@@ -73,6 +111,19 @@ export const getGamesByGenreId = createAsyncThunk(
   }
 );
 
+export const getMoreGamesByGenreId = createAsyncThunk(
+  'games/getMoreGamesByGenreId',
+  async ({ genreId, page }) => {
+    try {
+      const response = await gamesApi.getGameByGenre(genreId, page);
+      await new Promise((resolve) => setTimeout(resolve, 300));
+      return response.data;
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
+);
+
 export const searchGames = createAsyncThunk(
   'games/searchGames',
   async (query) => {
@@ -84,6 +135,19 @@ export const searchGames = createAsyncThunk(
         return rejectWithValue('No games found');
       }
       return response.data.games;
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
+);
+
+export const getMoreSearchGames = createAsyncThunk(
+  'games/getMoreSearchGames',
+  async ({query, page}) => {
+    try {
+      const response = await gamesApi.searchGames(query, page);
+      await new Promise((resolve) => setTimeout(resolve, 300));
+      return response.data;
     } catch (error) {
       return Promise.reject(error);
     }
@@ -120,11 +184,13 @@ export const getAllPlatforms = createAsyncThunk(
 
 export const createGame = createAsyncThunk(
   'games/create',
+
   async ({ formData, navigate, onClear }, { rejectWithValue }) => {
     try {
       const response = await gamesApi.createGame(formData);
       toast.success('Successfully created game');
       onClear();
+
       navigate('/');
       return response.data.newGame;
     } catch (error) {
@@ -135,12 +201,13 @@ export const createGame = createAsyncThunk(
 );
 
 export const updateGame = createAsyncThunk(
-  'games/update',
+
   async ({ formData, gameId, navigate, onClear }, { rejectWithValue }) => {
     try {
       const response = await gamesApi.updateGame(formData, gameId);
       toast.success('Successfully updated game');
       onClear();
+
       navigate('/');
       return response.data.game;
     } catch (error) {
@@ -154,11 +221,12 @@ const gamesSlice = createSlice({
   name: 'games',
   initialState,
   reducers: {
+    //For Store Page
     sortGames: (state, action) => {
-      console.log(state.games);
+      console.log(state.allGames);
       const key = action.payload;
       state.isAscending = true;
-      state.games.games.sort((a, b) => {
+      state.allGames.games.sort((a, b) => {
         if (a[key] < b[key]) {
           return -1;
         }
@@ -167,6 +235,17 @@ const gamesSlice = createSlice({
         }
         return 0;
       });
+    },
+    incrementPage: (state) => {
+      state.page += 1;
+    },
+    resetPage: (state) => {
+      state.page = 1;
+    },
+    //For Search Page
+    setGameSearchQuery: (state, action) => {
+      console.log(action.payload, 'action.payload from setGameSearchQuery in slice');
+      state.gameSearchQuery = action.payload;
     },
     sortSearchedGames: (state, action) => {
       const key = action.payload;
@@ -181,8 +260,21 @@ const gamesSlice = createSlice({
         return 0;
       });
     },
+    incrementSearchPage: (state) => {
+      state.searchPage += 1;
+    },
+    resetSearchPage: (state) => {
+      state.searchPage = 1;
+    },
+    setCurrentGenre: (state, action) => {
+      console.log(
+        action.payload,
+        'action.payload from setCurrentGenre in slice'
+      );
+      state.currentGenre = action.payload;
+    },
     reverseGames: (state) => {
-      state.games.games.reverse();
+      state.allGames.reverse();
       state.isAscending = !state.isAscending;
     },
     reverseSearchedGames: (state) => {
@@ -280,11 +372,45 @@ const gamesSlice = createSlice({
         state.error = null;
       })
       .addCase(getGames.fulfilled, (state, action) => {
-        state.games = action.payload;
+        state.allGames = action.payload.games;
+        console.log(action.payload, 'action.payload from getGames in slice');
         state.loading = false;
       })
       .addCase(getGames.rejected, (state, action) => {
         state.loading = false;
+        state.error = action.error.message;
+      });
+    //getMoreGames
+    builder
+      .addCase(getMoreGames.pending, (state) => {
+        state.moreGamesLoading = true;
+        state.error = null;
+      })
+      .addCase(getMoreGames.fulfilled, (state, action) => {
+        if (action.payload.games.length === 0) {
+          toast.error('No more games found');
+          return;
+        }
+        state.allGames = state.allGames.concat(action.payload.games);
+        state.moreGamesLoading = false;
+      })
+      .addCase(getMoreGames.rejected, (state, action) => {
+        state.moreGamesLoading = false;
+        state.error = action.error.message;
+      });
+
+    //getRandomGames
+    builder
+      .addCase(getRandomGames.pending, (state) => {
+        state.loadingRandomGames = true;
+        state.error = null;
+      })
+      .addCase(getRandomGames.fulfilled, (state, action) => {
+        state.randomGames = action.payload;
+        state.loadingRandomGames = false;
+      })
+      .addCase(getRandomGames.rejected, (state, action) => {
+        state.loadingRandomGames = false;
         state.error = action.error.message;
       });
     //getGameById
@@ -322,11 +448,30 @@ const gamesSlice = createSlice({
         state.error = null;
       })
       .addCase(getGamesByGenreId.fulfilled, (state, action) => {
-        state.games = action.payload;
+        state.allGames = action.payload.games;
         state.loading = false;
       })
       .addCase(getGamesByGenreId.rejected, (state, action) => {
         state.loading = false;
+        state.error = action.error.message;
+      });
+    //getMoreGamesByGenreId
+    builder
+      .addCase(getMoreGamesByGenreId.pending, (state) => {
+        state.moreGamesLoading = true;
+        state.error = null;
+      })
+      .addCase(getMoreGamesByGenreId.fulfilled, (state, action) => {
+        if (action.payload.games.length === 0) {
+          toast.error('No more games found');
+          state.moreGamesLoading = false;
+          return;
+        }
+        state.allGames = state.allGames.concat(action.payload.games);
+        state.moreGamesLoading = false;
+      })
+      .addCase(getMoreGamesByGenreId.rejected, (state, action) => {
+        state.moreGamesLoading = false;
         state.error = action.error.message;
       });
     //searchGames
@@ -341,6 +486,25 @@ const gamesSlice = createSlice({
       })
       .addCase(searchGames.rejected, (state, action) => {
         state.loadingSearchedGames = false;
+        state.error = action.error.message;
+      });
+    //getMoreSearchGames
+    builder
+      .addCase(getMoreSearchGames.pending, (state) => {
+        state.moreSearchedGamesLoading = true;
+        state.error = null;
+      })
+      .addCase(getMoreSearchGames.fulfilled, (state, action) => {
+        if (action.payload.games.length === 0) {
+          toast.error('No more games found');
+          state.moreSearchedGamesLoading = false;
+          return;
+        }
+        state.searchedGames = state.searchedGames.concat(action.payload.games);
+        state.moreSearchedGamesLoading = false;
+      })
+      .addCase(getMoreSearchGames.rejected, (state, action) => {
+        state.moreSearchedGamesLoading = false;
         state.error = action.error.message;
       });
     //searchTags
@@ -409,11 +573,17 @@ const gamesSlice = createSlice({
 
 //reducers
 export const {
+  incrementPage,
+  resetPage,
+  setCurrentGenre,
   sortGames,
   reverseGames,
+  setGameSearchQuery,
   sortSearchedGames,
   reverseSearchedGames,
   clearSearch,
+  incrementSearchPage,
+  resetSearchPage,
   clearCurrentGame,
   addTagForPublishing,
   addInitialTags,

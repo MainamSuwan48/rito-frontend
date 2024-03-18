@@ -2,15 +2,32 @@ import React from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import { useDispatch } from 'react-redux';
-import { getGamesByGenreId, getGames } from '@/redux/slice/games-slice';
+import {
+  getGamesByGenreId,
+  getGames,
+  setCurrentGenre,
+  resetPage,
+} from '@/redux/slice/games-slice';
 
 function GameGenreTag({ children, bgImage, id, type = '' }) {
   const dispatch = useDispatch();
 
+  const handleGenreClick = () => {
+    dispatch(resetPage());
+    dispatch(getGamesByGenreId(id));
+    dispatch(setCurrentGenre(id));
+  };
+
+  const handleAllClick = () => {
+    dispatch(resetPage());
+    dispatch(getGames());
+    dispatch(setCurrentGenre(null));
+  };
+
   if (type == 'all') {
     return (
       <div
-        onClick={() => dispatch(getGames())}
+        onClick={handleAllClick}
         className='relative flex h-[3rem] w-full items-center justify-center font-semibold text-black'
       >
         <LazyLoadImage
@@ -34,7 +51,7 @@ function GameGenreTag({ children, bgImage, id, type = '' }) {
 
   return (
     <div
-      onClick={() => dispatch(getGamesByGenreId(id))}
+      onClick={handleGenreClick}
       className='relative flex h-[3rem] w-full items-center justify-center font-semibold text-black'
     >
       <LazyLoadImage
