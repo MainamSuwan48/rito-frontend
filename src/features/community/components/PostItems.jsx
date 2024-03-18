@@ -76,7 +76,7 @@ export default function PostItems({ post }) {
 
   const setStyleContainer = (imgUrl, content) => {
     if (imgUrl && !content) {
-      return 'flex flex-row gap-4 items-center';
+      return 'flex flex-row gap-4 items-center justify-end';
     } else if (imgUrl) {
       return 'flex flex-row justify-between flex-1 max-sm:flex-col max-sm:gap-4 gap-4';
     } else {
