@@ -28,9 +28,14 @@ export default function CreatePostBtn() {
   });
 
   const onSubmit = (data) => {
+    console.log(data);
     const formData = new FormData();
     formData.append('title', data.title);
-    formData.append('content', data.content);
+    formData.append('gameId', data.gameId);
+    formData.append('postType', data.postType);
+    if (data.content) {
+      formData.append('content', data.content);
+    }
     // createGameData.append('category', data.category);
     // createGameData.append('image', data.image);
     console.log('submit');
@@ -78,12 +83,17 @@ export default function CreatePostBtn() {
           </div>
           <div className='grid grid-cols-[1.5fr_4fr] gap-4'>
             <p className='pt-1 text-right'>Game:</p>
-            <CreatePostInput name='game' errors={errors} register={register} />
+            <CreatePostInput
+              name='gameId'
+              errors={errors}
+              register={register}
+            />
           </div>
           <div className='grid grid-cols-[1.5fr_4fr] gap-4'>
             <p className='pt-1 text-right'>Categories:</p>
             <select
-              name='category'
+              {...register('postType')}
+              // name='category'
               className='h-10 border px-2 focus:border-base_dark focus:outline-none'
             >
               <option value='DISCUSSION' selected>
