@@ -21,14 +21,14 @@ export default function GameStorePage() {
 
   useEffect(() => {
     if (allGames.length === 0) {
-      dispatch(getGames(page));    }
-   
+      dispatch(getGames(page));
+    }
   }, [allGames]);
 
   useEffect(() => {
     if (currentGenre) {
       dispatch(getMoreGamesByGenreId({ genreId: currentGenre, page }));
-    } else if (allGames.length !== 0 && !currentGenre){
+    } else if (allGames.length !== 0 && !currentGenre) {
       dispatch(getMoreGames(page));
     }
   }, [page]);
@@ -39,7 +39,6 @@ export default function GameStorePage() {
       dispatch(resetPage());
     };
   }, []);
-
 
   return (
     <div className='relative flex h-content w-full overflow-auto'>
@@ -97,7 +96,6 @@ export default function GameStorePage() {
                 </div>
               )}
             </div>
-
           </div>
         )}
       </div>

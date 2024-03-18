@@ -22,13 +22,12 @@ export default function GameSearchPage() {
     loadingSearchedGames,
     searchPage,
     moreSearchedGamesLoading,
-    gameSearchQuery
+    gameSearchQuery,
   } = useSelector((state) => state.games);
 
   useEffect(() => {
     return () => {
       dispatch(clearSearch());
-      
     };
   }, []);
 

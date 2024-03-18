@@ -27,7 +27,7 @@ function GameShowcaseCarousel() {
     <Skeleton className='m-2 h-[350px] w-full rounded-lg' />
   ) : (
     <Carousel
-      opts={{       
+      opts={{
         loop: true,
       }}
       plugins={[
@@ -37,7 +37,7 @@ function GameShowcaseCarousel() {
       ]}
       className='max-w-screen m-2 flex items-center justify-center'
     >
-      <CarouselContent>    
+      <CarouselContent>
         {randomGames.map((game) => (
           <CarouselItem className='md:basis-1/2 lg:basis-1/3' key={game.id}>
             <GameShowcaseCard gameData={game} />

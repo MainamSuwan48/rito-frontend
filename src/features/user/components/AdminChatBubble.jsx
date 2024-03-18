@@ -28,7 +28,7 @@ function AdminChatBubble({ children, type = '', sent }) {
       <div className='ml-2'>
         <p className='text-left font-bold text-primary'>Admin</p>
         <p className='text-left text-black'>{children}</p>
-        <p className='mr-2 text-left text-base_dark text-xs'>
+        <p className='mr-2 text-left text-xs text-base_dark'>
           <ReactTimeAgo date={new Date(sent)} locale='en-US' />
         </p>
       </div>

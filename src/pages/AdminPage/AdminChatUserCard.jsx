@@ -6,7 +6,7 @@ function AdminChatUserCard({ chat }) {
   //   const { userId, username } = user;
   return (
     <div
-      className='mt-2 flex h-24 w-full flex-shrink-0 select-none rounded-md transition-all hover:scale-105 active:scale-100 overflow-hidden border'
+      className='mt-2 flex h-24 w-full flex-shrink-0 select-none overflow-hidden rounded-md border transition-all hover:scale-105 active:scale-100'
       onClick={() => navigate(`/admin/chat/${chat.chatSenderId}`)}
     >
       <div className='h-24 w-24 flex-shrink-0 bg-white'>

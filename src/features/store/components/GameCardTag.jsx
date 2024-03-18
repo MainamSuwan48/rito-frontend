@@ -4,7 +4,6 @@ import { useDispatch } from 'react-redux';
 import { searchGames, clearSearch } from '@/redux/slice/games-slice';
 import { useNavigate } from 'react-router-dom';
 
-
 function GameCardTag({ children, name }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();

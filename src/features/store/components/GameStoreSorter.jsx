@@ -60,7 +60,7 @@ function GameStoreSorter({ type = '' }) {
   }
 
   return (
-    <div className='flex items-center justify-center h-14 '>
+    <div className='flex h-14 items-center justify-center '>
       <Select onValueChange={(value) => sort(value)} className=''>
         <SelectTrigger className='h-14 w-[160px] rounded-none bg-neutral'>
           <SelectValue placeholder='Sort By' />

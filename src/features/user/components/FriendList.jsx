@@ -33,9 +33,7 @@ function FriendList({ user }) {
           <div className='relative h-4 w-4' />
         </div>
       </div>
-      <div
-      className='flex flex-col gap-1 overflow-auto'
-      >
+      <div className='flex flex-col gap-1 overflow-auto'>
         {friends?.map((friend) => {
           return <FriendItems key={friend.id} friend={friend} />;
         })}

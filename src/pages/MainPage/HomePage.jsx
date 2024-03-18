@@ -1,8 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-
- 
 import HomePageHero from './components/HomePageHero';
 import DiscoverGamesCard from './components/DiscoverGamesCard';
 import CyberPunkCard from './components/CyberPunkCard';

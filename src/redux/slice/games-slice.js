@@ -143,7 +143,7 @@ export const searchGames = createAsyncThunk(
 
 export const getMoreSearchGames = createAsyncThunk(
   'games/getMoreSearchGames',
-  async ({query, page}) => {
+  async ({ query, page }) => {
     try {
       const response = await gamesApi.searchGames(query, page);
       await new Promise((resolve) => setTimeout(resolve, 300));
@@ -201,7 +201,6 @@ export const createGame = createAsyncThunk(
 );
 
 export const updateGame = createAsyncThunk(
-
   async ({ formData, gameId, navigate, onClear }, { rejectWithValue }) => {
     try {
       const response = await gamesApi.updateGame(formData, gameId);
@@ -247,7 +246,10 @@ const gamesSlice = createSlice({
     },
     //For Search Page
     setGameSearchQuery: (state, action) => {
-      console.log(action.payload, 'action.payload from setGameSearchQuery in slice');
+      console.log(
+        action.payload,
+        'action.payload from setGameSearchQuery in slice'
+      );
       state.gameSearchQuery = action.payload;
     },
     sortSearchedGames: (state, action) => {

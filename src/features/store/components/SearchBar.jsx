@@ -1,12 +1,10 @@
 import { useState } from 'react';
-import { useDispatch ,useSelector} from 'react-redux';
-import { searchGames ,setGameSearchQuery } from '@/redux/slice/games-slice';
+import { useDispatch, useSelector } from 'react-redux';
+import { searchGames, setGameSearchQuery } from '@/redux/slice/games-slice';
 import { useNavigate } from 'react-router-dom';
 import { SearchIcon } from '@/icons';
 
-export default function SearchBar({
-  type = '',
-}) {
+export default function SearchBar({ type = '' }) {
   const { gameSearchQuery } = useSelector((state) => state.games);
   const navigate = useNavigate();
   const dispatch = useDispatch();

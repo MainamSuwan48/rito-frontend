@@ -8,7 +8,7 @@ export default function PublishGameRequestingCard({ game }) {
   console.log(game);
   return (
     <div
-      className='transition-all flex items-center justify-between gap-12 overflow-hidden bg-neutral p-2.5 text-base_dark hover:scale-95'
+      className='flex items-center justify-between gap-12 overflow-hidden bg-neutral p-2.5 text-base_dark transition-all hover:scale-95'
       onClick={() => navigate(`/game/${game.id}`)}
       role='button'
     >
