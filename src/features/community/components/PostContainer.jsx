@@ -11,17 +11,19 @@ import { getAllPosts, findLikePost } from '@/redux/slice/community-slice';
 
 export default function PostContainer() {
   const dispatch = useDispatch();
-  const { post, posts } = useSelector((state) => state.community);
+  const { post, posts, newPostSubmitted } = useSelector(
+    (state) => state.community
+  );
   console.log(posts);
 
   const [input, setInput] = useState('');
 
   useEffect(() => {
-    if (posts.length === 0) {
+    if (!posts.length || newPostSubmitted) {
       dispatch(getAllPosts());
     }
-    dispatch(getAllPosts());
-  }, [post]);
+    // dispatch(getAllPosts());
+  }, [newPostSubmitted]);
 
   const handleOnChangeInput = (e) => {
     setInput(e.target.value);
