@@ -31,10 +31,6 @@ export default function PostItems({ post }) {
   const [input, setInput] = useState('');
   // const [isLike, setIsLike] = useState(0);
 
-  // useEffect(() => {
-  //   dispatch(getPostById(id));
-  // }, [id]);
-
   const handleOnChangeInput = (e) => {
     setInput(e.target.value);
   };
@@ -58,7 +54,6 @@ export default function PostItems({ post }) {
 
   const handleOnClickLike = () => {
     dispatch(toggleLikePost(id));
-    // dispatch(getAllPost());
     dispatch(getPostById(id));
   };
 

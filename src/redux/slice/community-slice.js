@@ -50,7 +50,7 @@ export const toggleLikePost = createAsyncThunk(
   async (postId) => {
     try {
       const response = await postApi.toggleLikePost(postId);
-      return response.data.post;
+      return response.data.like;
     } catch (error) {
       return Promise.reject(error);
     }
@@ -120,7 +120,7 @@ const communitySlice = createSlice({
         state.error = action.error.message;
       })
       .addCase(toggleLikePost.fulfilled, (state, action) => {
-        state.post = action.payload;
+        state.like = action.payload;
       })
       .addCase(toggleLikePost.pending, (state) => {
         state.loading = true;
@@ -139,6 +139,17 @@ const communitySlice = createSlice({
       .addCase(createPost.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
+      });
+    builder
+      .addCase(getPostById.fulfilled, (state, action) => {
+        state.post = action.payload;
+      })
+      .addCase(getPostById.rejected, (state, action) => {
+        state.error = action.error.message;
+      })
+      .addCase(getPostById.pending, (state) => {
+        state.loading = true;
+        state.error = null;
       });
   },
 });
