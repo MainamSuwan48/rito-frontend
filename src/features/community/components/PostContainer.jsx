@@ -4,10 +4,10 @@ import mockData from './mockData.json';
 import SearchBar from './SearchBar';
 import CreatePostFormModal from './CreatePostFormModal';
 import CreatePostBtn from './CreatePostBtn';
-import CommunitySearchBar from './CommunitySearchBar';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { getAllPosts } from '@/redux/slice/community-slice';
+import { getAllPosts, findLikePost } from '@/redux/slice/community-slice';
+import CreatePostBtn2 from './CreatePostBtn2';
 
 export default function PostContainer() {
   const dispatch = useDispatch();
@@ -17,17 +17,17 @@ export default function PostContainer() {
   const [input, setInput] = useState('');
 
   useEffect(() => {
-    if (!posts.length) {
+    if (posts.length === 0) {
       dispatch(getAllPosts());
     }
-  }, [posts]);
+    dispatch(getAllPosts());
+  }, [post]);
 
   const handleOnChangeInput = (e) => {
     setInput(e.target.value);
   };
   return (
     <>
-      {/* <CommunitySearchBar /> */}
       <div className=' flex h-auto w-full flex-col gap-4 py-3'>
         <div className='flex items-center gap-4'>
           <SearchBar type='community' />

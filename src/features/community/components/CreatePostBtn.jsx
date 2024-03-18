@@ -14,27 +14,27 @@ import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { createPostSchema } from '../validations/validate-createpost';
 import CreatePostInput from './CreatePostInput';
+import { createPost } from '@/redux/slice/community-slice';
 
 export default function CreatePostBtn() {
-  const inputClass =
-    'py-2 px-4 col-span-3 border text-sm focus:border-base_dark focus:outline-none';
-
   const dispatch = useDispatch();
 
   const {
+    register,
     handleSubmit,
     formState: { errors },
   } = useForm({
     resolver: joiResolver(createPostSchema),
-    mode: 'onSubmit',
   });
 
   const onSubmit = (data) => {
-    const createGameData = new FormData();
-    createGameData.append('title', 'data.title');
-    createGameData.append('content', 'data.content');
-    createGameData.append('category', 'data.category');
-    createGameData.append('images', 'data.images');
+    const formData = new FormData();
+    formData.append('title', data.title);
+    formData.append('content', data.content);
+    // createGameData.append('category', data.category);
+    // createGameData.append('image', data.image);
+    console.log('submit');
+    dispatch(createPost({ formData }));
   };
 
   const uploadImageEl = useRef(null);
@@ -42,36 +42,43 @@ export default function CreatePostBtn() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className='h-12 w-[250px] rounded-none bg-primary duration-300 hover:bg-secondary'>
+        <button className='h-12 w-[250px] rounded-none bg-primary duration-300 hover:bg-secondary'>
           Create Post
-        </Button>
+        </button>
       </DialogTrigger>
       <DialogContent className='sm:max-w-[70vw]'>
-        <DialogHeader>
-          <DialogTitle>Create Post</DialogTitle>
-        </DialogHeader>
         <form
           className='flex flex-col justify-center gap-4 py-4'
           onSubmit={handleSubmit(onSubmit)}
         >
+          <DialogHeader>
+            <DialogTitle>Create Post</DialogTitle>
+          </DialogHeader>
+
           <input
             type='file'
-            name='images'
+            name='image'
             className='hidden'
             errors={errors}
+            register={register}
             ref={uploadImageEl}
           />
           <div className='grid grid-cols-[1.5fr_4fr] gap-4'>
             <p className='pt-1 text-right'>Title:</p>
-            <CreatePostInput name='title' errors={errors} />
+            <CreatePostInput name='title' errors={errors} register={register} />
           </div>
           <div className='items-top grid grid-cols-[1.5fr_4fr] gap-4'>
             <p className='pt-1 text-right'>Content:</p>
-            <CreatePostInput name='content' errors={errors} isTextarea={true} />
+            <CreatePostInput
+              name='content'
+              errors={errors}
+              isTextarea={true}
+              register={register}
+            />
           </div>
           <div className='grid grid-cols-[1.5fr_4fr] gap-4'>
             <p className='pt-1 text-right'>Game:</p>
-            <CreatePostInput name='game' errors={errors} />
+            <CreatePostInput name='game' errors={errors} register={register} />
           </div>
           <div className='grid grid-cols-[1.5fr_4fr] gap-4'>
             <p className='pt-1 text-right'>Categories:</p>

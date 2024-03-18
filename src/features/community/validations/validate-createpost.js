@@ -9,6 +9,7 @@ export const createPostSchema = Joi.object({
     'string.empty': 'Category is required',
     'any.required': 'Category is required',
   }),
+  content: Joi.any(),
   images: Joi.any(),
   game: Joi.string().trim().required().messages({
     'string.empty': 'Game is required',

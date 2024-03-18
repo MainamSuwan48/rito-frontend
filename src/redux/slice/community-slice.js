@@ -4,6 +4,7 @@ import * as postApi from '../../api/post';
 const initialState = {
   posts: [],
   loading: false,
+  like: null,
   post: null,
   error: null,
 };
@@ -16,6 +17,19 @@ export const getAllPosts = createAsyncThunk('posts/getAllPosts', async () => {
     return Promise.reject(error);
   }
 });
+
+export const getPostById = createAsyncThunk(
+  'posts/getPostById',
+  async (postId) => {
+    try {
+      const response = await postApi.getPostById(postId);
+      console.log(response.data.post);
+      return response.data.post;
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
+);
 
 export const findLikePost = createAsyncThunk(
   'posts/findLikePost',
@@ -41,14 +55,17 @@ export const toggleLikePost = createAsyncThunk(
   }
 );
 
-export const createPost = createAsyncThunk('posts/createPost', async (data) => {
-  try {
-    const response = await postApi.createPost(data);
-    return response.data.post;
-  } catch (error) {
-    return Promise.reject(error);
+export const createPost = createAsyncThunk(
+  'posts/createPost',
+  async ({ formData }, { rejectWithValue }) => {
+    try {
+      const response = await postApi.createPost(formData);
+      return response.data.post;
+    } catch (error) {
+      return Promise.reject(error);
+    }
   }
-});
+);
 
 const communitySlice = createSlice({
   name: 'community',

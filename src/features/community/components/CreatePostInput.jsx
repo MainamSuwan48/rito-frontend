@@ -1,6 +1,7 @@
 export default function CreatePostInput({
   name,
   errors,
+  register,
   type = 'text',
   isTextarea = false,
   placeholder,
@@ -13,8 +14,9 @@ export default function CreatePostInput({
         <div className='flex flex-col'>
           <textarea
             name={name}
+            {...register(name)}
             placeholder={placeholder}
-            className={`${inputClass} focus:border-blue-500 focus:outline-none`}
+            className={`${inputClass} focus:border-base_dark focus:outline-none`}
             rows={3} // Adjust the number of rows as needed
           />
           {errors[name] && (
@@ -26,6 +28,7 @@ export default function CreatePostInput({
       ) : (
         <div className='flex flex-col gap-1'>
           <input
+            {...register(name)}
             type={type}
             name={name}
             className={inputClass}

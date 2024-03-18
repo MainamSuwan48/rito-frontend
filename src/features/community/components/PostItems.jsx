@@ -5,7 +5,9 @@ import { Accordion, AccordionItem } from '@radix-ui/react-accordion';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ReactTimeAgo from 'react-time-ago';
-import { toggleLikePost } from '@/redux/slice/community-slice';
+import { getPostById, toggleLikePost } from '@/redux/slice/community-slice';
+import { useEffect } from 'react';
+import { getAllPost } from '@/api/post';
 
 export default function PostItems({ post }) {
   const {
@@ -27,6 +29,11 @@ export default function PostItems({ post }) {
 
   const [isOpenComment, setIsOpenComment] = useState(false);
   const [input, setInput] = useState('');
+  // const [isLike, setIsLike] = useState(0);
+
+  // useEffect(() => {
+  //   dispatch(getPostById(id));
+  // }, [id]);
 
   const handleOnChangeInput = (e) => {
     setInput(e.target.value);
@@ -51,6 +58,8 @@ export default function PostItems({ post }) {
 
   const handleOnClickLike = () => {
     dispatch(toggleLikePost(id));
+    // dispatch(getAllPost());
+    dispatch(getPostById(id));
   };
 
   const setStylePostTypeTag = (postType) => {
@@ -195,7 +204,7 @@ export default function PostItems({ post }) {
               onChange={handleOnChangeInput}
               value={input.comment}
               type='text'
-              className='input-bordered w-full border p-1.5 text-black'
+              className='input-bordered w-full border p-1.5 text-black focus:border-primary focus:outline-none'
               placeholder='write your comments here...'
             />
             <button
