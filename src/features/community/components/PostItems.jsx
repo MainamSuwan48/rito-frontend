@@ -144,7 +144,7 @@ export default function PostItems({ post }) {
               className='flex items-center gap-1'
               onClick={handleOnClickLike}
             >
-              <ThumbsUpIcon className='hove:fill-blue-500 size-5' />
+              <ThumbsUpIcon className='size-5 hover:fill-primary' />
               <span className='text-[12px] text-base_dark text-opacity-45'>
                 {PostLike.length > 0 ? PostLike.length : null}
               </span>
