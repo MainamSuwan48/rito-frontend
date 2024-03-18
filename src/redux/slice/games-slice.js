@@ -388,6 +388,7 @@ const gamesSlice = createSlice({
       })
       .addCase(getMoreGames.fulfilled, (state, action) => {
         if (action.payload.games.length === 0) {
+          state.moreGamesLoading = false;
           toast.error('No more games found');
           return;
         }
