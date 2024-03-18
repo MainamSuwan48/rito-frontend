@@ -3,8 +3,11 @@ import { AccordionContent } from '@radix-ui/react-accordion';
 import { AccordionTrigger } from '@radix-ui/react-accordion';
 import { Accordion, AccordionItem } from '@radix-ui/react-accordion';
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import ReactTimeAgo from 'react-time-ago';
+import { getPostById, toggleLikePost } from '@/redux/slice/community-slice';
+import { useEffect } from 'react';
+import { getAllPost } from '@/api/post';
 
 export default function PostItems({ post }) {
   const {
@@ -18,16 +21,19 @@ export default function PostItems({ post }) {
     updatedAt,
     deletedAt,
     comments,
-    likes,
+    PostLike,
     imgUrl,
   } = post;
 
-  const { authUser } = useSelector((state) => state.auth);
-  console.log(authUser);
+  const dispatch = useDispatch();
 
   const [isOpenComment, setIsOpenComment] = useState(false);
   const [input, setInput] = useState('');
-  const [isLike, setIsLike] = useState(likes);
+  // const [isLike, setIsLike] = useState(0);
+
+  // useEffect(() => {
+  //   dispatch(getPostById(id));
+  // }, [id]);
 
   const handleOnChangeInput = (e) => {
     setInput(e.target.value);
@@ -51,7 +57,9 @@ export default function PostItems({ post }) {
   };
 
   const handleOnClickLike = () => {
-    setIsLike(isLike + 1);
+    dispatch(toggleLikePost(id));
+    // dispatch(getAllPost());
+    dispatch(getPostById(id));
   };
 
   const setStylePostTypeTag = (postType) => {
@@ -68,7 +76,9 @@ export default function PostItems({ post }) {
 
   const setStyleContainer = (imgUrl, content) => {
     if (imgUrl && !content) {
-      return 'flex flex-row gap-4 items-center';
+      return 'flex flex-row gap-4 items-center justify-between';
+    } else if (imgUrl) {
+      return 'flex flex-row justify-between flex-1 max-sm:flex-col max-sm:gap-4 gap-4';
     } else {
       return 'flex flex-row justify-end flex-1 max-sm:flex-col max-sm:gap-4 gap-4';
     }
@@ -117,7 +127,9 @@ export default function PostItems({ post }) {
               />
             )}
             <div className='flex flex-col items-center gap-2.5'>
-              <p className='line-clamp-1 font-semibold'>{user.displayName}</p>
+              <p className='line-clamp-1 py-1 font-semibold'>
+                {user.displayName}
+              </p>
             </div>
           </div>
         </div>
@@ -139,7 +151,7 @@ export default function PostItems({ post }) {
             >
               <ThumbsUpIcon className='hove:fill-blue-500 size-5' />
               <span className='text-[12px] text-base_dark text-opacity-45'>
-                {isLike}
+                {PostLike.length > 0 ? PostLike.length : null}
               </span>
             </button>
             <button
@@ -148,7 +160,7 @@ export default function PostItems({ post }) {
             >
               <CommentIcon className='size-5 ' />
               <span className='text-[12px] text-base_dark text-opacity-45'>
-                {comments.length}
+                {comments.length > 0 ? comments.length : null}
               </span>
             </button>
             {/* <ThumbsDownIcon className={'size-5'} /> */}
@@ -172,11 +184,16 @@ export default function PostItems({ post }) {
               <div key={comment.id} className='flex items-center gap-4 p-4'>
                 <div className='flex flex-shrink-0 items-center gap-2'>
                   <img
-                    src={comment.user.profileImageUrl}
+                    src={
+                      comment.user?.profileImageUrl ||
+                      'https://placehold.co/48x48'
+                    }
                     alt='user profile'
                     className='size-12'
                   />
-                  <div className=' font-bold'>{comment.user.displayName}</div>
+                  <div className=' font-bold'>
+                    {comment.user?.displayName || 'No DisplayName'}
+                  </div>
                 </div>
                 <div>{comment.content}</div>
               </div>
@@ -187,7 +204,7 @@ export default function PostItems({ post }) {
               onChange={handleOnChangeInput}
               value={input.comment}
               type='text'
-              className='input-bordered w-full border p-1.5 text-black'
+              className='input-bordered w-full border p-1.5 text-black focus:border-primary focus:outline-none'
               placeholder='write your comments here...'
             />
             <button
