@@ -5,13 +5,13 @@ export const createPostSchema = Joi.object({
     'string.empty': 'Title is required',
     'any.required': 'Title is required',
   }),
-  category: Joi.string().trim().required().messages({
+  postType: Joi.string().trim().required().messages({
     'string.empty': 'Category is required',
     'any.required': 'Category is required',
   }),
-  content: Joi.any(),
-  images: Joi.any(),
-  game: Joi.string().trim().required().messages({
+  content: Joi.string().trim().allow(''),
+  // images: Joi.any(),
+  gameId: Joi.number().required().messages({
     'string.empty': 'Game is required',
     'any.required': 'Game is required',
   }),
