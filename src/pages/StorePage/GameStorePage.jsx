@@ -6,6 +6,8 @@ import {
   getMoreGames,
   getMoreGamesByGenreId,
   incrementPage,
+  clearAllGames,
+  resetPage,
 } from '@/redux/slice/games-slice';
 import { useEffect } from 'react'; // Remove lazy and Suspense
 import GameCard from '@/features/store/components/GameCard'; // Import GameCard directly
@@ -19,8 +21,8 @@ export default function GameStorePage() {
 
   useEffect(() => {
     if (allGames.length === 0) {
-      dispatch(getGames(page));
-    }
+      dispatch(getGames(page));    }
+   
   }, [allGames]);
 
   useEffect(() => {
@@ -30,6 +32,13 @@ export default function GameStorePage() {
       dispatch(getMoreGames(page));
     }
   }, [page]);
+
+  useEffect(() => {
+    return () => {
+      dispatch(clearAllGames());
+      dispatch(resetPage());
+    };
+  }, []);
 
 
   return (

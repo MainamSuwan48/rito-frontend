@@ -222,6 +222,9 @@ const gamesSlice = createSlice({
   initialState,
   reducers: {
     //For Store Page
+    clearAllGames: (state) => {
+      state.allGames = [];
+    },
     sortGames: (state, action) => {
       console.log(state.allGames);
       const key = action.payload;
@@ -577,6 +580,7 @@ export const {
   incrementPage,
   resetPage,
   setCurrentGenre,
+  clearAllGames,
   sortGames,
   reverseGames,
   setGameSearchQuery,
