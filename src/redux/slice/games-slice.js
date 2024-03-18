@@ -226,7 +226,7 @@ const gamesSlice = createSlice({
       console.log(state.allGames);
       const key = action.payload;
       state.isAscending = true;
-      state.allGames.games.sort((a, b) => {
+      state.allGames.sort((a, b) => {
         if (a[key] < b[key]) {
           return -1;
         }
