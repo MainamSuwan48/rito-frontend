@@ -39,7 +39,7 @@ export default function PostContainer() {
           </button> */}
           <CreatePostBtn />
         </div>
-        <div className='flex flex-col gap-6'>
+        <div className='flex flex-col-reverse gap-6'>
           {posts.map((post, index) => (
             <PostItems key={index} post={post} />
           ))}
