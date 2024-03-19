@@ -200,7 +200,8 @@ export const createGame = createAsyncThunk(
   }
 );
 
-export const updateGame = createAsyncThunk('games/update',
+export const updateGame = createAsyncThunk(
+  'games/update',
   async ({ formData, gameId, navigate, onClear }, { rejectWithValue }) => {
     try {
       const response = await gamesApi.updateGame(formData, gameId);
@@ -223,6 +224,9 @@ const gamesSlice = createSlice({
     //For Store Page
     clearAllGames: (state) => {
       state.allGames = [];
+    },
+    clearCurrentGenre: (state) => {
+      state.currentGenre = null;
     },
     sortGames: (state, action) => {
       console.log(state.allGames);
@@ -583,6 +587,7 @@ export const {
   resetPage,
   setCurrentGenre,
   clearAllGames,
+  clearCurrentGenre,
   sortGames,
   reverseGames,
   setGameSearchQuery,

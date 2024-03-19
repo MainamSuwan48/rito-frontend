@@ -7,21 +7,24 @@ import {
   getGames,
   setCurrentGenre,
   resetPage,
+  clearCurrentGenre,
 } from '@/redux/slice/games-slice';
+
 
 function GameGenreTag({ children, bgImage, id, type = '' }) {
   const dispatch = useDispatch();
 
   const handleGenreClick = () => {
+    dispatch(clearCurrentGenre());
     dispatch(resetPage());
     dispatch(getGamesByGenreId(id));
     dispatch(setCurrentGenre(id));
   };
 
   const handleAllClick = () => {
+    dispatch(clearCurrentGenre());
     dispatch(resetPage());
     dispatch(getGames());
-    dispatch(setCurrentGenre(null));
   };
 
   if (type == 'all') {
