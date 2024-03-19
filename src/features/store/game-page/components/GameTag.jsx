@@ -1,8 +1,9 @@
 import React from 'react';
 import { makeSlug } from '@/utils/make-slug';
 import { useDispatch } from 'react-redux';
-import { searchGames } from '@/redux/slice/games-slice';
+import { searchGames ,setGameSearchQuery } from '@/redux/slice/games-slice';
 import { useNavigate } from 'react-router-dom';
+
 
 function GameTag({ children, name }) {
   const navigate = useNavigate();
@@ -10,6 +11,7 @@ function GameTag({ children, name }) {
   const slugQuery = makeSlug(name);
   const search = (query) => {
     navigate('/search');
+    dispatch(setGameSearchQuery(query));
     dispatch(searchGames(query));
   };
   return (
