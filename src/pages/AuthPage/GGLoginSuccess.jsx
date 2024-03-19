@@ -4,6 +4,7 @@ import React from 'react'
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
+import { redirect } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 function GGLoginSuccess() {
@@ -14,17 +15,30 @@ function GGLoginSuccess() {
     console.log('aaa')
     },[])
   return (
-    <>
+    <div className=' relative flex h-content items-center justify-center'>
+    <video
+      className='inset-0 -z-50'
+      autoPlay
+      loop
+      muted
+      style={{
+        opacity: '0.6',
+        position: 'fixed',
+        width: '100%',
+        height: '100%',
+        objectFit: 'cover',
+      }}
+    >
+      <source src='https://res.cloudinary.com/dhm6pitfd/video/upload/v1710171222/Moving_Gradient_Background_rnv9iv.mp4' />
+    </video>
       <Link to={"/user"}>
-      <div
-        className='flex w-full h-content justify-center items-center bg-blue-400'
+      <button
+        className='w-[300px] h-[50px] inset-0 justify-center items-center bg-primary'
       >
-        LoginSuccess
-        Go to profile page
-      </div>
+        Login Success. Click here!!
+      </button>
       </Link>
-    
-    </>
+    </div>
       
   )
 }
