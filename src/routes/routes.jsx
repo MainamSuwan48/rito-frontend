@@ -29,6 +29,7 @@ import AdminControlPanelPage from '@/pages/AdminPage/AdminControlPanelPage';
 import DevChat from '@/pages/DevChat';
 import AdminChatPage from '@/pages/AdminPage/AdminChatPage';
 import AdminChatBox from '@/pages/AdminPage/AdminChatBox';
+import GGLoginSuccess from '@/pages/AuthPage/GGLoginSuccess';
 
 const router = createBrowserRouter([
   {
@@ -47,6 +48,14 @@ const router = createBrowserRouter([
       {
         path: '/user/:userId',
         element: <UserProfilePage />,
+      },
+      {
+        path: '/login/success',
+        element: <GGLoginSuccess/>,
+      },
+      {
+        path: '/login/error',
+        element: <div> cant login please try again</div>,
       },
       {
         path: '/forgot-password',

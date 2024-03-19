@@ -66,6 +66,21 @@ export const registerUser = createAsyncThunk('auth/register', async (data) => {
   }
 });
 
+export const googleLogin = createAsyncThunk('auth/googleLogin',async (data)=>{
+  console.log(data,'data in googleLogin from auth-slice')
+  try{
+    const response = await authApi.googleLogin()
+    deleteToken()
+    storeToken(response.data.token)
+    toast.success('Registration successful');
+    return response.data.user
+  }catch(error){
+    console.log(error.response.data.message)
+    toast.error(`Register failed: ${error.response.data.message}`);
+    return Promise.reject(error);
+  }
+})
+
 export const logout = createAsyncThunk('auth/logout', async () => {
   try {
     deleteToken();
@@ -158,6 +173,21 @@ const authSlice = createSlice({
         state.loading = false;
         state.error = action.error.message;
       });
+    // GoogleLogin Cases
+    builder
+      .addCase(googleLogin.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(googleLogin.fulfilled, (state, action) => {
+        state.loading = false;
+        state.authUser = action.payload;
+      })
+      .addCase(googleLogin.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      });
+
     // Logout Cases
     builder
       .addCase(logout.pending, (state) => {
