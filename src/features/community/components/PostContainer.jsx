@@ -7,7 +7,7 @@ import CreatePostBtn from './CreatePostBtn';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { getAllPosts, findLikePost } from '@/redux/slice/community-slice';
-import CreatePostBtn2 from './CreatePostBtn2';
+// import CreatePostBtn2 from './CreatePostBtn2';
 
 export default function PostContainer() {
   const dispatch = useDispatch();

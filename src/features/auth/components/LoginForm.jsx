@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 //local imports
 import { loginSchema } from '../validations/validate-login';
 import { useDispatch, useSelector } from 'react-redux';
-import { login, getMe } from '../../../redux/slice/auth-slice';
+import { login, getMe, googleLogin } from '../../../redux/slice/auth-slice';
 import FormInput from './FormInput';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -30,6 +30,22 @@ export default function LoginForm({ onClose }) {
     resolver: joiResolver(loginSchema),
     mode: 'onSubmit',
   });
+
+  const redirectToGoogle =async() =>{
+   
+    const newWindow = window.open('http://localhost:8080/user/google',"_self")
+    console.log("Aaaa",newWindow)
+    if(newWindow){
+      setInterval(() => {
+        if(newWindow.closed){
+          console.log("login 555")
+        }
+      }, 500);
+         
+    }
+
+  }
+ 
 
   const handleClickShowPassword = () => {
     setIsShowPassword(!isShowPassword);
@@ -89,12 +105,13 @@ export default function LoginForm({ onClose }) {
               'Log in'
             )}
           </button>
-          {/* <button
+          <button
+            onClick={redirectToGoogle}
             type='button' // Changed type to 'button' as this button doesn't submit the form
             className='flex h-[2rem] w-[20em] items-center justify-center bg-base_dark p-5 font-semibold text-neutral transition-all hover:bg-secondary_mute active:scale-95'
           >
             Login With Google Account
-          </button> */}
+          </button> 
         </div>
       </div>
     </form>
