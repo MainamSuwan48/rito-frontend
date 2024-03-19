@@ -11,15 +11,21 @@ import { getAllPosts, findLikePost } from '@/redux/slice/community-slice';
 
 export default function PostContainer() {
   const dispatch = useDispatch();
-  const { post, posts } = useSelector((state) => state.community);
-  console.log(posts);
+  const { post, posts, newPostSubmitted, like } = useSelector(
+    (state) => state.community
+  );
+  // console.log(posts);
 
   const [input, setInput] = useState('');
 
   useEffect(() => {
-    if (posts.length === 0) {
+    if (!posts.length) {
       dispatch(getAllPosts());
     }
+    // dispatch(getAllPosts());
+  }, [post, newPostSubmitted]);
+
+  useEffect(() => {
     dispatch(getAllPosts());
   }, [post]);
 
@@ -39,7 +45,7 @@ export default function PostContainer() {
           </button> */}
           <CreatePostBtn />
         </div>
-        <div className='flex flex-col gap-6'>
+        <div className='flex flex-col-reverse gap-6'>
           {posts.map((post, index) => (
             <PostItems key={index} post={post} />
           ))}

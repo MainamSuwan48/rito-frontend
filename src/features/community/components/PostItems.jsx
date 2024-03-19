@@ -5,9 +5,16 @@ import { Accordion, AccordionItem } from '@radix-ui/react-accordion';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ReactTimeAgo from 'react-time-ago';
-import { getPostById, toggleLikePost } from '@/redux/slice/community-slice';
+import {
+  createComment,
+  getPostById,
+  toggleLikePost,
+} from '@/redux/slice/community-slice';
 import { useEffect } from 'react';
 import { getAllPost } from '@/api/post';
+import { useForm } from 'react-hook-form';
+import { joiResolver } from '@hookform/resolvers/joi';
+import { createCommentSchema } from '../validations/validate-createcomment';
 
 export default function PostItems({ post }) {
   const {
@@ -25,31 +32,24 @@ export default function PostItems({ post }) {
     imgUrl,
   } = post;
 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: joiResolver(createCommentSchema),
+    mode: 'onSubmit',
+  });
+
   const dispatch = useDispatch();
-
   const [isOpenComment, setIsOpenComment] = useState(false);
-  const [input, setInput] = useState('');
-  // const [isLike, setIsLike] = useState(0);
 
-  // useEffect(() => {
-  //   dispatch(getPostById(id));
-  // }, [id]);
-
-  const handleOnChangeInput = (e) => {
-    setInput(e.target.value);
-  };
-
-  const handleOnSubmitComment = (e) => {
-    e.preventDefault();
-    console.log(input);
-    setInput('');
-    // Assuming you have a function to update the mockData.json
-    comments.push({
-      id: comments.length + 1, // Generate new id for the comment
-      content: input,
-      user: authUser,
-      createdAt: new Date().toISOString(),
-    });
+  const onSubmit = async (data) => {
+    console.log(id, data.content);
+    if (data.content) {
+      dispatch(createComment({ id, data }));
+      dispatch(getPostById(id));
+    }
   };
 
   const handleOnClickOpenComment = () => {
@@ -58,7 +58,6 @@ export default function PostItems({ post }) {
 
   const handleOnClickLike = () => {
     dispatch(toggleLikePost(id));
-    // dispatch(getAllPost());
     dispatch(getPostById(id));
   };
 
@@ -83,6 +82,7 @@ export default function PostItems({ post }) {
       return 'flex flex-row justify-end flex-1 max-sm:flex-col max-sm:gap-4 gap-4';
     }
   };
+
   return (
     <div className='flex flex-col shadow-md'>
       <div className={`glass flex flex-row text-base_dark max-sm:flex-col`}>
@@ -149,7 +149,7 @@ export default function PostItems({ post }) {
               className='flex items-center gap-1'
               onClick={handleOnClickLike}
             >
-              <ThumbsUpIcon className='hove:fill-blue-500 size-5' />
+              <ThumbsUpIcon className='size-5 hover:fill-primary' />
               <span className='text-[12px] text-base_dark text-opacity-45'>
                 {PostLike.length > 0 ? PostLike.length : null}
               </span>
@@ -158,7 +158,7 @@ export default function PostItems({ post }) {
               className='flex items-center gap-1'
               onClick={handleOnClickOpenComment}
             >
-              <CommentIcon className='size-5 ' />
+              <CommentIcon className='size-5' />
               <span className='text-[12px] text-base_dark text-opacity-45'>
                 {comments.length > 0 ? comments.length : null}
               </span>
@@ -199,17 +199,17 @@ export default function PostItems({ post }) {
               </div>
             );
           })}
-          <form className='flex p-4'>
+          <form className='flex p-4' onSubmit={handleSubmit(onSubmit)}>
             <input
-              onChange={handleOnChangeInput}
-              value={input.comment}
+              // onChange={handleOnChangeInput}
+              {...register('content')}
+              // name='content'
               type='text'
               className='input-bordered w-full border p-1.5 text-black focus:border-primary focus:outline-none'
               placeholder='write your comments here...'
             />
             <button
-              onClick={handleOnSubmitComment}
-              type='button'
+              type='submit'
               className='text-md flex h-[2rem] items-center justify-center bg-primary p-5 font-semibold text-neutral transition-all hover:bg-secondary_mute active:scale-95'
             >
               comment
